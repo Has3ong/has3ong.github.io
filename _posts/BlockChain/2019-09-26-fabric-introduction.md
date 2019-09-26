@@ -1,9 +1,9 @@
 ---
 title : Hyperledger Fabric Introduction
 category :
-  - ex
+  - Hyperledger Fabric
 tag :
-  - ex
+  - Hyperledger Fabric
 sidebar_main : true
 use_math : true
 header:
