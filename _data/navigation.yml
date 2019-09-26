@@ -1,0 +1,15 @@
+# main links
+main:
+  - title: "About"
+    url: /about/
+  - title: "Programming"
+    url: /pr/
+  - title: "BlockChain"
+    url: /bl/
+  - title: "ML / DL"
+    url: /ml/
+  - title: "Apache"
+    url: /ap/
+  - title: "Image Processing"
+    url: /ip/
+  
