@@ -23,7 +23,7 @@ header:
 
 * [해시넷](http://www.hash.kr/)
 * [하이퍼렛져 공식 사이트](https://www.hyperledger.org/)
-* [하이퍼렛져 문서](https://hyperledger-fabric.readthedocs.io)
+* [하이퍼렛져 공식 문서](https://hyperledger-fabric.readthedocs.io)
 * [하이퍼렛져 페브릭 깃허브](https://github.com/hyperledger/fabric-samples)
 
 #### Ethereum
