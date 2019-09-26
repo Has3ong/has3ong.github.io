@@ -28,14 +28,14 @@ header:
 
 ## Hyperledger Fabric
 
-[image:A5F5C879-C111-4DB5-B7E9-7BDF270B9960-53827-0000490CCD2BC2E1/스크린샷 2019-09-26 오후 11.02.02.png]
+<img width=600 src="https://user-images.githubusercontent.com/44635266/65713304-e10da580-e0d3-11e9-9bc1-0230ee49f7a6.png">
 
 하이퍼레저 패브릭(Hyperledger Fabric)은 모듈형 구조로 응용 프로그램 및 솔루션 개발의 중심 역할을 수행한다. 의견 상의 일치 또는 회원 서비스와 같은 구성 요소를 플러그 인드 플레이(plug and play) 방식으로 지원한다. 사실상 ‘하이퍼레저’라고 명명할 때에는 하이퍼레저 패브릭을 의미하는 경우가 많을 정도로, 하이퍼레저 프로젝트 전체의 핵심이 되는 부분이다.
 
 
 ## Hyperledger Architecture
 
-[image:7DE68DCE-98B1-43E0-B6F6-DCF0AA805FBB-53827-0000491A54FE6B7B/스크린샷 2019-09-26 오후 11.02.59.png]
+<img width=600 src="https://user-images.githubusercontent.com/44635266/65713305-e10da580-e0d3-11e9-8a92-31cccc3243f7.png">
 
 > Hyperledger APIs, SDKs, CLI
 
@@ -86,7 +86,7 @@ Consensus는 블록체인 네트워크 내의 peer들이 항상 동기화 된 St
 
 ## Hyperledger Fabric Transaction Flow
 
-[image:18EE82EF-4AE1-4F55-9721-40AE061E1F61-53827-0000496100D8B688/스크린샷 2019-09-26 오후 11.08.03.png]
+<img width=600 src="ttps://user-images.githubusercontent.com/44635266/65713304-e10da580-e0d3-11e9-9bc1-0230ee49f7a6.png">
 
 
 ### Step 1: Client 가 트랜잭션 요청(transaction proposal)
