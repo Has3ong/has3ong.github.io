@@ -112,11 +112,11 @@ author:
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Try."
   location         : "Anyang"
-  email            : "gnoesah@gmail.com"
+  # email            : "gnoesah@gmail.com"
   links:
     - label: "gnoesah@gmail.com"
       icon: "fas fa-fw fa-envelope-square"
-      # url: mailto:gnoesah@gmail.com
+      url: mailto:gnoesah@gmail.com
     - label: "Website"
       icon: "fas fa-fw fa-link"
       # url: "https://your-website.com"
