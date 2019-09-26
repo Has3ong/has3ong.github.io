@@ -1,6 +1,6 @@
 ---
 layout : single
-permalink: /im/
+permalink: /ip/
 title: "Image Processing"
 sidebar:
   # nav: sidebar-ML
