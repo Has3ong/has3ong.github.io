@@ -35,6 +35,8 @@ header:
 
 ## Hyperledger Architecture
 
+![스크린샷 2019-09-27 오전 3 05 32](https://user-images.githubusercontent.com/44635266/65715929-0e108700-e0d9-11e9-9070-500ad61ec485.png)
+
 <img width=600 src="https://user-images.githubusercontent.com/44635266/65713305-e10da580-e0d3-11e9-8a92-31cccc3243f7.png">
 
 > Hyperledger APIs, SDKs, CLI
