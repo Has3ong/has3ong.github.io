@@ -17,10 +17,10 @@ remote_theme : mmistakes/minimal-mistakes
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Site Title"
+title                    : "Try"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
-name                     : "Your Name"
+name                     : "Kim HaSeong"
 description              : "An amazing website."
 url                      : "https://has3ong.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
@@ -54,7 +54,7 @@ staticman:
   path                   : # "/_data/comments/{options.slug}" (default)
   requiredFields         : # ['name', 'email', 'message']
   transforms:
-    email                : # "md5"
+    email                : # "gnoesah@gmail.com"
   generatedFields:
     date:
       type               : # "date"
@@ -108,11 +108,11 @@ analytics:
 
 # Site Author
 author:
-  name             : "Your Name"
+  name             : "Kim HaSeong"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "I am an **amazing** person."
-  location         : "Somewhere"
-  email            :
+  bio              : "Try."
+  location         : "Anyang"
+  email            : "gnoesah@gmail.com"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
