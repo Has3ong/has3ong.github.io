@@ -7,5 +7,3 @@ header:
   # overlay_image :
 
 ---
-
-## Fabric
