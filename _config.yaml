@@ -114,9 +114,9 @@ author:
   location         : "Anyang"
   email            : "gnoesah@gmail.com"
   links:
-    - label: "Email"
+    - label: "gnoesah@gmail.com"
       icon: "fas fa-fw fa-envelope-square"
-      url: mailto:gnoesah@gmail.com
+      # url: mailto:gnoesah@gmail.com
     - label: "Website"
       icon: "fas fa-fw fa-link"
       # url: "https://your-website.com"
@@ -126,7 +126,7 @@ author:
     - label: "Facebook"
       icon: "fab fa-fw fa-facebook-square"
       # url: "https://facebook.com/"
-    - label: "GitHub"
+    - label: "github.com/Has3ong"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/Has3ong"
     - label: "Instagram"
