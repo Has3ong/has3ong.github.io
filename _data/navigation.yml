@@ -1,7 +1,7 @@
 # main links
 main:
-  - title: "Programming"
-    url: /pr/
+  - title: "CS"
+    url: /cs/
   - title: "BlockChain"
     url: /bl/
   - title: "ML / DL"
