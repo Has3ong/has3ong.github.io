@@ -1,19 +1,13 @@
 ---
 layout : single
-permalink: /pr/
-title: "Programming"
+permalink: /cs/
+title: "Computer Science"
 sidebar:
   # nav: sidebar-ML
 header:
   # overlay_image: /assets/images/category/ml.jpg
 ---
 
-## Python
+### Contents
 
-## JavaScript
-
-## Go
-
-## Java
-
-## Reference
+1. [개발 상식](/development)
