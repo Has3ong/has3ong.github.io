@@ -31,6 +31,10 @@ header:
 
 ## Reference
 
+* [zookeeper.apache.org](https://zookeeper.apache.org/)
+* [kafka.apache.org](https://kafka.apache.org/)
+* [spark.apache.org](https://spark.apache.org/)
+
 ## TODO
 
 1. Zookeeper 소개
