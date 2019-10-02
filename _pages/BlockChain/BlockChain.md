@@ -9,8 +9,9 @@ header:
 ---
 
 ## Hyperledger Fabric
-* [Hyperledger Fabric 소개](/fabric-introduction)
 
+* [Hyperledger Fabric 소개](/fabric-introduction)
+* [Hyperledger Fabric Network 구성 -1-](/fabric-network1)
 
 ## Ethereum
 
