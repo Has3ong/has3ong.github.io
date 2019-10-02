@@ -29,6 +29,13 @@ javac 1.8.0_222
 ```
 
 
+* Scala
+
+```
+$ scala -version
+Scala code runner version 2.13.0 -- Copyright 2002-2019, LAMP/EPFL and Lightbend, Inc.
+```
+
 ## Install pyspark
 
 ```
@@ -111,6 +118,7 @@ SparkSession available as 'spark'.
 
 
 ## Error
+
 * 2019-09-30 00:07:30 WARN  Utils:66 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
 
 ```
