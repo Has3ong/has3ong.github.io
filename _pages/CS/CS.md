@@ -15,8 +15,8 @@ header:
 * [객체지향 프로그램(OOP)](/oop)
 * [REST](/rest)
 * [TDD](/TDD)
-* [`Git` vs `Github` vs `GitLab` / Flow](/gitflow)
-* [CI/CD](/ci-cd)
+* [`Git` vs `Github` vs `GitLab` - Flow](/gitflow)
+* [CI / CD](/ci-cd)
 
 ### 자료구조
 
