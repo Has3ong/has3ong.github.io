@@ -13,9 +13,15 @@ header:
 * [Hyperledger Fabric 소개](/fabric-introduction)
 * [Hyperledger Fabric Network 구성 -1-](/fabric-network1)
 
-## Ethereum
+### Ethereum
+
+* TODO :: Hyperledger Meetup Korea #19 / 2019 - 10 - 17
 
 ## Klaytn
+
+### Meetup
+
+* TODO :: Klaytn Developer Meetup / 2019 - 10 - 23
 
 
 ## Reference
