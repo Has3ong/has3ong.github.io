@@ -17,6 +17,10 @@ header:
 * [Kafka 소개](/kafka-introduction)
 * [Kafka 설치](/kafka-install)
 
+### Meetup
+
+* TODO :: Kafka Conference Seoul 2019 / 2019 - 10 - 18
+
 ## Hadoop
 
 ## Spark
