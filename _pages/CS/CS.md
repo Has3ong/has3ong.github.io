@@ -23,24 +23,9 @@ header:
 * [Array / LinkedList](#array-linkedlist)
 * [Stack / Queue](#stack-queue)
 * [Tree](/tree)
-  * Binary Tree
-  * Full Binary Tree
-  * Complete Binary Tree
-  * BST(Binary Search Tree)
-  
 * [Binary Heap](/binary-heap)
 * [Red Black Tree](/red-black-tree)
 * [HashTable](/hashtable)
-  * hash function
-  * Resolve Collision
-    * Open Addressing
-    * Separate Chaining
-  * Resize
-  
 * [Graph](/graph)
-  * Graph 용어정리
-  * Graph 구현
-  * Graph 탐색
-  * Minimum Spanning Tree
-    * Kruskal algorithm
-    * Prim algorithm
+
+## Reference
