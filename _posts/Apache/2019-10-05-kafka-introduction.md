@@ -20,7 +20,7 @@ header:
 
 Kafka는 발행-구독(publish/subscribe) 모델을 기반으로 동작하며 크게 producer, consumer, broker로 구성된다.
 
-[스크린샷 2019-10-02 오후 4 07 51](https://user-images.githubusercontent.com/44635266/66056393-fbcb9880-e571-11e9-905d-c71b612ddc63.png)
+![스크린샷 2019-10-02 오후 4 07 51](https://user-images.githubusercontent.com/44635266/66056393-fbcb9880-e571-11e9-905d-c71b612ddc63.png)
 
 Kafka의 Broker는 topic을 기준으로 메시지를 관리한다. Producer는 특정 topic의 메시지를 생성한 뒤 해당 메시지를 broker에 전달한다. Broker가 전달받은 메시지를 topic별로 분류하여 쌓아놓으면, 해당 topic을 구독하는 Consumer들이 메시지를 가져가서 처리하게 된다. 이때 Consumer가 Broker로 부터 메세지를 직접 가져가는 PULL 방식으로 동작하기 때문에 Consumer의 처리 능력만큼 메세지를 가져와 최적의 성능을 낼 수 있다.
 
@@ -30,11 +30,11 @@ Kafka의 Broker는 topic을 기준으로 메시지를 관리한다. Producer는 
 
 Kafka는 확장성(scale-out)과 고가용성(high availability)을 위하여 Broker들이 클러스터로 구성되어 동작하도록 설계되어있다. 심지어 1개 밖에 없을 때에도 클러스터로써 동작한다. 클러스터 내의 Broker에 대한 분산 처리는 아래의 그림과 같이 `Apache ZooKeeper`가 담당한다.
 
-[스크린샷 2019-10-02 오후 4 52 05](https://user-images.githubusercontent.com/44635266/66056397-fd955c00-e571-11e9-9ef1-9557898e710f.png)
+![스크린샷 2019-10-02 오후 4 52 05](https://user-images.githubusercontent.com/44635266/66056397-fd955c00-e571-11e9-9ef1-9557898e710f.png)
 
 ---
 
-[스크린샷 2019-10-02 오후 4 06 47](https://user-images.githubusercontent.com/44635266/66056412-02f2a680-e572-11e9-86db-6c81cb177b01.png)
+![스크린샷 2019-10-02 오후 4 06 47](https://user-images.githubusercontent.com/44635266/66056412-02f2a680-e572-11e9-86db-6c81cb177b01.png)
 
 ### Topic / Partition
 
@@ -42,13 +42,7 @@ Kafka는 확장성(scale-out)과 고가용성(high availability)을 위하여 Br
 
 위 그림에서는 Writes 가 Producer라고 생각하면된다.
 
-[스크린샷 2019-10-02 오후 4 06 53](https://user-images.githubusercontent.com/44635266/66056413-02f2a680-e572-11e9-99ba-2e876dad5403.png)
-
-아래의 그림은 Partition 개수 4에 10개의 데이터를 넣었을때 나오는 결과값이다.
-
-[스크린샷 2019-10-03 오전 12 37 14](https://user-images.githubusercontent.com/44635266/66058988-43542380-e576-11e9-9edd-d6d55b93742d.png)
-
-데이터 1, 2, 3, 4 가 Offset 0 다음에 나오는 5, 6, 7, 8 이 Offset 1 을 받는식으로 결과가 나왓다. 순서가 중요한 금융 시스템 같은 경우에는 파티션을 한개로만 사용해야한다. 이 결과는 추후 포스팅으로 다시 정리하겠습니다.
+![스크린샷 2019-10-02 오후 4 06 53](https://user-images.githubusercontent.com/44635266/66056413-02f2a680-e572-11e9-99ba-2e876dad5403.png)
 
 ### Producer / Consumer
 
@@ -61,7 +55,7 @@ Kafka는 확장성(scale-out)과 고가용성(high availability)을 위하여 Br
 producer에서 생산(Write)한 메시지는 여러개의 파티션에 저장을 하는데, 그렇다면 소비하는(consumer)하는 쪽에서도 여러 소비자가 메시지를 읽어가는것이 훨씬 효율적일 것이다. 하나의 목표를 위해 소비를 하는 그룹, 즉 하나의 topic을 읽어가기 위한 consumer들을 consumer group라고 한다.
 consumer group을 구성하는 consumer의 수가 partition의 수보다 작으면 하나의 consumer가 여러 개의 partition을 소유하게 되고, 반대로 consumer의 수가 partition의 수보다 많으면 여분의 consumer는 메시지를 처리하지 않게되므로 partition 개수와 consumer 수의 적절한 설정이 필요하다.
 
-[스크린샷 2019-10-02 오후 4 06 58](https://user-images.githubusercontent.com/44635266/66056419-06862d80-e572-11e9-9e47-ce1f0ac14c82.png)
+![스크린샷 2019-10-02 오후 4 06 58](https://user-images.githubusercontent.com/44635266/66056419-06862d80-e572-11e9-9e47-ce1f0ac14c82.png)
 
 위의 그림과 같이 consumer group에 다수의 consumer를 할당하면 각 consumer마다 별도의 partition으로부터 메시지를 받아오기 때문에, (producer가 각 partition에 메시지를 균등하게 분배한다고 가정할 경우) consumer group은 큐 모델로 동작하게 된다.
 단일 consumer로 이루어진 consumer group을 활용하면 다수의 consumer가 동일한 partition에 동시에 접근하여 동일한 메시지를 액세스하기 때문에 발행-구독 모델을 구성할 수 있다.
