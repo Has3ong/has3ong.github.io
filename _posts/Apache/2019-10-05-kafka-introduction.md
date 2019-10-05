@@ -1,4 +1,3 @@
-
 ---
 title : Apache Kafka Introduction
 sidebar_main : true
