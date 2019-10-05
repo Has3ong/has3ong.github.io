@@ -1,4 +1,3 @@
-
 ---
 title : Kafka, Zookeeper Server Start Log
 sidebar_main : true
