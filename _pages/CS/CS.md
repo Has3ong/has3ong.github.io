@@ -30,3 +30,5 @@ header:
 * [Graph](/graph)
 
 ## Reference
+
+* [Interview Question for Beginner](https://github.com/JaeYeopHan/Interview_Question_for_Beginner)
