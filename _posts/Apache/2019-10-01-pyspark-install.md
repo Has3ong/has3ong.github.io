@@ -14,7 +14,9 @@ header:
 
  * OS 
  
-```MacOS Mojave Version 10.14.6```
+```
+MacOS Mojave Version 10.14.6
+```
 
 * Java
 
