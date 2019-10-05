@@ -15,7 +15,7 @@ header:
 * [객체지향 프로그램(OOP)](/oop)
 * [REST](/rest)
 * [TDD](/tdd)
-* [MVC](/mvc(
+* [MVC](/mvc)
 * [`Git` vs `Github` vs `GitLab` - Flow](/gitflow)
 * [CI / CD](/ci-cd)
 
