@@ -1,4 +1,3 @@
-
 ---
 title : Kafka Install
 sidebar_main : true
