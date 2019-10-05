@@ -15,11 +15,14 @@ header:
 * [객체지향 프로그램(OOP)](/oop)
 * [REST](/rest)
 * [TDD](/tdd)
+* TODO :: [Aegile](/Aegile)
 * [MVC](/mvc)
 * [`Git` vs `Github` vs `GitLab` - Flow](/gitflow)
 * [CI / CD](/ci-cd)
 
 ### 자료구조
+
+TODO :: 자료구조 
 
 * [Array / LinkedList](#array-linkedlist)
 * [Stack / Queue](#stack-queue)
