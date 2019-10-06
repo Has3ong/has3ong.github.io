@@ -30,7 +30,7 @@ header:
 
 ## Reference
 
-#### Hyperledger Fabric
+#### Hyperledger
 
 * [해시넷](http://www.hash.kr/)
 * [하이퍼렛져 공식 사이트](https://www.hyperledger.org/)
