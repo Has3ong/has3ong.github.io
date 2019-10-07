@@ -19,7 +19,7 @@ header:
 
 ### Ethereum
 
-
+* [Ethereum 2.0](/ethereum-two)
 
 ## Klaytn
 
