@@ -106,11 +106,15 @@ firstMytopic
 
 *Publish Message (Producer)*
 
-`kafka-console-producer --broker-list localhost:9092 --topic firstMytopic`
+```
+kafka-console-producer --broker-list localhost:9092 --topic firstMytopic
+```
 
 *Subscribe Message (Consumer)*
 
-`$ kafka-console-consumer —bootstrap-server localhost:9092 —topic firstMytopic —from-beginning`
+```
+$ kafka-console-consumer —bootstrap-server localhost:9092 —topic firstMytopic —from-beginning
+```
 
 아래 사진을 봤을때 왼쪽이 `Producer` 오른쪽이 `Consumer` 입니다. Producer에서 메세지를 치면 Consumer에서 받는것을 확인할 수 있습니다.
 
