@@ -26,9 +26,8 @@ TODO :: 자료구조
 
 * [Array / LinkedList](#array-linkedlist)
 * [Stack / Queue](#stack-queue)
-* [Tree](/tree)
 * [Binary Heap](/binary-heap)
-* [Red Black Tree](/red-black-tree)
+* [Tree](/tree)
 * [HashTable](/hashtable)
 * [Graph](/graph)
 
