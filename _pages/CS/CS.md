@@ -38,13 +38,13 @@ TODO :: 네트워크
 
 ![스크린샷 2019-10-08 오후 5 44 41](https://user-images.githubusercontent.com/44635266/66380942-53935500-e9f3-11e9-956f-8ebc24b46ec4.png)
 
-* [Physical Layer](/physical-layer)
-* [Data Link Layer](/dataling-layer)
-* [Network Layer](/network-layer)
-* [Transport Layer](/transport-layer)
-* [Session Layer](/session-layer)
-* [Presentation Layer](presentaion-layer)
 * [Application Layer](application-layer)
+* [Presentation Layer](presentaion-layer)
+* [Session Layer](/session-layer)
+* [Transport Layer](/transport-layer)
+* [Network Layer](/network-layer)
+* [Data Link Layer](/dataling-layer)
+* [Physical Layer](/physical-layer)
 
 ## Reference
 
