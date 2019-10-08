@@ -25,8 +25,8 @@ header:
 
 TODO :: 자료구조 
 
-* [Array / LinkedList](#array-linkedlist)
-* [Stack / Queue](#stack-queue)
+* [Array / LinkedList](/array-linkedlist)
+* [Stack / Queue](/stack-queue)
 * [Binary Heap](/binary-heap)
 * [Tree](/tree)
 * [HashTable](/hashtable)
@@ -36,13 +36,15 @@ TODO :: 자료구조
 
 TODO :: 네트워크
 
-* Physical Layer
-* Data Link Layer
-* Network Layer
-* Transport Layer
-* Session Layer
-* Presentation Layer
-* Application Layer
+![스크린샷 2019-10-08 오후 5 44 41](https://user-images.githubusercontent.com/44635266/66380942-53935500-e9f3-11e9-956f-8ebc24b46ec4.png)
+
+* [Physical Layer](/physical-layer)
+* [Data Link Layer](/dataling-layer)
+* [Network Layer](/network-layer)
+* [Transport Layer](/transport-layer)
+* [Session Layer](/session-layer)
+* [Presentation Layer](presentaion-layer)
+* [Application Layer](application-layer)
 
 ## Reference
 
