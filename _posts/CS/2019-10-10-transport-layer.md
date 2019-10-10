@@ -67,7 +67,7 @@ TCP 는 데이터의 정확성 확인, 패킷을 목적지까지의 전송은 IP
 
 ### TCP Three-Way Handshake
 
-*Connection EstablishMent*
+> Connection EstablishMent
 
 ![스크린샷 2019-10-08 오후 6 15 43](https://user-images.githubusercontent.com/44635266/66383278-aec74680-e9f7-11e9-88f6-c5700ba5c0b1.png)
 
@@ -77,7 +77,7 @@ TCP 는 데이터의 정확성 확인, 패킷을 목적지까지의 전송은 IP
 
 ### TCP Four-Way Handshake
 
-*Connection Termination*
+> Connection Termination
 
 ![스크린샷 2019-10-08 오후 6 15 48](https://user-images.githubusercontent.com/44635266/66383280-af5fdd00-e9f7-11e9-8727-f5b2c06e15b6.png)
 
