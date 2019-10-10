@@ -24,9 +24,9 @@ OSI 7 Layer에서 4 계층에 해당됩니다.
 
 ## TCP (전송 제어 프로토콜, Transmission Control Protocol) 
 
-TCP 패킷 구조
+TCP 세그먼트 구조
 
-![TCP패킷](https://user-images.githubusercontent.com/44635266/66534564-89e6e680-eb51-11e9-9979-6e72350924ed.png)
+![TCP세그먼트](https://user-images.githubusercontent.com/44635266/66534564-89e6e680-eb51-11e9-9979-6e72350924ed.png)
 
 
 TCP는 IP의 핵심 프로토콜 중 하나로, IP와 함께 TCP/IP라는 명칭으로도 널리 불린다. TCP는 근거리 통신망이나 인트라넷, 인터넷에 연결된 컴퓨터에서 실행되는 프로그램 간에 일련의 옥텟을 안정적으로, 순서대로, 에러없이 교환할 수 있게 한다. TCP는 전송 계층에 위치한다. 네트워크의 정보 전달을 통제하는 프로토콜이자 인터넷을 이루는 핵심 프로토콜의 하나로서 국제 인터넷 표준화 기구(IETF)의 RFC 793에 기술되어 있다.
