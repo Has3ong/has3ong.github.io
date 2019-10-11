@@ -1,18 +1,14 @@
 ---
 title : Apache Kafka Introduction
-sidebar_main : true
-use_math : true
-header:
-  # teaser :
-  # overlay_image :
-
 ---
+
 ## Apache Kafka
 
 ![스크린샷 2019-10-02 오후 4 06 39](https://user-images.githubusercontent.com/44635266/66056360-f2dac700-e571-11e9-9758-2abb8105fc29.png)
 
 
 아파치 카프카(Apache Kafka)는 아파치 소프트웨어 재단이 스칼라로 개발한 오픈 소스 메시지 브로커 프로젝트이다. 이 프로젝트는 실시간 데이터 피드를 관리하기 위해 통일된, 높은 스루풋의 낮은 레이턴시를 지닌 플랫폼을 제공하는 것이 목표이다. 
+
 분산환경에 특화되어 설계되어 있다는 특징을 가짐으로써, 기존의 RabbitMQ와 같은 다른 메세지큐와의 성능 차이가 난다(훨씬 빠르게 처리한다). 그 외에도 클러스터 구성, fail-over, replication와 같은 여러 가지 특징들을 가지고 있다.
 
 
@@ -53,12 +49,15 @@ Kafka는 확장성(scale-out)과 고가용성(high availability)을 위하여 Br
 ### Consumer Group
 
 producer에서 생산(Write)한 메시지는 여러개의 파티션에 저장을 하는데, 그렇다면 소비하는(consumer)하는 쪽에서도 여러 소비자가 메시지를 읽어가는것이 훨씬 효율적일 것이다. 하나의 목표를 위해 소비를 하는 그룹, 즉 하나의 topic을 읽어가기 위한 consumer들을 consumer group라고 한다.
+
 consumer group을 구성하는 consumer의 수가 partition의 수보다 작으면 하나의 consumer가 여러 개의 partition을 소유하게 되고, 반대로 consumer의 수가 partition의 수보다 많으면 여분의 consumer는 메시지를 처리하지 않게되므로 partition 개수와 consumer 수의 적절한 설정이 필요하다.
 
 ![스크린샷 2019-10-02 오후 4 06 58](https://user-images.githubusercontent.com/44635266/66056419-06862d80-e572-11e9-9e47-ce1f0ac14c82.png)
 
 위의 그림과 같이 consumer group에 다수의 consumer를 할당하면 각 consumer마다 별도의 partition으로부터 메시지를 받아오기 때문에, (producer가 각 partition에 메시지를 균등하게 분배한다고 가정할 경우) consumer group은 큐 모델로 동작하게 된다.
+
 단일 consumer로 이루어진 consumer group을 활용하면 다수의 consumer가 동일한 partition에 동시에 접근하여 동일한 메시지를 액세스하기 때문에 발행-구독 모델을 구성할 수 있다.
+
 그러나 다른 partition에 속한 메시지의 순차적 처리는 보장되어 있지 않기 때문에, 특정 topic의 전체 메시지가 발생 시간 순으로 처리되어야 할 경우 해당 topic이 하나의 partition만을 가지도록 설정해야 한다.
 
 ### Broker
