@@ -1,20 +1,18 @@
 ---
 title : Spark Introduction
-sidebar_main : true
-use_math : true
-header:
-  # teaser :
-  # overlay_image :
-
 ---
 
 
 ## Spark
 
-아파치 스파크(Apache Spark)는 오픈 소스 클러스터 컴퓨팅 프레임워크이다. Spark는 다양한 종류의 데이터 관련 문제, 예를 들어 반구조(semi-structured), 구조, 스트리밍 또는 머신 러닝/데이터 과학 관련 문제를 해결하기 위해 쉽고 빠르게 쓸 수 있는 프레임워크입니다.Spark는 유연성과 맵리듀스에 대한 확장성을 훨씬 빠른 속도로 제공합니다. 데이터가 메모리에 저장돼 있을 때는 `Apache Hadoop`보다 100배 빠르며, 디스크에 저장돼 있을 때는 10배 빠릅니다.
+아파치 스파크(Apache Spark)는 오픈 소스 클러스터 컴퓨팅 프레임워크이다. Spark는 다양한 종류의 데이터 관련 문제, 예를 들어 반구조(semi-structured), 구조, 스트리밍 또는 머신 러닝/데이터 과학 관련 문제를 해결하기 위해 쉽고 빠르게 쓸 수 있는 프레임워크입니다.
+
+Spark는 유연성과 맵리듀스에 대한 확장성을 훨씬 빠른 속도로 제공합니다. 데이터가 메모리에 저장돼 있을 때는 `Apache Hadoop`보다 100배 빠르며, 디스크에 저장돼 있을 때는 10배 빠릅니다.
+
 또한, Spark API는 자바, 스칼라, 파이썬, R, SQL을 이용해 접근할 수 있습니다.
 
 ## Spark Architecture / Ecosystem
+
 [스크린샷 2019-10-03 오전 5 00 57](https://user-images.githubusercontent.com/44635266/66077450-fb93c300-e59a-11e9-8a49-b86d69a19a2a.png)
 
 ### Spark SQL
@@ -66,7 +64,9 @@ Spark 는 여러 모듈로 구성되어 있지만 크게 두 부분으로 나눌
 Spark 애플리케이션은 주 프로그램의 `SparkContext` 객체에 의해 조정된 cluster에서 독립적인 프로세스 세트로 실행된다(`driver program`이라고도 함). SparkContext를 통해 Spark Cluster와 커뮤니케이션할 수 있기 때문입니다.
 
 SparkContext를 통해 Application에서 요구하는 리소스를 요청하면, Spark Master는 Worker들에게 요청받은 리소스만큼의 Executor 프로세스를 실행하도록 요구합니다. 이때, cluster에서 실행하기 위해 SparkContext는 여러 유형의 클러스터 관리자(Spark의 자체 독립형 클러스터 관리자, Mesos 또는 YARN)에 연결하여 여러 애플리케이션 간에 리소스를 할당할 수 있다. 
+
 다음으로 내부에서 사용 가능한 CPU cores 숫자도 할당받게 됩니다. 이 리소스 사이즈는 Application을 실행시킬 때 매개변수나 설정 파일로 전달할 수 있습니다. Application은 1개 이상의 Job을 실행시키고, 이 Job은 여러 개의 Task로 나누어서 Executor에게 요청하고 결과를 받으면서 Cluster 컴퓨팅 작업을 수행합니다. 연결되면 Spark는 cluster 내의 노드에서  executor를 획득하는데, 이 Executor 프로세스는 애플리케이션을 위해 계산을 실행하고 데이터를 저장하는 프로세스다.
+
 다음으로, 당신의 어플리케이션 코드(JAR로 정의되거나 SparkContext로 전달된 Python 파일로 정의됨)를 실행자에게 보낸다. 마지막으로 SparkContext는 실행할 실행자에게 태스크를 전송한다.
 
 > Cluster Manager Type으로는 `Standalone`, `Apache Mesos`, `Hadoop YARN`, `Kubernetes`가 있다. 써드파티 프로젝트로는  `Nomad Spark`가 있다.
