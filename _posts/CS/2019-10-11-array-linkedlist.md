@@ -1,0 +1,168 @@
+---
+title : Array / Linked List
+---  
+
+## 배열(Array)
+
+배열은 동일한 자료형(Data Type)의 데이터를 연속된 공간에 저장하기 위한 자료구조이다. 즉, 연관된 데이터를 그룹화하여 묶어준다고 생각하면 된다. 
+
+연관된 데이터를 저장하기 위한 변수의 선언을 줄여주며, 반복문 등을 이용하여 계산과 같은 과정을 쉽게 처리할 수 있다.
+
+배열을 구성하는 각각의 값을 배열 `요소(element)`라고 하며, 배열에서의 위치를 가리키는 숫자는 `인덱스(index)`라고 합니다.
+
+C언어에서 인덱스는 언제나 0부터 시작하며, 0을 포함한 양의 정수만을 가질 수 있습니다.
+
+
+언어마다 다르지만 Java에서 배열 선언 및 사용은 아래와 같이 합니다.
+
+> Example
+
+```
+// {'', '', '', '', '', '', ''};
+String[] weeks = new String[7]; 
+String[] weeks = {"월", "화", "수", "목", "금", "토", "일"};
+```
+
+다음과 같이 다 차원 배열도 선언할 수 있습니다.
+
+```
+int[][] data = new int[3][4];
+```
+
+![](https://user-images.githubusercontent.com/44635266/66618883-e8759880-ec15-11e9-9a57-a4603a2d28c4.png)
+
+## 정렬 (Sort)
+
+### Bubble Sort
+
+![Bubble_sort_animation](https://user-images.githubusercontent.com/44635266/66619605-6dfa4800-ec18-11e9-8f9f-700ed9636e95.gif)
+
+n 개의 원소를 가진 배열을 정렬할 때, In-place sort 로 인접한 두 개의 데이터를 비교해가면서 정렬을 진행하는 방식이다. 가장 큰 값을 배열의 맨 끝에다 이동시키면서 정렬하고자 하는 원소의 개수 만큼을 두 번 반복하게 된다.
+
+### Selection Sort
+
+![Selection_sort_animation](https://user-images.githubusercontent.com/44635266/66619844-51124480-ec19-11e9-85a9-73dae57df038.gif)
+
+n 개의 원소를 가진 배열을 정렬할 때, 계속해서 바꾸는 것이 아니라 비교하고 있는 값의 index 를 저장해둔다. 그리고 최종적으로 한 번만 바꿔준다. 하지만 여러 번 비교를 하는 것은 마찬가지이다.
+
+### Insertion Sort
+
+![Insertion_sort_animation](https://user-images.githubusercontent.com/44635266/66619841-51124480-ec19-11e9-93c4-e936a5e269b0.gif)
+
+n 개의 원소를 가진 배열을 정렬할 때, i 번째를 정렬할 순서라고 가정하면, 0 부터 i-1 까지의 원소들은 정렬되어있다는 가정하에, i 번째 원소와 i-1 번째 원소부터 0 번째 원소까지 비교하면서 i 번째 원소가 비교하는 원소보다 클 경우 서로의 위치를 바꾸고, 작을 경우 위치를 바꾸지 않고 다음 순서의 원소와 비교하면서 정렬해준다. 이 과정을 정렬하려는 배열의 마지막 원소까지 반복해준다.
+
+### Merge Sort
+
+![Merge_sort_animation2](https://user-images.githubusercontent.com/44635266/66619842-51124480-ec19-11e9-9590-32e02c9bf7c7.gif)
+
+기본적인 개념으로는 n 개의 원소를 가진 배열을 정렬할 때, 정렬하고자 하는 배열의 크기를 작은 단위로 나누어 정렬하고자 하는 배열의 크기를 줄이는 원리를 사용한다. `Divide and conquer라는, "분할하여 정복한다"의 원리인 것이다. 말 그대로 복잡한 문제를 복잡하지 않은 문제로 분할하여 정복하는 방법이다. 단 분할(divide)해서 정복했으니 정복(conquer)한 후에는 결합(combine) 의 과정을 거쳐야 한다.
+
+Merge Sort는 더이상 나누어지지 않을 때 까지 반 씩(1/2) 분할하다가 더 이상 나누어지지 않은 경우(원소가 하나인 배열일 때)에는 자기 자신, 즉 원소 하나를 반환한다. 원소가 하나인 경우에는 정렬할 필요가 없기 때문이다. 이 때 반환한 값끼리 combine될 때, 비교가 이뤄지며, 비교 결과를 기반으로 정렬되어 임시 배열에 저장된다. 그리고 이 임시 배열에 저장된 순서를 합쳐진 값으로 반환한다. 실제 정렬은 나눈 것을 병합하는 과정에서 이뤄지는 것이다.
+
+결국 하나씩 남을 때까지 분할하는 것이면, 바로 하나씩 분할해버리면 되지 않을까? 재귀적으로 정렬하는 원리인 것이다. 재귀적 구현을 위하 1/2 씩 분할한다.
+
+### Heap Sort
+
+[![Heap Sort Animation](https://simonwaldherr.github.io/GolangSortingVisualization/sort_heap.gif)](https://en.wikipedia.org/wiki/Heapsort)
+
+`binary heap 자료구조를 활용할 Sorting 방법에는 두 가지 방법이 존재한다. 하나는 정렬의 대상인 데이터들을 힙에 넣었다가 꺼내는 원리로 Sorting 을 하게 되는 방법이고, 나머지 하나는 기존의 배열을 heapify(heap 으로 만들어주는 과정)을 거쳐 꺼내는 원리로 정렬하는 방법이다. heap에 데이터를 저장하는 시간 복잡도는 O(log n)이고, 삭제 시간 복잡도 또한 `O(log n)`이 된다. 때문에 힙 자료구조를 사용하여 Sorting 을 하는데 time complexity 는 `O(log n)`이 된다. 이 정렬을 하려는 대상이 n 개라면 time complexity 는 `O(nlogn)이 된다.
+
+### Quick Sort
+
+![Quick_sort_animation](https://user-images.githubusercontent.com/44635266/66619843-51124480-ec19-11e9-9c89-9e08f34ef2a6.gif)
+
+Sorting 기법 중 가장 빠르다고 해서 quick 이라는 이름이 붙여졌다. 하지만 Worst Case 에서는 시간복잡도가 O(n^2)가 나올 수도 있다. 하지만 constant factor가 작아서 속도가 빠르다.
+
+Quick Sort 역시 `Divide and Conquer 전략을 사용하여 Sorting 이 이루어진다. Divide 과정에서 pivot이라는 개념이 사용된다. 입력된 배열에 대해 오름차순으로 정렬한다고 하면 이 pivot 을 기준으로 좌측은 pivot 으로 설정된 값보다 작은 값이 위치하고, 우측은 큰 값이 위치하도록 partition된다. 이렇게 나뉜 좌, 우측 각각의 배열을 다시 재귀적으로 Quick Sort 를 시키면 또 partition 과정이 적용된다.이 때 한 가지 주의할 점은 partition 과정에서 pivot 으로 설정된 값은 다음 재귀과정에 포함시키지 않아야 한다. 이미 partition 과정에서 정렬된 자신의 위치를 찾았기 때문이다.
+
+### Count Sort
+
+[![Counting Sort Animation](https://simonwaldherr.github.io/GolangSortingVisualization/sort_counting.gif)](https://en.wikipedia.org/wiki/Counting_sort)
+
+Count Sort 는 말 그대로 몇 개인지 개수를 세어 정렬하는 방식이다. 정렬하고자 하는 값 중 최대값에 해당하는 값을 size 로 하는 임시 배열 을 만든다. 만들어진 배열의 index 중 일부는 정렬하고자 하는 값들이 되므로 그 값에는 그 값들의 개수 를 나타낸다. 정렬하고자 하는 값들이 몇 개씩인지 파악하는 임시 배열이 만들어졌다면 이 임시 배열을 기준으로 정렬을 한다. 그 전에 임시 배열에서 한 가지 작업을 추가적으로 수행해주어야 하는데 큰 값부터 즉 큰 index 부터 시작하여 누적된 값으로 변경해주는 것이다. 이 누적된 값은 정렬하고자 하는 값들이 정렬될 index 값을 나타내게 된다. 작업을 마친 임시 배열의 index 는 정렬하고자 하는 값을 나타내고 value 는 정렬하고자 하는 값들이 정렬되었을 때의 index 를 나타내게 된다. 이를 기준으로 정렬을 해준다. 점수와 같이 0~100 으로 구성되는 좁은 범위에 존재하는 데이터들을 정렬할 때 유용하게 사용할 수 있다.
+
+### Radix Sort
+
+![](https://user-images.githubusercontent.com/44635266/66620091-38eef500-ec1a-11e9-89fd-7a4d5ac59e89.png)
+
+기수(radix)란 주어진 데이터를 구성하는 기본요소를 의미한다. 이 기수를 이용해서 정렬을 진행한다. 하나의 기수마다 하나의 버킷을 생성하여, 분류를 한 뒤에, 버킷 안에서 또 정렬을 하는 방식이다.
+
+기수 정렬은 LSD(Least Significant Digit) 방식과 MSD(Most Significant Digit) 방식 두 가지로 나뉜다. LSD 는 덜 중요한 숫자부터 정렬하는 방식으로 예를 들어 숫자를 정렬한다고 했을 때, 일의 자리부터 정렬하는 방식이다. MSD 는 중요한 숫자부터 정렬하는 방식으로 세 자리 숫자면 백의 자리부터 정렬하는 방식이다.
+
+두 가지 방식의 Big-O 는 동일하다. 하지만 주로 기수정렬을 이야기할 때는 LSD 를 이야기한다. 
+
+### Sorting Algorithm's Complexity
+
+|   Algorithm    | Space Complexity | (average) Time Complexity | (worst) Time Complexity |
+| :------------: | :--------------: | :-----------------------: | :---------------------: |
+|  Bubble sort   |       O(1)       |          O(n^2)           |         O(n^2)          |
+| Selection sort |       O(1)       |          O(n^2)           |         O(n^2)          |
+| Insertion sort |       O(1)       |          O(n^2)           |         O(n^2)          |
+|   Merge sort   |       O(n)       |         O(nlogn)          |        O(nlogn)         |
+|   Heap sort    |       O(1)       |         O(nlogn)          |        O(nlogn)         |
+|   Quick sort   |       O(1)       |         O(nlogn)          |         O(n^2)          |
+|   Count sort   |       O(n)       |           O(n)            |          O(n)           |
+|   Radix sort   |       O(n)       |           O(n)            |          O(n)           |
+
+
+## 연결리스트(Linked List)
+
+연결리스트는 각 노드가 데이터와 포인터를 가지고 한 줄로 연결되어 있는 방식의 자료구조입니다. 데이터를 담고 있는 노드들이 연결되어 있고, 노드의 포인터가 이전, 다음 노드와의 연결을 담당합니다.
+
+연결리스트는 3가지 종류가 있습니다.
+
+* 단방향 연결 리스트
+* 양방향 연결 리스트
+* 원형 연결리스트
+
+![](https://user-images.githubusercontent.com/44635266/66550393-45bf0a80-eb80-11e9-9176-7a97e6270f3e.png)
+
+이중 단방향 연결리스트를 코드화 시키면 아래와 같습니다.
+
+> Example 
+
+```
+public class LinkedList {
+    private Node head;
+    private int size = 0;
+    
+    private class Node{
+        private Object data;
+        private Node next;
+        public Node(Object input) {
+            this.data = input;
+            this.next = null;
+        }
+    }
+}
+```
+
+양방향 연결리스트 구조는 아래와 같이 prev 를 추가시켜줍니다.
+
+> Example
+
+```
+public class LinkedList {
+    private Node head;
+    private int size = 0;
+    
+    private class Node{
+        private Object data;
+        private Node next;
+        private Node prev;
+        public Node(Object input) {
+            this.data = input;
+            this.next = null;
+            this.prev = null;
+        }
+    }
+}
+```
+
+### 연결리스트의 시간복잡도
+
+|       |Search     |Insertion  |Deletion   |Access     |
+|-------|-----------|-----------|-----------|-----------|
+|Worst  |O(n)       |O(n)       |O(n)       |O(n)       |
+|Average|O(n)       |O(n)       |O(n)       |O(n)       |
+
