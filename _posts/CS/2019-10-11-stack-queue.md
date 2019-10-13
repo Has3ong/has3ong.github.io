@@ -1,5 +1,8 @@
 ---
 title : Stack / Queue
+tags:
+- Stack
+- Queue
 ---  
 
 ## 스택 (Stack)
