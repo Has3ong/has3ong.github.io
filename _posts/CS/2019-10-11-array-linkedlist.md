@@ -1,5 +1,9 @@
 ---
 title : Array / Linked List
+tags:
+- Array
+- Linked List
+- Sort
 ---  
 
 ## 배열(Array)
