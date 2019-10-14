@@ -45,6 +45,8 @@ TODO :: 네트워크
 
 ### 알고리즘
 
+* [Sort](/sort)
+
 ## Reference
 
 * [Wikipedia](https://www.wikipedia.org/)
