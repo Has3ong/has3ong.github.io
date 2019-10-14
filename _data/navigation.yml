@@ -4,12 +4,12 @@ main:
     url: /cs/
   - title: "BlockChain"
     url: /bl/
-  - title: "ML / DL"
-    url: /ml/
+  #- title: "ML / DL"
+    #url: /ml/
   - title: "Apache"
     url: /ap/
-  - title: "Image Processing"
-    url: /ip/
-  - title: "DevOps"
-    url: /de/
+  #- title: "Image Processing"
+    #url: /ip/
+  #- title: "DevOps"
+    #url: /de/
   
