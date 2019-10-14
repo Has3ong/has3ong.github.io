@@ -8,9 +8,7 @@ header:
   # overlay_image: /assets/images/category/ml.jpg
 ---
 
-## Contents
-
-### 개발상식
+### Development
 
 * [객체지향 프로그램(OOP)](/oop)
 * [REST](/rest)
@@ -21,9 +19,7 @@ header:
 * [CI / CD](/ci-cd)
 * [구조체 크기 계산하기](/structsize)
 
-### 자료구조
-
-TODO :: 자료구조 
+### Data Structure
 
 * [Array / LinkedList](/array-linkedlist)
 * [Stack / Queue](/stack-queue)
@@ -31,9 +27,9 @@ TODO :: 자료구조
 * [HashTable](/hashtable)
 * [Graph](/graph)
 
-### 네트워크
+### Network
 
-TODO :: 네트워크
+TODO :: Network
 
 * [Application Layer](application-layer)
 * [Presentation Layer](presentaion-layer)
@@ -43,7 +39,7 @@ TODO :: 네트워크
 * [Data Link Layer](/dataling-layer)
 * [Physical Layer](/physical-layer)
 
-### 알고리즘
+### Algorithm
 
 * [Sort](/sort)
 
