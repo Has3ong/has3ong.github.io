@@ -18,7 +18,7 @@ title: Kim HaSeong(has3ong)
 
 ### Contact
 
-gnoesah@gmail.com
+* gnoesah@gmail.com
 
 ### Reference
 
