@@ -13,7 +13,6 @@ header:
 * [객체지향 프로그램(OOP)](/oop)
 * [REST](/rest)
 * [TDD](/tdd)
-* TODO :: [Aegile](/Aegile)
 * [MVC](/mvc)
 * [`Git` vs `Github` vs `GitLab` - Flow](/gitflow)
 * [CI / CD](/ci-cd)
@@ -36,13 +35,17 @@ TODO :: Network
 * [Session Layer](/session-layer)
 * [Transport Layer](/transport-layer)
 * [Network Layer](/network-layer)
-* [Data Link Layer](/dataling-layer)
+* [Data Link Layer](/datalink-layer)
 * [Physical Layer](/physical-layer)
 
 ### Algorithm
 
 * [Sort Algorithm](/sort)
-* [Graph Algorithm](/graph-algorithm)
+* [DFS / BFS](/dfs-bfs)
+* [Dijkstra](/dijkstra)
+* [Kruskal / Prim](/kruskal-prim)
+* [Floyd-Warshall](/floyd)
+
 
 ## Reference
 
