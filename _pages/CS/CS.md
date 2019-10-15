@@ -41,7 +41,8 @@ TODO :: Network
 
 ### Algorithm
 
-* [Sort](/sort)
+* [Sort Algorithm](/sort)
+* [Graph Algorithm](/graph-algorithm)
 
 ## Reference
 
