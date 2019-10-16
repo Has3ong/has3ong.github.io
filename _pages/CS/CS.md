@@ -2,10 +2,6 @@
 layout : single
 permalink: /cs/
 title: "Computer Science"
-sidebar:
-  # nav: sidebar-ML
-header:
-  # overlay_image: /assets/images/category/ml.jpg
 ---
 
 ### Development
@@ -46,6 +42,7 @@ TODO :: Network
 * [Kruskal / Prim](/kruskal-prim)
 * [Floyd-Warshall](/floyd)
 
+### Security
 
 ## Reference
 
