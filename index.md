@@ -14,7 +14,7 @@ title: Title
 
 ### Contact
 
-* gnoesah@gmail.com
+* Email : gnoesah@gmail.com
 
 ### Reference
 
