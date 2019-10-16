@@ -1,14 +1,10 @@
 ---
 layout: home
 author_profile: true
-title: Kim HaSeong(has3ong)
+title: Title
 ---
 
 ### About
-
-* 김하성
-* 경기도 거주
-
 
 ### Project
 
