@@ -1,7 +1,14 @@
 ---
 title : Data Link Layer
-category :
+tags:
+- Data Link Layer
+- Parity Bit
+- Hamming Code
 ---
+
+## 데이터 링크 계층 (Data Link Layer)
+
+잡음이 있는 인접 노드 간의 물리적인 회선을 상위 망계층(3 layer)이 사용할 수 있도록 전송 에러가 없는 통신 채널로 변환시키는 계층
 
 ## Parity Bit(패리티 비트)
 
