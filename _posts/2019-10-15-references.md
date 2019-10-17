@@ -5,7 +5,10 @@ title : References
 ### CS
 
 * https://stackoverflow.com/questions/36243360/the-proper-mvc-pattern
+* https://javaplant.tistory.com/18
+* https://wildpup.cafe24.com/archives/469
 * https://hsp1116.tistory.com/45
+* https://www.isi.edu/nsnam/DIRECTED_RESEARCH/DR_WANIDA/DR/JavisInActionFastRetransmitFrame.html
 * https://blog.naver.com/PostView.nhn?blogId=phj8498&logNo=221348733459
 * https://kwongyo.tistory.com/23
 * https://www.cs.usfca.edu/~galles/visualization/RedBlack.html
@@ -23,8 +26,17 @@ title : References
 * https://medium.com/quantum-ant/%ED%8A%B8%EB%A6%AC-tree-cec69cfddb14
 * https://ratsgo.github.io/data%20structure&algorithm/2017/10/27/avltree/
 * http://staff.ustc.edu.cn/~csli/graduate/algorithms/book6/chap26.htm
+* https://blog.cloudflare.com/ko/http3-the-past-present-and-future-ko/
+* https://www.saturnsoft.net/network/2019/03/21/quic-http3-1/
+* https://tools.ietf.org/html/rfc1945
+* https://www.hostinger.com/tutorials/what-is-ssl-tls-https
+* https://tblogqus.com/top-dhcp-interview-questions-and-answers/
+* https://aws.amazon.com/ko/route53/what-is-dns/
+* http://www.cables-solutions.com/pppoe-vs-dhcp-difference.html
 
 ### BlockChain
+
+### ML / DL
 
 ### Apache
 
@@ -34,3 +46,5 @@ title : References
 * https://likefree.tistory.com/23
 * https://engkimbs.tistory.com/660
 * https://www.xenonstack.com/insights/apache-zookeeper/
+
+### DevOps
