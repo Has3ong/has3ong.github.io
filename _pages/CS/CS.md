@@ -26,8 +26,8 @@ title: "Computer Science"
 
 TODO :: Network
 
-* [Application Layer](application-layer)
-* [Presentation Layer](presentaion-layer)
+* [Application Layer](/application-layer)
+* [Presentation Layer](/presentaion-layer)
 * [Session Layer](/session-layer)
 * [Transport Layer](/transport-layer)
 * [Network Layer](/network-layer)
