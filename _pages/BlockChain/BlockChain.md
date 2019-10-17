@@ -19,7 +19,7 @@ header:
 
 ### Meetup
 
-* [Hyperledger Meetup Korea #19 / 2019 - 10 - 17](/hlmeetup19)
+* [Hyperledger Indy Getting Started / 2019 - 10 - 17](/hlmeetup19)
 
 ### Ethereum
 
