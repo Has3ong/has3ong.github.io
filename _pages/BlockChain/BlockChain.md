@@ -19,7 +19,7 @@ header:
 
 ### Meetup
 
-* TODO :: Hyperledger Meetup Korea #19 / 2019 - 10 - 17
+* [Hyperledger Meetup Korea #19 / 2019 - 10 - 17](/hlmeetup19)
 
 ### Ethereum
 
@@ -39,6 +39,7 @@ header:
 * [하이퍼렛져 공식 사이트](https://www.hyperledger.org/)
 * [하이퍼렛져 공식 문서](https://hyperledger-fabric.readthedocs.io)
 * [하이퍼렛져 페브릭 깃허브](https://github.com/hyperledger/fabric-samples)
+* [Hyperledger Korea User Group](https://github.com/hlkug/meetup)
 
 #### Ethereum
 
