@@ -38,9 +38,4 @@ header:
 * [zookeeper.apache.org](https://zookeeper.apache.org/)
 * [kafka.apache.org](https://kafka.apache.org/)
 * [spark.apache.org](https://spark.apache.org/)
-
-## TODO
-
-1. Zookeeper 소개
-2. Kafka 소개
-3. Kafka 설치
+* [Kafka 한국 사용자 모임에서 운영하는 meetup repository](https://github.com/kafkakru/meetup)
