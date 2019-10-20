@@ -36,6 +36,14 @@ title : References
 
 ### BlockChain
 
+* https://buildmedia.readthedocs.org/media/pdf/indy-node/latest/indy-node.pdf
+* https://medium.com/@kctheservant/exploring-hyperledger-indy-through-indy-dev-example-10075d2547ae
+* https://medium.com/ai-networkkr/%EB%B8%94%EB%A1%9D%EC%B2%B4%EC%9D%B8%EC%97%90%EC%84%9C%EC%9D%98-%EA%B0%9C%EC%9D%B8%EC%A0%95%EB%B3%B4%EB%B3%B4%ED%98%B8-%EA%B8%B0%EC%88%A0-zk-snark-1-de5804e9b50e
+* https://zokrates.github.io/gettingstarted.html
+* https://github.com/Zokrates/ZoKrates
+* https://medium.com/extropy-io/zokrates-tutorial-with-truffle-41135a3fb754
+* https://media.consensys.net/state-of-ethereum-protocol-2-the-beacon-chain-c6b6a9a69129
+
 ### ML / DL
 
 ### Apache
