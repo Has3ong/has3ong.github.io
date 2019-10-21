@@ -11,7 +11,7 @@ title: "BlockChain"
 ### Fabric
 
 * [Hyperledger Fabric 소개](/fabric-introduction)
-* [Hyperledger Fabric Network 구성 -1-](/fabric-network1)
+* [Hyperledger Fabric Network 구성 -1-](/fabricnetwork1)
 
 ### Indy
 
