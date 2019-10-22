@@ -29,11 +29,19 @@ tags :
 
 # HandsOn
 
-먼저 필요한 파일을 가져옵니다.
+먼저 필요한 파일을 가져옵니다. 이전 예제와는 다르게 `bin`, `chaincode`만 가져오면 됩니다. 나머지는 제가 만들어논 깃 레포를 불러오면 됩니다.
 
 ```
+$ git clone https://github.com/Has3ong/hyperledger-kafka.git
+$ cd hyperledger-kafka
+
+$ ls
+base  configtx.yaml  crypto-config.yaml  docker-compose-kafka.yaml  README.md
+
 $ sudo cp -r ../fabric-samples/bin .
-$ sudo cp -r ../fabric-samples/first-network/base .
+$ sudo cp -r ../fabric-samples/chaincode .
+
+$ mkdir channel-artifacts
 ```
 
 `Kafka` 모드에서는 환경에 맞춰서 만든 깃헙 레포지토리를 이용해보겠습니다. 그리고 처음부터 끝까지 명령어를 치면서 진행하겠습니다.
@@ -131,66 +139,79 @@ f15a30013765        hyperledger/fabric-peer:latest      "peer node start"       
 
 ## Zookeeper Leader Election
 
-주키퍼에서 리더 선출하는 과정을 한번 확인해보겠습니다. 일단 제일먼저 리더를 찾아봐야합니다. 제가 확인해봤을때 현재 2번 주키퍼가 리더인 상태입니다. `LEADING`이라는걸 보고 확인할 수 있습니다.
+주키퍼에서 리더 선출하는 과정을 한번 확인해보겠습니다. 일단 제일먼저 리더를 찾아봐야합니다. 제가 확인해봤을때 현재 1번 주키퍼가 리더인 상태입니다. `LEADING`이라는걸 보고 확인할 수 있습니다.
 
-![스크린샷 2019-10-23 오전 1 54 21](https://user-images.githubusercontent.com/44635266/67310528-e62a0d00-f538-11e9-8d0f-fb06ab809a12.png)
-
-```
-2019-10-22 16:35:36,072 [myid:3] - INFO  [QuorumPeer[myid=3]/0.0.0.0:2181:QuorumPeer@856] - LEADING
-2019-10-22 16:35:36,077 [myid:3] - INFO  [QuorumPeer[myid=3]/0.0.0.0:2181:Leader@59] - TCP NoDelay set to: true
-```
-
-그럼 여기서 2번 주키퍼를 죽여보겠습니다.
+![스크린샷 2019-10-23 오전 4 27 27](https://user-images.githubusercontent.com/44635266/67323708-d0731280-f54d-11e9-9af4-fe8c03d53095.png)
 
 ```
-$ docker stop zookeeper2.example.com
+2019-10-22 16:35:36,072 [myid:2] - INFO  [QuorumPeer[myid=2]/0.0.0.0:2181:QuorumPeer@856] - LEADING
+2019-10-22 16:35:36,077 [myid:2] - INFO  [QuorumPeer[myid=2]/0.0.0.0:2181:Leader@59] - TCP NoDelay set to: true
 ```
 
-![스크린샷 2019-10-23 오전 1 55 48](https://user-images.githubusercontent.com/44635266/67310529-e6c2a380-f538-11e9-9bb3-59a413b6cb6c.png)
-
-그렇게 되면 리더가 없다는 에러를 발생시키고 다시 리더를 선출하게됩니다. 1번 주키퍼가 리더가 되었네요.
-
-```
-2019-10-22 16:47:39,235 [myid:1] - WARN  [QuorumPeer[myid=1]/0.0.0.0:2181:Follower@87] - Exception when following the leader
-```
-
-![스크린샷 2019-10-23 오전 1 55 56](https://user-images.githubusercontent.com/44635266/67310531-e6c2a380-f538-11e9-8ba3-f557dc29a5f8.png)
-
-만약 리더를 한 번더 죽이면 어떻게 될까요. 그러면 3개의 주키퍼중 과반수 이상이 죽었기 때문에 리더 선출을 하지 못하고 정상적인 시스템 작동이 불가능하게 됩니다.
+그럼 여기서 1번 주키퍼를 죽여보겠습니다.
 
 ```
 $ docker stop zookeeper1.example.com
 ```
 
-![스크린샷 2019-10-23 오전 1 58 17](https://user-images.githubusercontent.com/44635266/67310534-e75b3a00-f538-11e9-9a82-c49b468ab767.png)
+![스크린샷 2019-10-23 오전 4 27 59](https://user-images.githubusercontent.com/44635266/67323709-d0731280-f54d-11e9-8351-72a010ddc378.png)
+
+그렇게 되면 리더가 없다는 에러를 발생시키고 다시 리더를 선출하게됩니다. 2번 주키퍼가 리더가 되었네요.
+
+```
+2019-10-22 16:47:39,235 [myid:3] - WARN  [QuorumPeer[myid=3]/0.0.0.0:2181:Follower@87] - Exception when following the leader
+```
+
+만약 리더를 한 번더 죽이면 어떻게 될까요. 그러면 3개의 주키퍼중 과반수 이상이 죽었기 때문에 리더 선출을 하지 못하고 정상적인 시스템 작동이 불가능하게 됩니다.
+
+```
+$ docker stop zookeeper2.example.com
+```
+
+![스크린샷 2019-10-23 오전 4 28 17](https://user-images.githubusercontent.com/44635266/67324104-40819880-f54e-11e9-83e1-5a4da041be24.png)
 
 ## Kafka Leader Election
 
-이전에는 주키퍼에서 리더 선출하는 과정을 한번 확인해보았는데. 이번에는 카프카로 확인해 보겠습니다. 현재 카프카의 리더는 3번 카프카입니다.
+이전에는 주키퍼에서 리더 선출하는 과정을 한번 확인해보았는데. 이번에는 카프카로 확인해 보겠습니다. 현재 카프카의 리더는 1번 카프카입니다.
 
-![스크린샷 2019-10-23 오전 2 04 39](https://user-images.githubusercontent.com/44635266/67311569-ce538880-f53a-11e9-9b26-ddb3f28f9183.png)
+제가 설정을 잘못했는지 `kafka3.example.com`이 붙지를 않네요. 그점 감안하셔서 보면 될거같습니다.
+
+![스크린샷 2019-10-23 오전 4 53 08](https://user-images.githubusercontent.com/44635266/67326361-665c6c80-f551-11e9-8eb2-6e82abade140.png)
 
 하나씩 죽이면서 어떻게 변화되는지 알아보겠습니다.
-
-```
-$ docker stop kafka3.example.com
-```
-
-![스크린샷 2019-10-23 오전 2 08 14](https://user-images.githubusercontent.com/44635266/67311570-ceec1f00-f53a-11e9-841b-ad90f90da3e0.png)
-
-```
-$ docker stop kafka2.example.com
-```
-
-![스크린샷 2019-10-23 오전 2 08 50](https://user-images.githubusercontent.com/44635266/67311571-ceec1f00-f53a-11e9-9ef9-5831658dde05.png)
 
 ```
 $ docker stop kafka1.example.com
 ```
 
-![스크린샷 2019-10-23 오전 2 12 53](https://user-images.githubusercontent.com/44635266/67311572-ceec1f00-f53a-11e9-868e-70878c8b41cb.png)
+![스크린샷 2019-10-23 오전 4 54 03](https://user-images.githubusercontent.com/44635266/67326363-665c6c80-f551-11e9-9d73-5337a3d92c2a.png)
 
-카프카는 주키퍼와 다르게 4개중에 과반수 이상이 고장이나서 정지가 되어도 시스템이 유지가 됩니다.
+```
+$ docker stop kafka2.example.com
+```
+
+![스크린샷 2019-10-23 오전 4 55 13](https://user-images.githubusercontent.com/44635266/67326364-66f50300-f551-11e9-9b0e-d3a68ea62cd4.png)
+
+카프카는 주키퍼와 다르게 3개중에 과반수 이상이 고장이나서 정지가 되어도 시스템이 유지가 됩니다.
+
+그럼 다시 `kafk1`과 `kafka2`를 살려보겠습니다.
+
+```
+$ docker start kafka1.example.com
+$ docker start kafka2.example.com
+```
+
+![스크린샷 2019-10-23 오전 4 55 44](https://user-images.githubusercontent.com/44635266/67326366-66f50300-f551-11e9-899e-579a263b832b.png)
+
+
+그러면 아래와 같은 로그가 적힙니다.
+
+```
+[2019-10-22 19:55:24,960] INFO [Partition byfn-sys-channel-0 broker=0] Expanding ISR from 0 to 0,1 (kafka.cluster.Partition)
+[2019-10-22 19:55:30,000] INFO [Partition byfn-sys-channel-0 broker=0] Expanding ISR from 0,1 to 0,1,2 (kafka.cluster.Partition)
+```
+
+카프카에 복제인 `ISR`이 만들어지면서 다시 정상적으로 작동하는것을 확인할 수 있습니다. `ISR`은 `replication group`이라고 이해하시면 쉬울것입니다.
 
 이 리더 선출을 포스트에 담기 위해서 주키퍼와 카프카를 각각 3개 4개씩 생성했습니다.
 
@@ -232,10 +253,14 @@ $ peer channel create -o orderer.example.com:7050 -c $CHANNEL_NAME -f ./channel-
 
 카프카와 오더러의 로그를 보겠습니다. 가장 오른쪽이 오더러이며 왼쪽으로 한칸씩 가면서 leader 카프카, follower 카프카 입니다.
 
-![스크린샷 2019-10-23 오전 2 34 59](https://user-images.githubusercontent.com/44635266/67314188-3b691d00-f53f-11e9-915a-d3b6ed355f1f.png)
+
+![스크린샷 2019-10-23 오전 5 07 59](https://user-images.githubusercontent.com/44635266/67327580-1e3e4980-f553-11e9-9c8c-b28089e74e1f.png)
 
 
-가장 큰 특징으로는 리더 카프카에서는 `Topic`을 만들었고 다른 `follower`들은 리더에 데이터를 복제했습니다. 마지막으로 오더러에서는 `producer`와, `consumer`를 만들었네요.
+![스크린샷 2019-10-23 오전 5 07 03](https://user-images.githubusercontent.com/44635266/67327488-fa7b0380-f552-11e9-94ed-04f07be3f882.png)
+
+
+가장 큰 특징으로는 리더 카프카에서는 `Topic`을 만들었고 다른 `follower`들은 리더에 데이터를 복제했습니다. 마지막으로 오더러에서는 `producer`와, `consumer`를 Setting했다고 나오네요.
 
 ```
 $ peer channel join -b mychannel.block
