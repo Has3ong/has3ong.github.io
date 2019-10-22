@@ -13,6 +13,8 @@ title: "BlockChain"
 * [Hyperledger Fabric 소개](/fabric-introduction)
 * [Hyperledger Fabric Network 구성 -1-](/fabricnetwork1)
 * [Hyperledger Fabric Network 구성 -2-](/fabricnetwork2)
+* [Hyperledger Fabric Network 구성 -3- Kafka](/fabricnetwork3)
+* [Hyperledger Fabric Network 구성 -4- Raft](/fabricnetwork4)
 
 ### Indy
 
