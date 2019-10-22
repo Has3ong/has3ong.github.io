@@ -37,6 +37,8 @@ title : References
 * https://victorydntmd.tistory.com/231
 * https://lynux.win/comlin/455
 * https://www.imperva.com/learn/performance/http-keep-alive/
+* https://siyoon210.tistory.com/130
+* https://acodez.in/sql-and-nosql-an-overview/
 
 
 ### BlockChain
