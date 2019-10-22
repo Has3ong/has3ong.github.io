@@ -33,6 +33,11 @@ title : References
 * https://tblogqus.com/top-dhcp-interview-questions-and-answers/
 * https://aws.amazon.com/ko/route53/what-is-dns/
 * http://www.cables-solutions.com/pppoe-vs-dhcp-difference.html
+* https://medium.com/sjk5766/%EB%84%8C-%EB%AD%90%EB%8B%88-nginx-9a8cae25e964
+* https://victorydntmd.tistory.com/231
+* https://lynux.win/comlin/455
+* https://www.imperva.com/learn/performance/http-keep-alive/
+
 
 ### BlockChain
 
@@ -44,7 +49,6 @@ title : References
 * https://medium.com/extropy-io/zokrates-tutorial-with-truffle-41135a3fb754
 * https://media.consensys.net/state-of-ethereum-protocol-2-the-beacon-chain-c6b6a9a69129
 
-### ML / DL
 
 ### Apache
 
@@ -54,5 +58,3 @@ title : References
 * https://likefree.tistory.com/23
 * https://engkimbs.tistory.com/660
 * https://www.xenonstack.com/insights/apache-zookeeper/
-
-### DevOps
