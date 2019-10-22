@@ -38,7 +38,11 @@ title : References
 * https://lynux.win/comlin/455
 * https://www.imperva.com/learn/performance/http-keep-alive/
 * https://siyoon210.tistory.com/130
+* http://www.emh.co.kr/content.pl?compiled_interpreted
+* https://ithub.tistory.com/86
 * https://acodez.in/sql-and-nosql-an-overview/
+* https://www.guru99.com/difference-compiler-vs-interpreter.html
+* https://asfirstalways.tistory.com/158
 
 
 ### BlockChain
