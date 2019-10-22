@@ -15,6 +15,7 @@ title: "Computer Science"
 * [구조체 크기 계산하기](/structsize)
 * [Apache 와 Nginx 비교하기](/apache-nginx)
 * [SQL 과 NoSQL 비교하기](/sql-nosql)
+* [C / C++ vs Java vs Python](/c-java-python.md)
 
 ### Data Structure
 
