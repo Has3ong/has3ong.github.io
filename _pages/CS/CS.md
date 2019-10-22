@@ -14,6 +14,7 @@ title: "Computer Science"
 * [CI / CD](/ci-cd)
 * [구조체 크기 계산하기](/structsize)
 * [Apache 와 Nginx 비교하기](/apache-nginx)
+* [SQL 과 NoSQL 비교하기](/sql-nosql)
 
 ### Data Structure
 
