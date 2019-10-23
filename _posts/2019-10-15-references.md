@@ -43,7 +43,12 @@ title : References
 * https://acodez.in/sql-and-nosql-an-overview/
 * https://www.guru99.com/difference-compiler-vs-interpreter.html
 * https://asfirstalways.tistory.com/158
-
+* https://m.blog.naver.com/PostView.nhn?blogId=jevida&logNo=140199795866&proxyReferer=https%3A%2F%2Fwww.google.com%2F
+* https://jayzzz.tistory.com/44
+* https://over153cm.tistory.com/entry/%EB%A7%B5%EB%A6%AC%EB%93%80%EC%8A%A4MapReduce%EB%9E%80-1
+* https://magi82.github.io/process-thread/
+* https://donghoson.tistory.com/15
+* https://m.blog.naver.com/rja1104/220551216367
 
 ### BlockChain
 
