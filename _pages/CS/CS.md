@@ -16,6 +16,7 @@ title: "Computer Science"
 * [Apache 와 Nginx 비교하기](/apache-nginx)
 * [SQL 과 NoSQL 비교하기](/sql-nosql)
 * [C / C++ vs Java vs Python](/cjavapython.md)
+* [MapReduce](/mapreduce)
 
 ### Data Structure
 
