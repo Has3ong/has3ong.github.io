@@ -49,6 +49,9 @@ title : References
 * https://magi82.github.io/process-thread/
 * https://donghoson.tistory.com/15
 * https://m.blog.naver.com/rja1104/220551216367
+* https://www.google.com/search?q=%EA%B5%90%EC%B0%A9%EC%83%81%ED%83%9C&oq=%EA%B5%90%EC%B0%A9%EC%83%81%ED%83%9C&aqs=chrome..69i57j0l5.1028j0j7&sourceid=chrome&ie=UTF-8
+* https://phaphaya.tistory.com/30
+* https://ghgus0702.tistory.com/13
 
 ### BlockChain
 
