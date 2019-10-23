@@ -55,6 +55,9 @@ title : References
 
 ### BlockChain
 
+* https://cobak.co.kr/community/16/post/110919
+* https://www.tokenpost.kr/terms/5822
+* https://medium.com/@kimjunyong/4-%ED%8D%BC%EB%B8%94%EB%A6%AD-%EB%B8%94%EB%A1%9D%EC%B2%B4%EC%9D%B8-vs-%ED%94%84%EB%9D%BC%EC%9D%B4%EB%B9%97-%EB%B8%94%EB%A1%9D%EC%B2%B4%EC%9D%B8-725b9fa92809
 * https://buildmedia.readthedocs.org/media/pdf/indy-node/latest/indy-node.pdf
 * https://medium.com/@kctheservant/exploring-hyperledger-indy-through-indy-dev-example-10075d2547ae
 * https://medium.com/ai-networkkr/%EB%B8%94%EB%A1%9D%EC%B2%B4%EC%9D%B8%EC%97%90%EC%84%9C%EC%9D%98-%EA%B0%9C%EC%9D%B8%EC%A0%95%EB%B3%B4%EB%B3%B4%ED%98%B8-%EA%B8%B0%EC%88%A0-zk-snark-1-de5804e9b50e
