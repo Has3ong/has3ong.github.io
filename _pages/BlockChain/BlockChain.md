@@ -49,3 +49,6 @@ title: "BlockChain"
 #### Ethereum
 
 #### Klaytn
+
+* [클레이튼 공식 문서](https://docs.klaytn.com/)
+* [클레이튼 공식 문서](https://ko.docs.klaytn.com/)
