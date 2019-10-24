@@ -65,6 +65,10 @@ title : References
 * https://github.com/Zokrates/ZoKrates
 * https://medium.com/extropy-io/zokrates-tutorial-with-truffle-41135a3fb754
 * https://media.consensys.net/state-of-ethereum-protocol-2-the-beacon-chain-c6b6a9a69129
+* https://medium.com/b-ock-chain/pow-%EC%99%80-pos-%EC%9D%98-%EC%A0%95%EC%9D%98-962a36d0979
+* https://www.mobiinside.co.kr/2018/07/28/blockchainpepp-powposdpos/
+* https://blog.theloop.co.kr/2017/06/21/bft-%EA%B8%B0%EB%B0%98-%ED%95%A9%EC%9D%98-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/
+* https://medium.com/@kimjunyong/6-%EB%B8%94%EB%A1%9D%EC%B2%B4%EC%9D%B8-%ED%95%A9%EC%9D%98-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-%EC%95%8C%EC%95%84%EB%B3%B4%EA%B8%B0-2%ED%8E%B8-pbft-sieve-tendermint-raft-paxos-poa-a8af8d6eaccd
 
 
 ### Apache
