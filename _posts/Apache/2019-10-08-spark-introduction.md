@@ -13,7 +13,7 @@ Spark는 유연성과 맵리듀스에 대한 확장성을 훨씬 빠른 속도�
 
 ## Spark Architecture / Ecosystem
 
-[스크린샷 2019-10-03 오전 5 00 57](https://user-images.githubusercontent.com/44635266/66077450-fb93c300-e59a-11e9-8a49-b86d69a19a2a.png)
+![스크린샷 2019-10-03 오전 5 00 57](https://user-images.githubusercontent.com/44635266/66077450-fb93c300-e59a-11e9-8a49-b86d69a19a2a.png)
 
 ### Spark SQL
 
