@@ -2,12 +2,11 @@
 layout : single
 permalink: /de/
 title: "DevOps"
-sidebar:
-  # nav: sidebar-ML
-header:
-  # overlay_image: /assets/images/category/ml.jpg
 ---
 
+## DevOps
+
+* [DevOps Introduction](/devops-introduction)
 ## Docker
 
 ## Kubernetes
