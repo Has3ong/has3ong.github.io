@@ -10,6 +10,6 @@ main:
     url: /ap/
   #- title: "Image Processing"
     #url: /ip/
-  #- title: "DevOps"
-    #url: /de/
+  - title: "DevOps"
+    url: /de/
   
