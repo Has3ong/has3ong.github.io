@@ -52,6 +52,7 @@ title : References
 * https://www.google.com/search?q=%EA%B5%90%EC%B0%A9%EC%83%81%ED%83%9C&oq=%EA%B5%90%EC%B0%A9%EC%83%81%ED%83%9C&aqs=chrome..69i57j0l5.1028j0j7&sourceid=chrome&ie=UTF-8
 * https://phaphaya.tistory.com/30
 * https://ghgus0702.tistory.com/13
+* https://gmlwjd9405.github.io/2018/05/26/what-is-agile.html
 
 ### BlockChain
 
@@ -70,7 +71,7 @@ title : References
 * https://blog.theloop.co.kr/2017/06/21/bft-%EA%B8%B0%EB%B0%98-%ED%95%A9%EC%9D%98-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/
 * https://medium.com/@kimjunyong/6-%EB%B8%94%EB%A1%9D%EC%B2%B4%EC%9D%B8-%ED%95%A9%EC%9D%98-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-%EC%95%8C%EC%95%84%EB%B3%B4%EA%B8%B0-2%ED%8E%B8-pbft-sieve-tendermint-raft-paxos-poa-a8af8d6eaccd
 * https://medium.com/decipher-media/%EB%B8%94%EB%A1%9D%EC%B2%B4%EC%9D%B8-%ED%99%95%EC%9E%A5%EC%84%B1-%EC%86%94%EB%A3%A8%EC%85%98-%EC%8B%9C%EB%A6%AC%EC%A6%88-4-1-sharding-%EC%83%A4%EB%94%A9-611a311c80e6
-
+* https://banksalad.com/contents/%EC%89%BD%EA%B2%8C-%EC%84%A4%EB%AA%85%ED%95%98%EB%8A%94-%EB%B8%94%EB%A1%9D%EC%B2%B4%EC%9D%B8-%EB%B8%94%EB%A1%9D%EC%B2%B4%EC%9D%B8%EC%9D%98-%EC%9B%90%EB%A6%AC-%EC%B1%84%EA%B5%B4-%ED%95%B4%EC%8B%9C-%EA%B7%B8%EB%A6%AC%EA%B3%A0-%EC%9E%91%EC%97%85%EC%A6%9D%EB%AA%85-qvCud
 
 ### Apache
 
@@ -80,3 +81,8 @@ title : References
 * https://likefree.tistory.com/23
 * https://engkimbs.tistory.com/660
 * https://www.xenonstack.com/insights/apache-zookeeper/
+
+### DevOps
+
+* https://aws.amazon.com/ko/devops/what-is-devops/
+* https://bcho.tistory.com/817
