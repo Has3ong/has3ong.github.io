@@ -47,14 +47,15 @@ title: "BlockChain"
 #### Hyperledger
 
 * [해시넷](http://www.hash.kr/)
-* [하이퍼렛져 공식 사이트](https://www.hyperledger.org/)
-* [하이퍼렛져 공식 문서](https://hyperledger-fabric.readthedocs.io)
-* [하이퍼렛져 페브릭 깃허브](https://github.com/hyperledger/fabric-samples)
+* [Hyperledger](https://www.hyperledger.org/)
+* [Glossary](https://hyperledger-fabric.readthedocs.io)
+* [Hyperledger Fabric GitHub](https://github.com/hyperledger/fabric-samples)
 * [Hyperledger Korea User Group](https://github.com/hlkug/meetup)
+* [Hyperledger Caliper Getting Started](https://hyperledger.github.io/caliper/vLatest/getting-started/)
 
 #### Ethereum
 
 #### Klaytn
 
-* [클레이튼 공식 문서](https://docs.klaytn.com/)
-* [클레이튼 공식 문서](https://ko.docs.klaytn.com/)
+* [Klaytn Documentation](https://docs.klaytn.com/)
+* [Klaytn Documentation Korea](https://ko.docs.klaytn.com/)
