@@ -56,6 +56,8 @@ TODO :: Network
 * [Process / Thread](/process-thread)
 * [Process Scheduling](/process-scheduling)
 * [Kernel](/kernel)
+* [메모리 관리 Fragmentation / Segmentation](/memory-manage)
+* [Virtual Memory](/virtual-memory)
 
 ### Security
 
