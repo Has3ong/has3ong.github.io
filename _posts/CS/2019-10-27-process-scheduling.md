@@ -2,13 +2,30 @@
 title : Process Scheduling
 tags:
 - Process
-- Schedulingx
+- Scheduling
 ---
 
 ## 프로세스 스케쥴링(Process Scheduling)
 
 CPU를 사용하려고 하는 프로세스들 사이의 우선 순위를 관리하는 일이다. 스케줄링은 처리율과 CPU 이용률을 증가시키고 오버헤드/응답시간/반환시간/대기시간 최소하 시키는 기법이다.
 
+## 프로세스 상태(Process State)
+
+![image](https://user-images.githubusercontent.com/44635266/68083184-75a0bb80-fe69-11e9-984d-d5c977f1f4f3.png)
+
+* 생성 (New) : 프로세스 생성 상태
+* 실행 (Running) : 프로세스가 CPU에 할당되어 실행 중인 상태
+* 준비 (Ready) : 프로세스가 CPU에 할당되기를 기다리는 상태
+* 대기 (Waiting) : 보류(Block)라고도 하며, 프로세스가 입출력이나 이벤트를 기다리는 상태
+* 종료 (Terminated) : 프로세스 종료 상태
+
+### 프로세스의 상태 전이
+
+* 승인 (Admitted) : 프로세스 생성이 가능하여 승인됨.
+* 스케줄러 디스패치 (Scheduler Dispatch) : 준비 상태에 있는 프로세스 중 하나를 선택하여 실행시키는 것.
+* 인터럽트 (Interrupt) : 예외, 입출력, 이벤트 등이 발생하여 현재 실행 중인 프로세스를 준비 상태로 바꾸고, 해당 작업을 먼저 처리하는 것.
+* 입출력 또는 이벤트 대기 (I/O or Event wait) : 실행 중인 프로세스가 입출력이나 이벤트를 처리해야 하는 경우, 입출력/이벤트가 모두 끝날 때까지 대기 상태로 만드는 것.
+* 입출력 또는 이벤트 완료 (I/O or Event Completion) : 입출력/이벤트가 끝난 프로세스를 준비 상태로 전환하여 스케줄러에 의해 선택될 수 있도록 만드는 것.
 
 ## 선점 & 비선점 스케줄링
 
@@ -48,6 +65,10 @@ CPU가 어떤 프로세스에 의해 점유 중일 때, 우선 순위가 높은 
 ### 동적 스케줄링(Dynamic Scheduling)
 
 스케줄링 과정에서 프로세스의 우선순위를 변동시킨다. 유동 우선순위 스케줄링이라고도 한다.
+
+## 장기 & 중기 & 단기 스케줄링
+
+![image](https://user-images.githubusercontent.com/44635266/68083164-12168e00-fe69-11e9-9225-38cc110ecd2a.png)
 
 ### 장기 스케줄링
 
