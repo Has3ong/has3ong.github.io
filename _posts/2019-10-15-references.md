@@ -5,10 +5,13 @@ title : References
 ### CS
 
 * https://stackoverflow.com/questions/36243360/the-proper-mvc-pattern
+* https://sycho-lego.tistory.com/10
+* https://jiminon5.tistory.com/13 
 * https://javaplant.tistory.com/18
 * https://wildpup.cafe24.com/archives/469
 * https://hsp1116.tistory.com/45
 * https://www.isi.edu/nsnam/DIRECTED_RESEARCH/DR_WANIDA/DR/JavisInActionFastRetransmitFrame.html
+* https://futurists.tistory.com/17
 * https://blog.naver.com/PostView.nhn?blogId=phj8498&logNo=221348733459
 * https://kwongyo.tistory.com/23
 * https://www.cs.usfca.edu/~galles/visualization/RedBlack.html
@@ -53,11 +56,36 @@ title : References
 * https://phaphaya.tistory.com/30
 * https://ghgus0702.tistory.com/13
 * https://gmlwjd9405.github.io/2018/05/26/what-is-agile.html
+* https://parksb.github.io/article/29.html
+* https://ssoonidev.tistory.com/35
+* http://docs.likejazz.com/wiki/RSA/
+* https://hackernoon.com/generating-rsa-private-and-public-keys-b82a06db6d1c
+* https://blackperl-security.gitlab.io/blog/2016/12/05/2016-12-05-amalmot/
+* https://javaplant.tistory.com/26
+* https://soul0.tistory.com/372
+* https://wayhome25.github.io/cs/2018/03/11/ssl-https/
+* https://12bme.tistory.com/80
+* https://ukzzang.tistory.com/36
+* http://blog.skby.net/%EC%A0%84%EC%9E%90%EC%84%9C%EB%AA%85-digital-signature/
+* https://www.saturnsoft.net/network/2019/03/21/quic-http3-1/
+* https://americanopeople.tistory.com/115
+* https://developer.mozilla.org/ko/docs/Web/HTTP/Basics_of_HTTP/Evolution_of_HTTP
+* https://twinw.tistory.com/4
+* https://rebas.kr/852
+* https://musma.github.io/2019/04/17/blocking-and-synchronous.html
+* https://homoefficio.github.io/2017/02/19/Blocking-NonBlocking-Synchronous-Asynchronous/
+* https://twinw.tistory.com/101
+* https://jhnyang.tistory.com/102
+* https://m.blog.naver.com/PostView.nhn?blogId=hanyu99&logNo=80013395123&proxyReferer=https%3A%2F%2Fwww.google.com%2F
+* https://copycode.tistory.com/83
+* https://it.donga.com/6744/
+
 
 ### BlockChain
 
 * https://cobak.co.kr/community/16/post/110919
 * https://www.tokenpost.kr/terms/5822
+* https://hamait.tistory.com/988 
 * https://medium.com/@kimjunyong/4-%ED%8D%BC%EB%B8%94%EB%A6%AD-%EB%B8%94%EB%A1%9D%EC%B2%B4%EC%9D%B8-vs-%ED%94%84%EB%9D%BC%EC%9D%B4%EB%B9%97-%EB%B8%94%EB%A1%9D%EC%B2%B4%EC%9D%B8-725b9fa92809
 * https://buildmedia.readthedocs.org/media/pdf/indy-node/latest/indy-node.pdf
 * https://medium.com/@kctheservant/exploring-hyperledger-indy-through-indy-dev-example-10075d2547ae
@@ -72,6 +100,14 @@ title : References
 * https://medium.com/@kimjunyong/6-%EB%B8%94%EB%A1%9D%EC%B2%B4%EC%9D%B8-%ED%95%A9%EC%9D%98-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-%EC%95%8C%EC%95%84%EB%B3%B4%EA%B8%B0-2%ED%8E%B8-pbft-sieve-tendermint-raft-paxos-poa-a8af8d6eaccd
 * https://medium.com/decipher-media/%EB%B8%94%EB%A1%9D%EC%B2%B4%EC%9D%B8-%ED%99%95%EC%9E%A5%EC%84%B1-%EC%86%94%EB%A3%A8%EC%85%98-%EC%8B%9C%EB%A6%AC%EC%A6%88-4-1-sharding-%EC%83%A4%EB%94%A9-611a311c80e6
 * https://banksalad.com/contents/%EC%89%BD%EA%B2%8C-%EC%84%A4%EB%AA%85%ED%95%98%EB%8A%94-%EB%B8%94%EB%A1%9D%EC%B2%B4%EC%9D%B8-%EB%B8%94%EB%A1%9D%EC%B2%B4%EC%9D%B8%EC%9D%98-%EC%9B%90%EB%A6%AC-%EC%B1%84%EA%B5%B4-%ED%95%B4%EC%8B%9C-%EA%B7%B8%EB%A6%AC%EA%B3%A0-%EC%9E%91%EC%97%85%EC%A6%9D%EB%AA%85-qvCud
+* https://ovila.tistory.com/57?category=705032
+* https://brunch.co.kr/@curg/25
+* https://medium.com/ozex/%ED%86%A0%ED%81%B0%EA%B3%BC-%EC%BD%94%EC%9D%B8%EC%9D%B4-%EB%8B%A4%EB%A5%B8-%EB%8B%A8%EC%96%B4-%EB%9D%BC%EA%B3%A0-%EC%BD%94%EC%9D%B8-%ED%86%A0%ED%81%B0-%EC%B0%A8%EC%9D%B4%EC%A0%90%EC%9D%B4%EB%9E%80-b18fd3a8ff88
+* https://hamait.tistory.com/1058?category=276132
+* https://jaeri.tistory.com/2
+* https://dayzen1258.tistory.com/entry/%ED%94%84%EB%A1%9C%ED%86%A0%EC%BD%9C-%EC%8A%A4%ED%83%9D%EC%9D%84-%ED%86%B5%ED%95%9C-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B3%B5%EB%B6%80-1
+* https://dayzen1258.tistory.com/entry/%ED%94%84%EB%A1%9C%ED%86%A0%EC%BD%9C-%EC%8A%A4%ED%83%9D%EC%9D%84-%ED%86%B5%ED%95%9C-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B3%B5%EB%B6%80-1
+* https://www.micrium.com/iot/internet-protocols/
 
 ### Apache
 
@@ -81,8 +117,23 @@ title : References
 * https://likefree.tistory.com/23
 * https://engkimbs.tistory.com/660
 * https://www.xenonstack.com/insights/apache-zookeeper/
+* https://medium.com/@circlee7/apache-kafka-78a4eb8d3ec6
+* https://ryufree.tistory.com/226
+* https://www.popit.kr/kafka-%EC%9A%B4%EC%98%81%EC%9E%90%EA%B0%80-%EB%A7%90%ED%95%98%EB%8A%94-producer-acks/
+* https://brocess.tistory.com/190
 
 ### DevOps
 
 * https://aws.amazon.com/ko/devops/what-is-devops/
 * https://bcho.tistory.com/817
+* https://subicura.com/2019/05/19/kubernetes-basic-1.html
+* https://bcho.tistory.com/1256?category=731548
+* https://wedul.site/630
+* http://www.kwangsiklee.com/2018/11/%EA%B0%9C%EB%85%90%EC%9B%90%EB%A6%AC-kubernetes-%EA%B8%B0%EB%B3%B8-%EA%B0%9C%EB%85%90-%EC%9D%B5%ED%9E%88%EA%B8%B0/
+* https://medium.com/@preiner/kubernetes%EC%9D%98-%EC%9D%B4%ED%95%B4-%EA%B0%9C%EB%85%90%EC%A0%95%EB%A6%AC-17245a0d5f4d
+* https://swalloow.github.io/dockerfile
+* https://iamnerd.tistory.com/6
+
+### Programming
+
+* https://planbs.tistory.com/entry/Python-%EB%AC%B8%EC%9E%90%EC%97%B4%EC%9D%98-%EB%A9%94%EB%AA%A8%EB%A6%AC-%ED%95%A0%EB%8B%B9-%EB%B0%A9%EC%8B%9D
