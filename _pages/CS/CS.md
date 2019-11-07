@@ -41,6 +41,7 @@ TODO :: Network
 * [Physical Layer](/physical-layer)
 * [HTTP 1.0 / 2.0 / 3.0](/http-version)
 * [Endian](/endian)
+* [Network Gateway](/network-gateway)
 
 ## Algorithm
 
@@ -58,6 +59,7 @@ TODO :: Network
 ## Operation System
 
 * [Process / Thread](/process-thread)
+* [Critical Section](/critical-section)
 * [Banker's Algorithm](/banker-algorithm)
 * [Dining Philosopher Problem](/dining-philosopher)
 * [Process Scheduling](/process-scheduling)
