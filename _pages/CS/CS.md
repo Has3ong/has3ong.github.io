@@ -30,6 +30,8 @@ title: "Computer Science"
 
 TODO :: Network
 
+* [Protocol Stack](/protocol-stack)
+* [OSI 7 Layer](/osi-layer)
 * [Application Layer](/application-layer)
 * [Presentation Layer](/presentaion-layer)
 * [Session Layer](/session-layer)
@@ -56,6 +58,8 @@ TODO :: Network
 ## Operation System
 
 * [Process / Thread](/process-thread)
+* [Banker's Algorithm](/banker-algorithm)
+* [Dining Philosopher Problem](/dining-philosopher)
 * [Process Scheduling](/process-scheduling)
 * [Kernel](/kernel)
 * [메모리 관리 Fragmentation / Segmentation](/memory-manage)
