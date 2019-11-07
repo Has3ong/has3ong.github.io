@@ -12,4 +12,8 @@ main:
     #url: /ip/
   - title: "DevOps"
     url: /de/
+  - title : "Programming"
+    url: /pr/
+  - title : "Project"
+    url: /pj/
   
