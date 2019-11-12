@@ -1,8 +1,9 @@
 ---
-title : Hyperledger Meetup Korea #19 / 2019 - 10 - 17
-tags:
-- Hyperledger Indy
+title : Hyperledger Indy Getting Started
+tags :
+- Indy
 - Hyperledger
+- Getting Started
 ---
 
 *이 포스트는 `Hyperledger Korea User Group`에서 만든 글을 바탕으로 만들었습니다.*
@@ -26,6 +27,36 @@ VirtualBox 버전 6.0.10 r132072 (Qt5.6.3)
 
 > Vagrantfile
 
+```
+Vagrant.configure("2") do |config|
+  vm_num = 1
+  node_cpu = 1 # 1Core
+  node_memory = "2048" # 2G Memory
+  node_network = "10.30.30"
+  node_prefix = "fabric"
+
+  config.vm.box = "ubuntu/xenial64"
+  config.vm.box_check_update = false
+  #config.disksize.size = "10GB" # > 10GB
+
+  (1..vm_num).each do |i|
+    config.vm.define "#{node_prefix}-#{i}" do |node|
+      hostname = "#{node_prefix}-#{i}"
+      hostip = "#{node_network}.#{i + 1}"
+
+      node.vm.hostname = hostname
+      node.vm.network "private_network", ip: hostip
+
+      node.vm.provider "virtualbox" do |vb|
+        vb.name = "#{node_prefix}-#{i}"
+        vb.gui = false
+        vb.cpus = node_cpu
+        vb.memory = node_memory
+      end
+    end
+  end
+end
+```
 ```
 ENV["LC_ALL"] = "en_US.UTF-8"
 
