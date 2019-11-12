@@ -30,13 +30,13 @@ title: "BlockChain"
 
 ### Indy
 
+* [Hyperledger Indy Getting Started](/indy-gettingstarted)
+
 ### Caliper
 
 * [Hyperledger Caliper Getting Started](/caliper-gettingstarted)
 
 ### Meetup
-
-* [Hyperledger Indy Getting Started / 2019 - 10 - 17](/hlmeetup0)
 
 ### Ethereum
 
