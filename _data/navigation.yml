@@ -4,8 +4,8 @@ main:
     url: /cs/
   - title: "BlockChain"
     url: /bl/
-  #- title: "ML / DL"
-    #url: /ml/
+  - title: "Machine Learning"
+    url: /ml/
   - title: "Apache"
     url: /ap/
   #- title: "Image Processing"
