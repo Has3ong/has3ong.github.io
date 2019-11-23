@@ -10,7 +10,11 @@ title: "Machine Learning"
 
 ## Keras
 
+* [Keras Linear Regression Analysis](/keras-linearregression)
+
 ## Tensorflow
+
+* [Tensorflow Linear Regression Analysis](/tf-linearregression)
 
 ## PyTorch
 
