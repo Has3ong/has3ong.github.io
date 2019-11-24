@@ -11,6 +11,7 @@ title: "Machine Learning"
 ## Keras
 
 * [Keras Linear Regression Analysis](/keras-linearregression)
+* [Keras Classification Analysis](/keras-classification)
 
 ## Tensorflow
 
