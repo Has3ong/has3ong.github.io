@@ -70,6 +70,13 @@ $ ./bin/configtxgen -profile SampleDevModeKafka -channelID byfn-sys-channel -out
 2019-10-22 16:20:04.922 UTC [common.tools.configtxgen] doOutputBlock -> INFO 007 Writing genesis block
 ```
 
+### Create a Channel Configuration Transaction
+
+`channel.tx`파일을 만들어 주어야 합니다. `channel.tx`에는 현재 우리가 구현할 채널의 정책이나 조직의 정보가 담겨져 있다고 생각하면 됩니다.
+
+그리고, 각각의 Org에 올라갈 `AnchorPeer`를 설정합니다. 이 모두에 대한 정보는 `configtx.yaml`에서 확인할 수 있습니다.
+
+
 ```
 $ export CHANNEL_NAME=mychannel  && ./bin/configtxgen -profile TwoOrgsChannel -outputCreateChannelTx ./channel-artifacts/channel.tx -channelID $CHANNEL_NAME
 
@@ -101,6 +108,14 @@ $ ./bin/configtxgen -profile TwoOrgsChannel -outputAnchorPeersUpdate ./channel-a
 2019-10-22 16:22:15.312 UTC [common.tools.configtxgen] doOutputAnchorPeersUpdate -> INFO 005 Generating anchor peer update
 2019-10-22 16:22:15.313 UTC [common.tools.configtxgen] doOutputAnchorPeersUpdate -> INFO 006 Writing anchor peer update
 ```
+
+여기 까지의 과정이 `byfn.sh`에서의 `generate`입니다.
+
+### Start the network
+
+이제 초기 설정은 끝났으니 네트워크를 시작해보겠습니다. `docker-compose-cli.yaml`과 `docker-compose-etcdraft2` 파일을 이용하여 도커 위에 올려줍니다.
+
+마지막 -d 파라메터를 넣어주면 컨테이너의 로그가 안뜨고 백그라운드로 진행이 됩니다. 저는 `orderer`, `peer`들의 로그도 같이 보면서 진행할 예정이니 빼서 진행하겠습니다.
 
 ```
 $ export IMAGE_TAG="latest"

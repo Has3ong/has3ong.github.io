@@ -25,6 +25,37 @@ Hyperledger Fabric 1.4.x
 
 > Vagrantfile
 
+```
+Vagrant.configure("2") do |config|
+  vm_num = 1
+  node_cpu = 1 # 1Core
+  node_memory = "2048" # 2G Memory
+  node_network = "10.30.30"
+  node_prefix = "fabric"
+
+  config.vm.box = "ubuntu/xenial64"
+  config.vm.box_check_update = false
+  #config.disksize.size = "10GB" # > 10GB
+
+  (1..vm_num).each do |i|
+    config.vm.define "#{node_prefix}-#{i}" do |node|
+      hostname = "#{node_prefix}-#{i}"
+      hostip = "#{node_network}.#{i + 1}"
+
+      node.vm.hostname = hostname
+      node.vm.network "private_network", ip: hostip
+
+      node.vm.provider "virtualbox" do |vb|
+        vb.name = "#{node_prefix}-#{i}"
+        vb.gui = false
+        vb.cpus = node_cpu
+        vb.memory = node_memory
+      end
+    end
+  end
+end
+```
+
 ### 1. VM 생성 / 재시작
 
 ```
