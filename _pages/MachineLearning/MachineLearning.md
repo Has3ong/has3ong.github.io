@@ -8,6 +8,10 @@ title: "Machine Learning"
 
 이번 기회에 한번 해볼게요.
 
+## Machine Learning
+
+* [Supervised Learning / Unsupervised Learning](/supervised-unsupervised)
+
 ## Keras
 
 * [Keras Linear Regression Analysis](/keras-linearregression)
