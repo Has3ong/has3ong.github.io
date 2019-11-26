@@ -50,13 +50,26 @@ $ mkdir channel-artifacts
 
 `Kafka`와 `Zookeeper`에 대한 설명은 따로하지 않겠습니다.
 
+### Manually generate the artifacts
+
+첫 번째로 `cryptogen` 파일을 이용하여 인증서 파일을 만들어 줍니다. 인증서 파일들은 `crypto-config.yaml`을 확인해보시면 이해가 되실겁니다. 
+
+전부 하나하나 뜯어보기에는 포스트의 양이 많아지기 때문에 추후에 정리해드리겠습니다.
+
 ```
-$ export FABRIC_CFG_PATH=$PWD
 $ ./bin/cryptogen generate --config=./crypto-config.yaml
 
 org1.example.com
 org2.example.com
 ```
+
+다음 FABRIC_CFG_PATH를 현재 디렉토리로 설정합니다.
+
+```
+$ export FABRIC_CFG_PATH=$PWD
+```
+
+그 다음 우리가 사용할 Fabric 네트워크에 profile 즉, orderer type(?) 을 설정합니다. fabric-samples 에서 제공하는 종류로는 Solo, RAFT, Kafka 3가지가 있는데 지금은 Kafka로 사용하겠습니다.
 
 ```
 $ ./bin/configtxgen -profile SampleDevModeKafka -channelID byfn-sys-channel -outputBlock ./channel-artifacts/genesis.block
@@ -125,7 +138,7 @@ $ export COMPOSE_PROJECT_NAME=fabric
 $ docker-compose -f docker-compose-kafka.yaml up
 ```
 
-했을시 엄청나게 많은 로그가 나오는데요 이건 [여기](/fabricnetwork2-log)서 확인할 수 있습니다. 엄청 길어서 따로 포스트 했습니다. 
+했을시 엄청나게 많은 로그가 나오는데요 이건 [여기](/fabricnetwork3-log)서 확인할 수 있습니다. 엄청 길어서 따로 포스트 했습니다. 
 
 위 포스트에서는 시작시 나오는 로그만 적었고 그외에 피어 채널을 만들던가 조인하는 과정에서 발생하는 로그는 `solo`와 다르니까 이 포스트에서 다루겠습니다.
 

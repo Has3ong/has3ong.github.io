@@ -18,4 +18,6 @@ title: "Programming Language"
 ### Python
 
 * [Python 문자열 메모리 할당 방식](/python-stringmemory)
+* [Python 디렉토리의 파일 리스트 가져오기](/python-directory)
+* [PyPy 가 CPython 보다 빠른 이유](/pypy-cpython)
 
