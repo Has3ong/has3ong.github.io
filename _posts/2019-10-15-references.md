@@ -139,3 +139,6 @@ title : References
 * https://planbs.tistory.com/entry/Python-%EB%AC%B8%EC%9E%90%EC%97%B4%EC%9D%98-%EB%A9%94%EB%AA%A8%EB%A6%AC-%ED%95%A0%EB%8B%B9-%EB%B0%A9%EC%8B%9D
 * https://ahoa.tistory.com/16
 * https://hamait.tistory.com/476
+* https://github.com/JaeYeopHan/Interview_Question_for_Beginner/tree/master/Python
+* http://pythonstudy.xyz/python/article/23-Iterator%EC%99%80-Generator
+* https://bluese05.tistory.com/55
