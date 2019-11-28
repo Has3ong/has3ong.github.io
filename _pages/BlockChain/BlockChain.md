@@ -15,6 +15,8 @@ title: "BlockChain"
 
 ## Hyperledger
 
+* [Hyperledger Introduction](/hyperledger-introduction)
+
 ### Fabric
 
 * [Hyperledger Fabric 소개](/fabric-introduction)
@@ -57,6 +59,7 @@ title: "BlockChain"
 
 * [해시넷](http://www.hash.kr/)
 * [Hyperledger](https://www.hyperledger.org/)
+* [Hyperledger Wiki](https://wiki.hyperledger.org/)
 * [Glossary](https://hyperledger-fabric.readthedocs.io)
 * [Hyperledger Fabric GitHub](https://github.com/hyperledger/fabric-samples)
 * [Hyperledger Korea User Group](https://github.com/hlkug/meetup)

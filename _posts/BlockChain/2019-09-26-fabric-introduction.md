@@ -39,6 +39,7 @@ header:
 > Hyperledger APIs, SDKs, CLI
 
 ## Hyperledger Fabric Model
+
 ### Peer
 
 Peer는 Ledger와 Chaincode를 관리하는 네트워크 노드입니다. 블록체인 네트워크는 Peer들의 집합으로 이루어져 있습니다. Peer들은 Ledgers와 Chaincode에 대해 호스팅하기에 블록체인 네트워크의 기본적인 요소입니다. Ledger는 Chaincode로 인해 발생하는 모든 거래를 불변하게 기록하게 됩니다. Chaincode와 Ledger는 각각 공유 프로세스와 정보를 네트워크에 캡슐화하는데 사용됩니다.

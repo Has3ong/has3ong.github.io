@@ -2,7 +2,7 @@
 title : Python 현재 디렉토리 위치 구하기
 tags :
 - Python
-—--
+---
 
 사용할 디렉토리 예시
 

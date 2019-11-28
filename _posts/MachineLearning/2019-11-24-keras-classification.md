@@ -3,7 +3,7 @@ title : Keras Classification Analysis
 tags :
 - Keras
 - Classfication
-- Fashion MNISt Data
+- Fashion MNIST Data
 ---
 
 ## Classification Analysis

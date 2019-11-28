@@ -3,7 +3,7 @@ title : Python Generator
 tags :
 - Generator
 - Python
-—--
+---
 
 ## Generator
 
