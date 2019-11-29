@@ -18,7 +18,9 @@ title: "Programming Language"
 
 ### Python
 
+* [Python sturct 구현](/python-struct)
 * [Python OpenAPI 데이터 활용하기](/python-openapi)
+* [Python 코드 Profiler 하기](/python-profiler)
 * [Python Generator](/python-generator)
 * [Python 문자열 메모리 할당 방식](/python-stringmemory)
 * [Python 디렉토리의 파일 리스트 가져오기](/python-directory)
