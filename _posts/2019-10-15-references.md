@@ -142,3 +142,8 @@ title : References
 * https://github.com/JaeYeopHan/Interview_Question_for_Beginner/tree/master/Python
 * http://pythonstudy.xyz/python/article/23-Iterator%EC%99%80-Generator
 * https://bluese05.tistory.com/55
+
+### DataBase
+
+* http://blog.devez.net/339
+* https://devanswers.co/installing-mysql-ubuntu-18-04/

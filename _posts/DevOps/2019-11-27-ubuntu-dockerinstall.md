@@ -35,7 +35,7 @@ $ sudo add-apt-repository \
  "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
  $(lsb_release -cs) \
  stable"
- ```
+```
  
 Docker를 설치합니다.
 
@@ -94,3 +94,36 @@ Docker Compose가 정상적으로 설치되었는 지 확인 합니다.
 $ docker-compose --version
 docker-compose version 1.23.2, build 1110ad01
 ```
+
+> Docker 에러 발생시
+
+```
+Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get http://%2Fvar%2Frun%2Fdocker.sock/v1.40/containers/json: dial unix /var/run/docker.sock: connect: permission denied
+```
+
+**1번째 방법**
+
+Create the docker group.
+
+```
+$ sudo groupadd docker
+```
+
+Add your user to the docker group.
+
+```
+$ sudo usermod -aG docker $USER
+```
+
+Logout and login again and run (that doesn't work you may need to reboot your machine first)
+
+```
+$ docker run hello-world
+```
+
+**2번째 방법**
+
+```
+sudo chmod 666 /var/run/docker.sock
+```
+
