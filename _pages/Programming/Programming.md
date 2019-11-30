@@ -10,6 +10,8 @@ title: "Programming Language"
 
 ### C / C++
 
+* [C / C++ 가상함수 / 순수 가상함수](/c-virtualfunction)
+
 ### Java
 
 * [Java equals()와 == 의 차이](/java-equals)
@@ -26,3 +28,6 @@ title: "Programming Language"
 * [Python 디렉토리의 파일 리스트 가져오기](/python-directory)
 * [PyPy 가 CPython 보다 빠른 이유](/pypy-cpython)
 
+### Scala
+
+* [Scala 설치 및 컴파일](/scala-introduction)
