@@ -39,19 +39,12 @@ title: "BlockChain"
 
 * [Hyperledger Caliper Getting Started](/caliper-gettingstarted)
 
-### Meetup
-
 ### Ethereum
 
-* [Ethereum 2.0](/ethereum-two)
+* [Ethereum 환경 설치하기 및 거래 송금하기](/ethereum-install)
 
 ## Klaytn
 
-* [Klaytn 소개](/klaytn-introduction)
-
-### Meetup
-
-* TODO :: Klaytn Developer Meetup / 2019 - 10 - 23
 
 ## Reference
 

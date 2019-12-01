@@ -108,6 +108,7 @@ title : References
 * https://dayzen1258.tistory.com/entry/%ED%94%84%EB%A1%9C%ED%86%A0%EC%BD%9C-%EC%8A%A4%ED%83%9D%EC%9D%84-%ED%86%B5%ED%95%9C-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B3%B5%EB%B6%80-1
 * https://www.micrium.com/iot/internet-protocols/
 * https://blog.theloop.co.kr/2017/03/15/%EB%B8%94%EB%A1%9D%EC%B2%B4%EC%9D%B8-%EA%B8%B0%EC%88%A0-%EA%B0%9C%EC%9A%94/
+* https://javaexpert.tistory.com/938
 
 ### Apache
 
