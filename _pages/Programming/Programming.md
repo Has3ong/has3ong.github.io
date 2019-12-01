@@ -31,3 +31,4 @@ title: "Programming Language"
 ### Scala
 
 * [Scala 설치 및 컴파일](/scala-introduction)
+* [Scala 변수](/scala-variables)
