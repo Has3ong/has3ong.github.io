@@ -13,6 +13,8 @@ tags :
 
 > Example 1
 
+![image](https://user-images.githubusercontent.com/44635266/70225511-81e2a600-1792-11ea-8171-dfb658e1a6cb.png)
+
 우선 카프카에 쓰려는 메시지를 갖는 `ProducerRecord`를 생성한다. `ProducerRecord`는 우리가 전송하기 원하는 토픽과 그것의 값을 포함해야 하며, 선택적으로 키와 파티션을 지정할 수도 있다. `ProducerRecord`를 Kafka로 전송할 때 프로듀서가 제일 먼저 하는일이 키와 값의 쌍으로 구성되는 메세지 객체들이 네트워크로 전송될 수 있도록 바이트 배열로 직렬화한다. 이것은 **직렬처리기(serializer)** 컴포넌트가 처리한다.
 
 해당 데이터는 **파티셔너(partitioner)** 컴포넌트로 전달된다. 만일 `ProducerRecord`에 특정 파티션을 지정했다면 파티셔너는 특별한 처리를 하지 않고 지정된 파티션을 반환한다. 그러나 파티션을 지정하지 않았다면 `ProducerRecord`의 키를 기준으로 파티셔너가 하나의 파티션을 선택해준다.
@@ -106,3 +108,5 @@ producer.send(record, new ProducerCallback());
 ```
 
 `send()` 메소드를 호출하여 메세지를 전송할 때 콜백 객체를 인자로 전달한다. 따라서 Kafka가 메세지를 쓴 후 응답을 반환할 때는 이 객체의 `onCompletion()` 메소드가 자동으로 호출된다. 만약 kafka가 에러를 반환하면 `onCompletion()` 메소드에서 예외를 받게된다. 예외 처리는 위 두개의 예제와 동일하다.
+
+다음 포스트에서는 `bootstrap.servers`, `key.serialzer.value`, `value.serializer` 외에 프로듀서 구성 매개변수를 알아보겠습니다.
