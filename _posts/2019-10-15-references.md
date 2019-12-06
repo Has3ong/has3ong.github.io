@@ -122,6 +122,7 @@ title : References
 * https://ryufree.tistory.com/226
 * https://www.popit.kr/kafka-%EC%9A%B4%EC%98%81%EC%9E%90%EA%B0%80-%EB%A7%90%ED%95%98%EB%8A%94-producer-acks/
 * https://brocess.tistory.com/190
+* https://www.popit.kr/kafka-%EC%9A%B4%EC%98%81%EC%9E%90%EA%B0%80-%EB%A7%90%ED%95%98%EB%8A%94-producer-acks/
 
 ### DevOps
 

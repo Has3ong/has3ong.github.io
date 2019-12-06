@@ -20,6 +20,10 @@ title: Title
 
 * Email : gnoesah@gmail.com
 
+### Comment
+
+* 취업 준비 및 자기개발을 위해 만든 블로그입니다. 포스트에 관한 모든 지적과 피드백 남겨주시면 감사히 받겠습니다. 
+
 ### Reference
 
 Contents Refrences [this](/references)
