@@ -18,7 +18,8 @@ header:
 * [Meet Kafka](/kafka-intro1)
 * [Installing and Configuring Kafka -1-](/kafka-install1)
 * [Installing and Configuring Kafka -2-](/kafka-install2)
-* [Kafka Producers](/kafka-producer1)
+* [Kafka Producers -1-](/kafka-producer1)
+* [Kafka Producers -2-](/kafka-producer2)
 
 ### Meetup
 
