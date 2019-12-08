@@ -20,6 +20,8 @@ header:
 * [Installing and Configuring Kafka -2-](/kafka-install2)
 * [Kafka Producers -1-](/kafka-producer1)
 * [Kafka Producers -2-](/kafka-producer2)
+* [Kafka Producers -3-](/kafka-producer3)
+* [Kafka Producers -4-](/kafka-producer4)
 
 ### Meetup
 
@@ -33,7 +35,7 @@ header:
 
 ### Scala
 
-### PyThon
+### Python
 
 * [pyspark 설치하기](/pyspark-install)
 
