@@ -34,6 +34,8 @@ title: "Programming Language"
 * [Scala 변수](/scala-variables)
 * [Scala 메소드 / 클래스 / 객체](/methodclassobject)
 
+
 ---
 
 * [Scala val vs final 비교](/scala-finalval)
+* [Scala Access Modifier](/scala-accessmodifier)
