@@ -31,6 +31,8 @@ header:
 
 ## Hadoop
 
+* [The Hadoop Distributed Filesystem](/hadoop-introduction1)
+
 ## Spark
 
 * [Spark 소개](/spark-introduction)
