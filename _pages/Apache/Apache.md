@@ -31,6 +31,7 @@ header:
 
 ## Hadoop
 
+* [Installing Hadoop on macOS](/hadoop-install)
 * [The Hadoop Distributed Filesystem](/hadoop-introduction1)
 
 ## Spark

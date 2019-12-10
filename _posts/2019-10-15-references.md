@@ -123,6 +123,8 @@ title : References
 * https://www.popit.kr/kafka-%EC%9A%B4%EC%98%81%EC%9E%90%EA%B0%80-%EB%A7%90%ED%95%98%EB%8A%94-producer-acks/
 * https://brocess.tistory.com/190
 * https://www.popit.kr/kafka-%EC%9A%B4%EC%98%81%EC%9E%90%EA%B0%80-%EB%A7%90%ED%95%98%EB%8A%94-producer-acks/
+* https://medium.com/@jayden.chua/installing-hadoop-on-macos-a334ab45bb3
+* https://tariat.tistory.com/492
 
 ### DevOps
 
