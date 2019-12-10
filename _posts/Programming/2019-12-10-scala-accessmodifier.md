@@ -79,7 +79,7 @@ package MyPackage{
 }
 ```
 
-스칼라는 이외에도 **수식자(qualifier)** 를 사용해 확장할 수 있다. `private[X]` / `protected[X]` 형태의 한정자는 각각 접근이 X까지 private 또는 protected 임을 의미한다. 아래 예제를 통해 살펴보겠습니다.
+Scala는 이외에도 **수식자(qualifier)** 를 사용해 확장할 수 있다. `private[X]` / `protected[X]` 형태의 한정자는 각각 접근이 X까지 private 또는 protected 임을 의미한다. 아래 예제를 통해 살펴보겠습니다.
 
 ```
 package Country{
