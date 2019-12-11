@@ -24,6 +24,7 @@ header:
 * [Kafka Producers -4-](/kafka-producer4)
 * [Kafka Consumers -1-](/kafka-consumer1)
 * [Kafka Consumers -2-](/kafka-consumer2)
+* [Kafka Consumers -3-](/kafka-consumer3)
 
 ### Meetup
 
@@ -37,11 +38,6 @@ header:
 ## Spark
 
 * [Spark 소개](/spark-introduction)
-
-### Scala
-
-### Python
-
 * [pyspark 설치하기](/pyspark-install)
 
 ## Reference
