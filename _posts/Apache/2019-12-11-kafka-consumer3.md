@@ -49,7 +49,7 @@ Kafka 컨슈머의 모든것이 그렇듯이, 자동 커밋도 폴링 루프에�
 
 가장 최근에 메세지 배치를 처리한 후에  `commitSync()` 를 사용해서 오프셋을 커밋하는 예는 다음과 같습니다.
 
-```Java
+```java
 while (true) {
   ConsumerRecords<String, String> records = consumer.poll(100);
   for (ConsumerRecord<String, String> record : records) {
@@ -75,7 +75,7 @@ while (true) {
 
 **비동기 커밋(Asynchronous Commit)** 은 브로커의 커밋 응답을 기다리는 대신, 커밋 요청을 전송하고 처리를 계속할 수 있습니다. 코드를 통해 예를 알아보겠습니다.
 
-```Java
+```java
 while (true) {
   ConsumerRecords<String, String> records = consumer.poll(100);
   for (ConsumerRecord<String, String> record : records) {
@@ -93,7 +93,7 @@ while (true) {
 
 비동기 처리는 callback을 사용하여 `commitAsync()`에 전달할 수 있습니다. callback을 사용한 비동기 처리의 예는 아래 코드를 보시면 됩니다.
 
-```Java
+```java
 while (true) {
   ConsumerRecords<String, String> records = consumer.poll(100);
   for (ConsumerRecord<String, String> record : records) {
@@ -121,7 +121,7 @@ while (true) {
 
 이 경우 `commitSync()` 와 `commitAsync()` 를 같이 사용합니다. 아래 코드를 참고하시면 됩니다.
 
-```Java
+```java
 try {
   while (true) {
     ConsumerRecords<String, String> records = consumer.poll(100);
@@ -152,7 +152,7 @@ try {
 
 특정 오프셋을 커밋하는 경우도 있습니다. 더 자주 커밋을 하고 싶거나 poll() 메소드에서 용량이 큰 배치를 반환할 때 배치 중간의 오프셋을 커밋하여 리밸런싱으로 인한 많은 메세지의 중복처리를 막고자 할때 사용이 됩니다. 코드로 알아보겠습니다.
 
-```Java
+```java
 private Map<TopicPartition, OffsetAndMetadata> currentOffsets =
   new HashMap<>();
 int count = 0;
