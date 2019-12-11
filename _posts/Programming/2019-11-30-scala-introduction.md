@@ -9,14 +9,17 @@ tags :
 ### Runtime Enviroment
 
 * macOS Catalina version 10.15.1
-* java vesrsion
+
+```shell
+$ java vesrsion
 openjdk version "1.8.0_232"
 OpenJDK Runtime Environment (AdoptOpenJDK)(build 1.8.0_232-b09)
 OpenJDK 64-Bit Server VM (AdoptOpenJDK)(build 25.232-b09, mixed mode)
+```
 
 ### Install
 
-```
+```shell
 $ brew install scala                                                                                                              
 Updating Homebrew...
 ==> Auto-updated Homebrew!

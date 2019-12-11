@@ -12,7 +12,7 @@ PMS(Package Management System)의 일종인 Ubuntu 패지키 관리 툴(dpkg 그
 
 이를 임포트하여 패키지 관리 툴에게 키 정보를 입력합니다.
 
-```
+```shell
 $ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4
 ```
 
@@ -24,25 +24,25 @@ apt 명령어를 사용하여 패키지 설치 시 패키지 명령어를 받아
 
 아래의 명령어를 입력하여 리스트 파일을 생성합니다.
 
-```
+```shell
 $ echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.0.list
 ```
 
 Local 의 패키지 DB 를 리로드합니다.
 
-```
+```shell
 $ sudo apt-get update
 ```
 
 MongoDB 설치
   
-```
+```shell
 $ sudo apt-get install -y mongodb-org
 ```
 
 정상적으로 설치된 모습
 
-```
+```shell
 $ sudo systemctl status mongod
 ● mongod.service - MongoDB Database Server
    Loaded: loaded (/lib/systemd/system/mongod.service; disabled; vendor preset:
@@ -57,7 +57,7 @@ Nov 28 04:45:05 ip-172-26-8-131 systemd[1]: mongod.service: Current command vani
 lines 1-10/10 (END)
 ```
 
-```
+```shell
 $ mongo
 MongoDB shell version v4.0.13
 connecting to: mongodb://127.0.0.1:27017/?gssapiServiceName=mongodb

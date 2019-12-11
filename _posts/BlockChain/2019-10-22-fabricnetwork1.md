@@ -25,7 +25,7 @@ Hyperledger Fabric 1.4.x
 
 > Vagrantfile
 
-```
+```shell
 Vagrant.configure("2") do |config|
   vm_num = 1
   node_cpu = 1 # 1Core
@@ -58,7 +58,7 @@ end
 
 ### 1. VM 생성 / 재시작
 
-```
+```shell
 $ vagrant up
 
 Bringing machine 'fabric-1' up with 'virtualbox' provider...
@@ -104,7 +104,7 @@ Bringing machine 'fabric-1' up with 'virtualbox' provider...
 
 ### 2. VM 접속
 
-```
+```shell
 $ vagrant ssh fabric-1
 Welcome to Ubuntu 16.04.6 LTS (GNU/Linux 4.4.0-159-generic x86_64)
 
@@ -123,14 +123,14 @@ vagrant@fabric-1:~$
 
 ### 3. VM 중지
 
-```
+```shell
 $ vagrant halt fabric-1
 ==> fabric-1: Attempting graceful shutdown of VM...
 ```
 
 ### 4. VM 삭제
 
-```
+```shell
 $ vagrant destroy fabric-1
     fabric-1: Are you sure you want to destroy the 'fabric-1' VM? [y/N] y
 ==> fabric-1: Destroying VM and associated drives...
@@ -142,7 +142,7 @@ $ vagrant destroy fabric-1
 
 ### 1.1 VM 접속
 
-```
+```shell
 $ vagrant status
 Current machine states:
 
@@ -159,7 +159,7 @@ vagrant@fabric-1:~$
 
 ## 2. Install Go
 
-```
+```shell
 $ tar zxf go1.12.9.linux-amd64.tar.gz
 $ sudo mv go /usr/local
 $ rm go1.12.9.linux-amd64.tar.gz
@@ -178,7 +178,7 @@ software-properties-common is already the newest version (0.96.20.9).
 
 ## 3. Install Docker
 
-```
+```shell
 $ sudo apt-get remove docker docker-engine docker.i
 
 $ sudo apt-get install \
@@ -230,7 +230,8 @@ Server: Docker Engine - Community
 ```
 
 ## 4. Install Docker Compose
-```
+
+```shell
 $ sudo curl -L https://github.com/docker/compose/releases/download/1.23.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
 
 $ sudo chmod +x /usr/local/bin/docker-compose
@@ -243,7 +244,7 @@ docker-compose version 1.23.2, build 1110ad01
 
 네트워크 구성에 필요한 바이너리 파일 및 docker images를 다운받습니다. 밑에 로그를 확인해보면 peer, ordererd와 같은 이미지를 다운받는걸 알 수 있습니다.
 
-```
+```shell
 $ curl -sSL http://bit.ly/2ysbOFE | bash -s -- 1.4.3 1.4.3 0.4.15
 
 Installing Hyperledger Fabric docker images
@@ -347,7 +348,7 @@ $ chown -R vagrant:vagrant fabric-samples
 
 fabric-samples에 first-network로 이동해줍니다. 해당 디렉토리에는 아래와 같은 파일들이 있습니다. 저희들은 여기서 byfn.sh 파일을 사용하겠습니다.
 
-```
+```shell
 $ cd fabric-samples/first-network/
 vagrant@fabric-1:~/fabric-samples/first-network$ ls
 base               configtx.yaml            docker-compose-couch-org3.yaml    eyfn.sh
@@ -360,7 +361,7 @@ channel-artifacts  docker-compose-cli.yaml  docker-compose-org3.yaml
 
 `./byfn.sh generate`를 입력해줍니다. 로그는 아래에서 확인해보면 됩니다.
 
-```
+```shell
 $ ./byfn.sh generate
 Generating certs and genesis block for channel 'mychannel' with CLI timeout of '10' seconds and CLI delay of '3' seconds
 Continue? [Y/n] y
@@ -368,7 +369,7 @@ Continue? [Y/n] y
 
 `byfn.sh` 을 `generate` 하게 되면 제일 먼저 org1과 org2의 crypto-config가 만들어집니다. 이 디렉토리는 각각의 `peer` 과 `orderer가` 서로 통신할 때 사용하는 키와 인증서가 만들어집니다. 실제로 진행을 시키고 나면 `crypto-config` 파일이 만들어져있습니다.
 
-```
+```shell
 $ ls
 base                  connection-org2.yaml              docker-compose-e2e.yaml
 byfn.sh               connection-org3.json              docker-compose-etcdraft2.yaml
@@ -389,7 +390,7 @@ crypto-config 디렉토리를 간략하게 보면 다음과 같습니다. 궁금
 ![스크린샷 2019-10-21 오후 11 08 03](https://user-images.githubusercontent.com/44635266/67212727-bce58000-f457-11e9-8cce-6a62544d74b7.png)
 
 
-```
+```shell
 proceeding ...
 /home/vagrant/fabric-samples/first-network/../bin/cryptogen
 
@@ -409,7 +410,7 @@ org2.example.com
 
 `channel.tx`, `Org1MSPanchors.tx`, `Org2MSPanchors.tx`는 각각 채널의 대한 정보와 1번째 조직과 2번째 조직에 `AnchorPeer`의 정보를 담는 트랜잭션입니다.
 
-```
+```shell
 Generate CCP files for Org1 and Org2
 /home/vagrant/fabric-samples/first-network/../bin/configtxgen
 ##########################################################
@@ -472,7 +473,7 @@ CONSENSUS_TYPE=solo
 
 그 다음으로는 `./byfn.sh up` 명령어로 네트워크를 실행 시킵니다. byfn을 실행시키면 엄청 많은 과정이 진행되니까 하나하나 뜯어서 살펴보겠습니다.
 
-```
+```shell
 $ ./byfn.sh up
 
 Starting for channel 'mychannel' with CLI timeout of '10' seconds and CLI delay of '3' seconds
@@ -511,7 +512,7 @@ Build your first network (BYFN) end-to-end test
 
 `docker-compose-cli.yaml` 파일에 설정되어 있는 서비스를 실행시킵니다. `docker-compose-cli.yaml` 파일을 가져와서 이해를 쉽게 하도록 돕겠습니다. `service`에 `orderer.example.com`, `peer0.example.com` 등등 정상적으로 컨테이너에 올라가는 모습을 확인할 수 있습니다.
 
-```
+```yaml
 # Copyright IBM Corp. All Rights Reserved.
 #
 # SPDX-License-Identifier: Apache-2.0
@@ -610,7 +611,7 @@ services:
 
 다음은 모든 `peer`들이 들어갈 수 있는 채널을 만들어줍니다. `peer`들은 하나의 `node`라고 보셔도 무방합니다.
 
-```
+```shell
 + peer channel create -o orderer.example.com:7050 -c mychannel -f
 
 ./channel-artifacts/channel.tx --tls true --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem
@@ -625,7 +626,7 @@ Creating channel...
 
 각각의 `peer`들을 `mychannel`에 조인시켜줍니다. 만들어진 `peer`는 총 4개로 `peer0.org1.example.com`, `peer1.org1.example.com`, `peer0.org2.example.com`, `peer1.org2.example.com` 이란 이름을 가지고 있습니다.
 
-```
+```shell
 Having all peers join the channel...
 + peer channel join -b mychannel.block
 + res=0
@@ -658,7 +659,7 @@ Having all peers join the channel...
 
 다음 각각의 Organization에서 첫 번째 `peer`를 `Anchor Peer`로 업데이트합니다.
 
-```
+```shell
 Updating anchor peers for org1...
 + peer channel update -o orderer.example.com:7050 -c mychannel -f ./channel-artifacts/Org1MSPanchors.tx --tls true --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem
 + res=0
@@ -678,7 +679,7 @@ Updating anchor peers for org2...
 
 다음 `peer`들에게 원장에 내용을 기록하게 만들 수 있는 `chaincode`를 설치합니다. 후에 이 `chaincode`돌려서 가상의 거래를 실행해볼것입니다.
 
-```
+```shell
 Installing chaincode on peer0.org1...
 + peer chaincode install -n mycc -v 1.0 -l golang -p github.com/chaincode/chaincode_example02/go/
 + res=0
@@ -710,7 +711,7 @@ Instantiating chaincode on peer0.org2...
 
 맨 마지막에 체인코드를 첨부하여 확인하실 수 있게 하겠습니다.
 
-```
+```shell
 Querying chaincode on peer0.org1...
 ===================== Querying on peer0.org1 on channel 'mychannel'... =====================
 Attempting to Query peer0.org1 ...3 secs
@@ -726,7 +727,7 @@ Attempting to Query peer0.org1 ...3 secs
 
 이 과정을 통해서 fabric에서 제공하는 한 사이클을 돌리는걸 마무리했습니다.
 
-```
+```shell
 Sending invoke transaction on peer0.org1 peer0.org2...
 + peer chaincode invoke -o orderer.example.com:7050 --tls true --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n mycc --peerAddresses peer0.org1.example.com:7051 --tlsRootCertFiles /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt --peerAddresses peer0.org2.example.com:9051 --tlsRootCertFiles /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt -c '{"Args":["invoke","a","b","10"]}'
 + res=0
@@ -758,8 +759,7 @@ Attempting to Query peer1.org2 ...3 secs
 
 네트워크 종료가 되고 현재 올라와있는 도커의 상태를 확인할 수 있습니다.
 
-```
-
+```shell
  _____   _   _   ____
 | ____| | \ | | |  _ \
 |  _|   |  \| | | | | |
@@ -782,13 +782,13 @@ a6bc396e9eb4        hyperledger/fabric-tools:latest                             
 
 먼저 `cli`로 접속합니다.
 
-```
+```shell
 $ docker exec -it cli /bin/bash
 ```
 
 그리고 `Invoke`와 `Query`를 날려볼게요.
 
-```
+```shell
 root@a6bc396e9eb4:/opt/gopath/src/github.com/hyperledger/fabric/peer# peer chaincode invoke -o orderer.example.com:7050 --tls true --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n mycc --peerAddresses peer0.org1.example.com:7051 --tlsRootCertFiles /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt --peerAddresses peer0.org2.example.com:9051 --tlsRootCertFiles /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt -c '{"Args":["invoke","a","b","10"]}'
 
 2019-10-21 14:47:59.734 UTC [chaincodeCmd] chaincodeInvokeOrQuery -> INFO 001 Chaincode invoke successful. result: status:200
@@ -806,7 +806,7 @@ root@a6bc396e9eb4:/opt/gopath/src/github.com/hyperledger/fabric/peer#
 
 ## Bring Down the Network
 
-```
+```shell
 $ ./byfn.sh down
 
 Stopping for channel 'mychannel' with CLI timeout of '10' seconds and CLI delay of '3' seconds
@@ -866,7 +866,7 @@ Deleted: sha256:35672f428af63c9f9b768412a9edec8fa3c0a27f19a43b63e584a33111ac187b
 
 ## Invoke
 
-```
+```go
 // Transaction makes payment of X units from A to B
 func (t *SimpleChaincode) invoke(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	var A, B string    // Entities
@@ -927,7 +927,7 @@ func (t *SimpleChaincode) invoke(stub shim.ChaincodeStubInterface, args []string
 
 ## Query
 
-```
+```go
 // query callback representing the query of a chaincode
 func (t *SimpleChaincode) query(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	var A string // Entities

@@ -10,7 +10,7 @@ Scala 에서 사용하는 val 키워드와 final 키워드를 비교하기 위�
 
 > val 
 
-```
+```scala
 scala> class Animal {
      |     val age = 2
      | }
@@ -33,7 +33,7 @@ scala> cat.printAge
 
 > final 
 
-```
+```scala
 scala> class Person {
      |     final val age = 3
      | }

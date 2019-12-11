@@ -75,7 +75,7 @@ val Val = "Hello World!"
 
 > Example
 
-```
+```scala
 scala> val s = "Hello World"
 s: String = Hello World
 
@@ -91,14 +91,14 @@ scala>
 
 > Example
 
-```
+```scala
 scala> lazy val num = 1 / 0
 num: Int = <lazy>
 ```
 
 0으로 나누더라도 에러를 던지지 않고 코드가 실행이 되는걸 볼 수 있다.
 
-```
+```scala
 scala> val x = {println("x"); 20}
 x
 x: Int = 20

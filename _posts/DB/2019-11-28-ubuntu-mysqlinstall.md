@@ -7,18 +7,18 @@ tags :
 
 ## 1. Install MySQL
 
-```
+```shell
 $ sudo apt update && sudo apt install mysql-server
 ```
 
 설치가 되었는지 확인
 
-```
+```shell
 $ mysql --version
 mysql  Ver 14.14 Distrib 5.7.28, for Linux (x86_64) using  EditLine wrapper
 ```
 
-```
+```shell
 $ sudo systemctl status mysql
 ● mysql.service - MySQL Community Server
    Loaded: loaded (/lib/systemd/system/mysql.service; enabled; vendor preset: enabled)
@@ -36,13 +36,13 @@ Nov 28 05:39:18 ip-172-26-8-131 systemd[1]: Started MySQL Community Server.
 
 새로운 MySQL 복사본을 설치할 때마다 MySQL 설치의 보안을 강화하기 위해 변경하는 기본 설정이 있습니다.
 
-```
+```shell
 $ sudo mysql_secure_installation
 ```
 
 가장 먼저 비밀번호 확인 플러그인을 설정해야합니다.
 
-```
+```shell
 Securing the MySQL server deployment.
 
 Connecting to MySQL using a blank password.
@@ -57,7 +57,7 @@ Press y|Y for Yes, any other key for No:
 
 사용자가 원하는 비밀번호의 강도에 따라 루트의 보안 비밀번호를 설정할 수 있습니다.
 
-```
+```shell
 There are three levels of password validation policy:
 
 LOW    Length >= 8
@@ -69,7 +69,7 @@ Please enter 0 = LOW, 1 = MEDIUM and 2 = STRONG:
 
 비밀번호 보안을 위해 선택한 번호를 입력하고 Enter를 누르십시오. 그러면 시스템은 새로운 root 암호를 묻습니다.
 
-```
+```shell
 Please set the password for root here.
 
 New password:
@@ -79,7 +79,7 @@ Re-enter new password:
 
 그러면 시스템이 제공 한 암호의 강도를 표시하고 암호를 계속 사용할 것인지 묻습니다.
 
-```
+```shell
 Do you wish to continue with the password provided?(Press y|Y for Yes, any other key for No) :
 ```
 
@@ -87,7 +87,7 @@ Do you wish to continue with the password provided?(Press y|Y for Yes, any other
 
 첫 번째 질문은 익명의 테스트 사용자를 제거 할 것인지 묻습니다.
 
-```
+```shell
 By default, a MySQL installation has an anonymous user,
 allowing anyone to log into MySQL without having to have
 a user account created for them. This is intended only for
@@ -100,7 +100,7 @@ Remove anonymous users? (Press y|Y for Yes, any other key for No) :
 
 두 번째 질문은 원격 시스템에서 루트 로그인을 허용하지 않을 것인지 묻습니다. 보안 시스템의 경우 루트는 로컬 호스트에서만 연결될 수 있어야하므로 일반적으로 선택해야합니다.
 
-```
+```shell
 Normally, root should only be allowed to connect from
 'localhost'. This ensures that someone cannot guess at
 the root password from the network.
@@ -112,7 +112,7 @@ Disallow root login remotely? (Press y|Y for Yes, any other key for No) :
 
 나중에 test 데이터베이스를 만들어도되니 삭제할게요.
 
-```
+```shell
 By default, MySQL comes with a database named 'test' that
 anyone can access. This is also intended only for testing,
 and should be removed before moving into a production
@@ -124,7 +124,7 @@ Remove test database and access to it? (Press y|Y for Yes, any other key for No)
 
 마지막으로 위에서 구성된 모든 변경 사항을 적용하려면 시스템에서 권한 테이블을 다시로드해야합니다. y를 입력하면 모든 보안 변경 사항이 적용됩니다.
 
-```
+```shell
 Reloading the privilege tables will ensure that all changes
 made so far will take effect immediately.
 
@@ -133,11 +133,9 @@ Reload privilege tables now? (Press y|Y for Yes, any other key for No) :
 
 ## 3. Configuring Root to use MySQL shell
 
-보안 스크립트를 실행하는 동안 root의 비밀번호를 제공했습니다. 그러나이 사용자는 동일한 비밀번호를 사용하여 MySQL 쉘에 연결할 수 없습니다.
+보안 스크립트를 실행하는 동안 root의 비밀번호를 제공했습니다. 그러나이 사용자는 동일한 비밀번호를 사용하여 MySQL 쉘에 연결할 수 없습니다.인증 방법을 기본“auth_socket”에서“mysql_native_password”로 변경하여 MySQL 셸을 사용하도록 configure root를 변경할 수 있습니다.
 
-인증 방법을 기본“auth_socket”에서“mysql_native_password”로 변경하여 MySQL 셸을 사용하도록 configure root를 변경할 수 있습니다.
-
-```
+```shell
 $ sudo mysql
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 8
@@ -183,9 +181,9 @@ mysql> exit
 Bye
 ```
 
-## 4. Start MySQL
+## Start MySQL
 
-```
+```shell
 $ mysql -u root -p
 Enter password:
 Welcome to the MySQL monitor.  Commands end with ; or \g.
