@@ -173,8 +173,10 @@ while (true) {
       record.partition()), new
       OffsetAndMetadata(record.offset()+1, "no metadata"));
       
-  if (count % 1000 == 0)
+  if (count % 1000 == 0) {
     consumer.commitAsync(currentOffsets, null);
+  }
+
   count++;
   }
 }
