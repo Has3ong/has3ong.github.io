@@ -13,7 +13,7 @@ tags :
 
 > Test.py
 
-```
+```python
 @profile
 def Fibonacci_Recursion(val):
     if (val == 1):

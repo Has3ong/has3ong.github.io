@@ -12,7 +12,7 @@ C++에서 가상 함수(virtual function)는 파생 클래스에서 재정의할
 
 C++에서 가상 함수는 virtual 키워드를 사용하여 선언합니다.
 
-```
+```cpp
 virtual function(){
   ...
 }
@@ -24,7 +24,7 @@ virtual function(){
 
 순수 가상함수는 구현이 없는 가상함수를 말합니다.
 
-```
+```cpp
 virtual void function() = 0;
 ```
 
@@ -34,7 +34,7 @@ virtual void function() = 0;
 
 > Example
 
-```
+```cpp
 #include <iostream>
 using namespace std;
 

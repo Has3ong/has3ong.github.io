@@ -52,9 +52,9 @@ Notes 에 대한 정확한 설명은 찾지 못했습니다. 추후 알게되면
 
 > Examples
 
-**Pack, Little Endian, Big Endian
-**
-```
+**Pack, Little Endian, Big Endian**
+
+```python
 import struct
 
 var = struct.pack('iii', 1, 2, 3)
@@ -84,7 +84,7 @@ b'\x00\x00\x00\x01\x00\x00\x00\x02\x00\x00\x00\x03'
 
 **UnPack**
 
-```
+```python
 import struct
  
 var = struct.pack('iii', 1, 2, 3)
@@ -116,7 +116,7 @@ https://docs.python.org/3/library/collections.html#collections.namedtuple 사이
 
 > Examples
 
-```
+```python
 import collections
  
 Person = collections.namedtuple('Person', 'name age job')

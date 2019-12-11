@@ -14,7 +14,7 @@ tags :
 
 > Example
 
-```
+```java
 class Calculator{
     public void sum(int a, int b){
         System.out.println("public void sum(int a, int b) is called value is : " + (a + b));
@@ -49,7 +49,7 @@ public class Test {
 
 하지만 오버로딩과 다르게 **매개변수**, **함수 명**, **반환 타입** 모든게 똑같아야 한다.
 
-```
+```java
 class Calculator{
     public void sum(int a, int b){
         System.out.println("Calculator Class is called value is : " + (a + b));

@@ -47,7 +47,7 @@ scala>
 
 > HelloWorld.scala
 
-```
+```scala
 object HelloWorld{
     def main(args:Array[String]){
         println("Hello World!")
@@ -70,7 +70,7 @@ Hello World!
 
 > Example 2
 
-```
+```scala
 object HelloWorld {
   def main(args: Array[String]): Unit = {
     println("Hello World!")

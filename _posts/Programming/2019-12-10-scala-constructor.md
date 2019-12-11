@@ -13,7 +13,7 @@ Scala 에는 두 가지타입의 생성자 즉, 기본 생성자와 보조 생�
 
 기본 생성자의 예시를 보여드리겠습니다.
 
-```
+```scala
 class Animal (animalName:String, animalAge:int){
   def getAnimalName () : String = {
     animalName
@@ -37,7 +37,7 @@ object Example extends App {
 
 보조 생성자의 예시를 보여드리겠습니다.
 
-```
+```scala
 class Animal (animalName:String, animalAge:int){
   // 보조 생성자
   def this(animalName:String) = this(animalName, "")

@@ -22,7 +22,7 @@ OOP와 Scala는 비슷하다.
 
 private 과 protected 와 달리 키워드를 지정할 필요가 없다. public 멤버에 대한 명시적인 한정자가 없다. public 멤버는 어디서나 접근할 수 있다.
 
-```
+```scala
 class OuterClass {
   class InnerClass {
     def printName() { println("Hello World") }
@@ -61,7 +61,7 @@ package MyPackage{
 
 멤버 정의가 포홤된 클래스 또는 객체 내부에서만 사용할 수 있다.
 
-```
+```scala
 package MyPackage{
   class SuperClass{
     private def printName() {
@@ -81,7 +81,7 @@ package MyPackage{
 
 Scala는 이외에도 **수식자(qualifier)** 를 사용해 확장할 수 있다. `private[X]` / `protected[X]` 형태의 한정자는 각각 접근이 X까지 private 또는 protected 임을 의미한다. 아래 예제를 통해 살펴보겠습니다.
 
-```
+```scala
 package Country{
   package Professional {
     class Executive {

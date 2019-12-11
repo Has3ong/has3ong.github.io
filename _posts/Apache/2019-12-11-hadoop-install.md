@@ -8,7 +8,7 @@ tags :
 
 > Java Version
 
-```
+```shell
 $ java -version
 
 openjdk version "1.8.0_232"
@@ -18,7 +18,7 @@ OpenJDK 64-Bit Server VM (AdoptOpenJDK)(build 25.232-b09, mixed mode)
 
 ## Install Hadoop
 
-```
+```shell
 $ brew install hadoop
 
 ==> Downloading https://www.apache.org/dyn/closer.cgi?path=hadoop/common/hadoop-3.2.1/hadoop-3.2.1.tar.gz
@@ -95,13 +95,13 @@ HDFS 주소와 포트 넘버를 설정해줍니다. 아래 내용을 추가시�
 
 하둡을 실행하기 전에, 하둡 파일 시스템으로 포맷을 해야 한다. 아래와 같이 입력하여 하둡 파일 시스템으로 포맷한다.
 
-```
+```shell
 $ hdfs namenode -format
 ```
 
 위의 명령어로 하둡 파일 시스템으로 포맷을 해 주고, 아래와 ssh key를 생성하고 사용한다.
 
-```
+```shell
 $ ssh-keygen -t rsa
 $ cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 ```
@@ -112,7 +112,7 @@ $ cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 
 이제 하둡을 실행해보자. 아래와 같이 실행하면 하둡을 실행시킬 수 있습니다.
 
-```
+```shell
 $ /usr/local/Cellar/hadoop/3.2.1/sbin/start-dfs.sh
 
 Starting namenodes on [localhost]

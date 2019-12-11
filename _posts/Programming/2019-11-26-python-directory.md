@@ -12,7 +12,7 @@ tags :
 
 `test.py`를 생성하고 아래 코드를 실행하면 파일 이름과 경로가 출력됩니다. `realpath()`는 심볼릭 링크 등의 실제 경로를 찾아주며, `abspath`는 파일의 절대경로를 리턴합니다.
 
-```
+```python
 import os
 print(__file__)
 print(os.path.realpath(__file__))
@@ -31,7 +31,7 @@ Result
 
 아래 코드들은 파일이 있는 폴더의 경로를 구하는 2가지 방법입니다. os.getcwd()는 폴더 경로를 리턴합니다. os.path.dirname()는 파일의 폴더 경로를 리턴합니다.
 
-```
+```python
 import os
 print(os.getcwd())
 print(os.path.dirname(os.path.realpath(__file__)) )
@@ -48,7 +48,7 @@ Result
 
 listdir()는 인자로 넘겨준 경로의 파일 리스트를 리턴합니다.
 
-```
+```python
 import os
 print(os.listdir(os.path.dirname(os.path.realpath(__file__))))
 ```
@@ -61,7 +61,7 @@ Result
 
 > Example
 
-```
+```python
 import os
 
 dirPath = os.path.dirname(os.path.realpath(__file__)) 

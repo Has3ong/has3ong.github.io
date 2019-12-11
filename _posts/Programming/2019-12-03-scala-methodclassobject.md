@@ -88,7 +88,7 @@ Scala의 클래스는 설계도로 간주되며, 실제로 메모리에 표현�
 
 다음 클래스의 예를 보여드리겠습니다.
 
-```
+```scala
 class Person {
     var Name : String = null
     var Age : Int = 26
@@ -113,7 +113,7 @@ class Person {
 
 위 클래스 코드는 Setter 와 Getter 라는 두 변수 Name, Age를 가지고있습니다. 이 클래스를 이용해서 몇가지 조작을 해보겠습니다.
 
-```
+```scala
 object Person{
     def main(args: Array[String]) : Unit = {
         val Jack : Person = new Person
@@ -146,7 +146,7 @@ object <식별자> [extends <식별자>] [{필드, 메소드, 클래스}]
 
 이 구문을 이해하기 위해 Hello World 프로그램을 다시 살펴보겠습니다.
 
-```
+```scala
 object HelloWorld{
     def main(args:Array[String]){
         println("Hello World!")

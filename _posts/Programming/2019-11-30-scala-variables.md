@@ -20,14 +20,14 @@ val / var 변수이름 : 데이터타입 = 초기값
 
 > Example
 
-```
+```scala
 var Var : Int = 10
 val Val : String = "Hello World!"
 ```
 
 데이터 타입을 지정하지 않고 변수만 선언할 수 있다.
 
-```
+```scala
 var Var = 10
 val Val = "Hello World!"
 ```

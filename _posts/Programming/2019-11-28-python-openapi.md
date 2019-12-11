@@ -19,7 +19,7 @@ URL 과 Parameter를 맞춰줍니다. API_Key 변수에다가 공공 API에서 �
 
 > Example
 
-```
+```python
 # -- coding: utf-8 --
 import requests
 from urllib.request import Request, urlopen

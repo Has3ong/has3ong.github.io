@@ -10,7 +10,7 @@ tags :
 
 예를들어, String 클래스를 이용한 문자열을 만들어 볼게요.
 
-```
+```java
 String aString = "Hello World";
 String bString = aString;
 String cString = new String("Hello World");
@@ -20,7 +20,7 @@ String cString = new String("Hello World");
 
 > Example
 
-```
+```java
 public class Test {
     public static void main (String[] args){
 
