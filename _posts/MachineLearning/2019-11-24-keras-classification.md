@@ -25,7 +25,7 @@ tags :
 
 네트워크를 훈련하는데 60,000개의 이미지를 사용합니다. 그다음 네트워크가 얼마나 정확하게 이미지를 분류하는지 10,000개의 이미지로 평가하겠습니다. 패션 MNIST 데이터셋은 텐서플로에서 바로 임포트하여 적재할 수 있습니다
 
-```
+``python
 import numpy as np
 import matplotlib.pyplot as plt
 from keras.layers import *
