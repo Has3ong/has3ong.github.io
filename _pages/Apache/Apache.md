@@ -27,6 +27,8 @@ header:
 * [Kafka Consumers -3-](/kafka-consumer3)
 * [Kafka Consumers -4-](/kafka-consumer4)
 * [Kafka Consumers -5-](/kafka-consumer5)
+* [Kafka Internals -1-](/kafka-internals1)
+* [Kafka Internals -2-](/kafka-internals2)
 
 ### Meetup
 

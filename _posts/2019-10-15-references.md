@@ -122,9 +122,11 @@ title : References
 * https://ryufree.tistory.com/226
 * https://www.popit.kr/kafka-%EC%9A%B4%EC%98%81%EC%9E%90%EA%B0%80-%EB%A7%90%ED%95%98%EB%8A%94-producer-acks/
 * https://brocess.tistory.com/190
-* https://www.popit.kr/kafka-%EC%9A%B4%EC%98%81%EC%9E%90%EA%B0%80-%EB%A7%90%ED%95%98%EB%8A%94-producer-acks/
+* https://www.popit.kr/kafka-%EC%9A%B4%EC%98%81%EC%9E%90%EA%B0%80-%EB%A7%90%ED%95%98%EB%8A%94-topic-replication/
 * https://medium.com/@jayden.chua/installing-hadoop-on-macos-a334ab45bb3
 * https://tariat.tistory.com/492
+* https://ssup2.github.io/theory_analysis/ZooKeeper/
+* https://jack-vanlightly.com/blog/2018/9/2/rabbitmq-vs-kafka-part-6-fault-tolerance-and-high-availability-with-kafka
 
 ### DevOps
 
