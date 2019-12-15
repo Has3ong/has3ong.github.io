@@ -109,6 +109,7 @@ title : References
 * https://www.micrium.com/iot/internet-protocols/
 * https://blog.theloop.co.kr/2017/03/15/%EB%B8%94%EB%A1%9D%EC%B2%B4%EC%9D%B8-%EA%B8%B0%EC%88%A0-%EA%B0%9C%EC%9A%94/
 * https://javaexpert.tistory.com/938
+* https://steemit.com/kr/@icoreport/key-2-ecc
 
 ### Apache
 
