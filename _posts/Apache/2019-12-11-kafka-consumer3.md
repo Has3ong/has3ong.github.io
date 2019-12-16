@@ -19,13 +19,13 @@ poll() 메서드를 호출될 때마다 그룹의 컨슈머들이 아직 읽지 
 
 `Example 1` 경우 마지막으로 커밋된 오프셋이 컨슈머가 가장 최근에 읽고 처리한 메세지의 오프셋보다 작으면 메세지들이 두 번 처리가 된다.
 
-> Example 1
+> Example 1 - Re-processed messages
 
 ![image](https://user-images.githubusercontent.com/44635266/70606302-80582880-1c3f-11ea-9e6b-5c612d90d7fc.png)
 
 `Example 2` 경우 마지막으로 커밋된 오프셋이 컨슈머가 가장 최근에 읽고 처리한 메세지의 오프셋보다 크면 메세지 누락이 생길 수 있다.
 
-> Example 2
+> Example 2 - Missed messages between offsets
 
 ![image](https://user-images.githubusercontent.com/44635266/70606305-81895580-1c3f-11ea-9b4d-79e2062d500e.png)
 

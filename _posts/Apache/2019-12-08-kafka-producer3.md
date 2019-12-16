@@ -39,7 +39,7 @@ Apache Avro는 Apache의 Hadoop 프로젝트에서 개발된 원격 프로시저
 
 우선 Customer를 나타내는 간단한 클래스를 정의해보겠습니다.
 
-```
+```java
 public class Customer {
   private int customerID;
   private String customerName;
@@ -61,7 +61,7 @@ public class Customer {
 
 Customer 클래스의 간단한 직렬처리기를 만들겠습니다.
 
-```
+```java
 import org.apache.kafka.common.errors.SerializationException;
 import java.nio.ByteBuffer;
 import java.util.Map;

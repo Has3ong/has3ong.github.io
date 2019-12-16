@@ -1,5 +1,5 @@
 ---
-title : Kafka Introduction
+title : Kafka Introduction -1-
 tags :
 - Pub / Sub
 - Publish / Subscribe System
@@ -14,17 +14,17 @@ Producer가 메세지를 구분해서 Pub/Sub 시스템에 전송하면 Consumer
 
 이런 Pub/Sub 시스템은 아래와 같이 다양한 방법이 있다.
 
-> Example 1
+> Example 1 - A single, direct metrics publisher
 
 ![image](https://user-images.githubusercontent.com/44635266/70034511-a6a11700-15f4-11ea-91cd-26ca31822975.png)
 
-> Example 2
+> Example 2 - A metrics publish/subscribe system
 
 ![image](https://user-images.githubusercontent.com/44635266/70034515-a86ada80-15f4-11ea-99c5-42aeb14c11c3.png)
 
 로그 메세지도 `Example 2` 와 같이 유사하게 처리할 수 있다. `Example 3` 에서는 세 개의 Pub/Sub 시스템으로 구성된 아키텍쳐다.
 
-> Example 3
+> Example 3 -  Many metrics publishers, using direct connections
 
 ![image](https://user-images.githubusercontent.com/44635266/70034517-a99c0780-15f4-11ea-9136-af10688a616b.png)
 
@@ -58,7 +58,7 @@ Producer가 메세지를 구분해서 Pub/Sub 시스템에 전송하면 Consumer
 
 `Example 4` 예시를 통해 토픽과 파티션 구조를 알아보겠습니다.
 
-> Example 4
+> Example 4 - Representation of a topic with multiple partitions
 
 ![image](https://user-images.githubusercontent.com/44635266/70034524-ab65cb00-15f4-11ea-8db0-45ce92d9a625.png)
 
@@ -76,7 +76,7 @@ Producer가 메세지를 구분해서 Pub/Sub 시스템에 전송하면 Consumer
 
 컨슈머는 **컨슈머 그룹(Consumer Group)** 의 멤버로 동작한다. 컨슈머 그룹은 하나 이상의 컨슈머로 구성되며, 한 토픽을 소비하기 위해 같은 그룹의 여러 컨슈머가 등장한다. 
 
-> Example 5
+> Example 5 - A consumer group reading from a topic
 
 ![image](https://user-images.githubusercontent.com/44635266/70034528-ac96f800-15f4-11ea-9e69-cd6a7c65d9f3.png)
 
@@ -92,7 +92,7 @@ Producer가 메세지를 구분해서 Pub/Sub 시스템에 전송하면 Consumer
 
 각 파티션은 클러스터의 한 브로커가 소유하며, 그 브로커를 **파티션 리더(Leader)** 라고 한다. 떠한, 같은 파티션이 여러 브로커에 지정될 수 있다. 이 경우 해당 파티션이 **복제(replication)** 된다. 이 경우는 `Example 6` 에서 확인할 수 있다. 해당 파티션의 메세지가 중복으로 저장되지만, 관련 브로커에 장애가 생기면 다른 브로커가 소유권을 인계받아 그 파티션을 처리한다. 각 파티션을 사용하는 모든 컨슈머와 프로듀서는 파티션 리더에 연결되어야한다.
 
-> Example 6
+> Example 6 - Replication of partitions in a cluster
 
 ![image](https://user-images.githubusercontent.com/44635266/70034532-ae60bb80-15f4-11ea-87a4-7c4ce7895ab7.png)
 

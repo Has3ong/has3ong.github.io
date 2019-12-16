@@ -16,11 +16,11 @@ tags :
 
 ConsumerRebalanceListener 에는 두 가지 메소드가 있습니다.
  
-**public void onPartitionsRevoked(Collection<TopicPartition> partitions)**
+**public void onPartitionsRevoked(Collection<TopicPartition> partitions)** 
 
 리밸런싱이 시작되기 전에, 컨슈머가 메세지 소비를 중단한 후 호출이 된다. 오프셋을 커밋해야 하는곳이 이 메소드 입니다. 현재의 파티션을 이어서 소비할 다른 컨슈머가 해당 파티션의 어디서부터 메세지 소비를 시작할지 알 수 있습니다.
 
-**public void onPartitionsAssigned(Collection<TopicPartition> partitions)**
+**public void onPartitionsAssigned(Collection<TopicPartition> partitions)** 
 
 이 메소드는 파티션이 브로커에게 재할당된 경우와 컨슈머가 파티션을 새로 할당받아 메세지 소비를 시작하기전에 호출이 된다.
 

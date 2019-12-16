@@ -18,13 +18,13 @@ Kafka에 데이터를 쓰는 데 사용되는 모든 스키마를 레지스트�
 
 아래는 Avro 레코드의 직렬화와 역직렬화의 처리다.
 
-> Example 1
+> Example 1 - Flow diagram of serialization and deserialization of Avro records
 
 ![image](https://user-images.githubusercontent.com/44635266/70387987-514b7800-19ef-11ea-8572-bc4b7cd0f377.png)
 
 아래는 Avro 를 사용하여 Kafka에 전송하여 쓰는 방법이다.
 
-```
+```java
 Properties props = new Properties();
 
 props.put("bootstrap.servers", "localhost:9092");
@@ -53,7 +53,7 @@ while (true) {
 
 일반화된 Avro 객체를 사용하고 싶다면 다음과 같이 스키마를 제공하여 사용하면된다.
 
-```
+```java
 Properties props = new Properties();
 props.put("bootstrap.servers", "localhost:9092");
 props.put("key.serializer",
@@ -110,14 +110,14 @@ for (int nCustomers = 0; nCustomers < customers; nCustomers++) {
 
 쌍으로 된 레코드를 생성할 때는 다음과 같이 ProducerRecord 객체를 생성하면 된다.
 
-```
+```java
 ProducerRecord<Integer, String> record =
   new ProducerRecord<>("CustomerCountry", "Laboratory Equipment", "USA");
 ```
 
 또한, 키가 없는 메세지는 다음과 같이 키를 생략하고 생성하면 된다.
 
-```
+```java
 ProducerRecord<Integer, String> record =
   new ProducerRecord<>("CustomerCountry", "USA"); 
 ```

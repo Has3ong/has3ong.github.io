@@ -19,19 +19,19 @@ Kafka 컨슈머는 컨슈머 그룹(Consumer Group)에 속합니다. 그리고 �
 
 아래 예제는 각각 파티션의 개수와 컨슈머 개수의 관계입니다.
 
-> Example 1
+> Example 1 - One Consumer group with four partitions
 
 ![image](https://user-images.githubusercontent.com/44635266/70437071-179d6e80-1ace-11ea-8bde-93b65cd0ec5a.png)
 
-> Example 2
+> Example 2 - Four partitions split to two consumer groups
 
 ![image](https://user-images.githubusercontent.com/44635266/70437074-18ce9b80-1ace-11ea-9bd0-24a41b82f402.png)
 
-> Example 3
+> Example 3 - Four consumer groups to one partition each
 
 ![image](https://user-images.githubusercontent.com/44635266/70437075-19ffc880-1ace-11ea-9ede-7eab88a93c80.png)
 
-> Example 4
+> Example 4 - More consumer groups than partitions means missed messages
 
 ![image](https://user-images.githubusercontent.com/44635266/70437078-1bc98c00-1ace-11ea-8546-0a876e014751.png)
 

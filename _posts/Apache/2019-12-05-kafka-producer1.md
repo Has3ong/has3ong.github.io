@@ -11,7 +11,7 @@ tags :
 
 프로듀서 API 는 간단하다. 그러나 프로듀서가 데이터를 전송할 때 내부적으로는 여러 단계로 처리된다 `Example 1`에서느 Kafka에 데이터를 전송할 때 프로듀서가 내부적으로 처리하는 작업을 보여준다.
 
-> Example 1
+> Example 1 - High-level overview of Kafka producer components
 
 ![image](https://user-images.githubusercontent.com/44635266/70225511-81e2a600-1792-11ea-8171-dfb658e1a6cb.png)
 
@@ -37,7 +37,7 @@ Kafka 클러스터에 최초로 연결하기 위해 프로듀서가 사용하는
 
 다음 코드에서는 새로운 프로듀서를 생성하는 방법을 보여준다.
 
-```
+```shell
 private Properties kafkaProps = new Properties();
 kafkaPropsput("bootstrap.servers", "broker1:9092, broker2:9092");
 
@@ -56,7 +56,7 @@ Producer<String, String> producer =
 
 가장 간단한 방법이다.
 
-```
+```java
 ProducerRecord<String, String> record = 
   new ProducerRecord<>("CustomerCountry", "Precision Products", "France");
 
@@ -73,7 +73,7 @@ try {
 
 동기식으로 메세지를 전송하는 가장 간단한 방식이다. 이전 코드와 차이는 `ProducerRecord` 객체의 `get()` 메소드를 사용해서 카프카의 응답을 기다리게 한다.
 
-```
+```java
 ProducerRecord<String, String> record = 
   new ProducerRecord<>("CustomerCountry", "Precision Products", "France");
 
@@ -92,7 +92,7 @@ try {
 
 비동기식으로 메세지를 전송하고 이때 발생할 수 있는 에러를 처리하기 위해 프로듀서에 콜백(callback)을 추가할 수 있다. 예제를 통해 보겠습니다.
 
-```
+```java
 private class ProducerCallback implements Callback {
   @Override
   public void onCompletion(RecordMetadata recordMetadata, Exception e) {

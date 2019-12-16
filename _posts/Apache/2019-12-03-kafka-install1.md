@@ -14,12 +14,12 @@ MacOS Mojave Version 10.14.6
 
 ## Installing Java
 
-```
-brew tap adoptopenjdk/openjdk
-brew cask install adoptopenjdk8
+```shell
+$ brew tap adoptopenjdk/openjdk
+$ brew cask install adoptopenjdk8
 ```
 
-```
+```shell
 $ java -version
 openjdk version "1.8.0_222"
 OpenJDK Runtime Environment (AdoptOpenJDK)(build 1.8.0_222-b10)
@@ -33,13 +33,13 @@ javac 1.8.0_222
 
 Kafka는 Zookeeper를 사용한다. `Example 1` 과 같이 컨슈머 클라이언트와 카프카 클러스터에 관한 메타데이터를 저장하기 위해서다.
 
-> Example 1
+> Example 1 - Kafka and Zookeeper
 
 ![image](https://user-images.githubusercontent.com/44635266/70038753-21b9fb80-15fc-11ea-8612-f27dcc3fbfc2.png)
 
 Brew 명령어를 이용하면 Kafka 설치할 때 Zookeeper 도 함께 설치가 된다.
 
-```
+```shell
 $ brew install kafka
 
 ==> Installing dependencies for kafka: zookeeper
@@ -86,9 +86,7 @@ Zookeeper에 문제가 생겨 서비스를 제공할 수 없을때 대기 중인
 
 Zookeeper 서버를 앙상블로 구성할려면 `zookeeper.properties` 를 확인해보면 된다. 해당 파일은 `/usr/local/Cellar/kafka/2.3.0/libexec/config` 디렉토리에 있다.
 
-> Example 2
-
-```
+```shell
 # Licensed to the Apache Software Foundation (ASF) under one or more
 # contributor license agreements.  See the NOTICE file distributed with
 # this work for additional information regarding copyright ownership.
@@ -136,7 +134,7 @@ clientPort=2181
 
 ### Start Kafka
 
-```
+```shell
 $ zookeeper-server-start /usr/local/Cellar/kafka/2.3.0/libexec/config/zookeeper.properties
 
 $ $ kafka-server-start /usr/local/Cellar/kafka/2.3.0/libexec/config/server.properties
@@ -146,27 +144,27 @@ $ $ kafka-server-start /usr/local/Cellar/kafka/2.3.0/libexec/config/server.prope
 
 **Create Topic 1 Partitions**
 
-```
+```shell
 $ kafka-topics --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic firstMytopic
 Created topic firstMytopic.
 ```
 
 **Topic List**
 
-```
+```shell
 $ kafka-topics --list --zookeeper localhost:2181
 firstMytopic
 ```
 
 **Publish Message (Producer)**
 
-```
+```shell
 kafka-console-producer --broker-list localhost:9092 --topic firstMytopic
 ```
 
 **Subscribe Message (Consumer)**
 
-```
+```shell
 $ kafka-console-consumer —bootstrap-server localhost:9092 —topic firstMytopic —from-beginning
 ```
 
@@ -177,13 +175,13 @@ $ kafka-console-consumer —bootstrap-server localhost:9092 —topic firstMytopi
 
 **Stop Kafka Server**
 
-```
+```shell
 $ kafka-server-stop
 ```
 
 **Stop Zookeeper Server**
 
-```
+```shell
 $ zookeeper-srver-stop
 ```
 

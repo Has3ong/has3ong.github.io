@@ -20,7 +20,7 @@ tags :
 
 다음 코드는 컨슈머를 생성하는 코드입니다.
 
-```
+```java
 Properties props = new Properties();
 props.put("bootstrap.servers", "broker1:9092,broker2:9092");
 props.put("group.id", "CountryCounter");
@@ -35,7 +35,7 @@ KafkaConsumer<String, String> consumer =
 
 컨슈머를 생성한 다음에는 하나 이상의 토픽을 구독해야합니다. 이때 `subscribe()` 메소드를 이용하며, 이 메소드는 토픽 이름을 저장한 List를 매개변수로 받습니다.
 
-```
+```java
 consumer.subscribe(Collections.singletonList("customerCountries"));
 ```
 
@@ -45,7 +45,7 @@ consumer.subscribe(Collections.singletonList("customerCountries"));
 
 예를 들어, 모든 test 토픽을 구독하려면 다음과 같이 사용합니다.
 
-```
+```java
 consumer.subscribe("test.*");
 ```
 
@@ -53,7 +53,7 @@ consumer.subscribe("test.*");
 
 컨슈머 API의 핵심은 서버로부터 연속적으로 많은 데이터를 읽기 위해 폴링하는 루프에 있습니다. 컨슈머의 토픽 구독 요청이 정상적으로 처리되면 폴링 루프에서 데이터를 읽는데 필요한 모든 상세 작업을 처리합니다. 예를 들면 다음과 같습니다.
 
-```
+```java
 try {
   while (true) {
     ConsumerRecords<String, String> records = consumer.poll(100);
