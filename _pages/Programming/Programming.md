@@ -39,3 +39,7 @@ title: "Programming Language"
 
 * [Scala val vs final 비교](/scala-finalval)
 * [Scala Access Modifier](/scala-accessmodifier)
+* [Scala Trait / Abstract Class](/scala-traitabstractclass)
+* [Scala Pattern Macthing](/scala-pattern)
+* [Scala Implicit](/scala-implicit)
+* [Scala Generic](/scala-generic)

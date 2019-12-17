@@ -32,6 +32,7 @@ header:
 * [Kafka Internals -3- Request Processing](/kafka-internals3)
 * [Kafka Internals -4- Storage / File Management](/kafka-internals4)
 * [Kafka Internals -5- Compaction](/kafka-internals5)
+* [Kafka Reliable Data Delivery -1- Replication / Unclean Leader Election](/kafka-reliabledatadelibery1) 
 
 ## Hadoop
 

@@ -39,7 +39,7 @@ class OuterClass {
 
 protected 멤버가 정의된 클래스의 하위 클래스에서만 접근할 수 있다.
 
-```
+```scala
 package MyPackage{
   class SuperClass {
     protected def printName(){
