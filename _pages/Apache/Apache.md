@@ -29,10 +29,9 @@ header:
 * [Kafka Consumers -5- Deserializers](/kafka-consumer5)
 * [Kafka Internals -1- Cluster Membershio / Controller](/kafka-internals1)
 * [Kafka Internals -2- Replication / ISR](/kafka-internals2)
-
-### Meetup
-
-* TODO :: Kafka Conference Seoul 2019 / 2019 - 10 - 18
+* [Kafka Internals -3- Request Processing](/kafka-internals3)
+* [Kafka Internals -4- Storage / File Management](/kafka-internals4)
+* [Kafka Internals -5- Compaction](/kafka-internals5)
 
 ## Hadoop
 

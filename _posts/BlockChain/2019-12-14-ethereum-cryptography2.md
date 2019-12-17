@@ -98,7 +98,8 @@ $P_1$ 과 $P_2$ 가 같은 점이라면 $P_1$ 과 $P_2$ 사이의 선은 이 점
 
 > Example 3
 
-![image](https://user-images.githubusercontent.com/44635266/70844928-dae5c480-1e8b-11ea-91f3-202c79e944d9.png)
+![image](https://user-images.githubusercontent.com/44635266/70890343-2a60f780-2028-11ea-868d-e4c5af6e98fc.gif)
+
 
 당신이 만약 두 점(A, B) 을 가지고 있고 최종점에 도착하기 위해 initial point에 임의의 n번을 dot 시켜준다면, 첫번째 점과 마지막 점만 가지고서는 n을 찾는것이 어렵습니다.
 
