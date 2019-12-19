@@ -47,7 +47,7 @@ $$K = k * G$$
 
 타원 곡선 암호화는 타원 곡선의 점에 더하기와 곱셈으로 표현되는 이산 대수 문제를 바탕으로 한 비대칭 또는 공개키 암호화 유형입니다. 아래 `Example 1` 은 타원 곡선의 한 예입니다.
 
-> Example 1
+> Example 1 - A visualization of an elliptic curve
 
 ![image](https://user-images.githubusercontent.com/44635266/70844926-d91c0100-1e8b-11ea-838a-cd78bb8b7c58.png)
 
@@ -61,7 +61,7 @@ $$p = 2^{256} - 2^{32} - 2^9 - 2^8 - 2^7 - 2^6 - 2^4 - 1$$
 
 이 곡선은 실수 대신에 소수 위수의 유한체상에 정의 했기 때문에 2차원으로 흩어져 있는 점들의 패턴처럼 보이므로 시각화하기 어렵스빈다. 그러나 수학은 실수에 대한 타원 곡선 수학과 동일합니다.  `Example 2` 에서 보여주는 좌표 위의 점 패턴은 훨씬 작은 유한체인 소수 위수 17의 타원 곡선과 동일합니다. `secp256k1` 이더리움 타원 곡선은 더 크고 복잡한 점 패턴입니다.
 
-> Example2 
+> Example2 - Elliptic curve cryptography: visualizing an elliptic curve over F(p), with p=17
 
 ![image](https://user-images.githubusercontent.com/44635266/70844927-d9b49780-1e8b-11ea-8821-91d2be303ddd.png)
 
@@ -96,7 +96,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 $P_1$ 과 $P_2$ 가 같은 점이라면 $P_1$ 과 $P_2$ 사이의 선은 이 점 $P_1$ 곡선에 대한 접선으로 확장되어집니다. 이 접선은 새로운 점에서 곡선과 교차합니다. 미적분 기법을 사용하여 접선의 기울기를 결정할 수 있습니다. 이 기술은 2차원 정수 좌표상에 있는 곡선 위의 점들에도 적용할 수 있습니다. 아래 `Example 3`를 통해 쉽게 이해해보겠습니다.
 
-> Example 3
+> Example 3 - A visualization of an elliptic curve
 
 ![image](https://user-images.githubusercontent.com/44635266/70890343-2a60f780-2028-11ea-868d-e4c5af6e98fc.gif)
 
