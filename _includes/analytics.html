@@ -1,13 +1,14 @@
-{% if site.google_analytics_id %}
-  <!-- Google Analytics (https://www.google.com/analytics) -->
-  <script>
-    !function(j,e,k,y,l,L){j.GoogleAnalyticsObject=y,j[y]||(j[y]=function(){
-    (j[y].q=j[y].q||[]).push(arguments)}),j[y].l=+new Date,l=e.createElement(k),
-    L=e.getElementsByTagName(k)[0],l.src='https://www.google-analytics.com/analytics.js',
-    L.parentNode.insertBefore(l,L)}(window,document,'script','ga');
+{% if jekyll.environment == 'production' and site.analytics.provider and page.analytics != false %}
 
-    ga('create', '{{ site.google_analytics_id }}', 'jekyllrb.com');
-    ga('send', 'pageview');
+{% case site.analytics.provider %}
+{% when "google" %}
+  {% include /analytics-providers/google.html %}
+{% when "google-universal" %}
+  {% include /analytics-providers/google-universal.html %}
+{% when "google-gtag" %}
+  {% include /analytics-providers/google-gtag.html %}
+{% when "custom" %}
+  {% include /analytics-providers/custom.html %}
+{% endcase %}
 
-  </script>
 {% endif %}
