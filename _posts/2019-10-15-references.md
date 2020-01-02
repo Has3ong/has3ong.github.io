@@ -110,6 +110,8 @@ title : References
 * https://blog.theloop.co.kr/2017/03/15/%EB%B8%94%EB%A1%9D%EC%B2%B4%EC%9D%B8-%EA%B8%B0%EC%88%A0-%EA%B0%9C%EC%9A%94/
 * https://javaexpert.tistory.com/938
 * https://steemit.com/kr/@icoreport/key-2-ecc
+* https://medium.com/tomak/3-%EC%9D%B4%EB%8D%94%EB%A6%AC%EC%9B%80%EC%9D%80-%EC%96%B4%EB%96%BB%EA%B2%8C-%EB%8F%99%EC%9E%91%ED%95%98%EB%8A%94%EA%B0%80-c0a5d5d4df3c
+* https://medium.com/hexlant/%EC%9D%B4%EB%8D%94%EB%A6%AC%EC%9B%80-nonce-%EB%85%BC%EC%8A%A4-%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80-60819346c803
 
 ### Apache
 
