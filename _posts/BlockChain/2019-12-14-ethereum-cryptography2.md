@@ -1,12 +1,12 @@
 ---
 title : Ethereum Cryptography -2-
-use_math: true
 tags :
 - Elliptic Curve Cryptography
 - Private Key
 - Public Key
 - Cryptography
 - Ethereum
+use_math: true
 ---
 
 *이 포스트는 [Mastering Ethereum](https://github.com/ethereumbook/ethereumbook)를 바탕으로 작성하였습니다.*
