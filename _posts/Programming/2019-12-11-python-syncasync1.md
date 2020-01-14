@@ -15,7 +15,7 @@ tags :
 
 > Example
 
-```
+```python
 import threading
 import time
 
@@ -69,7 +69,7 @@ Third Call
 
 > Example
 
-```
+```python
 import threading
 import time
 
@@ -107,7 +107,7 @@ End Async
 
 > Example
 
-```
+```python
 def fetch_square(number):
     def on_done(response):
         if response["Result"]:
@@ -121,7 +121,7 @@ Future 는 비동기 호출의 결과를 추적하는데 사용할 수 있는 �
 
 Future 는 아래와 같이 부를 수 있습니다.
 
-```
+```python
 >>> from concurrent.futures import Future
 >>> fut = Future()
 <Future at 0x10b195290 state=pending>
@@ -129,7 +129,7 @@ Future 는 아래와 같이 부를 수 있습니다.
 
 현재 Future는 사용할 수 없는 값을 나타냅니다. 결과값을 사용할 수 있게 `set.result` 메소드를 사용하겠습니다.
 
-```
+```python
 >>> fut.set_result("Hello World")
 <Future at 0x10b195290 state=finished returned str>
 >>> fut.result()
@@ -140,7 +140,7 @@ Future 는 아래와 같이 부를 수 있습니다.
 
 > Example
 
-```
+```python
 from concurrent.futures import Future
 import threading
 
@@ -189,7 +189,7 @@ callback 과 상당히 비슷하기도 합니다. 한가지 차이점으로는 `
 
 > Example
 
-```
+```python
 import time
 
 class Timer:

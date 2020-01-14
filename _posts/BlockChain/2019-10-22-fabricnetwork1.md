@@ -160,6 +160,7 @@ vagrant@fabric-1:~$
 ## 2. Install Go
 
 ```shell
+$ wget https://dl.google.com/go/go1.12.9.linux-amd64.tar.gz
 $ tar zxf go1.12.9.linux-amd64.tar.gz
 $ sudo mv go /usr/local
 $ rm go1.12.9.linux-amd64.tar.gz
