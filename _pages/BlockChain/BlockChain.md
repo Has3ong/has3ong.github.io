@@ -30,9 +30,6 @@ title: "BlockChain"
 * [Hyperledger Fabric Network 구성 -2- Solo](/fabricnetwork2)
 * [Hyperledger Fabric Network 구성 -3- Kafka](/fabricnetwork3)
 * [Hyperledger Fabric Network 구성 -4- Raft](/fabricnetwork4)
-
-
-
 * [Hyperledger Fabric Network 구성 -1- EYFN](/hyperledger-eyfn1)
 * [Hyperledger Fabric Network 구성 -2- EYFN](/hyperledger-eyfn2)
 
@@ -49,6 +46,9 @@ title: "BlockChain"
 ## Ethereum
 
 * [Ethereum 환경 설치하기 및 거래 송금하기](/ethereum-install)
+
+---
+
 * [Ethereum Cryptography -1- Cryptography](/ethereum-cryptography1)
 * [Ethereum Cryptography -2- Public Key / Private Key / ECC](/ethereum-cryptography2)
 * [Ethereum Cryptography -3- Hash Function / Ethereum Address](/ethereum-cryptography3)
@@ -64,6 +64,7 @@ title: "BlockChain"
 * [Ethereum Transaction -7- Separating Signing and Transmission](/ethereum-transaction7)
 * [Ethereum Smart Contracts and Solidity -1- Smart Contract](/ethereum-solidity1)
 * [Ethereum Smart Contracts and Solidity -2- Solidity Compile](/ethereum-solidity2)
+* [Ethereum Smart Contracts and Solidity -3- Data Type](/ethereum-solidity3)
 
 ## Klaytn
 
