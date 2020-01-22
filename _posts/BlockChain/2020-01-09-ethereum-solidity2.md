@@ -36,7 +36,7 @@ Version: 0.4.24+commit.e67f0147.Linux.g++
 
 ### Writing a Simple Solidity Program
 
-이제 `Faucet` 컨트랙트를 솔리디티로 구현해보겠습니다.
+이제 `Faucet` 컨트랙트를 솔리디티로 구현해보겠습니다. 이 예제는 현 파트에서 계속 사용할 예정입니다.
 
 ```java
 // Our first contract is a faucet!
