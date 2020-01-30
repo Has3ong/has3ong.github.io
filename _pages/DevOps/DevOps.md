@@ -19,5 +19,6 @@ title: "DevOps"
 ## Kubernetes
 
 * [An Overview of Kubernetes -1- Container](/kubernetes-overview1)
+* [An Overview of Kubernetes -2- Pod / ReplicaSets / Service / Volume / Secret / ConfigMap](/kubernetes-overview2)
 
 ## References

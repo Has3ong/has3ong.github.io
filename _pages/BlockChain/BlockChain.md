@@ -70,6 +70,7 @@ title: "BlockChain"
 * [Ethereum Smart Contracts and Solidity -6- send / call / callcode / delegatecall](/ethereum-solidity6)
 * [Ethereum Token -1- Overview of Token](/ethereum-token1)
 * [Ethereum Token -2- The ERC20 Token Standard](/ethereum-token2)
+* [Ethereum Token -3- Launching Our Own ERC20 Token](/ethereum-token3)
 
 ## Klaytn
 

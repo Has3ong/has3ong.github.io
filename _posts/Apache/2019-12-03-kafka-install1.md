@@ -1,5 +1,5 @@
 ---
-title :Installing and Configuring Kafka -1-
+title : Installing and Configuring Kafka -1-
 tags :
 - Kafka
 ---
