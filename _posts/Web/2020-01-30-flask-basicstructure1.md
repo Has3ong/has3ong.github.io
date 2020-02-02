@@ -83,7 +83,7 @@ if __name__=='__main__':
 
 실행을 시키면 아래와 같이 로그가 나오게 됩니다. 여기서 `http://127.0.0.1:5000/` 로 접속해보겠습니다.
 
-```python
+```shell
  * Serving Flask app "kakao" (lazy loading)
  * Environment: production
    WARNING: This is a development server. Do not use it in a production deployment.
