@@ -101,6 +101,7 @@ Jinja2 는 몇가지 제어 문자를 제공합니다.
 템플릿의 또 다른 공통 점은 항목의 리스트를 렌더링하는 점 입니다. 다음은 for 루프를 알아보겠습니다.
 
 ```html
+{% \raw %}
 <ul>
   {% for comment in comments %}
     <li>{{ comment }}</li>
@@ -158,7 +159,7 @@ Jinja2 에서는 **매크로** 기능도 제공합니다.
 여기서 block 태그는 파생된 템플릿이 변경할 수 있는 항목을 정의합니다. 이 예제에서는 head, title, body 라 하는 블록이 있습니다. title 은 head 에 포함되어 있습니다. 다음 예제는 베이스 템플릿에서 파생된 템플릿입니다.
 
 ```html
-{% extends "base.html %}
+{% extends "base.html" %}
 {% block title %}Index{% endblock %}
 {% block head %}
   {{ super() }}
