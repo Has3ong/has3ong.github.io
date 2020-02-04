@@ -82,18 +82,13 @@
 		<div class="page__content" data-page-title="{% if page.url == "/" %}{{ site.data.settings.basic_settings.site_title }} – {{ page.title }}{% else %}{{ page.title }} – {{ site.data.settings.basic_settings.site_title }}{% endif %}">
 
 			{{ content }}
+			{% if page.comments %}
+				{% include comments.html %}
+			{% endif %}
 
 		</div>
 
 	</div>
-
-	{% if page.comments %}
-	<div class="container content">
-  		{{ content }}
-  		{% include comments.html %}
-	</div>
-	{% endif %}
-
 
 	{% include footer.html %}
 
