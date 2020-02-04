@@ -6,7 +6,7 @@ title: About
 
 * 수원대학교 정보미디어 학과 2019-2 졸업
 * BaekJoon Online Judge [ID](https://www.acmicpc.net/user/khsh5592), [수원대학교](https://www.acmicpc.net/school/ranklist/318)
-* SW Maestro 10th [post](/swm)
+* SW Maestro 10th [post](/blog/softwaremaestro)
 
 ### Project
 
@@ -24,4 +24,4 @@ title: About
 
 ### Reference
 
-Contents Refrences [this](/references)
+Contents Refrences [this](/blog/references)
