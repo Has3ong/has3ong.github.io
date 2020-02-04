@@ -14,7 +14,7 @@ tags :
 
 # Settings
 
-`Setting` 부분은 [Hyperledger Fabric Network 구성 -1-](/fabricnetwork1) 부분과 동일하니 똑같이 진행하시면 됩니다.
+`Setting` 부분은 [Hyperledger Fabric Network 구성 -1-](/blog/fabricnetwork1) 부분과 동일하니 똑같이 진행하시면 됩니다.
 
 `HandOn` 부분부터 다릅니다.
 
@@ -161,7 +161,7 @@ Creating peer1.org2.example.com ... done
 Creating cli                    ... done
 ```
 
-했을시 엄청나게 많은 로그가 나오는데요 이건 [여기](/fabricnetwork4-log)서 확인할 수 있습니다. 엄청 길어서 따로 포스트 했습니다.
+했을시 엄청나게 많은 로그가 나오는데요 이건 [여기](/blog/fabricnetwork4-log)서 확인할 수 있습니다. 엄청 길어서 따로 포스트 했습니다.
 
 현재 docker 컨테이너의 목록입니다. `orderer`가 5개가 올라가있으면 정확하게 된것입니다.
 

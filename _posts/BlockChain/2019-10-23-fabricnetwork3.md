@@ -23,7 +23,7 @@ tags :
 
 # Settings
 
-`Setting` 부분은 [Hyperledger Fabric Network 구성 -1-](/fabricnetwork1) 부분과 동일하니 똑같이 진행하시면 됩니다.
+`Setting` 부분은 [Hyperledger Fabric Network 구성 -1-](/blog/fabricnetwork1) 부분과 동일하니 똑같이 진행하시면 됩니다.
 
 `HandOn` 부분부터 다릅니다.
 
@@ -138,7 +138,7 @@ $ export COMPOSE_PROJECT_NAME=fabric
 $ docker-compose -f docker-compose-kafka.yaml up
 ```
 
-했을시 엄청나게 많은 로그가 나오는데요 이건 [여기](/fabricnetwork3-log)서 확인할 수 있습니다. 엄청 길어서 따로 포스트 했습니다. 
+했을시 엄청나게 많은 로그가 나오는데요 이건 [여기](/blog/fabricnetwork3-log)서 확인할 수 있습니다. 엄청 길어서 따로 포스트 했습니다. 
 
 위 포스트에서는 시작시 나오는 로그만 적었고 그외에 피어 채널을 만들던가 조인하는 과정에서 발생하는 로그는 `solo`와 다르니까 이 포스트에서 다루겠습니다.
 

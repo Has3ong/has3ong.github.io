@@ -170,11 +170,11 @@ font_settings:
     letter_spacing: 0
     line_height: 1.6
   blockquote:
-    small_size: 25
-    medium_size: 35
-    large_size: 45
+    small_size: 14
+    medium_size: 16
+    large_size: 18
     weight: 300
-    letter_spacing: -0.02
+    letter_spacing: 0
     line_height: 1.6
   buttons:
     weight: 500

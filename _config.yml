@@ -13,6 +13,9 @@ collections:
   projects:
     output: true
     permalink: /project/:slug
+  tags:
+    output: true
+    permalink: /tags/:path/
 
 category_archive:
   type: liquid
