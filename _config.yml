@@ -1,6 +1,6 @@
 site: Index Jekyll Theme
 
-url: https://index.jekyllthemes.io
+url: https://has3ong.github.io
 baseurl: 
 
 collections:
@@ -14,6 +14,17 @@ collections:
     output: true
     permalink: /project/:slug
 
+# Analytics
+analytics:
+  provider               : "google" # false (default), "google", "google-universal", "custom"
+  google:
+    tracking_id          : "UA-149158965-1"
+    anonymize_ip         : # true, false (default)
+
+comments:
+  provider : "disqus" # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "custom"
+  disqus:
+    shortname : "has3ong-github-io" # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
 defaults:
   -
     scope:
