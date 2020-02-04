@@ -1,0 +1,419 @@
+<!doctype html>
+
+<html class="no-js" lang="en">
+
+<head>
+
+
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+	Try
+
+	Index Theme by https://jekyllthemes.io
+	Premium + free Jekyll themes for your blog or website.
+
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+	<!-- Page Info -->
+	<link rel="shortcut icon" href="/images/icon.png">
+	<title>Dijkstra algorithm – Try</title>
+	<meta name="description" content="">
+
+	<!-- Twitter Card -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="Dijkstra algorithm – Try">
+	<meta name="twitter:description" content="">
+	<meta name="twitter:image:src" content="">
+
+	<!-- Facebook OpenGraph -->
+	<meta property="og:title" content="Dijkstra algorithm – Try" />
+	<meta property="og:description" content="" />
+	<meta property="og:image" content="" />
+
+	
+	<!-- Font Embed Code -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,500" rel="stylesheet">
+	
+
+	<!-- Styles -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<!-- Icons -->
+	<script defer src="https://use.fontawesome.com/releases/v5.1.1/js/solid.js" integrity="sha384-GXi56ipjsBwAe6v5X4xSrVNXGOmpdJYZEEh/0/GqJ3JTHsfDsF8v0YQvZCJYAiGu" crossorigin="anonymous"></script>
+	<script defer src="https://use.fontawesome.com/releases/v5.1.1/js/brands.js" integrity="sha384-0inRy4HkP0hJ038ZyfQ4vLl+F4POKbqnaUB6ewmU4dWP0ki8Q27A0VFiVRIpscvL" crossorigin="anonymous"></script>
+	<script defer src="https://use.fontawesome.com/releases/v5.1.1/js/fontawesome.js" integrity="sha384-NY6PHjYLP2f+gL3uaVfqUZImmw71ArL9+Roi9o+I4+RBqArA2CfW1sJ1wkABFfPe" crossorigin="anonymous"></script>
+
+	
+	<!-- Custom Styles -->
+	<style></style>
+	
+
+	
+	<!-- Analytics Code -->
+	
+	
+
+	
+	<!-- Extra Header JS Code -->
+	
+	
+	
+</head>
+
+
+<body class="loading ajax-loading" data-site-url="http://localhost:4000" data-page-url="/blog/dijkstra">
+
+
+	<header class="header">
+
+	<div class="header__content">
+
+		
+		<a href="/" class="header__title">
+			Try
+		</a>
+		
+
+		<h1 class="header__tagline">The man who moves a mountain begins by carrying away small stones. - Confucius</h1>
+
+		<div class="menu">
+			<div class="menu__toggle js-menu-toggle">
+				<div class="menu__toggle__icon"><span></span></div>
+			</div>
+			<div class="menu__wrap">
+				<ul class="menu__list">
+					
+					<li class="menu__list__item">
+						<a href="/about" class="menu__list__item__link">About</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/apache" class="menu__list__item__link">Apache</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/blockchain" class="menu__list__item__link">BlockChain</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/computerscience" class="menu__list__item__link">Computer Science</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/database" class="menu__list__item__link">DataBase</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/devops" class="menu__list__item__link">DevOps</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/imageprocessing" class="menu__list__item__link">Image Processing</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/machinelearning" class="menu__list__item__link">Machine Learning</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/programming" class="menu__list__item__link">Programming</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/softwaremaestro" class="menu__list__item__link">SW Maestro</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/web" class="menu__list__item__link">Web</a>
+					</li>
+					
+				</ul>
+			</div>
+		</div>
+
+		<div class="projects-menu">
+			<ul class="menu__list">
+				
+			</ul>
+		</div>
+
+		<div class="header__lower">
+
+			<ul class="socials">
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<li class="socials__item">
+		<a href="https://github.com/has3ong" target="_blank" class="socials__item__link" title="Github">
+			<i class="fab fa-github" aria-hidden="true"></i>
+		</a>
+	</li>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<li class="socials__item">
+		<a href="https://www.linkedin.com/in/%ED%95%98%EC%84%B1-%EA%B9%80-145aa21a0/" target="_blank" class="socials__item__link" title="Linkedin">
+			<i class="fab fa-linkedin" aria-hidden="true"></i>
+		</a>
+	</li>
+	
+	
+</ul>
+
+			<div class="footer__copyright">
+				<span>© 2020 Try</span>
+				Has3ong
+			</div>
+
+		</div>
+
+	</div>
+
+</header>
+
+
+	<div class="loader"><svg width="120" height="30" viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg"><circle cx="15" cy="15" r="15"><animate attributeName="r" from="15" to="15" begin="0s" dur="0.8s" values="15;9;15" calcMode="linear" repeatCount="indefinite" /><animate attributeName="fill-opacity" from="1" to="1" begin="0s" dur="0.8s" values="1;.5;1" calcMode="linear" repeatCount="indefinite" /></circle><circle cx="60" cy="15" r="9" fill-opacity="0.3"><animate attributeName="r" from="9" to="9" begin="0s" dur="0.8s" values="9;15;9" calcMode="linear" repeatCount="indefinite" /><animate attributeName="fill-opacity" from="0.5" to="0.5" begin="0s" dur="0.8s" values=".5;1;.5" calcMode="linear" repeatCount="indefinite" /></circle><circle cx="105" cy="15" r="15"><animate attributeName="r" from="15" to="15" begin="0s" dur="0.8s" values="15;9;15" calcMode="linear" repeatCount="indefinite" /><animate attributeName="fill-opacity" from="1" to="1" begin="0s" dur="0.8s" values="1;.5;1" calcMode="linear" repeatCount="indefinite" /></circle></svg></div>
+
+	<div class="page-loader"></div>
+
+	
+	<div class="page">
+
+		<div class="page__content" data-page-title="Dijkstra algorithm – Try">
+
+			<section class="intro">
+
+	<div class="wrap">
+
+		<h1>Dijkstra algorithm</h1>
+		<p>15 October 2019</p>
+
+	</div>
+
+</section>
+
+<section class="single">
+
+	<div class="wrap">
+
+		<h2 id="dijkstra">Dijkstra</h2>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/66711762-f0c40400-edcc-11e9-8fa7-d59f1c9d71db.gif" alt="DijkstraDemo" /></p>
+
+<p>다익스트라 알고리즘은 도로 교통망 같은 곳에서 나타날 수 있는 그래프에서 꼭짓점 간의 최단 경로를 찾는 알고리즘이다. 이 알고리즘은 컴퓨터 과학자 에츠허르 다익스트라가 1956년에 고안했으며 삼 년 뒤에 발표했다.</p>
+
+<p>다익스트라의 슈도코드는 아래와 같다</p>
+
+<blockquote>
+  <p>pseudo code</p>
+</blockquote>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function Dijkstra(Graph, source):
+
+  create vertex set Q
+  
+  for each vertex v in Graph:   // 초기화
+    if dist[v] then
+      dist[v] ← distance
+    else
+      dist[v] ← INFINITY    // 소스에서 v까지의 아직 모르는 길이
+    add v to Q    // 모든 노드는 초기에 Q에 속해있다 (미방문 집합)
+    
+  dist[source] ← 0    // 소스에서 소스까지의 길이
+  
+  while Q is not empty:
+    u ← vertex in Q with min dist[u]    // 최소 거리를 갖는 꼭짓점
+    
+    remove u from Q
+    
+    for each neighbor v of u:   // v는 여전히 Q에 있다.
+      alt ← dist[u] + length(u, v)
+      if alt &lt; dist[v]:   // v 까지의 더 짧은 경로를 찾았을 때
+        dist[v] ← alt
+        prev[v] ← u
+        
+  return dist[], prev[u]
+</code></pre></div></div>
+
+<h3 id="알고리즘">알고리즘</h3>
+
+<p>시작할 꼭짓점은 초기점으로, 꼭짓점 Y의 거리를 초기점에서 Y까지의 거리로 정의한다. 다익스트라 알고리즘은 초기 거리 값을 부여하고, 단계를 거듭하며 개선시킬 것이며, 이 개선시키는 것을 간선 완화(edge relaxation)이라고 한다.</p>
+
+<ol>
+  <li>모든 꼭짓점을 미방문 상태로 표시한다. 미방문 집합이라는 모든 미방문 꼭짓점의 집합을 만든다.</li>
+  <li>모든 꼭짓점에 시험적 거리 값을 부여한다: 초기점을 0으로, 다른 모든 꼭짓점을 무한대로 설정한다. 초기점을 현재 위치로 설정한다.</li>
+  <li>현재 꼭짓점에서 미방문 인접 꼭짓점을 찾아 그 시험적 거리를 현재 꼭짓점에서 계산한다. 새로 계산한 시험적 거리를 현재 부여된 값과 비교해서 더 작은 값을 넣는다. 예를 들어, 현재 꼭짓점 A의 거리가 6이라고 표시되었고, 인접 꼭짓점 B로 연결되는 변의 길이가 2라고 한다면, A를 통한 B까지의 거리는 6 + 2 = 8이 된다. 이전의 B까지의 거리가 8보다 컸다면 8로 바꾸고, 그렇지 않다면 그대로 놔둔다.</li>
+  <li>만약 현재 꼭짓점에 인접한 모든 미방문 꼭짓점까지의 거리를 계산했다면, 현재 꼭짓점을 방문한 것으로 표시하고 미방문 집합에서 제거한다. 방문한 꼭짓점은 이후에는 다시 방문하지 않는다.</li>
+  <li>두 꼭짓점 사이의 경로를 찾는 경우: 도착점이 방문한 상태로 표시되면 멈추고 알고리듬을 종료한다.</li>
+  <li>완전 순회 경로를 찾는 경우: 미방문 집합에 있는 꼭짓점들의 시험적 거리 중 최솟값이 무한대이면 이는 출발점과 미방문 집합 사이에 연결이 없는 경우이므로 멈추고 알고리즘을 종료한다.</li>
+  <li>아니면 시험적 거리가 가장 작은 다음 미방문 꼭짓점을 새로운 “현재 위치”로 선택하고 3단계로 되돌아간다.</li>
+</ol>
+
+<p>경로를 계획하고 있을 때, 사실은 위에서 했던 것처럼 도착점이 “방문”한 상태가 될 때 까지 기다릴 필요가 없다: 도착점이 “미방문” 꼭짓점들 중 가장 시험적 거리가 작아지면 (그리고 다음 “현재 위치”로 선택될 수 있다면) 알고리즘을 종료할 수 있다.</p>
+
+<h3 id="시간복잡도">시간복잡도</h3>
+
+<p>하나의 노드에 대해 다익스트라 알고리즘을 수행하는 경우를 따져보겠습니다. 미방문노드 가운데 거리가 가장 작은 노드에 BFS를 적용합니다. 거리를 가장 작은 미방문노드를 가려내려면 최악의 경우 노드 전체를 모두 따져봐야 하므로 <code class="highlighter-rouge">O(|V|)</code>입니다. 선택된 노드의 모든 이웃노드들에 대해 최단경로 정보를 업데이트합니다. 한 노드당 엣지의 기대값은 <code class="highlighter-rouge">|E|/|V</code>입니다.</p>
+
+<p>다익스트라 알고리즘은 이러한 연산을 전체 노드 수만큼 반복하므로 전체적인 계산복잡성은 <code class="highlighter-rouge">O(|V|2+|E|)</code>가 됩니다. 보통의 dense graph는 엣지의 수가 노드 수의 제곱만큼 있으므로 간략하게 계산복잡성을 적으면 <code class="highlighter-rouge">O(|V|2)</code>이 됩니다.</p>
+
+<h3 id="제약사항">제약사항</h3>
+
+<p>Dijkstra는 음의 가중치를 간진 간선을 사용하지 못한다. 이유는 아래 블로그가 설명이 잘 되있어서 대신하겠습니다.</p>
+
+<p><a href="http://blog.naver.com/PostView.nhn?blogId=qbxlvnf11&amp;logNo=221377612306&amp;categoryNo=21&amp;parentCategoryNo=0&amp;viewDate=&amp;currentPage=1&amp;postListTopCurrentPage=1&amp;from=postView">최단 경로 문제: 다익스트라 알고리즘과 벨만-포드 알고리즘
+</a></p>
+
+
+	</div>
+
+</section>
+
+		</div>
+
+	</div>
+
+
+	<footer class="footer">
+
+	<ul class="socials">
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<li class="socials__item">
+		<a href="https://github.com/has3ong" target="_blank" class="socials__item__link" title="Github">
+			<i class="fab fa-github" aria-hidden="true"></i>
+		</a>
+	</li>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<li class="socials__item">
+		<a href="https://www.linkedin.com/in/%ED%95%98%EC%84%B1-%EA%B9%80-145aa21a0/" target="_blank" class="socials__item__link" title="Linkedin">
+			<i class="fab fa-linkedin" aria-hidden="true"></i>
+		</a>
+	</li>
+	
+	
+</ul>
+
+	<div class="footer__copyright">
+		<span>© 2020 Try</span>
+		Has3ong
+	</div>
+
+</footer>
+
+
+	<!-- Javascript Assets -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="/js/index-min.js"></script>
+
+	
+	<!-- Extra Footer JS Code -->
+	
+	
+
+
+</body>
+
+</html>

@@ -1,0 +1,473 @@
+<!doctype html>
+
+<html class="no-js" lang="en">
+
+<head>
+
+
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+	Try
+
+	Index Theme by https://jekyllthemes.io
+	Premium + free Jekyll themes for your blog or website.
+
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+	<!-- Page Info -->
+	<link rel="shortcut icon" href="/images/icon.png">
+	<title>Installing Hadoop on macOS – Try</title>
+	<meta name="description" content="">
+
+	<!-- Twitter Card -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="Installing Hadoop on macOS – Try">
+	<meta name="twitter:description" content="">
+	<meta name="twitter:image:src" content="">
+
+	<!-- Facebook OpenGraph -->
+	<meta property="og:title" content="Installing Hadoop on macOS – Try" />
+	<meta property="og:description" content="" />
+	<meta property="og:image" content="" />
+
+	
+	<!-- Font Embed Code -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,500" rel="stylesheet">
+	
+
+	<!-- Styles -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<!-- Icons -->
+	<script defer src="https://use.fontawesome.com/releases/v5.1.1/js/solid.js" integrity="sha384-GXi56ipjsBwAe6v5X4xSrVNXGOmpdJYZEEh/0/GqJ3JTHsfDsF8v0YQvZCJYAiGu" crossorigin="anonymous"></script>
+	<script defer src="https://use.fontawesome.com/releases/v5.1.1/js/brands.js" integrity="sha384-0inRy4HkP0hJ038ZyfQ4vLl+F4POKbqnaUB6ewmU4dWP0ki8Q27A0VFiVRIpscvL" crossorigin="anonymous"></script>
+	<script defer src="https://use.fontawesome.com/releases/v5.1.1/js/fontawesome.js" integrity="sha384-NY6PHjYLP2f+gL3uaVfqUZImmw71ArL9+Roi9o+I4+RBqArA2CfW1sJ1wkABFfPe" crossorigin="anonymous"></script>
+
+	
+	<!-- Custom Styles -->
+	<style></style>
+	
+
+	
+	<!-- Analytics Code -->
+	
+	
+
+	
+	<!-- Extra Header JS Code -->
+	
+	
+	
+</head>
+
+
+<body class="loading ajax-loading" data-site-url="http://localhost:4000" data-page-url="/blog/hadoop-install">
+
+
+	<header class="header">
+
+	<div class="header__content">
+
+		
+		<a href="/" class="header__title">
+			Try
+		</a>
+		
+
+		<h1 class="header__tagline">The man who moves a mountain begins by carrying away small stones. - Confucius</h1>
+
+		<div class="menu">
+			<div class="menu__toggle js-menu-toggle">
+				<div class="menu__toggle__icon"><span></span></div>
+			</div>
+			<div class="menu__wrap">
+				<ul class="menu__list">
+					
+					<li class="menu__list__item">
+						<a href="/about" class="menu__list__item__link">About</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/apache" class="menu__list__item__link">Apache</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/blockchain" class="menu__list__item__link">BlockChain</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/computerscience" class="menu__list__item__link">Computer Science</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/database" class="menu__list__item__link">DataBase</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/devops" class="menu__list__item__link">DevOps</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/imageprocessing" class="menu__list__item__link">Image Processing</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/machinelearning" class="menu__list__item__link">Machine Learning</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/programming" class="menu__list__item__link">Programming</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/softwaremaestro" class="menu__list__item__link">SW Maestro</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/web" class="menu__list__item__link">Web</a>
+					</li>
+					
+				</ul>
+			</div>
+		</div>
+
+		<div class="projects-menu">
+			<ul class="menu__list">
+				
+			</ul>
+		</div>
+
+		<div class="header__lower">
+
+			<ul class="socials">
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<li class="socials__item">
+		<a href="https://github.com/has3ong" target="_blank" class="socials__item__link" title="Github">
+			<i class="fab fa-github" aria-hidden="true"></i>
+		</a>
+	</li>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<li class="socials__item">
+		<a href="https://www.linkedin.com/in/%ED%95%98%EC%84%B1-%EA%B9%80-145aa21a0/" target="_blank" class="socials__item__link" title="Linkedin">
+			<i class="fab fa-linkedin" aria-hidden="true"></i>
+		</a>
+	</li>
+	
+	
+</ul>
+
+			<div class="footer__copyright">
+				<span>© 2020 Try</span>
+				Has3ong
+			</div>
+
+		</div>
+
+	</div>
+
+</header>
+
+
+	<div class="loader"><svg width="120" height="30" viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg"><circle cx="15" cy="15" r="15"><animate attributeName="r" from="15" to="15" begin="0s" dur="0.8s" values="15;9;15" calcMode="linear" repeatCount="indefinite" /><animate attributeName="fill-opacity" from="1" to="1" begin="0s" dur="0.8s" values="1;.5;1" calcMode="linear" repeatCount="indefinite" /></circle><circle cx="60" cy="15" r="9" fill-opacity="0.3"><animate attributeName="r" from="9" to="9" begin="0s" dur="0.8s" values="9;15;9" calcMode="linear" repeatCount="indefinite" /><animate attributeName="fill-opacity" from="0.5" to="0.5" begin="0s" dur="0.8s" values=".5;1;.5" calcMode="linear" repeatCount="indefinite" /></circle><circle cx="105" cy="15" r="15"><animate attributeName="r" from="15" to="15" begin="0s" dur="0.8s" values="15;9;15" calcMode="linear" repeatCount="indefinite" /><animate attributeName="fill-opacity" from="1" to="1" begin="0s" dur="0.8s" values="1;.5;1" calcMode="linear" repeatCount="indefinite" /></circle></svg></div>
+
+	<div class="page-loader"></div>
+
+	
+	<div class="page">
+
+		<div class="page__content" data-page-title="Installing Hadoop on macOS – Try">
+
+			<section class="intro">
+
+	<div class="wrap">
+
+		<h1>Installing Hadoop on macOS</h1>
+		<p>11 December 2019</p>
+
+	</div>
+
+</section>
+
+<section class="single">
+
+	<div class="wrap">
+
+		<blockquote>
+  <p>Java Version</p>
+</blockquote>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>java <span class="nt">-version</span>
+
+openjdk version <span class="s2">"1.8.0_232"</span>
+OpenJDK Runtime Environment <span class="o">(</span>AdoptOpenJDK<span class="o">)(</span>build 1.8.0_232-b09<span class="o">)</span>
+OpenJDK 64-Bit Server VM <span class="o">(</span>AdoptOpenJDK<span class="o">)(</span>build 25.232-b09, mixed mode<span class="o">)</span>
+</code></pre></div></div>
+
+<h2 id="install-hadoop">Install Hadoop</h2>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>brew <span class="nb">install </span>hadoop
+
+<span class="o">==&gt;</span> Downloading https://www.apache.org/dyn/closer.cgi?path<span class="o">=</span>hadoop/common/hadoop-3.2.1/hadoop-3.2.1.tar.gz
+<span class="o">==&gt;</span> Downloading from http://apache.mirror.cdnetworks.com/hadoop/common/hadoop-3.2.1/hadoop-3.2.1.tar.gz
+<span class="c">######################################################################## 100.0%</span>
+</code></pre></div></div>
+
+<h2 id="configuration">Configuration</h2>
+
+<p>하둡 관련 설정을 위하여 4가지 파일을 수정해야합니다. 파일에 위치는 <code class="highlighter-rouge">/usr/local/Cellar/hadoop/3.2.1/libexec/etc/hadoop</code> 에 있습니다.</p>
+
+<ol>
+  <li>hadoop-env.sh</li>
+  <li>core-site.xml</li>
+  <li>mapred-site.xml</li>
+  <li>hdfs-site.xml</li>
+</ol>
+
+<h3 id="1-hadoop-envsh">1. hadoop-env.sh</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>export HADOOP_OPTS="$HADOOP_OPTS -Djava.net.preferIPv4Stack=true"
+</code></pre></div></div>
+
+<p>을 아래와같이 변경시켜줍니다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>export HADOOP_OPTS="$HADOOP_OPTS -Djava.net.preferIPv4Stack=true -Djava.security.krb5.realm= -Djava.security.krb5.kdc="
+</code></pre></div></div>
+
+<h3 id="2-core-sitexml">2. core-site.xml</h3>
+
+<p>HDFS 주소와 포트 넘버를 설정해줍니다. 아래 내용을 추가시켜줍니다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;!-- Put site-specific property overrides in this file. --&gt;&lt;configuration&gt;
+  &lt;property&gt;
+    &lt;name&gt;hadoop.tmp.dir&lt;/name&gt;
+    &lt;value&gt;/usr/local/Cellar/hadoop/hdfs/tmp&lt;/value&gt;
+    &lt;description&gt;A base for other temporary directories&lt;/description&gt;             
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;fs.default.name&lt;/name&gt;
+    &lt;value&gt;hdfs://localhost:8020&lt;/value&gt;
+  &lt;/property&gt;
+&lt;/configuration&gt;
+</code></pre></div></div>
+
+<h3 id="3-mapred-sitexml">3. mapred-site.xml</h3>
+
+<p>아래 내용을 추가시켜줍니다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;configuration&gt;
+  &lt;property&gt;
+    &lt;name&gt;mapred.job.tracker&lt;/name&gt;
+    &lt;value&gt;localhost:8021&lt;/value&gt;
+  &lt;/property&gt;
+&lt;/configuration&gt;
+</code></pre></div></div>
+
+<h3 id="4-hdfs-sitexml">4. hdfs-site.xml</h3>
+
+<p>아래 내용을 추가시켜줍니다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;configuration&gt;
+  &lt;property&gt;
+    &lt;name&gt;dfs.replication&lt;/name&gt;
+    &lt;value&gt;1&lt;/value&gt;
+  &lt;/property&gt;
+&lt;/configuration&gt;
+</code></pre></div></div>
+
+<h2 id="start-hadoop">Start Hadoop</h2>
+
+<p>하둡을 실행하기 전에, 하둡 파일 시스템으로 포맷을 해야 한다. 아래와 같이 입력하여 하둡 파일 시스템으로 포맷한다.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>hdfs namenode <span class="nt">-format</span>
+</code></pre></div></div>
+
+<p>위의 명령어로 하둡 파일 시스템으로 포맷을 해 주고, 아래와 ssh key를 생성하고 사용한다.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>ssh-keygen <span class="nt">-t</span> rsa
+<span class="nv">$ </span><span class="nb">cat</span> ~/.ssh/id_rsa.pub <span class="o">&gt;&gt;</span> ~/.ssh/authorized_keys
+</code></pre></div></div>
+
+<p>마지막으로 맥북에 시스템 환경설정 공유에가서 원격 로그인을 체크해줍니다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/70542642-6d484880-1bac-11ea-8d6e-c4b8f02c0542.png" alt="image" /></p>
+
+<p>이제 하둡을 실행해보자. 아래와 같이 실행하면 하둡을 실행시킬 수 있습니다.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>/usr/local/Cellar/hadoop/3.2.1/sbin/start-dfs.sh
+
+Starting namenodes on <span class="o">[</span>localhost]
+Starting datanodes
+Starting secondary namenodes <span class="o">[</span>gimhaseong-ui-MacBookPro.local]
+2019-12-11 00:20:00,613 WARN util.NativeCodeLoader: Unable to load native-hadoop library <span class="k">for </span>your platform... using builtin-java classes where applicable
+</code></pre></div></div>
+
+<p>localhost로 하둡을 띄운 것이기 때문에, localhost로 접속해서 하둡의 상태를 체크할 수 있다. hadoop의 상태를 체크할 수 있는 주소는 아래와 같다.</p>
+
+<ul>
+  <li>Cluster status: http://localhost:8088</li>
+  <li>HDFS status: http://localhost:9870 ( 3.x는 9870, 2.x는 50070)</li>
+  <li>Secondary NameNode status: http://localhost:9868 ( 3.x는 9868, 2.x는 50090)</li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/70542647-6e797580-1bac-11ea-84aa-2df8617587e2.png" alt="image" /></p>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/70542652-6faaa280-1bac-11ea-8c3a-dbe25c3ba68b.png" alt="image" /></p>
+
+
+
+	</div>
+
+</section>
+
+		</div>
+
+	</div>
+
+
+	<footer class="footer">
+
+	<ul class="socials">
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<li class="socials__item">
+		<a href="https://github.com/has3ong" target="_blank" class="socials__item__link" title="Github">
+			<i class="fab fa-github" aria-hidden="true"></i>
+		</a>
+	</li>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<li class="socials__item">
+		<a href="https://www.linkedin.com/in/%ED%95%98%EC%84%B1-%EA%B9%80-145aa21a0/" target="_blank" class="socials__item__link" title="Linkedin">
+			<i class="fab fa-linkedin" aria-hidden="true"></i>
+		</a>
+	</li>
+	
+	
+</ul>
+
+	<div class="footer__copyright">
+		<span>© 2020 Try</span>
+		Has3ong
+	</div>
+
+</footer>
+
+
+	<!-- Javascript Assets -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="/js/index-min.js"></script>
+
+	
+	<!-- Extra Footer JS Code -->
+	
+	
+
+
+</body>
+
+</html>

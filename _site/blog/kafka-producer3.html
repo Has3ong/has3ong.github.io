@@ -1,0 +1,512 @@
+<!doctype html>
+
+<html class="no-js" lang="en">
+
+<head>
+
+
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+	Try
+
+	Index Theme by https://jekyllthemes.io
+	Premium + free Jekyll themes for your blog or website.
+
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+	<!-- Page Info -->
+	<link rel="shortcut icon" href="/images/icon.png">
+	<title>Apache Kafka Producer -3- – Try</title>
+	<meta name="description" content="">
+
+	<!-- Twitter Card -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="Apache Kafka Producer -3- – Try">
+	<meta name="twitter:description" content="">
+	<meta name="twitter:image:src" content="">
+
+	<!-- Facebook OpenGraph -->
+	<meta property="og:title" content="Apache Kafka Producer -3- – Try" />
+	<meta property="og:description" content="" />
+	<meta property="og:image" content="" />
+
+	
+	<!-- Font Embed Code -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,500" rel="stylesheet">
+	
+
+	<!-- Styles -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<!-- Icons -->
+	<script defer src="https://use.fontawesome.com/releases/v5.1.1/js/solid.js" integrity="sha384-GXi56ipjsBwAe6v5X4xSrVNXGOmpdJYZEEh/0/GqJ3JTHsfDsF8v0YQvZCJYAiGu" crossorigin="anonymous"></script>
+	<script defer src="https://use.fontawesome.com/releases/v5.1.1/js/brands.js" integrity="sha384-0inRy4HkP0hJ038ZyfQ4vLl+F4POKbqnaUB6ewmU4dWP0ki8Q27A0VFiVRIpscvL" crossorigin="anonymous"></script>
+	<script defer src="https://use.fontawesome.com/releases/v5.1.1/js/fontawesome.js" integrity="sha384-NY6PHjYLP2f+gL3uaVfqUZImmw71ArL9+Roi9o+I4+RBqArA2CfW1sJ1wkABFfPe" crossorigin="anonymous"></script>
+
+	
+	<!-- Custom Styles -->
+	<style></style>
+	
+
+	
+	<!-- Analytics Code -->
+	
+	
+
+	
+	<!-- Extra Header JS Code -->
+	
+	
+	
+</head>
+
+
+<body class="loading ajax-loading" data-site-url="http://localhost:4000" data-page-url="/blog/kafka-producer3">
+
+
+	<header class="header">
+
+	<div class="header__content">
+
+		
+		<a href="/" class="header__title">
+			Try
+		</a>
+		
+
+		<h1 class="header__tagline">The man who moves a mountain begins by carrying away small stones. - Confucius</h1>
+
+		<div class="menu">
+			<div class="menu__toggle js-menu-toggle">
+				<div class="menu__toggle__icon"><span></span></div>
+			</div>
+			<div class="menu__wrap">
+				<ul class="menu__list">
+					
+					<li class="menu__list__item">
+						<a href="/about" class="menu__list__item__link">About</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/apache" class="menu__list__item__link">Apache</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/blockchain" class="menu__list__item__link">BlockChain</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/computerscience" class="menu__list__item__link">Computer Science</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/database" class="menu__list__item__link">DataBase</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/devops" class="menu__list__item__link">DevOps</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/imageprocessing" class="menu__list__item__link">Image Processing</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/machinelearning" class="menu__list__item__link">Machine Learning</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/programming" class="menu__list__item__link">Programming</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/softwaremaestro" class="menu__list__item__link">SW Maestro</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/web" class="menu__list__item__link">Web</a>
+					</li>
+					
+				</ul>
+			</div>
+		</div>
+
+		<div class="projects-menu">
+			<ul class="menu__list">
+				
+			</ul>
+		</div>
+
+		<div class="header__lower">
+
+			<ul class="socials">
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<li class="socials__item">
+		<a href="https://github.com/has3ong" target="_blank" class="socials__item__link" title="Github">
+			<i class="fab fa-github" aria-hidden="true"></i>
+		</a>
+	</li>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<li class="socials__item">
+		<a href="https://www.linkedin.com/in/%ED%95%98%EC%84%B1-%EA%B9%80-145aa21a0/" target="_blank" class="socials__item__link" title="Linkedin">
+			<i class="fab fa-linkedin" aria-hidden="true"></i>
+		</a>
+	</li>
+	
+	
+</ul>
+
+			<div class="footer__copyright">
+				<span>© 2020 Try</span>
+				Has3ong
+			</div>
+
+		</div>
+
+	</div>
+
+</header>
+
+
+	<div class="loader"><svg width="120" height="30" viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg"><circle cx="15" cy="15" r="15"><animate attributeName="r" from="15" to="15" begin="0s" dur="0.8s" values="15;9;15" calcMode="linear" repeatCount="indefinite" /><animate attributeName="fill-opacity" from="1" to="1" begin="0s" dur="0.8s" values="1;.5;1" calcMode="linear" repeatCount="indefinite" /></circle><circle cx="60" cy="15" r="9" fill-opacity="0.3"><animate attributeName="r" from="9" to="9" begin="0s" dur="0.8s" values="9;15;9" calcMode="linear" repeatCount="indefinite" /><animate attributeName="fill-opacity" from="0.5" to="0.5" begin="0s" dur="0.8s" values=".5;1;.5" calcMode="linear" repeatCount="indefinite" /></circle><circle cx="105" cy="15" r="15"><animate attributeName="r" from="15" to="15" begin="0s" dur="0.8s" values="15;9;15" calcMode="linear" repeatCount="indefinite" /><animate attributeName="fill-opacity" from="1" to="1" begin="0s" dur="0.8s" values="1;.5;1" calcMode="linear" repeatCount="indefinite" /></circle></svg></div>
+
+	<div class="page-loader"></div>
+
+	
+	<div class="page">
+
+		<div class="page__content" data-page-title="Apache Kafka Producer -3- – Try">
+
+			<section class="intro">
+
+	<div class="wrap">
+
+		<h1>Apache Kafka Producer -3-</h1>
+		<p>08 December 2019</p>
+
+	</div>
+
+</section>
+
+<section class="single">
+
+	<div class="wrap">
+
+		<p><em>이 포스트는 <a href="https://github.com/Avkash/mldl/blob/master/pages/docs/books/confluent-kafka-definitive-guide-complete.pdf">Kafka Definitive Guide</a>를 바탕으로 작성하였습니다.</em></p>
+
+<h2 id="직렬처리기-serializers">직렬처리기, Serializers</h2>
+
+<p>프로듀서의 필수 구성에는 직렬처리기가 포함된다. 카프카에서 지원하는 기본적인 String 타입의 직렬처리기와 Int 타입을 <a href="/kafka-producer1">Apache Kafka Producer -1-</a> 포스트에서 살펴봤습니다.</p>
+
+<p>직렬처리기를 사용하는 이유를 다시 한번 얘기하자면, Kafka는 바이트 배열을 대기열에 전송하고 저장하기 때문에 프로듀서에서 브로커로 전송할 메시지를 준비하기 위해 Serializer를 사용합니다. 마찬가지로 바이트 배열을 객체로 다시 변환하기 위해 컨슈머가 Deserializer를 사용합니다.</p>
+
+<p>이번 포스트에서는 Apache Avro 직렬처리기 예시를 보여드리겠습니다.</p>
+
+<p>Apache Avro는 Apache의 Hadoop 프로젝트에서 개발된 원격 프로시저 호출(RPC) 및 데이터 직렬화 프레임워크이다. 자료형과 프로토콜 정의를 위해 JSON을 사용하며 콤팩트 바이너리 포맷으로 데이터를 직렬화한다.</p>
+
+<p>주 용도는 Apache Hadoop에서 Client -&gt; Hadoop 서비스에 대해 영구 데이터를 위한 직렬화 포맷과 Hadoop 노드 간 통신을 위한 와이어 포맷을 둘 다 제공하는 것이다.</p>
+
+<blockquote>
+  <p>Example from Wikipedia</p>
+</blockquote>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+   "namespace": "example.avro",
+   "type": "record",
+   "name": "User",
+   "fields": [
+      {"name": "name", "type": "string"},
+      {"name": "favorite_number",  "type": ["int", "null"]},
+      {"name": "favorite_color", "type": ["string", "null"]}
+   ]
+ }
+</code></pre></div></div>
+
+<h3 id="custom-serializers">Custom Serializers</h3>
+
+<p>우선 Customer를 나타내는 간단한 클래스를 정의해보겠습니다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Customer</span> <span class="o">{</span>
+  <span class="kd">private</span> <span class="kt">int</span> <span class="n">customerID</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">customerName</span><span class="o">;</span>
+  
+  <span class="kd">public</span> <span class="nf">Customer</span><span class="o">(</span><span class="kt">int</span> <span class="no">ID</span><span class="o">,</span> <span class="nc">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">customerID</span> <span class="o">=</span> <span class="no">ID</span><span class="o">;</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">customerName</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+  <span class="o">}</span>
+  
+  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getID</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">customerID</span><span class="o">;</span>
+  <span class="o">}</span>
+  
+  <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">customerName</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Customer 클래스의 간단한 직렬처리기를 만들겠습니다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">org.apache.kafka.common.errors.SerializationException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.nio.ByteBuffer</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Map</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CustomerSerializer</span> <span class="kd">implements</span> <span class="nc">Serializer</span><span class="o">&lt;</span><span class="nc">Customer</span><span class="o">&gt;</span> <span class="o">{</span>
+
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="nc">Map</span> <span class="n">configs</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">isKey</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// nothing to configure</span>
+  <span class="o">}</span>
+  
+  <span class="nd">@Override</span>
+  <span class="cm">/**
+  We are serializing Customer as:
+  4 byte int representing customerId
+  4 byte int representing length of customerName in UTF-8 bytes (0 if name is
+Null)
+  N bytes representing customerName in UTF-8
+  */</span>
+  
+  <span class="kd">public</span> <span class="kt">byte</span><span class="o">[]</span> <span class="nf">serialize</span><span class="o">(</span><span class="nc">String</span> <span class="n">topic</span><span class="o">,</span> <span class="nc">Customer</span> <span class="n">data</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">try</span> <span class="o">{</span>
+      <span class="kt">byte</span><span class="o">[]</span> <span class="n">serializedName</span><span class="o">;</span>
+      <span class="kt">int</span> <span class="n">stringSize</span><span class="o">;</span>
+      <span class="k">if</span> <span class="o">(</span><span class="n">data</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>
+        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+      <span class="k">else</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">data</span><span class="o">.</span><span class="na">getName</span><span class="o">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+          <span class="n">serializeName</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="na">getName</span><span class="o">().</span><span class="na">getBytes</span><span class="o">(</span><span class="s">"UTF-8"</span><span class="o">);</span>
+          <span class="n">stringSize</span> <span class="o">=</span> <span class="n">serializedName</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+          <span class="n">serializedName</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="mi">0</span><span class="o">];</span>
+          <span class="n">stringSize</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="o">}</span>
+      <span class="o">}</span>
+      
+       <span class="nc">ByteBuffer</span> <span class="n">buffer</span> <span class="o">=</span> 
+        <span class="nc">ByteBuffer</span><span class="o">.</span><span class="na">allocate</span><span class="o">(</span><span class="mi">4</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">+</span> <span class="n">stringSize</span><span class="o">);</span>
+        
+      <span class="n">uffer</span><span class="o">.</span><span class="na">putInt</span><span class="o">(</span><span class="n">data</span><span class="o">.</span><span class="na">getID</span><span class="o">());</span>
+      <span class="n">buffer</span><span class="o">.</span><span class="na">putInt</span><span class="o">(</span><span class="n">stringSize</span><span class="o">);</span>
+      <span class="n">buffer</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">serializedName</span><span class="o">);</span>
+      <span class="k">return</span> <span class="n">buffer</span><span class="o">.</span><span class="na">array</span><span class="o">();</span>
+      
+    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">throw</span> <span class="k">new</span> <span class="nf">SerializationException</span><span class="o">(</span>
+        <span class="s">"Error when serializing Customer to byte[] "</span> <span class="o">+</span> <span class="n">e</span><span class="o">);</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+  
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">close</span><span class="o">()</span> <span class="o">{</span>
+    <span class="c1">// nothing to close</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>직렬처리기를 사용할 대 두 가지 순서가 있습니다.</p>
+
+<ol>
+  <li>프로듀서를 구성하고 생성한다.</li>
+  <li>ProducerRecord&lt;String, Consumer&gt;에 Customer 객체를 전달하여 객체를 생성한 후 프로듀서가 전송한다.</li>
+</ol>
+
+<p>이 직렬처리기 코드는 간단하지만 문제점이 많습니다. 추가 확장을할 때 Customer 클래스에 필드를 추가하면 기존 메세지와의 호환성 문제가 발생합니다.</p>
+
+<p>이런 이유로 JSON, Avro같은 범용 직렬처리기 사용을 권장합니다.</p>
+
+<h2 id="avro-serializers">Avro Serializers</h2>
+
+<p>Customer 클래스를 바탕으로 스키마를 JSON 형식으로 만들어보겠습니다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{"namespace": "customerManagement.avro",
+  "type": "record",
+    "name": "Customer",
+    "fields": [
+      {"name": "id", "type": "int"},
+      {"name": "name", "type": "string""},
+    {"name": "faxNumber", "type": ["null", "string"], "default": "null"}
+  ]
+}
+</code></pre></div></div>
+
+<p>id 와 name 필드는 필수 필드이며,  faxNumber는 생략가능하고 디폴트가 null 이다.</p>
+
+<p>현재 상황에서 faxNumber를 없애고 대신 email 필드를 추가하여 새로운 스키마를 만들려고 합니다.</p>
+
+<p>그 결과 새로운 스키마는 다음과 같습니다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{"namespace": "customerManagement.avro",
+  "type": "record",
+  "name": "Customer",
+  "fields": [
+  {"name": "id", "type": "int"},
+    {"name": "name", "type": "string"},
+    {"name": "email", "type": ["null", "string"], "default": "null"}
+  ]
+}
+</code></pre></div></div>
+
+<p>이런 상황에 발생하는 문제점으로 faxNumber 레코드와 새로운 email 레코드에 getter(), setter()  함수를 사용할 때 문제가 발생할것이다.</p>
+
+<p>이러한 문제점을 해결하기위해 Avro를 사용한다.</p>
+
+<p>다음 포스트에서는 Avro를 활용해보겠습니다.</p>
+
+
+	</div>
+
+</section>
+
+		</div>
+
+	</div>
+
+
+	<footer class="footer">
+
+	<ul class="socials">
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<li class="socials__item">
+		<a href="https://github.com/has3ong" target="_blank" class="socials__item__link" title="Github">
+			<i class="fab fa-github" aria-hidden="true"></i>
+		</a>
+	</li>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<li class="socials__item">
+		<a href="https://www.linkedin.com/in/%ED%95%98%EC%84%B1-%EA%B9%80-145aa21a0/" target="_blank" class="socials__item__link" title="Linkedin">
+			<i class="fab fa-linkedin" aria-hidden="true"></i>
+		</a>
+	</li>
+	
+	
+</ul>
+
+	<div class="footer__copyright">
+		<span>© 2020 Try</span>
+		Has3ong
+	</div>
+
+</footer>
+
+
+	<!-- Javascript Assets -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="/js/index-min.js"></script>
+
+	
+	<!-- Extra Footer JS Code -->
+	
+	
+
+
+</body>
+
+</html>

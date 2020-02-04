@@ -1,0 +1,585 @@
+<!doctype html>
+
+<html class="no-js" lang="en">
+
+<head>
+
+
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+	Try
+
+	Index Theme by https://jekyllthemes.io
+	Premium + free Jekyll themes for your blog or website.
+
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+	<!-- Page Info -->
+	<link rel="shortcut icon" href="/images/icon.png">
+	<title>Installing and Configuring Kafka -2- – Try</title>
+	<meta name="description" content="">
+
+	<!-- Twitter Card -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="Installing and Configuring Kafka -2- – Try">
+	<meta name="twitter:description" content="">
+	<meta name="twitter:image:src" content="">
+
+	<!-- Facebook OpenGraph -->
+	<meta property="og:title" content="Installing and Configuring Kafka -2- – Try" />
+	<meta property="og:description" content="" />
+	<meta property="og:image" content="" />
+
+	
+	<!-- Font Embed Code -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,500" rel="stylesheet">
+	
+
+	<!-- Styles -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<!-- Icons -->
+	<script defer src="https://use.fontawesome.com/releases/v5.1.1/js/solid.js" integrity="sha384-GXi56ipjsBwAe6v5X4xSrVNXGOmpdJYZEEh/0/GqJ3JTHsfDsF8v0YQvZCJYAiGu" crossorigin="anonymous"></script>
+	<script defer src="https://use.fontawesome.com/releases/v5.1.1/js/brands.js" integrity="sha384-0inRy4HkP0hJ038ZyfQ4vLl+F4POKbqnaUB6ewmU4dWP0ki8Q27A0VFiVRIpscvL" crossorigin="anonymous"></script>
+	<script defer src="https://use.fontawesome.com/releases/v5.1.1/js/fontawesome.js" integrity="sha384-NY6PHjYLP2f+gL3uaVfqUZImmw71ArL9+Roi9o+I4+RBqArA2CfW1sJ1wkABFfPe" crossorigin="anonymous"></script>
+
+	
+	<!-- Custom Styles -->
+	<style></style>
+	
+
+	
+	<!-- Analytics Code -->
+	
+	
+
+	
+	<!-- Extra Header JS Code -->
+	
+	
+	
+</head>
+
+
+<body class="loading ajax-loading" data-site-url="http://localhost:4000" data-page-url="/blog/kafka-install2">
+
+
+	<header class="header">
+
+	<div class="header__content">
+
+		
+		<a href="/" class="header__title">
+			Try
+		</a>
+		
+
+		<h1 class="header__tagline">The man who moves a mountain begins by carrying away small stones. - Confucius</h1>
+
+		<div class="menu">
+			<div class="menu__toggle js-menu-toggle">
+				<div class="menu__toggle__icon"><span></span></div>
+			</div>
+			<div class="menu__wrap">
+				<ul class="menu__list">
+					
+					<li class="menu__list__item">
+						<a href="/about" class="menu__list__item__link">About</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/apache" class="menu__list__item__link">Apache</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/blockchain" class="menu__list__item__link">BlockChain</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/computerscience" class="menu__list__item__link">Computer Science</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/database" class="menu__list__item__link">DataBase</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/devops" class="menu__list__item__link">DevOps</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/imageprocessing" class="menu__list__item__link">Image Processing</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/machinelearning" class="menu__list__item__link">Machine Learning</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/programming" class="menu__list__item__link">Programming</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/softwaremaestro" class="menu__list__item__link">SW Maestro</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/web" class="menu__list__item__link">Web</a>
+					</li>
+					
+				</ul>
+			</div>
+		</div>
+
+		<div class="projects-menu">
+			<ul class="menu__list">
+				
+			</ul>
+		</div>
+
+		<div class="header__lower">
+
+			<ul class="socials">
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<li class="socials__item">
+		<a href="https://github.com/has3ong" target="_blank" class="socials__item__link" title="Github">
+			<i class="fab fa-github" aria-hidden="true"></i>
+		</a>
+	</li>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<li class="socials__item">
+		<a href="https://www.linkedin.com/in/%ED%95%98%EC%84%B1-%EA%B9%80-145aa21a0/" target="_blank" class="socials__item__link" title="Linkedin">
+			<i class="fab fa-linkedin" aria-hidden="true"></i>
+		</a>
+	</li>
+	
+	
+</ul>
+
+			<div class="footer__copyright">
+				<span>© 2020 Try</span>
+				Has3ong
+			</div>
+
+		</div>
+
+	</div>
+
+</header>
+
+
+	<div class="loader"><svg width="120" height="30" viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg"><circle cx="15" cy="15" r="15"><animate attributeName="r" from="15" to="15" begin="0s" dur="0.8s" values="15;9;15" calcMode="linear" repeatCount="indefinite" /><animate attributeName="fill-opacity" from="1" to="1" begin="0s" dur="0.8s" values="1;.5;1" calcMode="linear" repeatCount="indefinite" /></circle><circle cx="60" cy="15" r="9" fill-opacity="0.3"><animate attributeName="r" from="9" to="9" begin="0s" dur="0.8s" values="9;15;9" calcMode="linear" repeatCount="indefinite" /><animate attributeName="fill-opacity" from="0.5" to="0.5" begin="0s" dur="0.8s" values=".5;1;.5" calcMode="linear" repeatCount="indefinite" /></circle><circle cx="105" cy="15" r="15"><animate attributeName="r" from="15" to="15" begin="0s" dur="0.8s" values="15;9;15" calcMode="linear" repeatCount="indefinite" /><animate attributeName="fill-opacity" from="1" to="1" begin="0s" dur="0.8s" values="1;.5;1" calcMode="linear" repeatCount="indefinite" /></circle></svg></div>
+
+	<div class="page-loader"></div>
+
+	
+	<div class="page">
+
+		<div class="page__content" data-page-title="Installing and Configuring Kafka -2- – Try">
+
+			<section class="intro">
+
+	<div class="wrap">
+
+		<h1>Installing and Configuring Kafka -2-</h1>
+		<p>03 December 2019</p>
+
+	</div>
+
+</section>
+
+<section class="single">
+
+	<div class="wrap">
+
+		<p><em>이 포스트는 <a href="https://github.com/Avkash/mldl/blob/master/pages/docs/books/confluent-kafka-definitive-guide-complete.pdf">Kafka Definitive Guide</a>를 바탕으로 작성하였습니다.</em></p>
+
+<h2 id="kafka-serverproperties">Kafka server.properties</h2>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Licensed to the Apache Software Foundation (ASF) under one or more</span>
+<span class="c"># contributor license agreements.  See the NOTICE file distributed with</span>
+<span class="c"># this work for additional information regarding copyright ownership.</span>
+<span class="c"># The ASF licenses this file to You under the Apache License, Version 2.0</span>
+<span class="c"># (the "License"); you may not use this file except in compliance with</span>
+<span class="c"># the License.  You may obtain a copy of the License at</span>
+<span class="c">#</span>
+<span class="c">#    http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c">#</span>
+<span class="c"># Unless required by applicable law or agreed to in writing, software</span>
+<span class="c"># distributed under the License is distributed on an "AS IS" BASIS,</span>
+<span class="c"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c"># See the License for the specific language governing permissions and</span>
+<span class="c"># limitations under the License.</span>
+
+<span class="c"># see kafka.server.KafkaConfig for additional details and defaults</span>
+
+<span class="c">############################# Server Basics #############################</span>
+
+<span class="c"># The id of the broker. This must be set to a unique integer for each broker.</span>
+broker.id<span class="o">=</span>0
+
+<span class="c">############################# Socket Server Settings #############################</span>
+
+<span class="c"># The address the socket server listens on. It will get the value returned from</span>
+<span class="c"># java.net.InetAddress.getCanonicalHostName() if not configured.</span>
+<span class="c">#   FORMAT:</span>
+<span class="c">#     listeners = listener_name://host_name:port</span>
+<span class="c">#   EXAMPLE:</span>
+<span class="c">#     listeners = PLAINTEXT://your.host.name:9092</span>
+<span class="c">#listeners=PLAINTEXT://:9092</span>
+
+<span class="c"># Hostname and port the broker will advertise to producers and consumers. If not set,</span>
+<span class="c"># it uses the value for "listeners" if configured.  Otherwise, it will use the value</span>
+<span class="c"># returned from java.net.InetAddress.getCanonicalHostName().</span>
+<span class="c">#advertised.listeners=PLAINTEXT://your.host.name:9092</span>
+
+<span class="c"># Maps listener names to security protocols, the default is for them to be the same. See the config documentation for more details</span>
+<span class="c">#listener.security.protocol.map=PLAINTEXT:PLAINTEXT,SSL:SSL,SASL_PLAINTEXT:SASL_PLAINTEXT,SASL_SSL:SASL_SSL</span>
+
+<span class="c"># The number of threads that the server uses for receiving requests from the network and sending responses to the network</span>
+num.network.threads<span class="o">=</span>3
+
+<span class="c"># The number of threads that the server uses for processing requests, which may include disk I/O</span>
+num.io.threads<span class="o">=</span>8
+
+<span class="c"># The send buffer (SO_SNDBUF) used by the socket server</span>
+socket.send.buffer.bytes<span class="o">=</span>102400
+
+<span class="c"># The receive buffer (SO_RCVBUF) used by the socket server</span>
+socket.receive.buffer.bytes<span class="o">=</span>102400
+
+<span class="c"># The maximum size of a request that the socket server will accept (protection against OOM)</span>
+socket.request.max.bytes<span class="o">=</span>104857600
+
+
+<span class="c">############################# Log Basics #############################</span>
+
+<span class="c"># A comma separated list of directories under which to store log files</span>
+log.dirs<span class="o">=</span>/usr/local/var/lib/kafka-logs
+
+<span class="c"># The default number of log partitions per topic. More partitions allow greater</span>
+<span class="c"># parallelism for consumption, but this will also result in more files across</span>
+<span class="c"># the brokers.</span>
+num.partitions<span class="o">=</span>1
+
+<span class="c"># The number of threads per data directory to be used for log recovery at startup and flushing at shutdown.</span>
+<span class="c"># This value is recommended to be increased for installations with data dirs located in RAID array.</span>
+num.recovery.threads.per.data.dir<span class="o">=</span>1
+
+<span class="c">############################# Internal Topic Settings  #############################</span>
+<span class="c"># The replication factor for the group metadata internal topics "__consumer_offsets" and "__transaction_state"</span>
+<span class="c"># For anything other than development testing, a value greater than 1 is recommended for to ensure availability such as 3.</span>
+offsets.topic.replication.factor<span class="o">=</span>1
+transaction.state.log.replication.factor<span class="o">=</span>1
+transaction.state.log.min.isr<span class="o">=</span>1
+
+<span class="c">############################# Log Flush Policy #############################</span>
+
+<span class="c"># Messages are immediately written to the filesystem but by default we only fsync() to sync</span>
+<span class="c"># the OS cache lazily. The following configurations control the flush of data to disk.</span>
+<span class="c"># There are a few important trade-offs here:</span>
+<span class="c">#    1. Durability: Unflushed data may be lost if you are not using replication.</span>
+<span class="c">#    2. Latency: Very large flush intervals may lead to latency spikes when the flush does occur as there will be a lot of data to flush.</span>
+<span class="c">#    3. Throughput: The flush is generally the most expensive operation, and a small flush interval may lead to excessive seeks.</span>
+<span class="c"># The settings below allow one to configure the flush policy to flush data after a period of time or</span>
+<span class="c"># every N messages (or both). This can be done globally and overridden on a per-topic basis.</span>
+
+<span class="c"># The number of messages to accept before forcing a flush of data to disk</span>
+<span class="c">#log.flush.interval.messages=10000</span>
+
+<span class="c"># The maximum amount of time a message can sit in a log before we force a flush</span>
+<span class="c">#log.flush.interval.ms=1000</span>
+
+<span class="c">############################# Log Retention Policy #############################</span>
+
+<span class="c"># The following configurations control the disposal of log segments. The policy can</span>
+<span class="c"># be set to delete segments after a period of time, or after a given size has accumulated.</span>
+<span class="c"># A segment will be deleted whenever *either* of these criteria are met. Deletion always happens</span>
+<span class="c"># from the end of the log.</span>
+
+<span class="c"># The minimum age of a log file to be eligible for deletion due to age</span>
+log.retention.hours<span class="o">=</span>168
+
+<span class="c"># A size-based retention policy for logs. Segments are pruned from the log unless the remaining</span>
+<span class="c"># segments drop below log.retention.bytes. Functions independently of log.retention.hours.</span>
+<span class="c">#log.retention.bytes=1073741824</span>
+
+<span class="c"># The maximum size of a log segment file. When this size is reached a new log segment will be created.</span>
+log.segment.bytes<span class="o">=</span>1073741824
+
+<span class="c"># The interval at which log segments are checked to see if they can be deleted according</span>
+<span class="c"># to the retention policies</span>
+log.retention.check.interval.ms<span class="o">=</span>300000
+
+<span class="c">############################# Zookeeper #############################</span>
+
+<span class="c"># Zookeeper connection string (see zookeeper docs for details).</span>
+<span class="c"># This is a comma separated host:port pairs, each corresponding to a zk</span>
+<span class="c"># server. e.g. "127.0.0.1:3000,127.0.0.1:3001,127.0.0.1:3002".</span>
+<span class="c"># You can also append an optional chroot string to the urls to specify the</span>
+<span class="c"># root directory for all kafka znodes.</span>
+zookeeper.connect<span class="o">=</span>localhost:2181
+
+<span class="c"># Timeout in ms for connecting to zookeeper</span>
+zookeeper.connection.timeout.ms<span class="o">=</span>6000
+
+
+<span class="c">############################# Group Coordinator Settings #############################</span>
+
+<span class="c"># The following configuration specifies the time, in milliseconds, that the GroupCoordinator will delay the initial consumer rebalance.</span>
+<span class="c"># The rebalance will be further delayed by the value of group.initial.rebalance.delay.ms as new members join the group, up to a maximum of max.poll.interval.ms.</span>
+<span class="c"># The default value for this is 3 seconds.</span>
+<span class="c"># We override this to 0 here as it makes for a better out-of-the-box experience for development and testing.</span>
+<span class="c"># However, in production environments the default value of 3 seconds is more suitable as this will help to avoid unnecessary, and potentially expensive, rebalances during application startup.</span>
+group.initial.rebalance.delay.ms<span class="o">=</span>0%
+</code></pre></div></div>
+
+<h3 id="broker--id">broker . id</h3>
+
+<p>default = 0</p>
+
+<p>어떤 값도 사용이 가능하다. 단, 하나의 카프카 클러스터 내에서는 고유한 값이어야한다. 브로커 호스트가 갖는 본질적인 값으로 설정하는것이 좋다. 예를들어 <code class="highlighter-rouge">kafka1.example.com</code>, <code class="highlighter-rouge">kafka2.example.com</code> 등과 같이 호스트 이름에 고유번호가 포함되어 있으면 이것을 broker .id 로 사용해도 좋다.</p>
+
+<h3 id="port">port</h3>
+
+<p>default = 9092</p>
+
+<p>카프카의 실행에 사용되는 TCP 포트를 나타낸다. 1024 보다 작은 값으로 설정하면 카프카가 root 권한으로 시작되어야한다.</p>
+
+<h3 id="zookeeperconnect">zookeeper.connect</h3>
+
+<p>default = localhost:2181</p>
+
+<p>브로커의 메타데이터를 저장하기 위해 사용되는 Zookeeper의 URL을 나타낸다. <strong>호스트이름:포트/경로</strong> 형식으로 지정할 수 있다.</p>
+
+<h3 id="logdirs">log.dirs</h3>
+
+<p>default = /usr/local/var/lib/kafka-logs</p>
+
+<p>Kafka는 모든 메세지를 로그 세그먼트 파일에 모아서 디스크에 저장된다. 그리고 이 파일은 log.dirs에 지정된 디렉토리에 저장된다. 이때 여러 경로를 쉼표로 구분하여 지정할 수 있다.</p>
+
+<h3 id="numrecoverythreadsperdatadir">num.recovery.threads.per.data.dir</h3>
+
+<p>default = 1</p>
+
+<p>Kafka는 구성 가능한 스레드 풀을 사용해서 로그 세그먼트를 처리한다. 스레드 풀은 다음 경우에 사용된다.</p>
+
+<ol>
+  <li>브로커가 정상적으로 시작될 때는 각 파티션의 로그 세그먼트 파일을 열기 위해 사용한다.</li>
+  <li>장애 발생 이후 다시 시작될 때는 각 파티션의 로그 세그먼트를 검사하고 불필요한 부분을 삭제하기 위해 사용한다.</li>
+  <li>종료될 때는 로그 세그먼트 파일을 정상적으로 닫기 위해 사용된다.</li>
+</ol>
+
+<p>이 매개변수에 설정하는 스레드의 수는 log.dirs에 지정된 로그 디렉토리마다 다르게 적용된다. 예를 들어 log.dirs에 지정된 경로가 3개일 때 num.recovery.threads.per.data.dir 값이 8이면 스레드는 24개가된다.</p>
+
+<h3 id="autocreatetopicsenable">auto.create.topics.enable</h3>
+
+<p>default = true</p>
+
+<p>다음의 경우에 브로커는 자동으로 토픽을 생성한다.</p>
+
+<ol>
+  <li>프로듀서가 토픽에 메세지를 쓸 때</li>
+  <li>컨슈머가 토픽의 메세지를 읽기 시작할 때</li>
+  <li>클라이언트에서 토픽의 메타데이터를 요청할 때</li>
+</ol>
+
+<h3 id="numpartition">num.partition</h3>
+
+<p>default = 1</p>
+
+<p>새로운 토픽이 몇 개의 파티션으로 생성되는지 나타내며 <code class="highlighter-rouge">auto.create.topics.enable=true</code> 일 때 사용된다. 토픽의 파티션 개수는 증가만 가능하고 감소 될 수는 없다.</p>
+
+<h3 id="logretentionms">log.retention.ms</h3>
+
+<p>default = 168 ( 168 hours = 7days )</p>
+
+<p>카프카가 얼마동안 메세지를 보존할 지 정하는 매개변수다. 보통 <code class="highlighter-rouge">log.retention.hours</code> 를 사용하며 이외에도 다른 두 개의 매개변수인 <code class="highlighter-rouge">log.retention.minutes</code> 와 <code class="highlighter-rouge">log.retention.ms</code> 를 사용할 수 있다.</p>
+
+<p>만약 두 개 이상이 같이 지정되면 더 작은 시간 단위의 매개변수 값이 사용된다.</p>
+
+<h3 id="logretentionbytes">log.retention.bytes</h3>
+
+<p>default = 1073741824</p>
+
+<p>저장된 메세지들의 전체 크기를 기준으로 처리하는 방법이다. 이 값은 모든 파티션에 적용된다.</p>
+
+<p>예를 들어, 하나의 토픽이 8개의 파티션으로 구성되어 있고 이 값이 8GB로 설정되면 해당 토픽에 보존되는 메세지들의 전체 크기는 최대 8GB가 된다.</p>
+
+<h3 id="logsegmentbytes">log.segment.bytes</h3>
+
+<p>default = 1073741824</p>
+
+<p>앞에서 설명한 메세지 보존 설정은 개별적인 메세지가 아닌 로그 세그먼트 파일을 대상으로 처리된다. 메세지가 카프카 브로커에 생성될 때는 해당 파티션의 로그 세그먼트 파일 끝에 추가된다.</p>
+
+<p>이때 <code class="highlighter-rouge">log.sement.bytes</code> 매개변수에 지정된 크기가 되면 해당 로그 세그먼트 파일이 닫히고 새로운 것이 생성된다.</p>
+
+<h3 id="logsegmentms">log.segment.ms</h3>
+
+<p>default = NULL</p>
+
+<p>시간을 지정해서 로그 세그먼트 파일이 닫히는것을 제어 할 수 있다.</p>
+
+<h3 id="messagemaxbytes">message.max.bytes</h3>
+
+<p>default = NULL</p>
+
+<p>Kafka 브로커는 쓰려는 메세지의 최대 크기를 제한 할 수 있다. 이 값보다 큰 메세지를 전송할려면 프로듀서에게는 ㅡㅂ로커가 에러를 보내고 메세지를 받지 않는다.</p>
+
+
+	</div>
+
+</section>
+
+		</div>
+
+	</div>
+
+
+	<footer class="footer">
+
+	<ul class="socials">
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<li class="socials__item">
+		<a href="https://github.com/has3ong" target="_blank" class="socials__item__link" title="Github">
+			<i class="fab fa-github" aria-hidden="true"></i>
+		</a>
+	</li>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<li class="socials__item">
+		<a href="https://www.linkedin.com/in/%ED%95%98%EC%84%B1-%EA%B9%80-145aa21a0/" target="_blank" class="socials__item__link" title="Linkedin">
+			<i class="fab fa-linkedin" aria-hidden="true"></i>
+		</a>
+	</li>
+	
+	
+</ul>
+
+	<div class="footer__copyright">
+		<span>© 2020 Try</span>
+		Has3ong
+	</div>
+
+</footer>
+
+
+	<!-- Javascript Assets -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="/js/index-min.js"></script>
+
+	
+	<!-- Extra Footer JS Code -->
+	
+	
+
+
+</body>
+
+</html>

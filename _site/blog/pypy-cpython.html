@@ -1,0 +1,406 @@
+<!doctype html>
+
+<html class="no-js" lang="en">
+
+<head>
+
+
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+	Try
+
+	Index Theme by https://jekyllthemes.io
+	Premium + free Jekyll themes for your blog or website.
+
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+	<!-- Page Info -->
+	<link rel="shortcut icon" href="/images/icon.png">
+	<title>PyPy가 CPython 보다 빠른 이유 – Try</title>
+	<meta name="description" content="">
+
+	<!-- Twitter Card -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="PyPy가 CPython 보다 빠른 이유 – Try">
+	<meta name="twitter:description" content="">
+	<meta name="twitter:image:src" content="">
+
+	<!-- Facebook OpenGraph -->
+	<meta property="og:title" content="PyPy가 CPython 보다 빠른 이유 – Try" />
+	<meta property="og:description" content="" />
+	<meta property="og:image" content="" />
+
+	
+	<!-- Font Embed Code -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,500" rel="stylesheet">
+	
+
+	<!-- Styles -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<!-- Icons -->
+	<script defer src="https://use.fontawesome.com/releases/v5.1.1/js/solid.js" integrity="sha384-GXi56ipjsBwAe6v5X4xSrVNXGOmpdJYZEEh/0/GqJ3JTHsfDsF8v0YQvZCJYAiGu" crossorigin="anonymous"></script>
+	<script defer src="https://use.fontawesome.com/releases/v5.1.1/js/brands.js" integrity="sha384-0inRy4HkP0hJ038ZyfQ4vLl+F4POKbqnaUB6ewmU4dWP0ki8Q27A0VFiVRIpscvL" crossorigin="anonymous"></script>
+	<script defer src="https://use.fontawesome.com/releases/v5.1.1/js/fontawesome.js" integrity="sha384-NY6PHjYLP2f+gL3uaVfqUZImmw71ArL9+Roi9o+I4+RBqArA2CfW1sJ1wkABFfPe" crossorigin="anonymous"></script>
+
+	
+	<!-- Custom Styles -->
+	<style></style>
+	
+
+	
+	<!-- Analytics Code -->
+	
+	
+
+	
+	<!-- Extra Header JS Code -->
+	
+	
+	
+</head>
+
+
+<body class="loading ajax-loading" data-site-url="http://localhost:4000" data-page-url="/blog/pypy-cpython">
+
+
+	<header class="header">
+
+	<div class="header__content">
+
+		
+		<a href="/" class="header__title">
+			Try
+		</a>
+		
+
+		<h1 class="header__tagline">The man who moves a mountain begins by carrying away small stones. - Confucius</h1>
+
+		<div class="menu">
+			<div class="menu__toggle js-menu-toggle">
+				<div class="menu__toggle__icon"><span></span></div>
+			</div>
+			<div class="menu__wrap">
+				<ul class="menu__list">
+					
+					<li class="menu__list__item">
+						<a href="/about" class="menu__list__item__link">About</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/apache" class="menu__list__item__link">Apache</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/blockchain" class="menu__list__item__link">BlockChain</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/computerscience" class="menu__list__item__link">Computer Science</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/database" class="menu__list__item__link">DataBase</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/devops" class="menu__list__item__link">DevOps</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/imageprocessing" class="menu__list__item__link">Image Processing</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/machinelearning" class="menu__list__item__link">Machine Learning</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/programming" class="menu__list__item__link">Programming</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/softwaremaestro" class="menu__list__item__link">SW Maestro</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/web" class="menu__list__item__link">Web</a>
+					</li>
+					
+				</ul>
+			</div>
+		</div>
+
+		<div class="projects-menu">
+			<ul class="menu__list">
+				
+			</ul>
+		</div>
+
+		<div class="header__lower">
+
+			<ul class="socials">
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<li class="socials__item">
+		<a href="https://github.com/has3ong" target="_blank" class="socials__item__link" title="Github">
+			<i class="fab fa-github" aria-hidden="true"></i>
+		</a>
+	</li>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<li class="socials__item">
+		<a href="https://www.linkedin.com/in/%ED%95%98%EC%84%B1-%EA%B9%80-145aa21a0/" target="_blank" class="socials__item__link" title="Linkedin">
+			<i class="fab fa-linkedin" aria-hidden="true"></i>
+		</a>
+	</li>
+	
+	
+</ul>
+
+			<div class="footer__copyright">
+				<span>© 2020 Try</span>
+				Has3ong
+			</div>
+
+		</div>
+
+	</div>
+
+</header>
+
+
+	<div class="loader"><svg width="120" height="30" viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg"><circle cx="15" cy="15" r="15"><animate attributeName="r" from="15" to="15" begin="0s" dur="0.8s" values="15;9;15" calcMode="linear" repeatCount="indefinite" /><animate attributeName="fill-opacity" from="1" to="1" begin="0s" dur="0.8s" values="1;.5;1" calcMode="linear" repeatCount="indefinite" /></circle><circle cx="60" cy="15" r="9" fill-opacity="0.3"><animate attributeName="r" from="9" to="9" begin="0s" dur="0.8s" values="9;15;9" calcMode="linear" repeatCount="indefinite" /><animate attributeName="fill-opacity" from="0.5" to="0.5" begin="0s" dur="0.8s" values=".5;1;.5" calcMode="linear" repeatCount="indefinite" /></circle><circle cx="105" cy="15" r="15"><animate attributeName="r" from="15" to="15" begin="0s" dur="0.8s" values="15;9;15" calcMode="linear" repeatCount="indefinite" /><animate attributeName="fill-opacity" from="1" to="1" begin="0s" dur="0.8s" values="1;.5;1" calcMode="linear" repeatCount="indefinite" /></circle></svg></div>
+
+	<div class="page-loader"></div>
+
+	
+	<div class="page">
+
+		<div class="page__content" data-page-title="PyPy가 CPython 보다 빠른 이유 – Try">
+
+			<section class="intro">
+
+	<div class="wrap">
+
+		<h1>PyPy가 CPython 보다 빠른 이유</h1>
+		<p>26 November 2019</p>
+
+	</div>
+
+</section>
+
+<section class="single">
+
+	<div class="wrap">
+
+		<h2 id="pypy">PyPy</h2>
+
+<p>PyPy는 유연함과 쉬운 실험을 위해 파이썬 프로그래밍 언어 자체로 작성된 파이썬 구현체이다. 이 프로젝트의 목적 중 하나는 최적화된 PyPy의 파이썬 구현이 현재의 C 구현보다 빠르도록 하는 것이다. PyPy 자체는 파이썬 언어의 부분집합인 RPython으로 구현되어 있다.</p>
+
+<p>PyPy는 파이썬 코드를 기계어나 다른 저급 언어로 자동 번역하는 저스트 인 타임 컴파일러 기능을 포함하고 있는데, 특이한 점은 JIT 컴파일러 자체가 JIT 컴파일러 생성기로부터 — PyPy RPython 코드를 분석하여 — 자동생성된다는 점이다.</p>
+
+<p>벤치마크 대상에 따라 다르긴 하지만 PyPy 1.4 버전부터 CPython보다 나은 성능을 보인다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/69623825-e57c1d80-1086-11ea-9324-23c56fa65b7f.png" alt="image" /></p>
+
+<h2 id="cpython">CPython</h2>
+
+<p>CPython 은 Python 프로그래밍 언어 의 참조 구현 입니다 . C 와 Python으로 작성된 CPython은 기본적으로 가장 널리 사용되는 언어 구현입니다.</p>
+
+<p>CPython의 특정 기능은 각 CPython 인터프리터 프로세스 에서 GIL ( Global Interpreter Lock ) 을 사용한다는 것입니다. 즉, 단일 프로세스 내에서 한 번에 하나의 스레드 만 Python 바이트 코드를 처리 할 수 있습니다. 이것은 멀티 스레딩에 아무런 의미가 없다는 것을 의미하지는 않습니다. 가장 일반적인 멀티 스레딩 시나리오는 스레드가 대부분 외부 프로세스가 완료되기를 기다리는 경우입니다.</p>
+
+<h2 id="pypy-vs-cpython">PyPy vs CPython</h2>
+
+<p>간단히 말하면 CPython 은 일반적인 인터프리터인데 반해 PyPy 는 실행 추적 JIT(Just In Time) 컴파일을 제공하는 인터프리터기 때문이다. PyPy 는 RPython 으로 컴파일된 인터프리터인데, C 로 작성된 RPython 툴체인으로 인터프리터 소스에 JIT 컴파일을 위한 힌트를 추가해 CPython 보다 빠른 실행 속도를 가질 수 있게 되었다.</p>
+
+<p>실제로 PyPy가 하는 일은 크게 두 가지이다.</p>
+
+<ol>
+  <li>RPython 언어로 동적 언어의 인터프리터를 구현할 수 있게 해주는 프레임워크</li>
+  <li>RPython으로 구현된 Python</li>
+</ol>
+
+<h2 id="jit-just-in-time">JIT (Just-In-Time)</h2>
+
+<p>동적 번역(dynamic translation)은 프로그램을 실제 실행하는 시점에 기계어로 번역하는 컴파일 기법이다. 이 기법은 프로그램의 실행 속도를 빠르게 하기 위해 사용된다.</p>
+
+<h3 id="인터프리터-방식과-비교">인터프리터 방식과 비교</h3>
+
+<p><strong>인터프리터</strong></p>
+
+<p>바이트코드 명령어를 하나씩 읽어서 해석하고 실행한다. 하나씩 해석하고 실행하기 때문에 바이트코드 하나하나의 해석은 빠른 대신 인터프리팅 결과의 실행은 느리다는 단점을 가지고 있다.</p>
+
+<p>흔히 얘기하는 인터프리터 언어의 단점을 그대로 가지는 것이다. 즉, 바이트코드라는 ‘언어’는 기본적으로 인터프리터 방식으로 동작한다.  (python 과 동치)</p>
+
+<p><strong>JIT(Just-In-Time) 컴파일러</strong></p>
+
+<p>인터프리터의 단점을 보완하기 위해 도입된 것이 JIT 컴파일러이다. 인터프리터 방식으로 실행하다가 적절한 시점에 바이트코드 전체를 컴파일하여 네이티브 코드로 변경하고, 이후에는 해당 메서드를 더 이상 인터프리팅하지 않고 네이티브 코드로 직접 실행하는 방식이다.</p>
+
+<p>네이티브 코드를 실행하는 것이 하나씩 인터프리팅하는 것보다 빠르고, 네이티브 코드는 캐시에 보관하기 때문에 한 번 컴파일된 코드는 계속 빠르게 수행되게 된다. (pypy 와 동치)</p>
+
+<blockquote>
+  <p>추가 자료</p>
+</blockquote>
+
+<h2 id="rpythonrestricted-python">RPython(Restricted Python)</h2>
+
+<p>RPython은 이런 실행 추적 JIT 컴파일을 C 로 구현해 툴체인을 포함한다. 그래서 RPython 으로 인터프리터를 작성하고 툴체인으로 힌트를 추가하면 인터프리터에 실행추적 JIT 컴파일러를 빌드한다. 참고로 RPython 은 PyPy 프로젝트 팀이 만든 일종의 인터프리터 제작 프레임워크(언어)다. 동적 언어인 Python 에서 표준 라이브러리와 문법에 제약을 가해 변수의 정적 컴파일이 가능하도록 RPython 을 만들었으며, 동적 언어 인터프리터를 구현하는데 사용된다.</p>
+
+<p>이렇게 언어 사양(파이썬 언어 규칙, BF 언어 규칙 등)과 구현(실제 인터프리터 제작)을 분리함으로써 어떤 동적 언어에 대해서라도 자동으로 JIT(Just-in-Time) 컴파일러를 생성할 수 있게 되었다.</p>
+
+
+	</div>
+
+</section>
+
+		</div>
+
+	</div>
+
+
+	<footer class="footer">
+
+	<ul class="socials">
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<li class="socials__item">
+		<a href="https://github.com/has3ong" target="_blank" class="socials__item__link" title="Github">
+			<i class="fab fa-github" aria-hidden="true"></i>
+		</a>
+	</li>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<li class="socials__item">
+		<a href="https://www.linkedin.com/in/%ED%95%98%EC%84%B1-%EA%B9%80-145aa21a0/" target="_blank" class="socials__item__link" title="Linkedin">
+			<i class="fab fa-linkedin" aria-hidden="true"></i>
+		</a>
+	</li>
+	
+	
+</ul>
+
+	<div class="footer__copyright">
+		<span>© 2020 Try</span>
+		Has3ong
+	</div>
+
+</footer>
+
+
+	<!-- Javascript Assets -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="/js/index-min.js"></script>
+
+	
+	<!-- Extra Footer JS Code -->
+	
+	
+
+
+</body>
+
+</html>
