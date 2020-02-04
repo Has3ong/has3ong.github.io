@@ -87,6 +87,13 @@
 
 	</div>
 
+	{% if page.comments %}
+	<div class="container content">
+  		{{ content }}
+  		{% include comments.html %}
+	</div>
+	{% endif %}
+
 
 	{% include footer.html %}
 
