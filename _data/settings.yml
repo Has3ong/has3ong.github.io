@@ -11,6 +11,8 @@ menu_settings:
   menu_items:
     - title: 'About'
       url: '/about'
+    - title: 'BlockChain'
+      url: '/blockchain'
 
 grid_settings:
   overlay_opacity: 0.8
