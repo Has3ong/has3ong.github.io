@@ -11,8 +11,26 @@ menu_settings:
   menu_items:
     - title: 'About'
       url: '/about'
+    - title: 'Apache'
+      url: '/apache'
     - title: 'BlockChain'
       url: '/blockchain'
+    - title: 'Computer Science'
+      url: '/computerscience'
+    - title: 'DataBase'
+      url: '/database'
+    - title: 'DevOps'
+      url: '/devops'
+    - title: 'Image Processing'
+      url: '/imageprocessing'
+    - title: 'Machine Learning'
+      url: '/machinelearning'
+    - title: 'Programming'
+      url: '/programming'
+    - title: 'SW Maestro'
+      url: '/softwaremaestro'
+    - title: 'Web'
+      url: '/web'
 
 grid_settings:
   overlay_opacity: 0.8
