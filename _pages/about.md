@@ -1,35 +1,27 @@
 ---
-title: About Index
-subtitle: Index is a minimal, fixed sidebar grid portfolio Jekyll theme. Perfect for designers, artists, photographers and developers to use for their portfolio website.
-description: Index is a minimal, fixed sidebar grid portfolio Jekyll theme.
-featured_image: /images/demo/demo-landscape.jpg
+title: About
 ---
 
-![](/images/demo/demo-landscape.jpg)
+### Introduction
 
-## Features
+* 수원대학교 정보미디어 학과 2019-2 졸업
+* BaekJoon Online Judge [ID](https://www.acmicpc.net/user/khsh5592), [수원대학교](https://www.acmicpc.net/school/ranklist/318)
+* SW Maestro 10th [post](/swm)
 
-Index is packed with powerful features to showcase your work:
+### Project
 
-* Beautiful, minimal design
-* Fixed sidebar menu
-* Two-column masonry grid layout
-* Responsive – works perfectly on all devices
-* Portfolio post type
-* Blog with pagination
-* Sleek Ajax navigation and page transitions
-* Unique 'gallery' feature for image grids and carousels
-* Built-in contact form with Formspree integration
-* Full markdown support and code highlighting
-* Social media icons
-* Fast page rendering
-* Built with SEO best practices in mind
-* Customize everything – colors, spacing, fonts, sizes etc. – via a simple settings file
-* Works with GitHub Pages
-* Updated and supported by the developers
+* 한이음 - X3D기반 VR 뷰어 개발 [YouTube](https://www.youtube.com/watch?v=O5kM5Mld0Lg&t=43s)
+* 카카오톡 플러스친구 - [수원대학교 알림이](https://pf.kakao.com/_pGVQj), [Github](https://github.com/Has3ong/KaKao_Suwon), [Docker](https://hub.docker.com/repository/docker/khsh5592/suwon-kakaoplus)
+* ISO / IEC 19777-6 - [X3D SAI Python Language Binding](https://sourceforge.net/p/x3d/code/HEAD/tree/www.web3d.org/x3d/languages/python/X3dPythonViewer/)
 
-## Get Index
+### Contact
 
-Index is created and supported by [Jekyll Themes](https://jekyllthemes.io), and is available for $49.
+* Email : gnoesah@gmail.com
 
-<a href="https://jekyllthemes.io/theme/index-portfolio-jekyll-theme" class="button button--large">Get This Theme</a>
+### Comment
+
+* 취업 준비 및 자기개발을 위해 만든 블로그입니다. 포스트에 관한 모든 지적과 피드백 남겨주시면 감사히 받겠습니다. 
+
+### Reference
+
+Contents Refrences [this](/references)
