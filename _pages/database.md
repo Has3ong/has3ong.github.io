@@ -4,10 +4,10 @@ title: "DataBase"
 
 ## MySQL
 
-* [Linux Ubuntu MySQL install](/ubuntu-mysqlinstall)
+* [Linux Ubuntu MySQL install](/blog/ubuntu-mysqlinstall)
 
 ## MongoDB
 
-* [Linux Ubuntu MongoDB install](/ubuntu-mongodbinstall)
+* [Linux Ubuntu MongoDB install](/blog/ubuntu-mongodbinstall)
 
 ## References

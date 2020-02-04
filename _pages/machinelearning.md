@@ -8,16 +8,16 @@ title: "Machine Learning"
 
 ## Machine Learning
 
-* [Supervised Learning / Unsupervised Learning](/supervised-unsupervised)
+* [Supervised Learning / Unsupervised Learning](/blog/supervised-unsupervised)
 
 ## Keras
 
-* [Keras Linear Regression Analysis](/keras-linearregression)
-* [Keras Classification Analysis](/keras-classification)
+* [Keras Linear Regression Analysis](/blog/keras-linearregression)
+* [Keras Classification Analysis](/blog/keras-classification)
 
 ## Tensorflow
 
-* [Tensorflow Linear Regression Analysis](/tf-linearregression)
+* [Tensorflow Linear Regression Analysis](/blog/tf-linearregression)
 
 ## PyTorch
 
