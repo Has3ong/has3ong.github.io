@@ -138,6 +138,10 @@
 						<a href="/web" class="menu__list__item__link">Web</a>
 					</li>
 					
+					<li class="menu__list__item">
+						<a href="/tags" class="menu__list__item__link">Tag</a>
+					</li>
+					
 				</ul>
 			</div>
 		</div>
@@ -245,6 +249,17 @@
 
 		<h1>Java equals()와 == 의 차이점</h1>
 		<p>23 November 2019</p>
+		<br/>
+        <div class="post-tags">
+  > Tags -
+  
+  
+  <a href="/tags/#Java">Java</a>,
+  
+  <a href="/tags/#equals()">equals()</a>
+  
+</div>
+<br/>
 
 	</div>
 
@@ -309,6 +324,7 @@ bString == cString : false
 <p>만약 존재하면 <code class="highlighter-rouge">bString</code>를 따로 저장하는게 아니라, 기존에 저장된 “Hello World”객체를 참조합니다. 즉, <code class="highlighter-rouge">aString</code>과 <code class="highlighter-rouge">bString</code>는 완전 똑같은 객체입니다. 그래서 <code class="highlighter-rouge">aString</code> == <code class="highlighter-rouge">bString</code> 조차도 주소값이 같으므로 <strong>true</strong>가 나옵니다.</p>
 
 <p><code class="highlighter-rouge">cString</code>처럼 new를 이용해 선언하면 이 String객체는 Heap영역에 저장됩니다. 즉, Constant Pool에 저장된 <code class="highlighter-rouge">aString</code>, <code class="highlighter-rouge">bString</code>와는 주소값이 다릅니다. 그래서 <code class="highlighter-rouge">aString</code> != <code class="highlighter-rouge">cString</code> 이 됩니다.</p>
+
 
 		<div id="disqus_thread"></div>
 <script>

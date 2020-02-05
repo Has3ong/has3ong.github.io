@@ -33,6 +33,8 @@ menu_settings:
       url: '/softwaremaestro'
     - title: 'Web'
       url: '/web'
+    - title: 'Tag'
+      url: 'tags'
 
 grid_settings:
   overlay_opacity: 0.8

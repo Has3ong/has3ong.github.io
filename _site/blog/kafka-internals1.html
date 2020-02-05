@@ -138,6 +138,10 @@
 						<a href="/web" class="menu__list__item__link">Web</a>
 					</li>
 					
+					<li class="menu__list__item">
+						<a href="/tags" class="menu__list__item__link">Tag</a>
+					</li>
+					
 				</ul>
 			</div>
 		</div>
@@ -245,6 +249,19 @@
 
 		<h1>Apache Kafka Internals -1-</h1>
 		<p>14 December 2019</p>
+		<br/>
+        <div class="post-tags">
+  > Tags -
+  
+  
+  <a href="/tags/#Zookeeper">Zookeeper</a>,
+  
+  <a href="/tags/#Kafka">Kafka</a>,
+  
+  <a href="/tags/#Apache">Apache</a>
+  
+</div>
+<br/>
 
 	</div>
 
@@ -303,6 +320,7 @@
 <p>컨트롤러는 매번 선출될 때마다 Zookeeper 로부터 새로운 컨트롤러 세대 번호를 받으며, 나머지 브로커들은 현재의 컨트롤러 세대 번호를 알게됩니다. 따라서 변경 전의 컨트롤러 번호의 메세지는 받게되면 무시하게됩니다.</p>
 
 <p>관련 Zookeeper 경로를 Watch 하여 특정 브로커가 클러스터를 떠났다는 것을 컨트롤러가 인지하면 브로커가 할당되었던 모든 파티션들에 새로운 리더가 필요하다는것을 알게된다. 그 다음에 컨트롤러는 새로운 리더가 필요한 파티션들을 점검하고 새로 리더가 될 브로커를 결정합니다. 그리고 컨트롤러는 파티션들의 새로운 리더들과 팔로워 들의 정보를 모든 브로커들에게 전송을 합니다.</p>
+
 
 
 		<div id="disqus_thread"></div>

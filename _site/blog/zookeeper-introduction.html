@@ -138,6 +138,10 @@
 						<a href="/web" class="menu__list__item__link">Web</a>
 					</li>
 					
+					<li class="menu__list__item">
+						<a href="/tags" class="menu__list__item__link">Tag</a>
+					</li>
+					
 				</ul>
 			</div>
 		</div>
@@ -245,6 +249,17 @@
 
 		<h1>Zookeeper Introduction</h1>
 		<p>26 October 2019</p>
+		<br/>
+        <div class="post-tags">
+  > Tags -
+  
+  
+  <a href="/tags/#Apache">Apache</a>,
+  
+  <a href="/tags/#Zookeeper">Zookeeper</a>
+  
+</div>
+<br/>
 
 	</div>
 
@@ -342,6 +357,7 @@
 <p>Sequential znode는 영속적일 수도 임시적일 수도 있습니다. Sequential znode가 만들어 질 때 주키퍼 데이터 모델 상에서 이 znode는 10자리 연속된 숫자를 가지고 있는 이름을 가지고 만들어 집니다.</p>
 
 <p>예를들어 /app 이라는 Sequential znode를 만들면 app0000000001 로 자동적으로 만들어지는 형식입니다. 그리고 다음에는 0000000002이 znode가 만들어 지죠. 이 두 znode들은 동시에 만들어지기 때문에 주키퍼는 똑같은 이름의 노드를 쓸 일이 없습니다. 이 Sequential znode는 lock을 구현하거나 글로벌 큐(global queue)를 구현할 때 요긴하게 사용됩니다.</p>
+
 
 
 		<div id="disqus_thread"></div>

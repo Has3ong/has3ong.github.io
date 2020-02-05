@@ -138,6 +138,10 @@
 						<a href="/web" class="menu__list__item__link">Web</a>
 					</li>
 					
+					<li class="menu__list__item">
+						<a href="/tags" class="menu__list__item__link">Tag</a>
+					</li>
+					
 				</ul>
 			</div>
 		</div>
@@ -245,6 +249,23 @@
 
 		<h1>Critical Section</h1>
 		<p>08 November 2019</p>
+		<br/>
+        <div class="post-tags">
+  > Tags -
+  
+  
+  <a href="/tags/#Critical Section">Critical Section</a>,
+  
+  <a href="/tags/#Semaphores">Semaphores</a>,
+  
+  <a href="/tags/#Mutex">Mutex</a>,
+  
+  <a href="/tags/#Operation System">Operation System</a>,
+  
+  <a href="/tags/#Computer Science">Computer Science</a>
+  
+</div>
+<br/>
 
 	</div>
 
@@ -385,6 +406,7 @@ procedure V(S) --&gt; 현재상태는 S가 0임
 <p>자바의 모든 객체는 모니터가 될 수 있다. 배타 동기는 synchronized 키워드를 사용해서 지정할 수 있고 조건 동기는 wait()함수와 notify()함수, notifyAll()함수를 사용한다. 배타 동기를 지정하는 함수들은 공통 자원을 사용하고 있는 경우이다. 공통 자원을 사용할 경우 배타 동기를 선언하는 synchronized라는 키워드를 적어주기만 하면 상호배타의 원리를 만족시키는 함수로 만들어준다. 조건 동기의 경우 wait()함수를 실행하면 진입한 쓰레드를 조건 동기 queue에 블록을 시킨다. notify()함수는 그렇게 블록된 함수를 깨우는데 새로운 쓰레드가 실행하는 방식으로 깨우게 된다. notifyAll()은 모든 쓰레드를 깨우는 것으로 사용할 수 있다.</p>
 
 <p>세마포의 경우와 비교를 해볼 수 있다. 세마포의 경우 임계구역 앞에 설치되어 초기 값을 설정해 들어갈 수 있는 한계를 놓는다. 들어갈 때 acquire()명령하고 나올 때는 release()명령을 실행시켜 주어야한다. 하지만 이런 관계를 기억하는 것이 힘들다. 이와 반대로 모니터는 따로 명령을 불러줄 필요 없이 함수에 synchronized만 붙여 넣으면 상호배타의 기능을 수행할 수 있다.</p>
+
 
 		<div id="disqus_thread"></div>
 <script>

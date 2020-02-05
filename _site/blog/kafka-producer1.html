@@ -138,6 +138,10 @@
 						<a href="/web" class="menu__list__item__link">Web</a>
 					</li>
 					
+					<li class="menu__list__item">
+						<a href="/tags" class="menu__list__item__link">Tag</a>
+					</li>
+					
 				</ul>
 			</div>
 		</div>
@@ -245,6 +249,19 @@
 
 		<h1>Apache Kafka Producer -1-</h1>
 		<p>05 December 2019</p>
+		<br/>
+        <div class="post-tags">
+  > Tags -
+  
+  
+  <a href="/tags/#Producer">Producer</a>,
+  
+  <a href="/tags/#Kafka">Kafka</a>,
+  
+  <a href="/tags/#Apache">Apache</a>
+  
+</div>
+<br/>
 
 	</div>
 
@@ -357,6 +374,7 @@ Producer&lt;String, String&gt; producer <span class="o">=</span>
 <p><code class="highlighter-rouge">send()</code> 메소드를 호출하여 메세지를 전송할 때 콜백 객체를 인자로 전달한다. 따라서 Kafka가 메세지를 쓴 후 응답을 반환할 때는 이 객체의 <code class="highlighter-rouge">onCompletion()</code> 메소드가 자동으로 호출된다. 만약 kafka가 에러를 반환하면 <code class="highlighter-rouge">onCompletion()</code> 메소드에서 예외를 받게된다. 예외 처리는 위 두개의 예제와 동일하다.</p>
 
 <p>다음 포스트에서는 <code class="highlighter-rouge">bootstrap.servers</code>, <code class="highlighter-rouge">key.serialzer.value</code>, <code class="highlighter-rouge">value.serializer</code> 외에 프로듀서 구성 매개변수를 알아보겠습니다.</p>
+
 
 		<div id="disqus_thread"></div>
 <script>

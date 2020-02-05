@@ -138,6 +138,10 @@
 						<a href="/web" class="menu__list__item__link">Web</a>
 					</li>
 					
+					<li class="menu__list__item">
+						<a href="/tags" class="menu__list__item__link">Tag</a>
+					</li>
+					
 				</ul>
 			</div>
 		</div>
@@ -245,6 +249,19 @@
 
 		<h1>Apache Kafka Consumer -1-</h1>
 		<p>10 December 2019</p>
+		<br/>
+        <div class="post-tags">
+  > Tags -
+  
+  
+  <a href="/tags/#Consumer">Consumer</a>,
+  
+  <a href="/tags/#Kafka">Kafka</a>,
+  
+  <a href="/tags/#Apache">Apache</a>
+  
+</div>
+<br/>
 
 	</div>
 
@@ -319,6 +336,7 @@
 <p>하트비트는 컨슈머의 상태를 알리기 위해 전송되는 신호입니다. 하트비트가 일정시간 간격으로 전송된다면 해당 컨슈머는 정상적으로 동작하며, 자신의 파티션 메세지를 처리 가능한 것으로 간주됩니다. 하트비트는 컨슈머가 <strong>폴링(polling)</strong> 할 때 또는 읽은 메세지를 커밋할 때 자동 전송됩니다.</p>
 
 <p>만약 컨슈머가 세션 타임아웃 시간이 경과될 때 까지 하틥트 전송을 중단하면 GroupCoordinator가 해당 컨슈머를 중단된것으로 간주하고 리밸런싱을 시작시킵니다. 리밸런싱하는 동안에는 중단된 컨슈머가 소유한 파티션의 메세지가 처리되지 않습니다. 컨슈머가 정상적으로 종료될 때는 GroupCoordinator에게 떠나는것을 알려주며, 이때 GroupCoordinator는 처리 공백을 줄이기 위해 곧바로 리밸런싱을 시작시킵니다.</p>
+
 
 		<div id="disqus_thread"></div>
 <script>

@@ -138,6 +138,10 @@
 						<a href="/web" class="menu__list__item__link">Web</a>
 					</li>
 					
+					<li class="menu__list__item">
+						<a href="/tags" class="menu__list__item__link">Tag</a>
+					</li>
+					
 				</ul>
 			</div>
 		</div>
@@ -245,6 +249,21 @@
 
 		<h1>Apache Kafka Internals -2-</h1>
 		<p>14 December 2019</p>
+		<br/>
+        <div class="post-tags">
+  > Tags -
+  
+  
+  <a href="/tags/#ISR">ISR</a>,
+  
+  <a href="/tags/#Replica">Replica</a>,
+  
+  <a href="/tags/#Kafka">Kafka</a>,
+  
+  <a href="/tags/#Apache">Apache</a>
+  
+</div>
+<br/>
 
 	</div>
 
@@ -337,6 +356,7 @@
 <p>이번에는 반대로, follower 입장에서 보겠습니다. ISR 내 follower는 누구라도 leader가 될 수 있다는 조건이 있기 때문에 follower는 leader와 동일한 데이터를 유지하는 것이 매우 중요합니다. 따라서 follower는 leader를 계속 바라보면서 consumer들이 Kafka 에서 데이터를 pull로 가져는 것과 동일한 방법으로 주기적으로 데이터를 pull 합니다. 매우 짧은 주기마다 leader가 새로운 데이터를 받았는지 계속 체크하면서 leader와 동기화를 하게 됩니다.</p>
 
 <p>결국 동일한 ISR 내에서 leader와 follower는 데이터 정합성을 맞추기 위해 각자의 방식으로 서로를 계속 체크하고 있는 것입니다.</p>
+
 
 		<div id="disqus_thread"></div>
 <script>
