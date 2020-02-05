@@ -1,8 +1,7 @@
 ---
 title : Kafka Introduction -1-
 tags :
-- Pub / Sub
-- Publish / Subscribe System
+- Apache
 - Kafka
 ---
 

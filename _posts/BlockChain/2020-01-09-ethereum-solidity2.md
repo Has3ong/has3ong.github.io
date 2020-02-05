@@ -4,6 +4,7 @@ tags :
 - Solidity
 - Smart Contract
 - Ethereum
+- BlockChain
 ---
 
 ## Building a Smart Contract with Solidity

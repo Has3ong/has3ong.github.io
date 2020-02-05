@@ -4,6 +4,8 @@ tags :
 - Ubuntu
 - Docker Compose
 - Docker
+- Install
+- DevOps
 ---
 
 ## Install Docker

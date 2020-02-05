@@ -3,6 +3,7 @@ title : 메모리 관리
 tags:
 - Fragmentation
 - Paging
+- Computer Science
 ---
 
 ### 메모리 관리 배경

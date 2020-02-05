@@ -1,9 +1,10 @@
 ---
 title : Installing Hadoop on macOS
 tags :
-- macOs
+- macOS
 - Install
 - Hadoop
+- Apache
 ---
 
 > Java Version

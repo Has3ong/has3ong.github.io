@@ -4,6 +4,7 @@ tags :
 - Solidity
 - Smart Contract
 - Ethereum
+- BlockChain
 ---
 
 ## What Is a Smart Contract?

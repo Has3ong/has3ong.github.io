@@ -4,6 +4,8 @@ tags:
 - Data Link Layer
 - Parity Bit
 - Hamming Code
+- Network
+- Computer Science
 ---
 
 ## 데이터 링크 계층 (Data Link Layer)

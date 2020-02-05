@@ -1,14 +1,10 @@
 ---
 title : Ethereum Smart Contracts and Solidity -3-
 tags :
-- msg
-- tx
-- address
-- block
-- Data Type
 - Solidity
 - Smart Contract
 - Ethereum
+- BlockChain
 ---
 
 ## Programming with Solidity

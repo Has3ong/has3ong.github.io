@@ -3,6 +3,7 @@ title : Public Key / Private Key
 tags:
 - Public Key
 - Private Key
+- Computer Science
 --- 
 
 ## 공개 키 암호 방식 (Public-Key Cryptography)

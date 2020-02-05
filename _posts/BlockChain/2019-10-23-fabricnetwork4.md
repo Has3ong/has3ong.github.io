@@ -4,6 +4,7 @@ tags :
 - RAFT
 - BYFN
 - Hyperledger Fabric
+- BlockChain
 ---
 
 기존 포스트 까지는 orderer의 타입을 `solo`로와 `kafka` 놓고 진행했습니다. 이번 포스트에서는 `raft`를 이용해서 만들어 보겠습니다.

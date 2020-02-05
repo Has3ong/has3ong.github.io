@@ -1,5 +1,8 @@
 ---
 title : Hyperledger Network 로그
+tags:
+- Hyperledger Fabric
+- BlockChain
 ---
 
 > docker-compose -f docker-compose-kafka.yaml up

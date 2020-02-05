@@ -3,6 +3,7 @@ title : Virtual Memory
 tags:
 - Virtual Memory
 - Paging
+- Computer Science
 ---
 
 

@@ -3,6 +3,8 @@ title : Install MySQL on Ubuntu 18.04
 tags :
 - Ubuntu18.04
 - MySQL
+- DataBase
+- Install
 ---
 
 ## 1. Install MySQL

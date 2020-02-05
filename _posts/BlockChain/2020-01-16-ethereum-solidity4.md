@@ -1,12 +1,11 @@
 ---
 title : Ethereum Smart Contracts and Solidity -4-
 tags :
-- Contract selfdestruct
-- Contract Constructor
-- Contract Definition
+- Contract
 - Solidity
 - Smart Contract
 - Ethereum
+- BlockChain
 ---
 
 ## Contract Definition

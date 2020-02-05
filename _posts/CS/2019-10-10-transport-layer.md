@@ -4,6 +4,8 @@ tags:
 - Transport Layer
 - TCP
 - UDP
+- Network
+- Computer Science
 ---  
 
 ## 전송 계층(Transport Layer)

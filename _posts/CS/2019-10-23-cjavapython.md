@@ -4,6 +4,7 @@ tags :
 - Python
 - Java
 - C
+- Computer Science
 ---
 
 ## 컴파일러 언어 vs 인터프리터 언어

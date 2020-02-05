@@ -4,6 +4,7 @@ tags :
 - Keras
 - Classfication
 - Fashion MNIST Data
+- MachineLearning
 ---
 
 ## Classification Analysis

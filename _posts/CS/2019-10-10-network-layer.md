@@ -10,6 +10,7 @@ tags:
 - RARP
 - Routing
 - Subnet
+- Computer Science
 ---
 
 ## 네트워크 계층(Network Layer)

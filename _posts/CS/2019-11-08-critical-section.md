@@ -4,6 +4,8 @@ tags:
 - Critical Section
 - Semaphores
 - Mutex
+- Operation System
+- Computer Science
 ---  
 
 ## 동기화

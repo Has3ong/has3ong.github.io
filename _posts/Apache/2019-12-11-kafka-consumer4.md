@@ -1,9 +1,9 @@
 ---
 title : Apache Kafka Consumer -4-
 tags :
-- Rebalance Listeners
 - Consumer
 - Kafka
+- Apache
 ---
 
 *이 포스트는 [Kafka Definitive Guide](https://github.com/Avkash/mldl/blob/master/pages/docs/books/confluent-kafka-definitive-guide-complete.pdf)를 바탕으로 작성하였습니다.*

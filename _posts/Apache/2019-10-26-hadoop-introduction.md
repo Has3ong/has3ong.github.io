@@ -1,10 +1,8 @@
 ---
 title : Hadoop Introduction
 tags:
-- HDFS
+- Apache
 - Hadoop
-- NameNode
-- DataNode
 ---
 
 ## HDFS (Hadoop Distributed FileSystem)

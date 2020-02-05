@@ -6,6 +6,7 @@ tags:
 - IPC
 - Context Switching
 - DeadLock
+- Computer Science
 ---  
 
 ## 프로세스 vs 스레드

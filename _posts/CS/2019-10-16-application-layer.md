@@ -5,6 +5,8 @@ tags:
 - DHCP
 - HTTP
 - Application Layer
+- Network
+- Computer Science
 ---  
 
 ## 응용 계층 (Application Layer)

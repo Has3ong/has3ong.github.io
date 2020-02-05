@@ -4,6 +4,7 @@ tags:
 - Banker's Algorithm
 - DeadLock
 - DeadLock Avoidance
+- Algorithm
 ---  
 
 세마포어와 뮤텍스, DeadLock과 같은 개념을 모르신다면 [프로세스와 스레드](/process-thread)와 [임계영역](/critical-section)포스트를 보고오시면 됩니다.

@@ -4,6 +4,7 @@ tags :
 - mnemonic
 - Mnemonic Code Words (BIP-39)
 - Ethereum
+- BlockChain
 ---
 
 *이 포스트는 [Mastering Ethereum](https://github.com/ethereumbook/ethereumbook)를 바탕으로 작성하였습니다.*

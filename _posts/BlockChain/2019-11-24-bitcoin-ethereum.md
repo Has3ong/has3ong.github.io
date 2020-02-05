@@ -3,6 +3,7 @@ title : Bitcoin vs Ethereum
 tags :
 - Bitcoin
 - Ethereum
+- BlockChain
 ---
 
 ## Bitcoin

@@ -7,6 +7,8 @@ tags:
 - http 1.1
 - http 2.0
 - http 3.0
+- Network
+- Computer Science
 ---
 
 ## HTTP (HyperText Transfer Protocol)

@@ -1,14 +1,11 @@
 ---
 title : PySpark Install
-sidebar_main : true
-use_math : true
-header:
-  # teaser :
-  # overlay_image :
+tags :
+- python
+- spark
+- pyspark
+- install
 ---
-
-
-
 
 ### Version
 

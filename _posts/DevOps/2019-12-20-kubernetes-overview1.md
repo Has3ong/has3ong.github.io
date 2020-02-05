@@ -4,6 +4,7 @@ tags :
 - Orchestration
 - Container
 - Kubernetes
+- DevOps
 ---
 
 *이 포스트는 [Managing Kubernetes](https://go.heptio.com/rs/383-ENX-437/images/Managing_Kubernetes.pdf)를 바탕으로 작성하였습니다.*

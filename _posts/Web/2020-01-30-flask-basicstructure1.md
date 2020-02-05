@@ -1,8 +1,6 @@
 ---
 title : Basic Application Structure -1-
 tags :
-- Application
-- Initialization
 - Flask
 ---
 

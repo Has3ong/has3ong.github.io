@@ -1,6 +1,7 @@
 ---
 title : Python 현재 디렉토리 위치 구하기
 tags :
+- Diretory
 - Python
 ---
 

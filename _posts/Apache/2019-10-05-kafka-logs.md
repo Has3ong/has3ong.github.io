@@ -1,11 +1,5 @@
 ---
 title : Kafka, Zookeeper Server Start Log
-sidebar_main : true
-use_math : true
-header:
-  # teaser :
-  # overlay_image :
-
 ---
 
 * Zookeeper Server Start

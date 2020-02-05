@@ -1,9 +1,8 @@
 ---
 title : Hadoop Distributed FileSystem
 tags :
-- datanode
-- namenode
 - Hadoop
+- Apache
 ---
 
 *이 포스트는 [Hadoop The Definitive Guide, 4th Edition](https://github.com/Farheen2302/hadoop-project/blob/master/hadoop_reading/Hadoop%20The%20Definitive%20Guide%2C%204th%20Edition.pdf)를 바탕으로 작성하였습니다.*

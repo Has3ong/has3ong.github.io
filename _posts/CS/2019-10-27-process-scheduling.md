@@ -3,6 +3,7 @@ title : Process Scheduling
 tags:
 - Process
 - Scheduling
+- Computer Science
 ---
 
 ## 프로세스 스케쥴링(Process Scheduling)

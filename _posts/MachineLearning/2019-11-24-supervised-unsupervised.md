@@ -3,6 +3,7 @@ title : Supervised Learning / Unsupervised Learning
 tags :
 - Supervised Learning
 - Unsupervised Learning
+- MachineLearning
 ---
 
 ## 머신러닝

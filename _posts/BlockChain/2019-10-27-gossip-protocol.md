@@ -2,7 +2,8 @@
 title : Gossip Protocol
 tags :
 - Gossip Protocol
-- Fabric
+- Hyperledger Fabric
+- BlockChain
 ---
 
 ## Gossip Protocol

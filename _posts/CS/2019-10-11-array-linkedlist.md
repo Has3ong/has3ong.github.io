@@ -3,6 +3,7 @@ title : Array / Linked List
 tags:
 - Array
 - Linked List
+- Data Structure
 ---  
 
 ## 배열(Array)

@@ -3,6 +3,7 @@ title : Stack / Queue
 tags:
 - Stack
 - Queue
+- Data Structure
 ---  
 
 ## 스택 (Stack)

@@ -2,7 +2,7 @@
 title : Public 블록체인 vs Private 블록체인
 tags :
 - Ethereum
-- Hyperledger
+- Hyperledger Fabric
 - Public
 - Private
 - BlockChain

@@ -1,7 +1,6 @@
 ---
 title : Basic Application Structure -2-
 tags :
-- Flask-Script
 - Response
 - Request
 - Flask

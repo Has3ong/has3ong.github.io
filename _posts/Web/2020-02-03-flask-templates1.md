@@ -1,10 +1,6 @@
          ---
 title : Templates -1-
 tags :
-- Bootstarp
-- Control Structure
-- Variable
-- Jinja2
 - Template
 - Flask
 ---

@@ -1,7 +1,8 @@
 ---
 title : Hyperledger Fabric Introduction
-use_math : true
-comments: true
+tags:
+- Hyperledger Fabric
+- BlockChain
 ---
 
 ## Hyperledger

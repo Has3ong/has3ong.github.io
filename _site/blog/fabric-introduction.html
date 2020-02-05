@@ -64,30 +64,6 @@
 	
 
 	
-  	<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-    TeX: {
-      equationNumbers: {
-        autoNumber: "AMS"
-      }
-    },
-    tex2jax: {
-    inlineMath: [ ['$', '$'] ],
-    displayMath: [ ['$$', '$$'] ],
-    processEscapes: true,
-  }
-});
-MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
-	  alert("Math Processing Error: "+message[1]);
-	});
-MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
-	  alert("Math Processing Error: "+message[1]);
-	});
-</script>
-<script type="text/javascript" async
-  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-	
 	
 </head>
 
@@ -140,6 +116,10 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 					
 					<li class="menu__list__item">
 						<a href="/imageprocessing" class="menu__list__item__link">Image Processing</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/linux" class="menu__list__item__link">Linux</a>
 					</li>
 					
 					<li class="menu__list__item">
@@ -384,14 +364,7 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 <p>각 피어는 최종 검증을 마친 블럭을 채널 내 체인에 붙입니다. 그리고 유효한 트랜잭션의 경우 write-set이 state DB에 입력됩니다. 일련의 과정이 마무리되면 이벤트를 발생시켜 클라이언트에게 작업 결과에 대해 알립니다.</p>
 
 
-
-	</div>
-
-
-
-</section>
-			
-				<div id="disqus_thread"></div>
+		<div id="disqus_thread"></div>
 <script>
 
 /**
@@ -411,7 +384,12 @@ s.setAttribute('data-timestamp', +new Date());
 })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-			
+	</div>
+
+
+
+</section>
+
 
 		</div>
 

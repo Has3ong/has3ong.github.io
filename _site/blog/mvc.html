@@ -64,30 +64,6 @@
 	
 
 	
-  	<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-    TeX: {
-      equationNumbers: {
-        autoNumber: "AMS"
-      }
-    },
-    tex2jax: {
-    inlineMath: [ ['$', '$'] ],
-    displayMath: [ ['$$', '$$'] ],
-    processEscapes: true,
-  }
-});
-MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
-	  alert("Math Processing Error: "+message[1]);
-	});
-MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
-	  alert("Math Processing Error: "+message[1]);
-	});
-</script>
-<script type="text/javascript" async
-  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-	
 	
 </head>
 
@@ -140,6 +116,10 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 					
 					<li class="menu__list__item">
 						<a href="/imageprocessing" class="menu__list__item__link">Image Processing</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/linux" class="menu__list__item__link">Linux</a>
 					</li>
 					
 					<li class="menu__list__item">
@@ -324,14 +304,7 @@ input 텍스트, 체크박스 항목 등과 같은 사용자 인터페이스 요
 <p>MVC1과 달리 클라이언트의 요청을 Servlet(Controller)가 받게됩니다. Servlet이 클라이언트의 요청을 처리한 후 그 결과를 JSP(View)에게 포워딩 하게됩니다. 이는 클라이언트의 요청처리와 응답처리, 로직 처리를 전부 분담하게 됩니다.
 그로 인해 유지보수와 확장이 용이하지만, 구조 설계를 위한 시간이 소요되므로 개발 기간의 증대로 이루어집니다.</p>
 
-
-	</div>
-
-
-
-</section>
-			
-				<div id="disqus_thread"></div>
+		<div id="disqus_thread"></div>
 <script>
 
 /**
@@ -351,7 +324,12 @@ s.setAttribute('data-timestamp', +new Date());
 })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-			
+	</div>
+
+
+
+</section>
+
 
 		</div>
 

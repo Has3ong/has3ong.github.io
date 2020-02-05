@@ -1,10 +1,7 @@
 ---
 title : Templates -2-
 tags :
-- Flask-Moment
-- Static Files
-- Custom Error Pages
-- Link
+- Template
 - Flask
 ---
 

@@ -1,13 +1,10 @@
 ---
 title : Ethereum Smart Contracts and Solidity -5-
 tags :
-- Event
-- Error Handling
-- Inheritance
-- Function Modifier
 - Solidity
 - Smart Contract
 - Ethereum
+- BlockChain
 ---
 
 ### Function Modifiers

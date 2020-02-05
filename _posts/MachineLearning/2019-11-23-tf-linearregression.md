@@ -3,6 +3,7 @@ title : Tensorflow Linear Regression Analysis
 tags :
 - Keras
 - Linear Regression
+- MachineLearning
 ---
 
 통계학에서, 선형 회귀는 종속 변수 y와 한 개 이상의 독립 변수 (또는 설명 변수) X와의 선형 상관 관계를 모델링하는 회귀분석 기법이다. 한 개의 설명 변수에 기반한 경우에는 단순 선형 회귀, 둘 이상의 설명 변수에 기반한 경우에는 다중 선형 회귀라고 한다.

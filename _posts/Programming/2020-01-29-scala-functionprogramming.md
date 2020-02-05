@@ -1,11 +1,8 @@
 ---
 title : Scala 다양한 함수
 tags :
-- 익명함수
 - anonymous function
-- 순수함수
 - pure function
-- 고차함수
 - higher-order function
 - Scala
 ---

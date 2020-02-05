@@ -64,30 +64,6 @@
 	
 
 	
-  	<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-    TeX: {
-      equationNumbers: {
-        autoNumber: "AMS"
-      }
-    },
-    tex2jax: {
-    inlineMath: [ ['$', '$'] ],
-    displayMath: [ ['$$', '$$'] ],
-    processEscapes: true,
-  }
-});
-MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
-	  alert("Math Processing Error: "+message[1]);
-	});
-MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
-	  alert("Math Processing Error: "+message[1]);
-	});
-</script>
-<script type="text/javascript" async
-  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-	
 	
 </head>
 
@@ -140,6 +116,10 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 					
 					<li class="menu__list__item">
 						<a href="/imageprocessing" class="menu__list__item__link">Image Processing</a>
+					</li>
+					
+					<li class="menu__list__item">
+						<a href="/linux" class="menu__list__item__link">Linux</a>
 					</li>
 					
 					<li class="menu__list__item">
@@ -441,14 +421,7 @@ py4j.protocol.Py4JJavaError: An error occurred while calling None.org.apache.spa
 
 <p>로컬 주소를 못찾는 에러입니다. <code class="highlighter-rouge">export SPARK_LOCAL_IP="127.0.0.1"</code> 명령어를 치면됩니다.</p>
 
-
-	</div>
-
-
-
-</section>
-			
-				<div id="disqus_thread"></div>
+		<div id="disqus_thread"></div>
 <script>
 
 /**
@@ -468,7 +441,12 @@ s.setAttribute('data-timestamp', +new Date());
 })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-			
+	</div>
+
+
+
+</section>
+
 
 		</div>
 

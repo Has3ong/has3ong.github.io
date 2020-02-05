@@ -1,7 +1,6 @@
 ---
 title : SW Maestro 10th 후기 -2- 연수생 진행 일정
 tags :
-- 일정
 - SW Maestro
 ---
 

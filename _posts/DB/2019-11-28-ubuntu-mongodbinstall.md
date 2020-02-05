@@ -4,6 +4,7 @@ tags :
 - Ubuntu18.04
 - Install
 - MongoDB
+- DataBase
 ---
 
 **public key 임포트**

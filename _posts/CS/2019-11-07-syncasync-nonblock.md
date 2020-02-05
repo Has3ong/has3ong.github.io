@@ -5,6 +5,7 @@ tags:
 - Asynchronous
 - Blocking
 - NonBlocking
+- Computer Science
 ---
 
 ## Synchronous / Asynchronous

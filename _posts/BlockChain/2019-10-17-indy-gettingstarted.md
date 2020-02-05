@@ -4,6 +4,7 @@ tags :
 - Indy
 - Hyperledger
 - Getting Started
+- BlockChain
 ---
 
 *이 포스트는 `Hyperledger Korea User Group`에서 만든 글을 바탕으로 만들었습니다.*
