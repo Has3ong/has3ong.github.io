@@ -132,7 +132,7 @@ Vickrey Auction 에서 봤듯이, ENS 에 이름을 등록하는 과정은 4단�
 
 > Example 1 - ENS timeline for registration
 
-![image](https://user-images.githubusercontent.com/44635266/73934382-a0dfee80-4921-11ea-80c9-e6b1e60271a4.png)
+![image](https://user-images.githubusercontent.com/44635266/73941973-8f9ede00-4931-11ea-997d-47a7f8eec52e.png)
 
 사용 가능한 이름을 검색하고, `ethereumbook.eth` 라는 이름에 입찰하고, 입찰가를 공개하고, 이름을 보호하기 위해 몇 가지 사용자 친화적인 인터페이스 중 하나를 사용할 것이다.
 
