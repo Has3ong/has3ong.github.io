@@ -10,4 +10,8 @@ title: "DataBase"
 
 * [Linux Ubuntu MongoDB install](/blog/ubuntu-mongodbinstall)
 
+---
+
+* [MongoDB Introduction](/blog/mongodb-introduction)
+
 ## References
