@@ -1,12 +1,14 @@
 ---
 title: About
+permalink: /about/
+layout: single
 ---
 
 ### Introduction
 
 * 수원대학교 정보미디어 학과 2019-2 졸업
 * BaekJoon Online Judge [ID](https://www.acmicpc.net/user/khsh5592), [수원대학교](https://www.acmicpc.net/school/ranklist/318)
-* SW Maestro 10th [post](/blog/softwaremaestro)
+* SW Maestro 10th [post](/softwaremaestro)
 
 ### Project
 
@@ -24,4 +26,11 @@ title: About
 
 ### Reference
 
-Contents Refrences [this](/blog/references)
+Contents Refrences [this](/references)
+
+### 앵무새 어디서 데려왔어요...?
+
+[https://cultofthepartyparrot.com/](https://cultofthepartyparrot.com/)
+
+
+*Last Update - 2020 - 02 - 09*

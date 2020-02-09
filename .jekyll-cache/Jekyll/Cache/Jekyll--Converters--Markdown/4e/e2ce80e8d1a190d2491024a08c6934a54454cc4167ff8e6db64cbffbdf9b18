@@ -1,0 +1,17 @@
+I"L<h2 id="anchor-peer">Anchor Peer</h2>
+
+<p><code class="highlighter-rouge">Anchor Peer</code> 는 조직 간의 피어들에 대한 정보 교환의 대리인으로 사용된다. 이로써 서로에 대한 위치를 알게 되어 Peer 하나에서 체인코드를 시작하면 모두에 적용될 수 있게 되며 MSP에 대한 공유도 가능해진다.적어도 하나의 앵키피어가 채널 설정시 정의되야하며, 채널에 참여하는 피어들은 제네시스 블록안에 기록된 앵커피어에 대한 정보를 공유하게 된다.</p>
+
+<h2 id="ledaing-peer">Ledaing Peer</h2>
+
+<p><code class="highlighter-rouge">Leading Peer</code> 는 조직 내에서 피어들간의 오더러로 부터 받은 블록을 공유하기 위한 대표 피어이다. 이 피어가 맛이가면 조직내의 피어들끼리 리더선출을 통해서 새로운 리더를 선출하고 오더러에 알려서 정상적으로 작동하게 된다.</p>
+
+<h2 id="endorsing-peer">Endorsing Peer</h2>
+
+<p>스마트 컨트랙트에 수행될 트랜잭션을 시뮬레이션해보고 그 결과를 클라이언트 어플리케이션에 리턴해주는 피어입니다. 트랜잭션을 검증하는 역할을 하는 거죠. 즉, 체인코드 시뮬레이션을 통해 트랜잭션이 적절한지 판단하는 역할을한다.</p>
+
+<h2 id="committing-peer">Committing Peer</h2>
+
+<p>오더링까지 되어서 전달된 트랜잭션 블럭을 검증하고, 검증이 완료되면 자기가 갖고 있는 원장에 해당 블럭을 추가하고 관리합니다. 모든 피어는 기본적으로 committing peer입니다.</p>
+
+:ET

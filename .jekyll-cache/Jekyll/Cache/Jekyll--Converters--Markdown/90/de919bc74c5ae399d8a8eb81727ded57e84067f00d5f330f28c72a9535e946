@@ -1,0 +1,120 @@
+I"�5<p><em>이 포스트는 <a href="https://github.com/Avkash/mldl/blob/master/pages/docs/books/confluent-kafka-definitive-guide-complete.pdf">Kafka Definitive Guide</a>를 바탕으로 작성하였습니다.</em></p>
+
+<h2 id="avro-record">Avro Record</h2>
+
+<p>Kafka에서는 아키텍처 패턴에 나온 대로 스키마 레지스트리를 사용한다. 스키마 레지스트리는 아파치 카프카에 포함되지 않았지만 오픈 소스에서 선택할 수 있는것들이 있다. 위 포스트에서는 Confluent 스키마 레지스트리를 사용하겠습니다.</p>
+
+<p>Kafka에 데이터를 쓰는 데 사용되는 모든 스키마를 레지스트리에 저장하는것이 스키마 레지스트리의 개념이다. 그리고 Kafka에 쓰는 레코드에는 스키마의 id만 저장하면 된다. 그러면 컨슈머는 해당 식별자를 사용하여 스키마 레지스트리의 스미카를 가져온 후 이 스키마에 맞춰 데이터를 역직렬화 할 수 있다.</p>
+
+<p>아래는 Avro 레코드의 직렬화와 역직렬화의 처리다.</p>
+
+<blockquote>
+  <p>Example 1 - Flow diagram of serialization and deserialization of Avro records</p>
+</blockquote>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/70387987-514b7800-19ef-11ea-8572-bc4b7cd0f377.png" alt="image" /></p>
+
+<p>아래는 Avro 를 사용하여 Kafka에 전송하여 쓰는 방법이다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Properties</span> <span class="n">props</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Properties</span><span class="o">();</span>
+
+<span class="n">props</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"bootstrap.servers"</span><span class="o">,</span> <span class="s">"localhost:9092"</span><span class="o">);</span>
+<span class="n">props</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"key.serializer"</span><span class="o">,</span>
+  <span class="s">"io.confluent.kafka.serializers.KafkaAvroSerializer"</span><span class="o">);</span>
+<span class="n">props</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"value.serializer"</span><span class="o">,</span>
+  <span class="s">"io.confluent.kafka.serializers.KafkaAvroSerializer"</span><span class="o">);</span>
+<span class="n">props</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"schema.registry.url"</span><span class="o">,</span> <span class="n">schemaUrl</span><span class="o">);</span>
+
+<span class="nc">String</span> <span class="n">topic</span> <span class="o">=</span> <span class="s">"customerContacts"</span><span class="o">;</span>
+<span class="kt">int</span> <span class="n">wait</span> <span class="o">=</span> <span class="mi">500</span><span class="o">;</span>
+
+<span class="nc">Producer</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Customer</span><span class="o">&gt;</span> <span class="n">producer</span> <span class="o">=</span>
+  <span class="k">new</span> <span class="nc">KafkaProducer</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Customer</span><span class="o">&gt;(</span><span class="n">props</span><span class="o">);</span>
+  
+<span class="c1">// We keep producing new events until someone ctrl-c</span>
+<span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nc">Customer</span> <span class="n">customer</span> <span class="o">=</span> <span class="nc">CustomerGenerator</span><span class="o">.</span><span class="na">getNext</span><span class="o">();</span>
+  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Generated customer "</span> <span class="o">+</span>
+    <span class="n">customer</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+  <span class="nc">ProducerRecord</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Customer</span><span class="o">&gt;</span> <span class="n">record</span> <span class="o">=</span>
+    <span class="k">new</span> <span class="nc">ProducerRecord</span><span class="o">&lt;&gt;(</span><span class="n">topic</span><span class="o">,</span> <span class="n">customer</span><span class="o">.</span><span class="na">getId</span><span class="o">(),</span> <span class="n">customer</span><span class="o">);</span>
+  <span class="n">producer</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="n">record</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>일반화된 Avro 객체를 사용하고 싶다면 다음과 같이 스키마를 제공하여 사용하면된다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Properties</span> <span class="n">props</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Properties</span><span class="o">();</span>
+<span class="n">props</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"bootstrap.servers"</span><span class="o">,</span> <span class="s">"localhost:9092"</span><span class="o">);</span>
+<span class="n">props</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"key.serializer"</span><span class="o">,</span>
+  <span class="s">"io.confluent.kafka.serializers.KafkaAvroSerializer"</span><span class="o">);</span>
+<span class="n">props</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"value.serializer"</span><span class="o">,</span>
+  <span class="s">"io.confluent.kafka.serializers.KafkaAvroSerializer"</span><span class="o">);</span>
+<span class="n">props</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"schema.registry.url"</span><span class="o">,</span> <span class="n">url</span><span class="o">);</span>
+
+<span class="nc">String</span> <span class="n">schemaString</span> <span class="o">=</span>
+        <span class="s">"{\"namespace\": \"customerManagement.avro\",
+          \"type\": \"record\", "</span> <span class="o">+</span>
+          <span class="s">"\"name\": \"Customer\","</span> <span class="o">+</span>
+          <span class="s">"\"fields\": ["</span> <span class="o">+</span>
+          <span class="s">"{\"name\": \"id\", \"type\": \"int\"},"</span> <span class="o">+</span>
+          <span class="s">"{\"name\": \"name\", \"type\": \"string\"},"</span> <span class="o">+</span>
+          <span class="s">"{\"name\": \"email\", \"type\": [\"null\",\"string
+          \"], \"default\":\"null\" }"</span> <span class="o">+</span>
+          <span class="s">"]}"</span><span class="o">;</span>
+          
+<span class="nc">Producer</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">GenericRecord</span><span class="o">&gt;</span> <span class="n">producer</span> <span class="o">=</span>
+  <span class="k">new</span> <span class="nc">KafkaProducer</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">GenericRecord</span><span class="o">&gt;(</span><span class="n">props</span><span class="o">);</span>
+  
+<span class="nc">Schema</span><span class="o">.</span><span class="na">Parser</span> <span class="n">parser</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Schema</span><span class="o">.</span><span class="na">Parser</span><span class="o">();</span>
+<span class="nc">Schema</span> <span class="n">schema</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="n">schemaString</span><span class="o">);</span>
+
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">nCustomers</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">nCustomers</span> <span class="o">&lt;</span> <span class="n">customers</span><span class="o">;</span> <span class="n">nCustomers</span><span class="o">++)</span> <span class="o">{</span>
+  <span class="nc">String</span> <span class="n">name</span> <span class="o">=</span> <span class="s">"exampleCustomer"</span> <span class="o">+</span> <span class="n">nCustomers</span><span class="o">;</span>
+  <span class="nc">String</span> <span class="n">email</span> <span class="o">=</span> <span class="s">"example "</span> <span class="o">+</span> <span class="n">nCustomers</span> <span class="o">+</span> <span class="s">"@example.com"</span>
+  
+  <span class="nc">GenericRecord</span> <span class="n">customer</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">GenericData</span><span class="o">.</span><span class="na">Record</span><span class="o">(</span><span class="n">schema</span><span class="o">);</span>
+  <span class="n">customer</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="n">nCustomer</span><span class="o">);</span>
+  <span class="n">customer</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"name"</span><span class="o">,</span> <span class="n">name</span><span class="o">);</span>
+  <span class="n">customer</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"email"</span><span class="o">,</span> <span class="n">email</span><span class="o">);</span>
+  
+  <span class="nc">ProducerRecord</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">GenericRecord</span><span class="o">&gt;</span> <span class="n">data</span> <span class="o">=</span>
+    <span class="k">new</span> <span class="nc">ProducerRecord</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span>
+      <span class="nc">GenericRecord</span><span class="o">&gt;(</span><span class="s">"customerContacts"</span><span class="o">,</span> <span class="n">name</span><span class="o">,</span> <span class="n">customer</span><span class="o">);</span>
+  <span class="n">producer</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="n">data</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>두 코드의 가장 큰 차이는 Avro 스키마를 어떻게 제공하냐 입니다.</p>
+
+<h2 id="partition">Partition</h2>
+
+<p>앞의 예에서 보았듯이, ProducerRecord 객체는 토픽 이름과 키와 값을 포함한다. Kafka 메세지는 키와 값의 쌍으로 구성되지만 기본값이 null로 설정된 키와 함께 토픽과 값만 갖는 ProducerRecord 객체를 생성할 수도 있다.</p>
+
+<p>키는 두 가지 목적으로 생성이된다.</p>
+
+<ol>
+  <li>메세지 식별</li>
+  <li>메세지를 쓰는 토픽의 파티션 결정</li>
+</ol>
+
+<p>같은키를 가지는 모든 메세지는 같은 파티션에 저장이된다. 즉, 하나의 프로세스가 한 토픽의 파티션 중 일부만 읽는다면, 하나의 키로 모든 레코드를 읽을 수 있다는 의미다.</p>
+
+<p>쌍으로 된 레코드를 생성할 때는 다음과 같이 ProducerRecord 객체를 생성하면 된다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">ProducerRecord</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">,</span> <span class="nc">String</span><span class="o">&gt;</span> <span class="n">record</span> <span class="o">=</span>
+  <span class="k">new</span> <span class="nc">ProducerRecord</span><span class="o">&lt;&gt;(</span><span class="s">"CustomerCountry"</span><span class="o">,</span> <span class="s">"Laboratory Equipment"</span><span class="o">,</span> <span class="s">"USA"</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>또한, 키가 없는 메세지는 다음과 같이 키를 생략하고 생성하면 된다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">ProducerRecord</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">,</span> <span class="nc">String</span><span class="o">&gt;</span> <span class="n">record</span> <span class="o">=</span>
+  <span class="k">new</span> <span class="nc">ProducerRecord</span><span class="o">&lt;&gt;(</span><span class="s">"CustomerCountry"</span><span class="o">,</span> <span class="s">"USA"</span><span class="o">);</span> 
+</code></pre></div></div>
+
+<p>키가 null 이면서 카프카의 기본 파티셔너로 설정되면 사용 가능한 토픽의 파티션 중 하나가 무작위로 선택되어 해당 레코드가 저장된다. 파티션 선택 알고리즘은 Round-Robin이다.</p>
+
+<p>키가 있으면서 기본 파티셔너가 사용될 때는 카프카에서 키의 해시 값을 구한 후 그 값에 따라 특정 파티션에 메세지를 저장한다.</p>
+
+<p>토픽의 파티션 개수가 변하지 않는다면, 같은 키의 데이터와 대응되는 파ㅣㅌ션 역시 변하지 않는다.</p>
+:ET

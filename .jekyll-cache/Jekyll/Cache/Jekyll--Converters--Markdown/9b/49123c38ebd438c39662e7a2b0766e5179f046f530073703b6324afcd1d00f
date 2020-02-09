@@ -1,0 +1,94 @@
+I":<h2 id="install-scala-on-mac">Install Scala on Mac</h2>
+
+<h3 id="runtime-enviroment">Runtime Enviroment</h3>
+
+<ul>
+  <li>macOS Catalina version 10.15.1</li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>java vesrsion
+openjdk version <span class="s2">"1.8.0_232"</span>
+OpenJDK Runtime Environment <span class="o">(</span>AdoptOpenJDK<span class="o">)(</span>build 1.8.0_232-b09<span class="o">)</span>
+OpenJDK 64-Bit Server VM <span class="o">(</span>AdoptOpenJDK<span class="o">)(</span>build 25.232-b09, mixed mode<span class="o">)</span>
+</code></pre></div></div>
+
+<h3 id="install">Install</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>brew <span class="nb">install </span>scala                                                                                                              
+Updating Homebrew...
+<span class="o">==&gt;</span> Auto-updated Homebrew!
+Updated 3 taps <span class="o">(</span>homebrew/cask-versions, homebrew/core and homebrew/cask<span class="o">)</span><span class="nb">.</span>
+<span class="o">==&gt;</span> New Formulae
+php@7.3
+<span class="o">==&gt;</span> Updated Formulae
+bee              coq              exploitdb        hugo             kustomize        math-comp        nifi-registry    pmd              timewarrior
+borgmatic        drafter          helmfile         kubeseal         lightgbm         neomutt          php              tcsh             wiiuse
+
+<span class="o">==&gt;</span> Downloading https://downloads.lightbend.com/scala/2.13.1/scala-2.13.1.tgz
+<span class="c">######################################################################## 100.0%</span>
+<span class="o">==&gt;</span> Caveats
+To use with IntelliJ, <span class="nb">set </span>the Scala home to:
+  /usr/local/opt/scala/idea
+<span class="o">==&gt;</span> Summary
+🍺  /usr/local/Cellar/scala/2.13.1: 42 files, 20.1MB, built <span class="k">in </span>8 seconds
+
+<span class="nv">$ </span>scala <span class="nt">-version</span>                                       
+Scala code runner version 2.13.1 <span class="nt">--</span> Copyright 2002-2019, LAMP/EPFL and Lightbend, Inc.
+
+<span class="nv">$ </span>scala                                                                                                                             
+Welcome to Scala 2.13.1 <span class="o">(</span>OpenJDK 64-Bit Server VM, Java 1.8.0_232<span class="o">)</span><span class="nb">.</span>
+Type <span class="k">in </span>expressions <span class="k">for </span>evaluation. Or try :help.
+
+scala&gt;
+</code></pre></div></div>
+
+<blockquote>
+  <p>HelloWorld.scala</p>
+</blockquote>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">object</span> <span class="nc">HelloWorld</span><span class="o">{</span>
+    <span class="k">def</span> <span class="nf">main</span><span class="o">(</span><span class="n">args</span><span class="k">:</span><span class="kt">Array</span><span class="o">[</span><span class="kt">String</span><span class="o">]){</span>
+        <span class="nf">println</span><span class="o">(</span><span class="s">"Hello World!"</span><span class="o">)</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>JVM에 의해 실행 가능한 바이트 코드로 컴파일하기</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ scalac HelloWorld.scala
+</code></pre></div></div>
+
+<p>실행</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ scala HelloWorld
+Hello World!
+</code></pre></div></div>
+
+<blockquote>
+  <p>Example 2</p>
+</blockquote>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">object</span> <span class="nc">HelloWorld</span> <span class="o">{</span>
+  <span class="k">def</span> <span class="nf">main</span><span class="o">(</span><span class="n">args</span><span class="k">:</span> <span class="kt">Array</span><span class="o">[</span><span class="kt">String</span><span class="o">])</span><span class="k">:</span> <span class="kt">Unit</span> <span class="o">=</span> <span class="o">{</span>
+    <span class="nf">println</span><span class="o">(</span><span class="s">"Hello World!"</span><span class="o">)</span>
+    <span class="k">for</span> <span class="o">{</span>
+      <span class="n">arg</span> <span class="k">&lt;-</span> <span class="n">args</span>
+    <span class="o">}</span> <span class="nf">println</span><span class="o">(</span><span class="n">s</span><span class="s">"Arg=$arg"</span><span class="o">)</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>컴파일</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ scalac HelloWorld.scala
+</code></pre></div></div>
+
+<p>실행</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ scala HelloWorld 1 2 3
+Hello World!
+Arg=1
+Arg=2
+Arg=3
+</code></pre></div></div>
+:ET

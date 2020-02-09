@@ -1,0 +1,147 @@
+I"�&<h2 id="abstract-class">Abstract Class</h2>
+
+<p>Java에서 추상클래스(Abstract Class)는 <strong>미완성된 클래스</strong>라고 표현을 한다.</p>
+
+<p>추상 클래스의 목적은 기존의 클래스에서 공통된 부분을 추상화하여 상속하는 클래스에게 구현을 강제화하여 메서드의 동작을 구현하는 자식클래스로 책임을 위임한 후 공유의 목적 이라고 할 수 있습니다. 즉, 추가적인 확장이 가능합니다.</p>
+
+<p>선언은 다음과 같이 합니다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">Animal</span>
+</code></pre></div></div>
+
+<p>클래스 상속은 <code class="highlighter-rouge">extends</code>를 사용하면 됩니다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Dog</span> <span class="kd">extends</span> <span class="nc">Animal</span>
+</code></pre></div></div>
+
+<p>추상클래스에는 일반 메소드와 추상 메소드로 구분이 되는데 추상 메소드는 내용이 없는 메소드 입니다. 즉 구현이 되지 않은 메소드입니다. 다음과 같이 작성하시면 됩니다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">Bye</span><span class="o">();</span>
+</code></pre></div></div>
+
+<p>추상 메소드를 자식클래스에서 구현할 때에는 <code class="highlighter-rouge">@Override</code>를 이용해야 합니다.</p>
+
+<blockquote>
+  <p>Example</p>
+</blockquote>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">Animal</span><span class="o">{</span>
+    <span class="c1">// Method</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">Hello</span><span class="o">(){</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Hello World"</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="c1">// Abstract Method</span>
+    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">Bye</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">Dog</span> <span class="kd">extends</span> <span class="nc">Animal</span><span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">Bye</span><span class="o">(){</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Bye Dog"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">Run</span><span class="o">(){</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Dog is Runnung"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">Cat</span> <span class="kd">extends</span> <span class="nc">Animal</span><span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">Bye</span><span class="o">(){</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Bye Cat"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">test</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span> <span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+        <span class="nc">Dog</span> <span class="n">dog</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Dog</span><span class="o">();</span>
+        <span class="nc">Cat</span> <span class="n">cat</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Cat</span><span class="o">();</span>
+
+        <span class="n">dog</span><span class="o">.</span><span class="na">Bye</span><span class="o">();</span>
+        <span class="n">dog</span><span class="o">.</span><span class="na">Hello</span><span class="o">();</span>
+        <span class="n">dog</span><span class="o">.</span><span class="na">Run</span><span class="o">();</span>
+
+        <span class="n">cat</span><span class="o">.</span><span class="na">Bye</span><span class="o">();</span>
+        <span class="n">cat</span><span class="o">.</span><span class="na">Hello</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Result</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bye Dog
+Hello World
+Dog is Runnung
+Bye Cat
+Hello World
+</code></pre></div></div>
+
+<h2 id="interface">Interface</h2>
+
+<p>Java에서 인터페이스(Interface)는 <strong>미완성된 설계도</strong>라고 표현한다.</p>
+
+<p>하나의 설계도로 여러가지 나사 제품을 만든다고 생각하면 됩니다. 즉, 구현하는 모든 클래스에 대해서 특정한 메서드를 강제할 수 있다. 이 의미는 클래스를 추가 확장할 수 없이 Interface에 구현된 메소드만 사용할 수 있다는 뜻입니다.</p>
+
+<p>선언은 다음과 같이 합니다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Interface</span> <span class="nc">Car</span>
+</code></pre></div></div>
+
+<p>Interface에는 몇가지 규칙이 있습니다.</p>
+
+<ul>
+  <li>모든 메서드는 public abstract 이어야 하며, 이를 생략할 수 있다.</li>
+  <li>모든 멤버변수는 public static final 이어야 하며, 이를 생략할 수 있다.</li>
+  <li>반드시 인터페이스에 명시되어 있는 추상메서드들을 모두 구현해야 한다.</li>
+</ul>
+
+<p>Interface를 사용하기 위해선 <code class="highlighter-rouge">implements</code>를 사용합니다.</p>
+
+<p>또한, Java에서 오직 인터페이스에서만 다중 상속이 가능합니다. 다음과 같이 사용할 수 있습니다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">A</span> <span class="kd">implements</span> <span class="nc">InterfaceA</span><span class="o">,</span> <span class="nc">InterfaceB</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>Example</p>
+</blockquote>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nc">Test</span><span class="o">;</span>
+
+<span class="kd">interface</span> <span class="nc">Car</span><span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">Run</span><span class="o">();</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">Hello</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">Benz</span> <span class="kd">implements</span> <span class="nc">Car</span><span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">Run</span><span class="o">(){</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Benz is Run"</span><span class="o">);</span>
+    <span class="o">}</span>
+    
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">Hello</span><span class="o">()</span> <span class="o">{</span>
+    	<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Hello Benz"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">test</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span> <span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+        <span class="nc">Benz</span> <span class="n">car</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Benz</span><span class="o">();</span>
+        <span class="n">car</span><span class="o">.</span><span class="na">Run</span><span class="o">();</span>
+        <span class="n">car</span><span class="o">.</span><span class="na">Hello</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Result</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Benz is Run
+Hello Benz
+</code></pre></div></div>
+
+:ET

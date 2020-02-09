@@ -1,0 +1,56 @@
+I"�<p><code class="highlighter-rouge">equals()</code> 메소드는 비교자하는 대상의 내용 자체를 비교하지만, <code class="highlighter-rouge">==</code> 연산자는 비교하고자 하는 대상의 주소값을 비교합니다.</p>
+
+<p>예를들어, String 클래스를 이용한 문자열을 만들어 볼게요.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">aString</span> <span class="o">=</span> <span class="s">"Hello World"</span><span class="o">;</span>
+<span class="nc">String</span> <span class="n">bString</span> <span class="o">=</span> <span class="n">aString</span><span class="o">;</span>
+<span class="nc">String</span> <span class="n">cString</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">String</span><span class="o">(</span><span class="s">"Hello World"</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">aString</code>, <code class="highlighter-rouge">bString</code>, <code class="highlighter-rouge">cString</code>, 을 각각 비교해 보겠습니다.</p>
+
+<blockquote>
+  <p>Example</p>
+</blockquote>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Test</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span> <span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+
+        <span class="nc">String</span> <span class="n">aString</span> <span class="o">=</span> <span class="s">"Hello World"</span><span class="o">;</span>
+        <span class="nc">String</span> <span class="n">bString</span> <span class="o">=</span> <span class="n">aString</span><span class="o">;</span>
+        <span class="nc">String</span> <span class="n">cString</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">String</span><span class="o">(</span><span class="s">"Hello World"</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"aString.equals(bString) : "</span> <span class="o">+</span> <span class="n">aString</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">bString</span><span class="o">));</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"aString.equals(cString) : "</span> <span class="o">+</span> <span class="n">aString</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">cString</span><span class="o">));</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"bString.equals(cString) : "</span> <span class="o">+</span> <span class="n">bString</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">cString</span><span class="o">));</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"aString == bString : "</span> <span class="o">+</span> <span class="o">(</span><span class="n">aString</span> <span class="o">==</span> <span class="n">bString</span><span class="o">));</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"aString == cString : "</span> <span class="o">+</span> <span class="o">(</span><span class="n">aString</span> <span class="o">==</span> <span class="n">cString</span><span class="o">));</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"bString == cString : "</span> <span class="o">+</span> <span class="o">(</span><span class="n">bString</span> <span class="o">==</span> <span class="n">cString</span><span class="o">));</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Result</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aString.equals(bString) : true
+aString.equals(cString) : true
+bString.equals(cString) : true
+aString == bString : true
+aString == cString : false
+bString == cString : false
+</code></pre></div></div>
+
+<p>주소값을 비교하는 == 연산자에서 <code class="highlighter-rouge">aString</code>과 <code class="highlighter-rouge">bString</code>은 서로 같지만 <code class="highlighter-rouge">cString</code>과는 다르다고 출력이 되었습니다.</p>
+
+<p>왜냐하면 <code class="highlighter-rouge">cString</code> 은 new 연산자를 통해서 만들어 졌기 때문입니다. 이를 간단한 그림으로 표현하자면 아래와 같습니다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/69470591-f6086b80-0dda-11ea-9ce4-fba85b9504f1.png" alt="image" /></p>
+
+<p>위와같은 결과가 나온 이유는 Java의 JVM 때문입니다. JVM의 메모리는 여러 구역으로 나뉘어져있습니다. 그 중 Constant Pool, Heap 영역이 존재합니다.</p>
+
+<p><code class="highlighter-rouge">aString</code>처럼 리터럴로 선언할 경우, “Hello World”라는 값은 Constant Pool에 저장됩니다. 이후에 또 <code class="highlighter-rouge">bString</code>과 같이 리터럴로 선언하면, 일단 자바는 Constant Pool에서 <code class="highlighter-rouge">bString</code>의 값인 “Hello World”를 찾습니다.</p>
+
+<p>만약 존재하면 <code class="highlighter-rouge">bString</code>를 따로 저장하는게 아니라, 기존에 저장된 “Hello World”객체를 참조합니다. 즉, <code class="highlighter-rouge">aString</code>과 <code class="highlighter-rouge">bString</code>는 완전 똑같은 객체입니다. 그래서 <code class="highlighter-rouge">aString</code> == <code class="highlighter-rouge">bString</code> 조차도 주소값이 같으므로 <strong>true</strong>가 나옵니다.</p>
+
+<p><code class="highlighter-rouge">cString</code>처럼 new를 이용해 선언하면 이 String객체는 Heap영역에 저장됩니다. 즉, Constant Pool에 저장된 <code class="highlighter-rouge">aString</code>, <code class="highlighter-rouge">bString</code>와는 주소값이 다릅니다. 그래서 <code class="highlighter-rouge">aString</code> != <code class="highlighter-rouge">cString</code> 이 됩니다.</p>
+:ET

@@ -1,76 +1,78 @@
 ---
 title: Computer Science
+permalink: /cs/
+layout: single
 ---
 
 ## Development
 
-* [객체지향 프로그램(OOP)](/blog/oop)
-* [REST](/blog/rest)
-* [TDD](/blog/tdd)
-* [MVC](/blog/mvc)
-* [`Git` vs `Github` vs `GitLab` - Flow](/blog/gitflow)
-* [CI / CD](/blog/ci-cd)
-* [구조체 크기 계산하기](/blog/structsize)
-* [Apache 와 Nginx 비교하기](/blog/apache-nginx)
-* [SQL 과 NoSQL 비교하기](/blog/sql-nosql)
-* [C / C++ vs Java vs Python](/blog/cjavapython)
-* [MapReduce](/blog/mapreduce)
+* [객체지향 프로그램(OOP)](/oop)
+* [REST](/rest)
+* [TDD](/tdd)
+* [MVC](/mvc)
+* [`Git` vs `Github` vs `GitLab` - Flow](/gitflow)
+* [CI / CD](/ci-cd)
+* [구조체 크기 계산하기](/structsize)
+* [Apache 와 Nginx 비교하기](/apache-nginx)
+* [SQL 과 NoSQL 비교하기](/sql-nosql)
+* [C / C++ vs Java vs Python](/cjavapython)
+* [MapReduce](/mapreduce)
 
 ## Data Structure
 
-* [Array / LinkedList](/blog/array-linkedlist)
-* [Stack / Queue](/blog/stack-queue)
-* [Tree / Heap](/blog/tree-heap)
-* [HashTable](/blog/hashtable)
-* [Graph](/blog/graph)
+* [Array / LinkedList](/array-linkedlist)
+* [Stack / Queue](/stack-queue)
+* [Tree / Heap](/tree-heap)
+* [HashTable](/hashtable)
+* [Graph](/graph)
 
 ### Network
 
 TODO :: Network
 
-* [Protocol Stack](/blog/protocol-stack)
-* [OSI 7 Layer](/blog/osi-layer)
-* [Application Layer](/blog/application-layer)
-* [Presentation Layer](/blog/presentaion-layer)
-* [Session Layer](/blog/session-layer)
-* [Transport Layer](/blog/transport-layer)
-* [Network Layer](/blog/network-layer)
-* [Data Link Layer](/blog/datalink-layer)
-* [Physical Layer](/blog/physical-layer)
-* [HTTP 1.0 / 2.0 / 3.0](/blog/http-version)
-* [Endian](/blog/endian)
-* [Network Gateway](/blog/network-gateway)
+* [Protocol Stack](/protocol-stack)
+* [OSI 7 Layer](/osi-layer)
+* [Application Layer](/application-layer)
+* [Presentation Layer](/presentaion-layer)
+* [Session Layer](/session-layer)
+* [Transport Layer](/transport-layer)
+* [Network Layer](/network-layer)
+* [Data Link Layer](/datalink-layer)
+* [Physical Layer](/physical-layer)
+* [HTTP 1.0 / 2.0 / 3.0](/http-version)
+* [Endian](/endian)
+* [Network Gateway](/network-gateway)
 
 ## Algorithm
 
-* [Sort Algorithm](/blog/sort)
-* [DFS / BFS](/blog/dfs-bfs)
-* [Dijkstra](/blog/dijkstra)
-* [Kruskal / Prim](/blog/kruskal-prim)
-* [Floyd-Warshall](/blog/floyd)
+* [Sort Algorithm](/sort)
+* [DFS / BFS](/dfs-bfs)
+* [Dijkstra](/dijkstra)
+* [Kruskal / Prim](/kruskal-prim)
+* [Floyd-Warshall](/floyd)
 
 ## DataBase
 
-* [DataBase](/blog/database)
-* [SQL JOIN](/blog/sql-join)
+* [DataBase](/database)
+* [SQL JOIN](/sql-join)
 
 ## Operation System
 
-* [Process / Thread](/blog/process-thread)
-* [Critical Section](/blog/critical-section)
-* [Banker's Algorithm](/blog/banker-algorithm)
-* [Dining Philosopher Problem](/blog/dining-philosopher)
-* [Process Scheduling](/blog/process-scheduling)
-* [Kernel](/blog/kernel)
-* [메모리 관리 Fragmentation / Segmentation](/blog/memory-manage)
-* [Virtual Memory](/blog/virtual-memory)
-* [Cache](/blog/cash)
-* [동기-비동기 / 블록킹-넌블록킹](/blog/syncasync-nonblock)
+* [Process / Thread](/process-thread)
+* [Critical Section](/critical-section)
+* [Banker's Algorithm](/banker-algorithm)
+* [Dining Philosopher Problem](/dining-philosopher)
+* [Process Scheduling](/process-scheduling)
+* [Kernel](/kernel)
+* [메모리 관리 Fragmentation / Segmentation](/memory-manage)
+* [Virtual Memory](/virtual-memory)
+* [Cache](/cash)
+* [동기-비동기 / 블록킹-넌블록킹](/syncasync-nonblock)
 
 ## Security
 
-* [Public Key / Private Key Crypto](/blog/key-crypto)
-* [SSL / TLS](/blog/ssl-tls)
+* [Public Key / Private Key Crypto](/key-crypto)
+* [SSL / TLS](/ssl-tls)
 
 ## Reference
 

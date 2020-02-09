@@ -1,0 +1,85 @@
+I";<h2 id="가상함수">가상함수</h2>
+
+<p>C++에서 가상 함수(virtual function)는 파생 클래스에서 재정의할 것으로 기대하는 멤버 함수를 의미합니다. 이러한 가상 함수는 자신을 호출하는 객체의 동적 타입에 따라 실제 호출할 함수가 결정됩니다.</p>
+
+<p>C++에서 가상 함수는 virtual 키워드를 사용하여 선언합니다.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">virtual</span> <span class="nf">function</span><span class="p">(){</span>
+  <span class="p">...</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>기초 클래스에서 virtual 키워드를 사용해 가상 함수를 선언하면, 파생 클래스에서 재정의된 멤버 함수도 자동으로 가상 함수가 됩니다.</p>
+
+<h2 id="순수-가상함수">순수 가상함수</h2>
+
+<p>순수 가상함수는 구현이 없는 가상함수를 말합니다.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">virtual</span> <span class="kt">void</span> <span class="n">function</span><span class="p">()</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>구현 대신 가상함수에 NULL (0)값을 대입하면 해당 함수는 순수 가상함수가 됩니다.</p>
+
+<p>이와 동시에 순수 가상함수를 포함하는 클래스는 <strong>추상 클래스(Abstract Class)</strong>로 지정됩니다.</p>
+
+<blockquote>
+  <p>Example</p>
+</blockquote>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">AHG</span> <span class="p">{</span>
+    
+<span class="nl">public:</span>
+    <span class="kt">int</span> <span class="n">value</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">void</span> <span class="n">func0</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"AHG func0, value is : "</span> <span class="o">&lt;&lt;</span> <span class="n">value</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">// 가상함수</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">func1</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"AHG func1"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">// 순수 가상함수</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">func2</span><span class="p">()</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">Child</span> <span class="o">:</span> <span class="k">public</span> <span class="n">AHG</span> <span class="p">{</span>
+    
+<span class="nl">public:</span>
+    <span class="kt">void</span> <span class="n">setValue</span><span class="p">(</span><span class="kt">int</span> <span class="n">temp</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">func0</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Child func0"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">func1</span><span class="p">()</span> <span class="k">override</span> <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Child func1"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">func2</span><span class="p">()</span> <span class="k">override</span> <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Child func2"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+    <span class="c1">// insert code here…</span>
+    <span class="n">Child</span> <span class="n">child</span><span class="p">;</span>
+    <span class="n">AHG</span><span class="o">*</span> <span class="n">ptr</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">child</span><span class="p">;</span>
+    
+    <span class="n">child</span><span class="p">.</span><span class="n">setValue</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="n">ptr</span><span class="o">-&gt;</span><span class="n">func0</span><span class="p">();</span>   <span class="c1">// AHG func0 \n 1</span>
+    <span class="n">ptr</span><span class="o">-&gt;</span><span class="n">func1</span><span class="p">();</span>   <span class="c1">// Child func1</span>
+    <span class="n">ptr</span><span class="o">-&gt;</span><span class="n">func2</span><span class="p">();</span>
+    
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>C++ 에서는 순수가상함수는 인터페이스를 자식에게 전달하여 재정의 즉 오버라이딩을 하기 위해 사용합니다. 즉, 재정의를 하지 않으면 오류가 발생하여 반드시 자식 클래스에서 재정의를 해야합니다.</p>
+
+<p>가상함수는 함수내부 구현이 되어있는 인터페이스를 자식에게 전달합니다. 하지만 함수의 내부구현이 되어있어서 자식클래스에서는 함수를 다시 정의해도 되고 안해도 됩니다.</p>
+
+<p>쉽게 말하자면 순수가상함수는 ‘너는 이 기능이 꼭 필요해 그리고 그 기능은 너가 알아서 선언해 만약 선언하지 않으면 오류가 날꺼야’ 이며 가상함수는 ‘이 기능을 물려줄건데 너가 선언을 안해도 기본적으로 작동이 되게 만들어줄게’ 입니다.</p>
+
+<p>마지막으로 위 코드에서 AHG 클래스에 func0과 Child 클래스에 func0은 서로 다른 함수입니다. 우연히 이름이 같게된 함수입니다.</p>
+:ET

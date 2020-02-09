@@ -1,0 +1,74 @@
+I"<p><strong>public key 임포트</strong></p>
+
+<p>PMS(Package Management System)의 일종인 Ubuntu 패지키 관리 툴(dpkg 그리고 apt)은 package 의 일관성(consistency)과 진위여부(authenticity)를 판별합니다. 이때 배포자(distributor, MongoDB Inc)로 하여금 GPG 키로 패키지들을 서명하기를 요구합니다.</p>
+
+<p>이를 임포트하여 패키지 관리 툴에게 키 정보를 입력합니다.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt-key adv <span class="nt">--keyserver</span> hkp://keyserver.ubuntu.com:80 <span class="nt">--recv</span> 9DA31620334BD75D9DCB49F368818C72E52529D4
+</code></pre></div></div>
+
+<p><strong>list 파일 생성</strong></p>
+
+<p>apt 명령어를 사용하여 패키지 설치 시 패키지 명령어를 받아올 장소를 알고 있어야 합니다. 따라서 list 파일을 만들어 둡니다.</p>
+
+<p>만약에 <code class="highlighter-rouge">apt-get update</code> 명령 상에 문제가 발생하는 경우 이는 list 파일의 문제입니다.</p>
+
+<p>아래의 명령어를 입력하여 리스트 파일을 생성합니다.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">echo</span> <span class="s2">"deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.0 multiverse"</span> | <span class="nb">sudo tee</span> /etc/apt/sources.list.d/mongodb-org-4.0.list
+</code></pre></div></div>
+
+<p>Local 의 패키지 DB 를 리로드합니다.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt-get update
+</code></pre></div></div>
+
+<p>MongoDB 설치</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt-get <span class="nb">install</span> <span class="nt">-y</span> mongodb-org
+</code></pre></div></div>
+
+<p>정상적으로 설치된 모습</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>systemctl status mongod
+● mongod.service - MongoDB Database Server
+   Loaded: loaded <span class="o">(</span>/lib/systemd/system/mongod.service<span class="p">;</span> disabled<span class="p">;</span> vendor preset:
+   Active: active <span class="o">(</span>running<span class="o">)</span> since Thu 2019-11-28 04:32:47 UTC<span class="p">;</span> 1h 38min ago
+     Docs: https://docs.mongodb.org/manual
+ Main PID: 1761 <span class="o">(</span>mongod<span class="o">)</span>
+   CGroup: /system.slice/mongod.service
+           └─1761 /usr/bin/mongod <span class="nt">--config</span> /etc/mongod.conf
+
+Nov 28 04:32:47 ip-172-26-8-131 systemd[1]: Started MongoDB Database Server.
+Nov 28 04:45:05 ip-172-26-8-131 systemd[1]: mongod.service: Current <span class="nb">command </span>vani
+lines 1-10/10 <span class="o">(</span>END<span class="o">)</span>
+</code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>mongo
+MongoDB shell version v4.0.13
+connecting to: mongodb://127.0.0.1:27017/?gssapiServiceName<span class="o">=</span>mongodb
+Implicit session: session <span class="o">{</span> <span class="s2">"id"</span> : UUID<span class="o">(</span><span class="s2">"ffe96d9e-624a-420f-8b1a-c0fd688c0625"</span><span class="o">)</span> <span class="o">}</span>
+MongoDB server version: 4.0.13
+Server has startup warnings:
+2019-11-28T04:32:47.661+0000 I STORAGE  <span class="o">[</span>initandlisten]
+2019-11-28T04:32:47.661+0000 I STORAGE  <span class="o">[</span>initandlisten] <span class="k">**</span> WARNING: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine
+2019-11-28T04:32:47.661+0000 I STORAGE  <span class="o">[</span>initandlisten] <span class="k">**</span>          See http://dochub.mongodb.org/core/prodnotes-filesystem
+2019-11-28T04:32:48.838+0000 I CONTROL  <span class="o">[</span>initandlisten]
+2019-11-28T04:32:48.838+0000 I CONTROL  <span class="o">[</span>initandlisten] <span class="k">**</span> WARNING: Access control is not enabled <span class="k">for </span>the database.
+2019-11-28T04:32:48.838+0000 I CONTROL  <span class="o">[</span>initandlisten] <span class="k">**</span>          Read and write access to data and configuration is unrestricted.
+2019-11-28T04:32:48.838+0000 I CONTROL  <span class="o">[</span>initandlisten]
+<span class="nt">---</span>
+Enable MongoDB<span class="s1">'s free cloud-based monitoring service, which will then receive and display
+metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+and anyone you share the URL with. MongoDB may use this information to make product
+improvements and to suggest MongoDB products and deployment options to you.
+
+To enable free monitoring, run the following command: db.enableFreeMonitoring()
+To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+---
+
+&gt;
+</span></code></pre></div></div>
+:ET

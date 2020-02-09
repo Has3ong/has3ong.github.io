@@ -1,0 +1,164 @@
+I"�<h2 id="hyperledger">Hyperledger</h2>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/69712955-05731600-1147-11ea-8bf2-2f44d445bd05.png" alt="image" /></p>
+
+<p>스마트 계약을 구현할 수 있는 오픈소스 기반의 프라이빗 블록체인 프로젝트이다. 리눅스재단(Linux Foundation)이 주관하고 있다. 금융, 사물인터넷(IoT), 물류, 제조, 기술 등 여러 산업에 걸쳐 응용 가능한 블록체인 기술을 만드는 것을 목표로 하고 있습니다.</p>
+
+<p>하이퍼레저 이외에도 R3, Ripple, Ethereum 등 다른 블록체인 플랫폼도 있습니다. 이 중 하이퍼레저가 특별한 이유는 다음과 같습니다.</p>
+
+<ol>
+  <li>프라이빗 블록체인 플랫폼으로서 기업 비즈니스를 구현하기에 적합한 환경</li>
+  <li>특정 비즈니스 모델에 특화된 타 플랫폼과 달리 여러 산업에 범용적으로 도입 가능한 기술 표준을 제시</li>
+</ol>
+
+<p>하이퍼레저는 위와 같은 차별화 전략을 구현하기 위해 다양한 기업용 블록체인 기술을 양산하고자 합니다.</p>
+
+<ol>
+  <li>분산 원장 프레임워크</li>
+  <li>스마트 컨트랙트 엔진</li>
+  <li>클라이언트 라이브러리</li>
+  <li>그래픽 인터페이스</li>
+  <li>기타 유틸리티</li>
+  <li>샘플 어플리케이션</li>
+</ol>
+
+<h2 id="hyperledger-green-house">Hyperledger Green House</h2>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/69710039-ef168b80-1141-11ea-91e2-24195d5ca68a.png" alt="image" /></p>
+
+<blockquote>
+  <p>Hyperledger Projects 2019-11-27
+https://wiki.hyperledger.org/</p>
+</blockquote>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/69710270-7532d200-1142-11ea-9b82-e3f83e98b6ff.png" alt="image" /></p>
+
+<h3 id="hyperledger-aries">Hyperledger ARIES</h3>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/69712563-69490f00-1146-11ea-9fc4-216e6ca537d2.png" alt="image" /></p>
+
+<p><strong>Description</strong></p>
+
+<p>Infrastructure for blockchain-rooted, peer-to-peer interactions. It provides a shared, reusable, interoperable tool kit designed for initiatives and solutions focused on creating, transmitting and storing verifiable digital credentials.</p>
+
+<h3 id="hyperledger-avalon">Hyperledger AVALON</h3>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/69712555-664e1e80-1146-11ea-989e-231f580fc1d6.png" alt="image" /></p>
+
+<p><strong>Description</strong></p>
+
+<p>Hyperledger Avalon enables privacy in blockchain transactions, moving intensive processing from a main blockchain to improve scalability and latency, and to support attested Oracles</p>
+
+<h3 id="hyperledger-besu">Hyperledger BESU</h3>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/69712560-677f4b80-1146-11ea-803e-63febcfdfc50.png" alt="image" /></p>
+
+<p><strong>Description</strong></p>
+
+<p>Besu is an Ethereum client that runs on the Ethereum public network, private networks, and test networks such as Rinkeby, Ropsten, and Görli.</p>
+
+<h3 id="hyperledger-burrow">Hyperledger BURROW</h3>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/69712567-6a7a3c00-1146-11ea-999c-8115995599e9.png" alt="image" /></p>
+
+<p><strong>Description</strong></p>
+
+<p>Permissioned Ethereum smart-contract blockchain</p>
+
+<h3 id="hyperledger-caliper">Hyperledger CALIPER</h3>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/69712577-6bab6900-1146-11ea-9b1e-ba9ed6050861.png" alt="image" /></p>
+
+<p><strong>Description</strong></p>
+
+<p>Blockchain benchmark framework which allows users to measure the performance of a specific blockchain implementation with a set of predefined use cases.</p>
+
+<h3 id="hyperledger-cello">Hyperledger CELLO</h3>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/69712581-6cdc9600-1146-11ea-8bbc-f9efc40d64db.png" alt="image" /></p>
+
+<p><strong>Description</strong></p>
+
+<p>Blockchain operating system</p>
+
+<h3 id="hyperledger-composer">Hyperledger COMPOSER</h3>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/69712855-dd83b280-1146-11ea-8c05-f43f2b7cd4cb.png" alt="image" /></p>
+
+<p><strong>Description</strong></p>
+
+<p>Development framework/tools for building Blockchain business networks</p>
+
+<h3 id="hyperledger-explorer">Hyperledger EXPLORER</h3>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/69712586-6f3ef000-1146-11ea-880d-a34b7f29a342.png" alt="image" /></p>
+
+<p><strong>Description</strong></p>
+
+<p>Blockchain Web UI</p>
+
+<h3 id="hyperledger-fabric">Hyperledger FABRIC</h3>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/69712594-70701d00-1146-11ea-96a1-cd3f720ae379.png" alt="image" /></p>
+
+<p><strong>Description</strong></p>
+
+<p>Distributed ledger in Go</p>
+
+<h3 id="hyperledger-grid">Hyperledger GRID</h3>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/69712596-71a14a00-1146-11ea-86c7-076b1ab611b4.png" alt="image" /></p>
+
+<p><strong>Description</strong></p>
+
+<p>Platform for building supply chain solutions that include distributed ledger components.</p>
+
+<h3 id="hyperledger-indy">Hyperledger INDY</h3>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/69712603-749c3a80-1146-11ea-8ceb-07d140358e32.png" alt="image" /></p>
+
+<p><strong>Description</strong></p>
+
+<p>Distributed ledger purpose-built for decentralized identity</p>
+
+<h3 id="hyperledger-iroha">Hyperledger IROHA</h3>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/69712606-75cd6780-1146-11ea-8eb9-2b459815b924.png" alt="image" /></p>
+
+<p><strong>Description</strong></p>
+
+<p>Distributed ledger in C++</p>
+
+<h3 id="hyperledger-quilt">Hyperledger QUILT</h3>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/69712610-77972b00-1146-11ea-844d-93740f12089c.png" alt="image" /></p>
+
+<p><strong>Description</strong></p>
+
+<p>An interoperability solution for any fungible assets - fiat, crypto, DLT, in-game tokens, or any other type of asset tracked on a ledger.</p>
+
+<h3 id="hyperledger-sawtooth">Hyperledger SAWTOOTH</h3>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/69712617-78c85800-1146-11ea-9d3a-6930378ccdd2.png" alt="image" /></p>
+
+<p><strong>Description</strong></p>
+
+<p>Distributed ledger with Multi-Language Support</p>
+
+<h3 id="hyperledger-transact">Hyperledger TRANSACT</h3>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/69712625-7bc34880-1146-11ea-8a4b-e11155545208.png" alt="image" /></p>
+
+<p><strong>Description</strong></p>
+
+<p>Transact is a transaction execution platform designed to be used as a library or component when implementing distributed ledgers, including blockchains.</p>
+
+<h3 id="hyperledger-ursa">Hyperledger URSA</h3>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/69712628-7d8d0c00-1146-11ea-9abc-fff65e019969.png" alt="image" /></p>
+
+<p><strong>Description</strong></p>
+
+<p>A shared cryptographic library that would enable people (and projects) to avoid duplicating other cryptographic work and hopefully increase security in the process.</p>
+
+:ET

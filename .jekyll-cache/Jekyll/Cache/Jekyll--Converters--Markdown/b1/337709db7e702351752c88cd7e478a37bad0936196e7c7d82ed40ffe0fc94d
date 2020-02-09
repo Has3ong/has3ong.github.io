@@ -1,0 +1,66 @@
+I";<p><em>이 포스트는 <a href="https://github.com/Avkash/mldl/blob/master/pages/docs/books/confluent-kafka-definitive-guide-complete.pdf">Kafka Definitive Guide</a>를 바탕으로 작성하였습니다.</em></p>
+
+<h2 id="kafka-consumer">Kafka Consumer</h2>
+
+<p>특정 카프카 토픽의 메세지를 읽어서 몇가지 검사 후 그 결과를 다른 데이터 파일에 쓰는 어플리케이션이 있다 생각해보자.</p>
+
+<p>이 경우 어플리케이션에서는 컨슈머 객체(KafkaConsumer Instance)를 생성하여 해당 토픽을 읽은 후 그것의 메세지를 받아 검사하고 그 결과를 다른 파일에 저장한다. 그러나 만약 여러 프로듀서가 해당 토픽에 새로운 메세지를 쓰는 속도가 어플리케이션에서 메세지를 처리하는속도가 빠르면 어떻게될까요.</p>
+
+<p>위 경우 하나의 컨슈머만으로 해당 토픽의 메세지들을 읽고 처리하다, 추가되는 메세지들의 속도를 따라갈 수 없어서 어플리케이션의 메세지 처리는 점점 늦어질것입니다. 그러므로 토픽을 소비하는 컨슈머의 규모를 확장해야합니다. 즉, 다수의 프로듀서들이 같은 토픽의 메세지들이 쓸 수 있는것과 마찬가지로 다수의 컨슈머들이 같은 토픽의 메세지들을 분담해서 읽을 수 있어야 한다.</p>
+
+<p>Kafka 컨슈머는 컨슈머 그룹(Consumer Group)에 속합니다. 그리고 다른 컨슈머가 같은 토픽을 소비하며 같은 컨슈머 그룹에 속할 때는 각 컨슈머가 해당 토픽의 서로 다른 파티션을 분담해서 읽을 수 있다.</p>
+
+<p>아래 예제는 각각 파티션의 개수와 컨슈머 개수의 관계입니다.</p>
+
+<blockquote>
+  <p>Example 1 - One Consumer group with four partitions</p>
+</blockquote>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/70437071-179d6e80-1ace-11ea-8bde-93b65cd0ec5a.png" alt="image" /></p>
+
+<blockquote>
+  <p>Example 2 - Four partitions split to two consumer groups</p>
+</blockquote>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/70437074-18ce9b80-1ace-11ea-9bd0-24a41b82f402.png" alt="image" /></p>
+
+<blockquote>
+  <p>Example 3 - Four consumer groups to one partition each</p>
+</blockquote>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/70437075-19ffc880-1ace-11ea-9ede-7eab88a93c80.png" alt="image" /></p>
+
+<blockquote>
+  <p>Example 4 - More consumer groups than partitions means missed messages</p>
+</blockquote>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/70437078-1bc98c00-1ace-11ea-8546-0a876e014751.png" alt="image" /></p>
+
+<p><code class="highlighter-rouge">Example 4</code>와 같이 컨슈머가 파티션 개수보다 많아지면 일부 컨슈머는 쉬면서 아무 메세지도 읽지 않게됩니다.</p>
+
+<p>같은 토픽의 데이터를 다수의 어플리케이션이 읽어야 하는 경우도 매우 많습니다. 실제로 Kafka 의 주요 설계 목표 중 하나는, 생성된 데이터를 Kafka Topic(조직 전체에서 여러 용도로 사용한다.)으로 만드는것입니다.</p>
+
+<p>같은 토픽의 데이터를 다수의 어플리케이션이 읽어야 할 때는 각 어플리케이션이 자신의 컨슈머 그룹을 갖도록 합니다.</p>
+
+<blockquote>
+  <p>Example 5</p>
+</blockquote>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/70437248-7ebb2300-1ace-11ea-849b-3ba491a57cf2.png" alt="image" /></p>
+
+<p>앞의 예에서, 한 개의컨슈머를 갖는 새로운 컨슈머 그룹을 추가하면 이 그룹의 컨슈머는 기존의 컨슈머 그룹과 무관하게 T1 토픽의 모든 메세지를 읽는다.</p>
+
+<h2 id="consumer-groups-and-partition-rebalance">Consumer Groups and Partition Rebalance</h2>
+
+<p>컨슈머 그룹의 컨슈머들은 자신이 읽는 토픽 파티션의 소유권을 공유합니다. 그리고 새로운 컨슈머를 그룹에 추가하면 이전에 다른 컨슈머가 읽던 파티션의 메세지들을 읽습니다.</p>
+
+<p>특정 컨슈머가 문제가 생겨 중단될 때도 마찬가지입니다. 즉, 그 컨슈머가 읽던 파티션은 남은 컨슈머 중 하나가 재할당받아 읽게됩니다.</p>
+
+<p>한 컨슈머로부터 다른 컨슈머로 파티션 소유권을 이전하는 것을 <strong>리밸런싱(rebalancing)</strong> 이라고 합니다. 리밸런싱은 컨슈머 그룹의 가용성과 확장성을 높여줍니다. 하지만, 리밸런싱을 하는동안에는 컨슈머들은 메세지들을 읽을 수 없으므로 해당 컨슈머 그룹 전체가 잠시나마 사용 불가능 상태가 됩니다. 또한, 한 컨슈머로부터 다른 컨슈머로 파티션이 이전될 때는 해당 컨슈머의 이전 파티션에 관한 상태 정보가 없어집니다. 따라서 캐시 메모리에 있던 데이터도 지워져 다시 설정될 때까지 어플리케이션 실행이 느려질 수 있습니다.</p>
+
+<p><strong>그룹 조정자(Group Coordinator)</strong> 로 지정된 Kafka 브로커에 컨슈머가 <strong>하트비트(Heartbeat)</strong> 를 전송하면 자신이 속한 컨슈머 그룹의 멤버십과 자신에게 할당된 파티션 소유권을 유지할 수 있습니다.</p>
+
+<p>하트비트는 컨슈머의 상태를 알리기 위해 전송되는 신호입니다. 하트비트가 일정시간 간격으로 전송된다면 해당 컨슈머는 정상적으로 동작하며, 자신의 파티션 메세지를 처리 가능한 것으로 간주됩니다. 하트비트는 컨슈머가 <strong>폴링(polling)</strong> 할 때 또는 읽은 메세지를 커밋할 때 자동 전송됩니다.</p>
+
+<p>만약 컨슈머가 세션 타임아웃 시간이 경과될 때 까지 하틥트 전송을 중단하면 GroupCoordinator가 해당 컨슈머를 중단된것으로 간주하고 리밸런싱을 시작시킵니다. 리밸런싱하는 동안에는 중단된 컨슈머가 소유한 파티션의 메세지가 처리되지 않습니다. 컨슈머가 정상적으로 종료될 때는 GroupCoordinator에게 떠나는것을 알려주며, 이때 GroupCoordinator는 처리 공백을 줄이기 위해 곧바로 리밸런싱을 시작시킵니다.</p>
+:ET

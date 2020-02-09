@@ -1,0 +1,127 @@
+I"(,<h2 id="generic">Generic</h2>
+
+<p>제네릭 클래스는 타입을 파라미터로 사용하는 클래스다. 특히 제네릭 클래스는 컬렉션 클래스에 유용하다. 제네릭 클래스는 Stack, Queue, Linked list 등과 같은 데이터 구조 구현에 사용될 수 있습니다.</p>
+
+<h3 id="generic-class-definition">Generic Class Definition</h3>
+
+<p>제네릭 클래스는 대괄호 [] 에 파라미터로 타입을 사용한다. 한 가지 규칙은 타입 파라미터 식별자로 문자 A를 사용하는 것이지만 모든 파라미터 이름이 사용될 수 있다.</p>
+
+<blockquote>
+  <p>Example</p>
+</blockquote>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Stack</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="o">{</span>
+    <span class="k">private</span> <span class="k">var</span> <span class="n">elements</span> <span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Nil</span>
+    <span class="k">def</span> <span class="nf">push</span><span class="o">(</span><span class="n">x</span><span class="k">:</span> <span class="kt">A</span><span class="o">)</span> <span class="o">{</span> <span class="n">elements</span> <span class="k">=</span> <span class="n">x</span> <span class="o">::</span> <span class="n">elements</span> <span class="o">}</span>
+    <span class="k">def</span> <span class="nf">peek</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=</span> <span class="nv">elements</span><span class="o">.</span><span class="py">head</span>
+    <span class="k">def</span> <span class="nf">pop</span><span class="o">()</span> <span class="k">:</span> <span class="kt">A</span> <span class="o">=</span> <span class="o">{</span>
+        <span class="k">val</span> <span class="nv">currentTop</span> <span class="k">=</span> <span class="n">peek</span>
+        <span class="n">elements</span> <span class="k">=</span> <span class="nv">elements</span><span class="o">.</span><span class="py">tail</span>
+        <span class="nf">println</span><span class="o">(</span><span class="n">currentTop</span><span class="o">)</span>
+        <span class="n">currentTop</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Stack 클래스 구현에서는 모든 타입 A 를 파라미터로 사용한다. 해당 리스트는 A 타입의 엘리먼트만 저장할 수 있다. def push 메소드는 A 타입만 받는다. Stack 클래스를 사용한 스택을 구현하는 예를 보겠습니다.</p>
+
+<blockquote>
+  <p>Example</p>
+</blockquote>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">object</span> <span class="nc">Scala</span><span class="o">{</span>
+    <span class="k">def</span> <span class="nf">main</span><span class="o">(</span><span class="n">args</span><span class="k">:</span> <span class="kt">Array</span><span class="o">[</span><span class="kt">String</span><span class="o">])</span> <span class="k">:</span> <span class="kt">Unit</span> <span class="o">=</span> <span class="o">{</span>
+
+        <span class="k">val</span> <span class="nv">stack</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Stack</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span>
+        <span class="nv">stack</span><span class="o">.</span><span class="py">push</span><span class="o">(</span><span class="mi">10</span><span class="o">)</span>
+        <span class="nv">stack</span><span class="o">.</span><span class="py">push</span><span class="o">(</span><span class="mi">20</span><span class="o">)</span>
+        <span class="nv">stack</span><span class="o">.</span><span class="py">push</span><span class="o">(</span><span class="mi">30</span><span class="o">)</span>
+        <span class="nv">stack</span><span class="o">.</span><span class="py">pop</span><span class="o">()</span>
+        <span class="nv">stack</span><span class="o">.</span><span class="py">pop</span><span class="o">()</span>
+        <span class="nv">stack</span><span class="o">.</span><span class="py">pop</span><span class="o">()</span>
+
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Result</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>30
+20
+10
+</code></pre></div></div>
+
+<p>Linked List 클래스를 구현에 사용해보겠습니다.</p>
+
+<blockquote>
+  <p>Example</p>
+</blockquote>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">LinkedList</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="o">{</span>
+    <span class="k">private</span> <span class="k">class</span> <span class="nc">Node</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="o">(</span><span class="n">elem</span> <span class="k">:</span> <span class="kt">A</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">var</span> <span class="n">next</span> <span class="k">:</span> <span class="kt">Node</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="k">=</span> <span class="k">_</span>
+        <span class="k">override</span> <span class="k">def</span> <span class="nf">toString</span> <span class="k">=</span> <span class="nv">elem</span><span class="o">.</span><span class="py">toString</span>
+    <span class="o">}</span>
+
+    <span class="k">private</span> <span class="k">var</span> <span class="n">head</span> <span class="k">:</span> <span class="kt">Node</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="k">=</span> <span class="k">_</span>
+
+    <span class="k">def</span> <span class="nf">add</span><span class="o">(</span><span class="n">elem</span> <span class="k">:</span> <span class="kt">A</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">val</span> <span class="nv">value</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Node</span><span class="o">(</span><span class="n">elem</span><span class="o">)</span>
+        <span class="nv">value</span><span class="o">.</span><span class="py">next</span> <span class="k">=</span> <span class="n">head</span>
+        <span class="n">head</span> <span class="k">=</span> <span class="n">value</span>
+    <span class="o">}</span>
+
+    <span class="k">private</span> <span class="k">def</span> <span class="nf">printNodes</span><span class="o">(</span><span class="n">value</span> <span class="k">:</span> <span class="kt">Node</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span> <span class="o">{</span>
+        <span class="nf">if</span> <span class="o">(</span><span class="n">value</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nf">println</span><span class="o">(</span><span class="n">value</span><span class="o">)</span>
+            <span class="nf">printNodes</span><span class="o">(</span><span class="nv">value</span><span class="o">.</span><span class="py">next</span><span class="o">)</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="k">def</span> <span class="nf">printAll</span><span class="o">()</span> <span class="o">{</span> <span class="nf">printNodes</span><span class="o">(</span><span class="n">head</span><span class="o">)</span> <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>앞에서 만든 클래스를 이용하여 데이터를 다루어 보겠습니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">object</span> <span class="nc">Scala</span><span class="o">{</span>
+    <span class="k">def</span> <span class="nf">main</span><span class="o">(</span><span class="n">args</span><span class="k">:</span> <span class="kt">Array</span><span class="o">[</span><span class="kt">String</span><span class="o">])</span> <span class="k">:</span> <span class="kt">Unit</span> <span class="o">=</span> <span class="o">{</span>
+
+        <span class="k">val</span> <span class="nv">ints</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">LinkedList</span><span class="o">[</span><span class="kt">Int</span><span class="o">]()</span>
+
+        <span class="nv">ints</span><span class="o">.</span><span class="py">add</span><span class="o">(</span><span class="mi">10</span><span class="o">)</span>
+        <span class="nv">ints</span><span class="o">.</span><span class="py">add</span><span class="o">(</span><span class="mi">20</span><span class="o">)</span>
+        <span class="nv">ints</span><span class="o">.</span><span class="py">add</span><span class="o">(</span><span class="mi">30</span><span class="o">)</span>
+        <span class="nv">ints</span><span class="o">.</span><span class="py">printAll</span><span class="o">()</span>
+
+        <span class="k">val</span> <span class="nv">strings</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">LinkedList</span><span class="o">[</span><span class="kt">String</span><span class="o">]()</span>
+
+        <span class="nv">strings</span><span class="o">.</span><span class="py">add</span><span class="o">(</span><span class="s">"Scala"</span><span class="o">)</span>
+        <span class="nv">strings</span><span class="o">.</span><span class="py">add</span><span class="o">(</span><span class="s">"Java"</span><span class="o">)</span>
+        <span class="nv">strings</span><span class="o">.</span><span class="py">add</span><span class="o">(</span><span class="s">"Python"</span><span class="o">)</span>
+        <span class="nv">strings</span><span class="o">.</span><span class="py">printAll</span><span class="o">()</span>
+
+        <span class="k">val</span> <span class="nv">floats</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">LinkedList</span><span class="o">[</span><span class="kt">Double</span><span class="o">]()</span>
+
+        <span class="nv">floats</span><span class="o">.</span><span class="py">add</span><span class="o">(</span><span class="mf">3.14</span><span class="o">)</span>
+        <span class="nv">floats</span><span class="o">.</span><span class="py">add</span><span class="o">(</span><span class="mf">1.72</span><span class="o">)</span>
+        <span class="nv">floats</span><span class="o">.</span><span class="py">add</span><span class="o">(</span><span class="mf">1.414</span><span class="o">)</span>
+        <span class="nv">floats</span><span class="o">.</span><span class="py">printAll</span><span class="o">()</span>
+
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Result</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>30
+20
+10
+Python
+Java
+Scala
+1.414
+1.72
+3.14
+</code></pre></div></div>
+:ET

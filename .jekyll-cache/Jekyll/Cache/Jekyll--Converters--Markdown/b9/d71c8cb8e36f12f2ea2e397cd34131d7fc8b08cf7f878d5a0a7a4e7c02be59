@@ -1,0 +1,232 @@
+I"�M<h2 id="callback">Callback</h2>
+
+<p>코드가 다른 작업을 시작할 수 있게 만들기 위해 프로그램의 남은 부분이 다른 작업들을 진행할 수 있도록 실행 흐름을 중단하지 않을 방법을 찾아야 한다.</p>
+
+<p>비동기로 동작하기위해 가장 간단한 방법 중 하나는 callback이다. 코드로 아래 예시를 보여드리겠습니다.</p>
+
+<blockquote>
+  <p>Example</p>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">def</span> <span class="nf">sync_wait_and_print</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">async_wait_and_print</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">callback</span><span class="p">():</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="n">timer</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">callback</span><span class="p">)</span>
+    <span class="n">timer</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+<span class="n">first</span> <span class="o">=</span> <span class="s">"First Call"</span>
+<span class="n">second</span> <span class="o">=</span> <span class="s">"Second Call"</span>
+<span class="n">third</span> <span class="o">=</span> <span class="s">"Third Call"</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"Start Sync"</span><span class="p">)</span>
+<span class="n">sync_wait_and_print</span><span class="p">(</span><span class="n">first</span><span class="p">)</span>
+<span class="n">sync_wait_and_print</span><span class="p">(</span><span class="n">second</span><span class="p">)</span>
+<span class="n">sync_wait_and_print</span><span class="p">(</span><span class="n">third</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"End Sync"</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"Start Async"</span><span class="p">)</span>
+<span class="n">async_wait_and_print</span><span class="p">(</span><span class="n">first</span><span class="p">)</span>
+<span class="n">async_wait_and_print</span><span class="p">(</span><span class="n">second</span><span class="p">)</span>
+<span class="n">async_wait_and_print</span><span class="p">(</span><span class="n">third</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"End Async"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>Result</strong></p>
+
+<p>결과를 확인해보면 동기로 작성한 코드는 순서대로 진행이 되지만, 비동기적으로 작성한 코드는 <code class="highlighter-rouge">async_wait_and_print</code> 함수를 재출하고 바로 진행하기 때문에 “End Async” 메세지가 먼저 출력되는것을 확인할 수 있습니다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Start Sync
+First Call
+Second Call
+Third Call
+End Sync
+
+Start Async
+End Async
+First Call
+Second Call
+Third Call
+</code></pre></div></div>
+
+<p>만약 아무것도 반환할 수 없다면 요청이 반환하는 값을 어떻게 전달할 수 있을지 생각해봐야합니다. 이 경우에는 값을 반환하는 대신 on_done 콜백에 인자로 전달을 합니다.</p>
+
+<blockquote>
+  <p>Example</p>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">def</span> <span class="nf">async_network_request</span><span class="p">(</span><span class="n">number</span><span class="p">,</span> <span class="n">on_done</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">timer_done</span><span class="p">():</span>
+        <span class="n">on_done</span><span class="p">({</span><span class="s">"Value"</span> <span class="p">:</span> <span class="n">number</span><span class="p">,</span> <span class="s">"Resut"</span> <span class="p">:</span> <span class="n">number</span> <span class="o">**</span> <span class="mi">2</span><span class="p">})</span>
+
+    <span class="n">timer</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">timer_done</span><span class="p">)</span>
+    <span class="n">timer</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">on_done</span><span class="p">(</span><span class="n">result</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"Start Async"</span><span class="p">)</span>
+<span class="n">async_network_request</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">on_done</span><span class="p">)</span>
+<span class="n">async_network_request</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">on_done</span><span class="p">)</span>
+<span class="n">async_network_request</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">on_done</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"End Async"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>Result</strong></p>
+
+<p>위의 예와 비슷합니다. 제곱하려는 숫자와 결과값이 준비가되면 그 값을 받을 콜백을 넘기기만 하면 됩니다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Start Async
+End Async
+{'Value': 4, 'Result': 16}
+{'Value': 3, 'Result': 9}
+{'Value': 5, 'Result': 25}
+</code></pre></div></div>
+
+<p>하나의 함수를 더 추가해서 <code class="highlighter-rouge">async_network_request</code> 함수를 사용하여 비동기적으로 코드를 작성해 보겠습니다.</p>
+
+<blockquote>
+  <p>Example</p>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">fetch_square</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">on_done</span><span class="p">(</span><span class="n">response</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">response</span><span class="p">[</span><span class="s">"Result"</span><span class="p">]:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"Result is : {}"</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s">"Result"</span><span class="p">]))</span>
+    <span class="n">async_network_request</span><span class="p">(</span><span class="n">number</span><span class="p">,</span> <span class="n">on_done</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="future">Future</h2>
+
+<p>Future 는 비동기 호출의 결과를 추적하는데 사용할 수 있는 편리한 패턴입니다. Future를 이용하면 요청한 자원을 추적하고 가용할 수 있을때까지 대기하는데 도움이 되는 추상화 입니다.</p>
+
+<p>Future 는 아래와 같이 부를 수 있습니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="kn">import</span> <span class="n">Future</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">fut</span> <span class="o">=</span> <span class="n">Future</span><span class="p">()</span>
+<span class="o">&lt;</span><span class="n">Future</span> <span class="n">at</span> <span class="mh">0x10b195290</span> <span class="n">state</span><span class="o">=</span><span class="n">pending</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<p>현재 Future는 사용할 수 없는 값을 나타냅니다. 결과값을 사용할 수 있게 <code class="highlighter-rouge">set.result</code> 메소드를 사용하겠습니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">fut</span><span class="o">.</span><span class="n">set_result</span><span class="p">(</span><span class="s">"Hello World"</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">Future</span> <span class="n">at</span> <span class="mh">0x10b195290</span> <span class="n">state</span><span class="o">=</span><span class="n">finished</span> <span class="n">returned</span> <span class="nb">str</span><span class="o">&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">fut</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="s">'Hello World'</span>
+</code></pre></div></div>
+
+<p>이제 Future를 이용하여 코드를 작성해 보겠습니다.</p>
+
+<blockquote>
+  <p>Example</p>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="kn">import</span> <span class="n">Future</span>
+<span class="kn">import</span> <span class="nn">threading</span>
+
+<span class="k">def</span> <span class="nf">async_network_request</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+    <span class="n">future</span> <span class="o">=</span> <span class="n">Future</span><span class="p">()</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span><span class="s">"value"</span> <span class="p">:</span> <span class="n">number</span><span class="p">,</span> <span class="s">"result"</span> <span class="p">:</span> <span class="n">number</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="s">"success"</span><span class="p">:</span> <span class="bp">True</span><span class="p">}</span>
+    <span class="n">timer</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">future</span><span class="o">.</span><span class="n">set_result</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
+    <span class="n">timer</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">future</span>
+
+<span class="k">def</span> <span class="nf">fetch_square</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+    <span class="n">fut</span> <span class="o">=</span> <span class="n">async_network_request</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">on_done_future</span><span class="p">(</span><span class="n">future</span><span class="p">):</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">response</span><span class="p">[</span><span class="s">"success"</span><span class="p">]:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"Value is : {}, Result is : {}"</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s">"value"</span><span class="p">],</span> <span class="n">response</span><span class="p">[</span><span class="s">"result"</span><span class="p">]))</span>
+
+    <span class="n">fut</span><span class="o">.</span><span class="n">add_done_callback</span><span class="p">(</span><span class="n">on_done_future</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"Start Async Future"</span><span class="p">)</span>
+<span class="n">fetch_square</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">fetch_square</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">fetch_square</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"End Async Future"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>Result</strong></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Start Async Future
+End Async Future
+Value is : 3, Result is : 9
+Value is : 4, Result is : 16
+Value is : 5, Result is : 25
+</code></pre></div></div>
+
+<p>callback 과 상당히 비슷하기도 합니다. 한가지 차이점으로는 <code class="highlighter-rouge">Future.add_done_callback()</code> 메소드로 콜백을 연결하기 때문에 이전과 같이 <code class="highlighter-rouge">on_done</code> 콜백을 받을 필요가 없습니다.</p>
+
+<h2 id="event-loop">Event Loop</h2>
+
+<p>지금까지는 OS 스레드를 이용해 병렬처리를 구현했습니다. 하지만 이벤트 루프를 이용한 비동기를 사용하는 방법도 있습니다.</p>
+
+<p>이벤트 루프의 경우 다양한 자원의 상태를 감시하여 이벤트가 일어나면 콜백 실행을 트리거 하는것입니다.</p>
+
+<p>아래 코드를 통해 살펴보겠습니다.</p>
+
+<blockquote>
+  <p>Example</p>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">class</span> <span class="nc">Timer</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span> <span class="o">=</span> <span class="n">timeout</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">done</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span>
+
+    <span class="k">def</span> <span class="nf">on_timer_done</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">callback</span> <span class="o">=</span> <span class="n">callback</span>
+
+<span class="n">timers</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">timer1</span> <span class="o">=</span> <span class="n">Timer</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">timer1</span><span class="o">.</span><span class="n">on_timer_done</span><span class="p">(</span><span class="k">lambda</span> <span class="p">:</span> <span class="k">print</span><span class="p">(</span><span class="s">"First Time is Done"</span><span class="p">))</span>
+
+<span class="n">timer2</span> <span class="o">=</span> <span class="n">Timer</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span>
+<span class="n">timer2</span><span class="o">.</span><span class="n">on_timer_done</span><span class="p">(</span><span class="k">lambda</span> <span class="p">:</span> <span class="k">print</span><span class="p">(</span><span class="s">"Second Timer is Done"</span><span class="p">))</span>
+
+<span class="n">timers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">timer1</span><span class="p">)</span>
+<span class="n">timers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">timer2</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">timer</span> <span class="ow">in</span> <span class="n">timers</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">timer</span><span class="o">.</span><span class="n">done</span><span class="p">():</span>
+            <span class="n">timer</span><span class="o">.</span><span class="n">callback</span><span class="p">()</span>
+            <span class="n">timers</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">timers</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">break</span>
+</code></pre></div></div>
+
+<p>print 함수를 사용하는 대신 적절한 시간에 루프가 <code class="highlighter-rouge">timer.callback</code> 을 호출할것입니다. 그래서 비동기 프레임 워크가 시작이 됩니다.</p>
+
+<p>타이머들은 이벤트 루프 즉, <code class="highlighter-rouge">while True:</code> 안에서 주기적으로 타이머를 검사합니다. 그리고 필요한 경우 콜백을 처리합니다.</p>
+
+<p><strong>Result</strong></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>First Time is Done
+Second Timer is Done
+</code></pre></div></div>
+
+<p>계속해서 실행되는 루프가 실행 흐름을 관리하기 떄문에 이벤트 루프 안에서는 블로킹 호출을 절대 사용하면 안됩니다.</p>
+
+<p>그렇기 때문에 <code class="highlighter-rouge">time.sleep</code>과 같은 블로킹 호출을 사용하는 대신 이벤트 루프가 자원이 준비될 때 감지해서 콜백을 실행하게하며, 실행흐름을 중단하지 않으므로 이벤트 루프가 여러 자원을 제약없이 동시적으로 감시할 수 있습니다.</p>
+
+:ET

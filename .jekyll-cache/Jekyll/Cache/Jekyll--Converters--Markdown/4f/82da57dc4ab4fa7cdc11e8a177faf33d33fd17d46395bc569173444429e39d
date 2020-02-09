@@ -1,0 +1,34 @@
+I"�<h2 id="inner-join">INNER JOIN</h2>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/67620602-a79b9780-f843-11e9-8332-1fe6b808df5c.png" alt="image" /></p>
+
+<p>INNER 조인은 MySQL에서는 간략히 JOIN으로 나타낸다. 일반적으로 사용하는 JOIN 이다. 핵심은 JOIN뒤에 ON인데, 두 테이블이 결합하는 조건을 나타낸다.</p>
+
+<p>두 테이블이 결합하는 조건을 나타낸다</p>
+
+<h2 id="left--right-outer-join">LEFT / RIGHT OUTER JOIN</h2>
+
+<h3 id="left-outer-join">LEFT OUTER JOIN</h3>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/67620603-a9655b00-f843-11e9-97a6-34053a6becce.png" alt="image" /></p>
+
+<p>왼쪽 테이블이 기준이 되어서 그 테이블에 있는 데이터를 모두 가져온다. 기준으로 지정되지 않은 오른쪽 테이블에서 가져올 수 없는 열은 NULL로 표현된다.</p>
+
+<h3 id="right-outer-join">RIGHT OUTER JOIN</h3>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/67620604-a9fdf180-f843-11e9-9278-2dc99d1096a4.png" alt="image" /></p>
+
+<p>오른쪽 테이블이 기준이 되어서 그 테이블에 있는 데이터를 모두 가져온다. 기준으로 지정되지 않은 왼쪽 테이블에서 가져올 수 없는 열은 NULL로 표현된다.</p>
+
+<h2 id="outer-join">OUTER JOIN</h2>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/67620605-abc7b500-f843-11e9-8773-b1e609e8fda5.png" alt="image" /></p>
+
+<p>INNER JOIN 문을 포함하고 한쪽에만 내용이 있더라도 지정한 기준 테이블에 있는 모든 데이터를 가져오는 조인방식</p>
+
+<h2 id="카디전-조인cross-join">카디전 조인(CROSS JOIN)</h2>
+
+<p>결과값이 한쪽 테이블의 모든행들과 다른쪽 테이블의 모든 행을 조인시킨다.
+결과 집합은 두 테이블의 개수를 곱한 값만큼 생성되며, 조인되는 테이블에 공통되는 행이 없어도 되며 조건절인 ON 키워드가 사용되지 않는다.</p>
+
+:ET

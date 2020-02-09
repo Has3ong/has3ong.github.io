@@ -1,0 +1,76 @@
+I"�<p>사용할 디렉토리 예시</p>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/69623016-7225dc00-1085-11ea-9705-0909aad53769.png" alt="image" /></p>
+
+<h2 id="파일-이름-파일-경로">파일 이름, 파일 경로</h2>
+
+<p><code class="highlighter-rouge">test.py</code>를 생성하고 아래 코드를 실행하면 파일 이름과 경로가 출력됩니다. <code class="highlighter-rouge">realpath()</code>는 심볼릭 링크 등의 실제 경로를 찾아주며, <code class="highlighter-rouge">abspath</code>는 파일의 절대경로를 리턴합니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="k">print</span><span class="p">(</span><span class="n">__file__</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="n">__file__</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">__file__</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>Result</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/Users/has3ong/Desktop/vrlab python/Test.py
+/Users/has3ong/Desktop/vrlab python/Test.py
+/Users/has3ong/Desktop/vrlab python/Test.py
+</code></pre></div></div>
+
+<h2 id="현재-파일의-디렉토리폴더-경로">현재 파일의 디렉토리(폴더) 경로</h2>
+
+<p>아래 코드들은 파일이 있는 폴더의 경로를 구하는 2가지 방법입니다. os.getcwd()는 폴더 경로를 리턴합니다. os.path.dirname()는 파일의 폴더 경로를 리턴합니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="k">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="n">__file__</span><span class="p">))</span> <span class="p">)</span>
+</code></pre></div></div>
+
+<p>Result</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/Users/has3ong/Desktop
+/Users/has3ong/Desktop/vrlab python
+</code></pre></div></div>
+
+<h2 id="현재-디렉토리에-있는-파일-리스트">현재 디렉토리에 있는 파일 리스트</h2>
+
+<p>listdir()는 인자로 넘겨준 경로의 파일 리스트를 리턴합니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="k">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="n">__file__</span><span class="p">))))</span>
+</code></pre></div></div>
+
+<p>Result</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['Box', 'Cone', 'Sphere', 'Test.py', 'Cylinder']
+</code></pre></div></div>
+
+<blockquote>
+  <p>Example</p>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">dirPath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="n">__file__</span><span class="p">))</span> 
+<span class="n">folderList</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">dirPath</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">folderList</span><span class="p">:</span>
+    <span class="k">if</span> <span class="s">".py"</span> <span class="ow">in</span> <span class="n">i</span><span class="p">:</span>
+        <span class="n">folderList</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">folderList</span><span class="p">:</span>
+    <span class="n">searchPath</span> <span class="o">=</span> <span class="n">dirPath</span> <span class="o">+</span> <span class="s">"/"</span> <span class="o">+</span> <span class="n">i</span>
+    <span class="n">FileList</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">searchPath</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Label is : {}, File List is : {}"</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">FileList</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>Result</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Label is : Box, File List is : ['3.txt', '2.txt', '1.txt']
+Label is : Cone, File List is : ['5.txt', '4.txt', '6.txt']
+Label is : Sphere, File List is : ['12.txt', '10.txt', '11.txt']
+Label is : Cylinder, File List is : ['9.txt', '8.txt', '7.txt']
+</code></pre></div></div>
+:ET

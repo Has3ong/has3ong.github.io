@@ -1,0 +1,127 @@
+I"|(<p><em>이 포스트는 <a href="https://github.com/gary136/ebook/blob/master/Flask%20Web%20Development.pdf">Flask Web Development</a>를 바탕으로 작성하였습니다.</em></p>
+
+<h2 id="custom-error-page">Custom Error Page</h2>
+
+<p>브라우저 주소 바에 정확하지 않은 경로를 입력하면 404 코드 에러 페이지를 만나게됩니다.</p>
+
+<p>Flask 에서는 어플리케이션에서 일반적인 라우터와 마찬가지로 커스텀 에러페이지를 정의할 수 있도록 해줍니다.</p>
+
+<p>가장 일반적인 두 가지 에러코드는 404 이며 클라이언트가 알지 못하는 경로를 요청했을 때 발생합니다. 또한, 500 코드는 처리하지 못하는 예외에 대해 발생합니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">app</span><span class="o">.</span><span class="n">errorhandler</span><span class="p">(</span><span class="mi">404</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">page_not_found</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+  <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">'404.html'</span><span class="p">),</span> <span class="mi">404</span>
+
+<span class="o">@</span><span class="n">app</span><span class="o">.</span><span class="n">errorhandler</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">internal_server_error</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+  <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">'500.html'</span><span class="p">),</span> <span class="mi">500</span>
+</code></pre></div></div>
+
+<p>에러 핸들러는 뷰 함수와 마찬가지로 상태코드랑 같이 응답을 리턴합니다.</p>
+
+<p>관련 에러코드 소스는 <a href="https://github.com/miguelgrinberg/flasky/tree/master/app/templates">Github</a> 경로에서 <code class="highlighter-rouge">templates/user.html</code>, <code class="highlighter-rouge">templates/404.html</code>, <code class="highlighter-rouge">templates/500.html</code> 과 같이 사용하면 됩니다. <code class="highlighter-rouge">404.html</code> 을 예시로 보여드리겠습니다.</p>
+
+<blockquote>
+  <p>templates/404.html</p>
+</blockquote>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+{% extends "base.html" %}
+
+{% block title %}Flasky - Page Not Found{% endblock %}
+
+{% block page_content %}
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"page-header"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;h1&gt;</span>Not Found<span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+{% endblock %}
+
+</code></pre></div></div>
+
+<p>위 페이지는 아래와 같이 보입니다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/73659071-d645cb80-46d8-11ea-83cc-ea0c2d6dd367.png" alt="image" /></p>
+
+<h2 id="links">Links</h2>
+
+<p>하나 이상의 라우터가 필요한 어플리케이션은 내비게이션 바와 같이 서로 다른 페이지들을 연결하는 링크를 포함시켜야 합니다.</p>
+
+<p>간단한 사용법은 함수는 하나의 인수로 뷰 함수 이름을 가지고 URL 을 리턴합니다. 예를 들어 <code class="highlighter-rouge">hello.py</code> 에서 <code class="highlighter-rouge">url_for('index')</code> 호출은 / 를 리턴합니다. <code class="highlighter-rouge">url_for('index, _external=True)</code> 호출은 절대 경로의 URL 을 리턴하지 않습니다.</p>
+
+<p>위 예에서는 <strong>http://localhost:5000/</strong> 을 리턴합니다.</p>
+
+<p>동적 URL 은 동적 파트를 키워드 인수로 <code class="highlighter-rouge">url_for()</code> 에 넘겨서 생성할 수 있습니다. 예를 들어, <code class="highlighter-rouge">url_for('user', name='john', _external=True)</code> 은 <strong>http://localhost:5000/user/john</strong> 을 리턴합니다.</p>
+
+<p><code class="highlighter-rouge">url_for()</code> 에 전송된 키워드 인수는 동적 라우트에 사용된 인수들의 제한을 받지 않습니다. 함수에서는 쿼리 문자열에 다음과 같이 추가 인수를 더할 수도 있습니다. ` url_for(‘index’, page=2)` 는 <strong>/?page=2</strong> 를 리턴합니다.</p>
+
+<h2 id="static-files">Static Files</h2>
+
+<p>정적 파일은 HTML 코드에 참조되는 이미지, JavaScript 파일, CSS 파일입니다.</p>
+
+<p>정적 파일을 사용할 때 URL 맵에 정적 엔트리가 존재하여 정적 파일에 대한 참조가 <code class="highlighter-rouge">/static/filename</code> 과 같이 경로로 정의되어 처리됩니다. 예를들어 <code class="highlighter-rouge">url_for('static', filename='css/styles.css', _external=True)</code> 에 대한 호출은 <strong>http://localhost:5000/static/css/styles.css</strong> 을 리턴합니다.</p>
+
+<p>기본 설정에서 Flask 는 어플리케이션의 루트 폴더에 있는 static 이라는 서브디렉토리에서 정적 파일을 찾습니다. 서버가 URL 을 받으면 <code class="highlighter-rouge">static/css/style.css</code> 에 있는 파일 시스템의 파일 내용을 포함하는 응답을 생성합니다.</p>
+
+<p>다음은 <code class="highlighter-rouge">favicon.ico</code> 아이콘을 어떻게 포함하는지 나타냅니다.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+{% block head %}
+{{ super() }}
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"shortcut icon"</span> <span class="na">href=</span><span class="s">"{{ url_for('static', filename = 'favicon.ico') }}"</span> <span class="na">type=</span><span class="s">"image/x-icon"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"icon"</span> <span class="na">href=</span><span class="s">"{{ url_for('static', filename = 'favicon.ico') }}"</span> <span class="na">type=</span><span class="s">"image/x-icon"</span><span class="nt">&gt;</span>
+{% endblock %}
+
+</code></pre></div></div>
+
+<p>아이콘 선언은 head 블록 끝부분에 추가합니다. <code class="highlighter-rouge">super()</code> 가 베이스 템플릿에 정의된 블록의 원래 컨텐츠를 보존하기 위해 어떻게 사용하는지 보겠습니다.</p>
+
+<h2 id="localization-of-dates-and-times-with-flask-moment">Localization of Dates and Times with Flask-Moment</h2>
+
+<p>웹 어플리케이션에서 날짜와 시간을 처리하는 것은 사용자가 전 세계에서 서로 다른 시간대를 사용하기 때문에 간단하지 않습니다.</p>
+
+<p>서버는 각 사용자의 위치와 무관한 시간 단위가 필요하며 따라서 <strong>협정세계시(Coordinated Universal Time, UTC) 를 사용합니다.</strong> 하지만 사용자는 일반적으로 자신이 거주하는 위치에 맞게 시간이 표현되기 원합니다.</p>
+
+<p>이를 위해 자바스크립트로 작성된 라이브러리를 사용하면 좋습니다. 이 라이브러리는 <code class="highlighter-rouge">moment.js</code> 라 하며 브라우저에서 시간과 날짜를 렌더링 해줍니다.</p>
+
+<p>Flask-Moment 는 pip 를 사용하여 설치합니다.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>flask-moment
+</code></pre></div></div>
+
+<p>다음과 같이 초기화 합니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask.ext.moment</span> <span class="kn">import</span> <span class="n">Moment</span>
+<span class="n">moment</span> <span class="o">=</span> <span class="n">Moment</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Flask-moment 는 <code class="highlighter-rouge">moment.js</code> 이외에도 <code class="highlighter-rouge">jquery.js</code> 가 필요합니다.</p>
+
+<p>두 파일은 CDN 에서 참조하면 됩니다. 이 라이브러리가 베이스 템플릿의 scripts 에서는 다음과 같이 로드됩니다.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+{% block scripts %}
+{{ super() }}
+{{ moment.include_moment() }}
+{% endblock %}
+
+</code></pre></div></div>
+
+<p>Flask-Moment 는 다음과 같이 사용하면 됩니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="o">@</span><span class="n">app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+  <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">'index.html'</span><span class="p">,</span> <span class="n">current_time</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">())</span>
+</code></pre></div></div>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nt">&lt;p&gt;</span>The local date and time is {{ moment(current_time).format('LLL') }}.<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;p&gt;</span>That was {{ moment(current_time).fromNow(refresh=True) }}<span class="nt">&lt;/p&gt;</span>
+
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">Format('LLL)</code> 은 컴퓨터에 설정되어 있는 시간대와 위치에 따라 날짜와 시간을 렌더링 합니다. 인수는 렌더링 스타일을 정합니다.</p>
+
+<p><code class="highlighter-rouge">fromNow()</code> 렌더링 스타일은 상대 타임스탬프를 렌더링 하고 넘겨진 시간에 따라 자동으로 <strong>refresh</strong> 합니다.</p>
+:ET

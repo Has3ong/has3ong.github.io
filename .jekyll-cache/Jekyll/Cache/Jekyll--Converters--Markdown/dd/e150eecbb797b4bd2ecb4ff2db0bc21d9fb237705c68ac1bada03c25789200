@@ -1,0 +1,130 @@
+I"� <h2 id="scala-access-modifier">Scala Access Modifier</h2>
+
+<p>OOP와 Scala는 비슷하다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">접근자</th>
+      <th style="text-align: center">클래스</th>
+      <th style="text-align: center">컴패니언 오브젝트</th>
+      <th style="text-align: center">패키지</th>
+      <th style="text-align: center">하위클래스</th>
+      <th style="text-align: center">프로젝트</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">default / public</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">O</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">protected</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">X</td>
+      <td style="text-align: center">X</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">private</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">X</td>
+      <td style="text-align: center">X</td>
+      <td style="text-align: center">X</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="public">public</h3>
+
+<p>private 과 protected 와 달리 키워드를 지정할 필요가 없다. public 멤버에 대한 명시적인 한정자가 없다. public 멤버는 어디서나 접근할 수 있다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">OuterClass</span> <span class="o">{</span>
+  <span class="k">class</span> <span class="nc">InnerClass</span> <span class="o">{</span>
+    <span class="k">def</span> <span class="nf">printName</span><span class="o">()</span> <span class="o">{</span> <span class="nf">println</span><span class="o">(</span><span class="s">"Hello World"</span><span class="o">)</span> <span class="o">}</span>
+    <span class="k">class</span> <span class="nc">InnerMost</span> <span class="o">{</span>
+      <span class="nf">printName</span><span class="o">()</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+  
+  <span class="o">(</span><span class="k">new</span> <span class="nc">InnerClass</span><span class="o">).</span><span class="py">printName</span><span class="o">()</span> <span class="c1">// 동작</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="protected">protected</h3>
+
+<p>protected 멤버가 정의된 클래스의 하위 클래스에서만 접근할 수 있다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span> <span class="nn">MyPackage</span><span class="o">{</span>
+  <span class="k">class</span> <span class="nc">SuperClass</span> <span class="o">{</span>
+    <span class="k">protected</span> <span class="k">def</span> <span class="nf">printName</span><span class="o">(){</span>
+      <span class="nf">println</span><span class="o">(</span><span class="s">"Hello World!"</span><span class="o">)</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+  
+  <span class="k">class</span> <span class="nc">SubClass</span> <span class="k">extends</span> <span class="nc">SuperClass</span> <span class="o">{</span>
+    <span class="nf">printName</span><span class="o">()</span> <span class="c1">// 동작</span>
+  <span class="o">}</span>
+  
+  <span class="k">class</span> <span class="nc">otherClass</span> <span class="o">{</span>
+    <span class="o">(</span><span class="k">new</span> <span class="nc">SuperClass</span><span class="o">).</span><span class="py">printName</span><span class="o">()</span> <span class="c1">// Error</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="private">private</h3>
+
+<p>멤버 정의가 포홤된 클래스 또는 객체 내부에서만 사용할 수 있다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span> <span class="nn">MyPackage</span><span class="o">{</span>
+  <span class="k">class</span> <span class="nc">SuperClass</span><span class="o">{</span>
+    <span class="k">private</span> <span class="k">def</span> <span class="nf">printName</span><span class="o">()</span> <span class="o">{</span>
+      <span class="nf">println</span><span class="o">(</span><span class="s">"Hello World!"</span><span class="o">);</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+  
+  <span class="k">class</span> <span class="nc">SubClass</span> <span class="k">extends</span> <span class="nc">SuperClass</span> <span class="o">{</span>
+    <span class="nf">printName</span><span class="o">()</span> <span class="c1">// Error</span>
+  <span class="o">}</span>
+  
+  <span class="k">class</span> <span class="nc">otherClass</span> <span class="o">{</span>
+    <span class="o">(</span><span class="k">new</span> <span class="nc">SuperClass</span><span class="o">).</span><span class="py">printName</span><span class="o">()</span> <span class="c1">// Error</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Scala는 이외에도 <strong>수식자(qualifier)</strong> 를 사용해 확장할 수 있다. <code class="highlighter-rouge">private[X]</code> / <code class="highlighter-rouge">protected[X]</code> 형태의 한정자는 각각 접근이 X까지 private 또는 protected 임을 의미한다. 아래 예제를 통해 살펴보겠습니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span> <span class="nn">Country</span><span class="o">{</span>
+  <span class="k">package</span> <span class="nn">Professional</span> <span class="o">{</span>
+    <span class="k">class</span> <span class="nc">Executive</span> <span class="o">{</span>
+      <span class="k">private</span><span class="o">[</span><span class="kt">Professional</span><span class="o">]</span> <span class="k">var</span> <span class="n">jobTitle</span> <span class="k">=</span> <span class="s">"Big Data"</span>
+      <span class="k">private</span><span class="o">[</span><span class="kt">Country</span><span class="o">]</span> <span class="k">var</span> <span class="n">friend</span> <span class="k">=</span> <span class="s">"Scala"</span>
+      <span class="k">protected</span><span class="o">[</span><span class="kt">this</span><span class="o">]</span> <span class="k">var</span> <span class="n">secret</span> <span class="k">=</span> <span class="s">"Age"</span>
+      
+      <span class="k">def</span> <span class="nf">getInfo</span><span class="o">(</span><span class="n">another</span> <span class="k">:</span> <span class="kt">Execeutive</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nf">println</span><span class="o">(</span><span class="nv">another</span><span class="o">.</span><span class="py">jobTitle</span><span class="o">)</span>
+        <span class="nf">println</span><span class="o">(</span><span class="nv">another</span><span class="o">.</span><span class="py">friend</span><span class="o">)</span>
+        <span class="nf">println</span><span class="o">(</span><span class="nv">another</span><span class="o">.</span><span class="py">secret</span><span class="o">)</span> <span class="c1">// Error</span>
+        <span class="nf">println</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="py">secret</span><span class="o">)</span> <span class="c1">// 동작</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>위 코드의 간단한 참고 내용 입니다.</p>
+
+<ul>
+  <li>jobTitle 변수는 Professional 패키지 내의 모든 클래스에 접근이 가능하다.</li>
+  <li>friend 변수는 Country 패키지 내의 모든 클래스에서 접근할 수 있다.</li>
+  <li>secret 변수는 인스턴스 메소드(this)의 암시(implicit) 객체에만 접근할 수 있다.</li>
+</ul>
+
+<p>위 예제에서는 package 키워드를 사용했습니다.</p>
+:ET
