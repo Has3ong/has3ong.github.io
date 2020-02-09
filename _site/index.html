@@ -101,6 +101,31 @@
 
 <!-- end custom head snippets -->
 
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
   </head>
 
   <body class="layout--home">
@@ -205,8 +230,8 @@
 
       
         <li>
-          <a href="mailto:gnoesah@gmail.com">
-            <meta itemprop="email" content="gnoesah@gmail.com" />
+          <a href="mailto:">
+            <meta itemprop="email" content="" />
             <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email
           </a>
         </li>
