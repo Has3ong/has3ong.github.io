@@ -1,0 +1,293 @@
+I"�H<p><em>이 포스트는 <a href="https://github.com/gary136/ebook/blob/master/Flask%20Web%20Development.pdf">Flask Web Development</a>를 바탕으로 작성하였습니다.</em></p>
+
+<p>템플릿은 응답 텍스트를 포함하고 있는 파일이며, 이 파일은 리퀘스트 내용에서 인식 가능한 동적 파트에 대한 변수들을 포함하고 있습니다. 변수들을 실제 값으로 바꾸는 프로세스와 최종 응답 문자열을 리턴하는 프로세스를 <strong>렌더링(rendering)</strong> 이라 합니다.</p>
+
+<p>Flask 는 템플릿을 렌더링하는 테스크를 위해 <strong>Jinja2</strong> 라는 엔진을 사용합니다.</p>
+
+<h2 id="the-jinja2-template-engine">The Jinja2 Template Engine</h2>
+
+<p>간단한 HTML 코드를 Jinja2 템플릿으로 나타내 보겠습니다.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;h1&gt;</span> Hello World! <span class="nt">&lt;/h1&gt;</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">World!</code> 를 <code class="highlighter-rouge">name</code> 이라는 변수로 바꾸고 위 코드를 Jinja2 로 구현하면 다음과 같습니다.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;h1&gt;</span> Hello,  ! <span class="nt">&lt;/h1&gt;</span>
+</code></pre></div></div>
+
+<h3 id="rendering-templates">Rendering Templates</h3>
+
+<p>Flask 에서는 어플리케이션 폴더 안에 위치하는 <strong>templates</strong> 서브폴더에서 템플릿을 검색합니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">render_template</span>
+
+<span class="c1"># ...
+</span>
+<span class="o">@</span><span class="n">app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/index'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+  <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">'index.html'</span><span class="p">)</span>
+
+<span class="o">@</span><span class="n">app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/user/&lt;name&gt;'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">user</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+  <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">'user.html'</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Flask 에서 제공하는 <code class="highlighter-rouge">render_template</code> 함수는 어플리케이션과 Jinja2 템플릿 엔진을 통합합니다. 이 함수는 첫 번째 인수로 템플릿의 파일 이름을 사용합니다. 추가 인수는 템플릿에서 참조한 변수들에 대한 실제 값을 표현하는 key-value 쌍이다. 이 예제에서 두 번째 템플릿은 name 변수를 받게 됩니다.</p>
+
+<h3 id="variables">Variables</h3>
+
+<p>Flask 변수는 위에서 사용되는 `` 부분을 뜻합니다.</p>
+
+<p>Jinja2 는 어떤 타입의 변수라도 인식합니다. List, Dictionary, Object 같은 타입도 인식합니다. 아래 예를 보여드리겠습니다.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nt">&lt;p&gt;</span>A value from a dictionary: {{ mydict['key'] }}.<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;p&gt;</span>A value from a list: {{ mylist[3] }}.<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;p&gt;</span>A value from a list, with a variable index: {{mylist[myintvar] }}.<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;p&gt;</span> A value from an object's method: {{ myobj.somemethod() }}.<span class="nt">&lt;/p&gt;</span>
+
+</code></pre></div></div>
+
+<p>변수는 <strong>필터(filter)</strong> 를 사용하여 수정할 수 있으며 파이프 기호를 분리자로 하여 변수 이름에 추가합니다. 예를 들어 다음 템플릿은 name 변수의 첫 문자를 대문자로 합니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Hello</span><span class="p">,</span> 
+</code></pre></div></div>
+
+<p>아래는 Jinja2 에서 자주 사용하는 필터를 정리한것 입니다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">필터 이름</th>
+      <th style="text-align: center">설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">safe</td>
+      <td style="text-align: center">이스케이프를 적용하지 않고 값을 렌더링한다.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">capitalize</td>
+      <td style="text-align: center">값의 첫 번째 문자를 대문자로 만들고 나머지는 소문자로 만든다.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">lower</td>
+      <td style="text-align: center">값을 소문자로 만든다.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">upper</td>
+      <td style="text-align: center">값을 대문자로 만든다.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">title</td>
+      <td style="text-align: center">값의 각 단어들을 capitalize 한다.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">trim</td>
+      <td style="text-align: center">앞부분과 뒷부분에서 공백 문자를 삭제한다.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">striptags</td>
+      <td style="text-align: center">렌더링하기 전에 값에 존재하고 있는 HTML 태그를 제거한다.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>위의 safe 필터를 예로 들여보면 Jinja2 는 기본적으로 모든 변수를 보안 목적으로 <strong>이스케이프(escape)</strong> 합니다. 예를 들어, 변수가 <code class="highlighter-rouge">'&lt;h1&gt;Hello&lt;/h1&gt;'</code> 라는 값으로 설정이 되어 있으면 Jinja2 는 <code class="highlighter-rouge">'&amp;lt;h1&amp;gt;Hello&amp;lt;/h1&amp;gt;'</code> 형태로 렌더링 합니다.</p>
+
+<p>이러한 기능은 h1 항목을 화면에는 보이되 브라우저에서는 인식하지 못하도록 합니다. 변수에 저장된 HTML 코드를 보이게 할 경우가 많으면 safe 필터를 사용하면 됩니다.</p>
+
+<h3 id="control-structure">Control Structure</h3>
+
+<p>Jinja2 는 몇가지 제어 문자를 제공합니다.</p>
+
+<p>아래 예제를 통해 제어문이 템플릿에서 어떻게 사용되는지 알아보겠습니다.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+{% if user %}
+  Hello, {{ user }}!
+{% else %}
+  Hello, Stranger !
+{% endif %}
+
+</code></pre></div></div>
+
+<p>템플릿의 또 다른 공통 점은 항목의 리스트를 렌더링하는 점 입니다. 다음은 for 루프를 알아보겠습니다.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nt">&lt;ul&gt;</span>
+  {% for comment in comments %}
+    <span class="nt">&lt;li&gt;</span>{{ comment }}<span class="nt">&lt;/li&gt;</span>
+  {% endfor %}
+<span class="nt">&lt;/ul&gt;</span>
+
+</code></pre></div></div>
+
+<p>Jinja2 에서는 <strong>매크로</strong> 기능도 제공합니다.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+{% macro render_comment(comment) %}
+  <span class="nt">&lt;li&gt;</span>{{ comment }}<span class="nt">&lt;/li&gt;</span>
+{% endmacro %}
+
+<span class="nt">&lt;ul&gt;</span>
+  {% for comment in comments %}
+    {{ render_comment(comment) }}
+  {% endfor %}
+<span class="nt">&lt;/ul&gt;</span>
+
+</code></pre></div></div>
+
+<p>매크로를 재사용하기 위해서는 독립적인 파일에 저장해 두고 필요할 때 템플릿에 <strong>임포트</strong> 하면 됩니다.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+{% import 'macros.html' as macros %}
+<span class="nt">&lt;ul&gt;</span>
+  {% for comment in comments %}
+    {{ macros.render_comment(comment) }}
+  {% endfor %}
+<span class="nt">&lt;/ul&gt;</span>
+
+</code></pre></div></div>
+
+<p>여러 위치에 반복되어야 하는 템플릿 코드 부분은 별도의 파일에 저장하고 필요한 템플릿을 <strong>인클루드(include)</strong> 하여 불필요한 반복을 피한다.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+{% include 'common.html' %}
+
+</code></pre></div></div>
+
+<p>재사용의 또 다른 강력한 기능으로 템플릿의 상속이 있습니다. 이 개념은 파이썬에서의 클래스 상속과 비슷합니다. 먼저 베이스 템플릿 <code class="highlighter-rouge">base.html</code> 을 생성해보겠습니다.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+  {% block head %}
+  <span class="nt">&lt;title&gt;</span>{% block title %}{% endblock %} - MyApplication<span class="nt">&lt;/title&gt;</span>
+  {% endblock %}
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+  {% block body %}
+  {% endblock %}
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+
+</code></pre></div></div>
+
+<p>여기서 block 태그는 파생된 템플릿이 변경할 수 있는 항목을 정의합니다. 이 예제에서는 head, title, body 라 하는 블록이 있습니다. title 은 head 에 포함되어 있습니다. 다음 예제는 베이스 템플릿에서 파생된 템플릿입니다.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+{% extends "base.html %}
+{% block title %}Index{% endblock %}
+{% block head %}
+  {{ super() }}
+  <span class="nt">&lt;style&gt;</span>
+  <span class="nt">&lt;/style&gt;</span>
+{% endblock %}
+{% block body %}
+<span class="nt">&lt;h1&gt;</span>Hello, World!<span class="nt">&lt;/h1&gt;</span>
+{% endblock %}
+
+</code></pre></div></div>
+
+<p>extends 디렉티브는 이 템플릿이 <code class="highlighter-rouge">base.html</code> 로부터 파생되었다는것을 선언합니다. head 블록을 새롭게 정의하는 경우에는 베이스 템플릿에 기존의 내용이 존재하기 때문에 원래의 내용을 유지하기 위해 <code class="highlighter-rouge">super()</code> 를 사용합니다.</p>
+
+<h2 id="twitter-bootstrap-integration-with-flask-bootstrap">Twitter Bootstrap Integration with Flask-Bootstrap</h2>
+
+<p>Bootstrap 은 트위터에서 제공하는 오픈 소스 프레임 워크이며 현대의 모든 웹 브라우저와 호환되는 웹 페이지를 생성할 수 있도록 하는 사용자 인터페이스 컴포넌트를 제공합니다.</p>
+
+<p>Flask 에서는 <code class="highlighter-rouge">Flask-Bootstrap</code> 이라는 확자응ㄹ 사용할 수 있습니다.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>flask-bootstrap
+</code></pre></div></div>
+
+<p>Flask-Bootstrap 초기화는 다음과 같이 합니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask.ext.bootstrap</span> <span class="kn">import</span> <span class="n">Bootstrap</span>
+<span class="c1"># ...
+</span><span class="n">bootstrap</span> <span class="o">=</span> <span class="n">Bootstrap</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>관련 소스는 <a href="https://github.com/miguelgrinberg/flasky/tree/master/app/templates">Github</a> 링크에 있습니다. 간단한 예제만 보여드리고 마무리하겠습니다.</p>
+
+<blockquote>
+  <p>templates/user.html</p>
+</blockquote>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+{% extends "base.html" %}
+{% import "_macros.html" as macros %}
+
+{% block title %}Flasky - {{ user.username }}{% endblock %}
+
+{% block page_content %}
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"page-header"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"img-rounded profile-thumbnail"</span> <span class="na">src=</span><span class="s">"{{ user.gravatar(size=256) }}"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"profile-header"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;h1&gt;</span>{{ user.username }}<span class="nt">&lt;/h1&gt;</span>
+        {% if user.name or user.location %}
+        <span class="nt">&lt;p&gt;</span>
+            {% if user.name %}{{ user.name }}<span class="nt">&lt;br&gt;</span>{% endif %}
+            {% if user.location %}
+                from <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"http://maps.google.com/?q={{ user.location }}"</span><span class="nt">&gt;</span>{{ user.location }}<span class="nt">&lt;/a&gt;&lt;br&gt;</span>
+            {% endif %}
+        <span class="nt">&lt;/p&gt;</span>
+        {% endif %}
+        {% if current_user.is_administrator() %}
+        <span class="nt">&lt;p&gt;&lt;a</span> <span class="na">href=</span><span class="s">"mailto:{{ user.email }}"</span><span class="nt">&gt;</span>{{ user.email }}<span class="nt">&lt;/a&gt;&lt;/p&gt;</span>
+        {% endif %}
+        {% if user.about_me %}<span class="nt">&lt;p&gt;</span>{{ user.about_me }}<span class="nt">&lt;/p&gt;</span>{% endif %}
+        <span class="nt">&lt;p&gt;</span>Member since {{ moment(user.member_since).format('L') }}. Last seen {{ moment(user.last_seen).fromNow() }}.<span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;p&gt;</span>{{ user.posts.count() }} blog posts. {{ user.comments.count() }} comments.<span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;p&gt;</span>
+            {% if current_user.can(Permission.FOLLOW) and user != current_user %}
+                {% if not current_user.is_following(user) %}
+                <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"{{ url_for('.follow', username=user.username) }}"</span> <span class="na">class=</span><span class="s">"btn btn-primary"</span><span class="nt">&gt;</span>Follow<span class="nt">&lt;/a&gt;</span>
+                {% else %}
+                <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"{{ url_for('.unfollow', username=user.username) }}"</span> <span class="na">class=</span><span class="s">"btn btn-default"</span><span class="nt">&gt;</span>Unfollow<span class="nt">&lt;/a&gt;</span>
+                {% endif %}
+            {% endif %}
+            <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"{{ url_for('.followers', username=user.username) }}"</span><span class="nt">&gt;</span>Followers: <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"badge"</span><span class="nt">&gt;</span>{{ user.followers.count() - 1 }}<span class="nt">&lt;/span&gt;&lt;/a&gt;</span>
+            <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"{{ url_for('.followed_by', username=user.username) }}"</span><span class="nt">&gt;</span>Following: <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"badge"</span><span class="nt">&gt;</span>{{ user.followed.count() - 1 }}<span class="nt">&lt;/span&gt;&lt;/a&gt;</span>
+            {% if current_user.is_authenticated and user != current_user and user.is_following(current_user) %}
+            | <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"label label-default"</span><span class="nt">&gt;</span>Follows you<span class="nt">&lt;/span&gt;</span>
+            {% endif %}
+        <span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;p&gt;</span>
+            {% if user == current_user %}
+            <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"btn btn-default"</span> <span class="na">href=</span><span class="s">"{{ url_for('.edit_profile') }}"</span><span class="nt">&gt;</span>Edit Profile<span class="nt">&lt;/a&gt;</span>
+            {% endif %}
+            {% if current_user.is_administrator() %}
+            <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"btn btn-danger"</span> <span class="na">href=</span><span class="s">"{{ url_for('.edit_profile_admin', id=user.id) }}"</span><span class="nt">&gt;</span>Edit Profile [Admin]<span class="nt">&lt;/a&gt;</span>
+            {% endif %}
+        <span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;h3&gt;</span>Posts by {{ user.username }}<span class="nt">&lt;/h3&gt;</span>
+{% include '_posts.html' %}
+{% if pagination %}
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pagination"</span><span class="nt">&gt;</span>
+    {{ macros.pagination_widget(pagination, '.user', username=user.username) }}
+<span class="nt">&lt;/div&gt;</span>
+{% endif %}
+{% endblock %}
+
+</code></pre></div></div>
+
+<p>위 파일은 Flask-Bootstrap 에서 <code class="highlighter-rouge">bootstrap/base.html</code> 파일을 참조하여 템플릿 상속을 구현합니다.</p>
+
+<p>베이스 템플릿은 파생된 템플릿에 의해 오버라이드될 수 있는 블록을 정의합니다. block 과 endblock 디렉티브는 베이스 템플릿에 추가된 내용의 블록을 정의합니다.</p>
+
+<p><code class="highlighter-rouge">user.html</code> 파일은 title, navbar, content 라는 3개의 블록을 정의합니다.</p>
+
+<p>결과는 아래와 같습니다.</p>
+
+<blockquote>
+  <p>Example</p>
+</blockquote>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/73659076-d776f880-46d8-11ea-8eba-37ecb1048104.png" alt="image" /></p>
+
+:ET
