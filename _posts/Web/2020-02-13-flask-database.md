@@ -1,5 +1,5 @@
 ---
-title : Database
+title : Flask Database
 tags :
 - Database
 - Python

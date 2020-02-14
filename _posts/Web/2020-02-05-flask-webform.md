@@ -1,5 +1,5 @@
 ---
-title : Web Forms
+title : Flask Web Forms
 tags :
 - Python
 - Flask

@@ -1,5 +1,5 @@
 ---
-title : Basic Application Structure
+title : Flask Basic Application Structure
 tags :
 - Python
 - Flask

@@ -12,4 +12,5 @@ layout: single
 * [Flask Templates](/flask-templates)
 * [Flask Web Form](/flask-webform)
 * [Flask Database](/flask-database)
+* [Flask Email](/flask-email)
 

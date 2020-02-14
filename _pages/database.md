@@ -16,5 +16,6 @@ layout: single
 
 * [MongoDB Introduction](/mongodb-introduction)
 * [MongoDB Getting Started](/mongodb-gettingstarted)
+* [MongoDB Creating, Updating, and Deleting Documents](/mongodb-cruddocuments)
 
 ## References

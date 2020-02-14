@@ -1,5 +1,5 @@
 ---
-title : Templates
+title : Flask Templates
 tags :
 - Python
 - Flask
