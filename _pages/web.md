@@ -13,4 +13,6 @@ layout: single
 * [Flask Web Form](/flask-webform)
 * [Flask Database](/flask-database)
 * [Flask Email](/flask-email)
+* [Flask Large Application Structure](/flask-largeapstructure)
+
 
