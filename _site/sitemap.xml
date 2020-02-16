@@ -7,6 +7,30 @@
 
     
     <url>
+        <loc>http://localhost:4000/javaoptimizing-patternantipatterns/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/javaoptimizing-hwos/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/javaoptimizing-overviewjvm/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/javaoptimizing-optimization/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/flask-email/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/mongodb-cruddocuments/</loc>
+    </url>
+    
+    <url>
         <loc>http://localhost:4000/flask-database/</loc>
     </url>
     
@@ -1032,6 +1056,14 @@
     
     <url>
         <loc>http://localhost:4000/page33/</loc>
+    </url>
+    
+    
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/page34/</loc>
     </url>
     
     
