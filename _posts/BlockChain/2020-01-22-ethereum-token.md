@@ -746,7 +746,7 @@ interface ERC777Token {
 }
 ```
 
-#### ERC777 hooks
+### ERC777 hooks
 
 ERC777 토큰 발신자 후크 사양은 다음과 같습니다.
 

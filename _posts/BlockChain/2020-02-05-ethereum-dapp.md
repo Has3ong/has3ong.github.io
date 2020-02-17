@@ -613,18 +613,18 @@ ENS 에서 이름을 확인하는 과정은 두 단계로 이루어집니다.
 
 > Example 12 - Setting the default public resolver for auction.ethereumbook.eth
 
-![image](https://user-images.githubusercontent.com/44635266/74652660-dad6ad80-51c9-11ea-8602-d823c5bde6aa.png)
- 
+![image](https://user-images.githubusercontent.com/44635266/74652659-d90cea00-51c9-11ea-81b9-dba0c6182f48.png)
+
 ### Resolving a Name to a Swarm Hash (Content)
 
 `auction.ethereumbook.eth` 의 리졸버가 공개 리졸버로 설정되면, 스웜 해시를 이름의 컨텐츠로 반환하도록 설정할 수 있습니다.
 
 > Example 13 - Setting the 'content' to return for auction.ethereumbook.eth
 
-![image](https://user-images.githubusercontent.com/44635266/74652662-dca07100-51c9-11ea-9f43-2625c28bd05c.png)
+![image](https://user-images.githubusercontent.com/44635266/74652660-dad6ad80-51c9-11ea-8602-d823c5bde6aa.png)
 
 아래 그림은 경매 댑의 전체 아키텍처입니다.
 
 > Example 14 - Auction DApp architecture
 
-![image](https://user-images.githubusercontent.com/44635266/74652659-d90cea00-51c9-11ea-81b9-dba0c6182f48.png)
+![image](https://user-images.githubusercontent.com/44635266/74652662-dca07100-51c9-11ea-9f43-2625c28bd05c.png)
