@@ -49,32 +49,12 @@ layout: single
 
 ---
 
-* [Ethereum Cryptography -1- Cryptography](/ethereum-cryptography1)
-* [Ethereum Cryptography -2- Public Key / Private Key / ECC](/ethereum-cryptography2)
-* [Ethereum Cryptography -3- Hash Function / Ethereum Address](/ethereum-cryptography3)
-* [Ethereum Wallet -1- Wallet](/ethereum-wallet1)
-* [Ethereum Wallet -2- Deterministic Wallets](/ethereum-wallet2)
-* [Ethereum Wallet -3- Mnemonic Code Words](/ethereum-wallet3)
-* [Ethereum Transaction -1- Structure of a Transaction](/ethereum-transaction1)
-* [Ethereum Transaction -2- Nonce](/ethereum-transaction2)
-* [Ethereum Transaction -3- Gas, Recipient](/ethereum-transaction3)
-* [Ethereum Transaction -4- Value, Data, Payload](/ethereum-transaction4)
-* [Ethereum Transaction -5- Digital Signatures, ECDSA Math](/ethereum-transaction5)
-* [Ethereum Transaction -6- Transaction Signing](/ethereum-transaction6)
-* [Ethereum Transaction -7- Separating Signing and Transmission](/ethereum-transaction7)
-* [Ethereum Smart Contracts and Solidity -1- Smart Contract](/ethereum-solidity1)
-* [Ethereum Smart Contracts and Solidity -2- Solidity Compile](/ethereum-solidity2)
-* [Ethereum Smart Contracts and Solidity -3- Data Type](/ethereum-solidity3)
-* [Ethereum Smart Contracts and Solidity -4- Contract Definition / Constructor](/ethereum-solidity4)
-* [Ethereum Smart Contracts and Solidity -5- Modifier / Inheritance / Error Handling / Event](/ethereum-solidity5)
-* [Ethereum Smart Contracts and Solidity -6- send / call / callcode / delegatecall](/ethereum-solidity6)
-* [Ethereum Token -1- Overview of Token](/ethereum-token1)
-* [Ethereum Token -2- The ERC20 Token Standard](/ethereum-token2)
-* [Ethereum Token -3- Launching Our Own ERC20 Token](/ethereum-token3)
-* [Ethereum Token -4- ERC20 / 223 / 777 / 721](/ethereum-token4)
-* [Ethereum DApp -1- Introduction](/ethereum-dapp1)
-* [Ethereum DApp -2- DApp Example: Auction DApp](/ethereum-dapp2)
-* [Ethereum DApp -3- The Ethereum Name Service (ENS)](/ethereum-dapp3)
+* [Ethereum Cryptography](/ethereum-cryptography)
+* [Ethereum Wallet](/ethereum-wallet)
+* [Ethereum Transaction](/ethereum-transaction)
+* [Ethereum Smart Contracts and Solidity](/ethereum-solidity)
+* [Ethereum Token](/ethereum-token)
+* [Ethereum DApp](/ethereum-dapp)
 
 ## Klaytn
 

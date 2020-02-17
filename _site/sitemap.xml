@@ -47,19 +47,11 @@
     </url>
     
     <url>
-        <loc>http://localhost:4000/ethereum-dapp3/</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/ethereum-dapp2/</loc>
-    </url>
-    
-    <url>
         <loc>http://localhost:4000/flask-webform/</loc>
     </url>
     
     <url>
-        <loc>http://localhost:4000/ethereum-dapp1/</loc>
+        <loc>http://localhost:4000/ethereum-dapp/</loc>
     </url>
     
     <url>
@@ -68,10 +60,6 @@
     
     <url>
         <loc>http://localhost:4000/swmaestro-ing1/</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/ethereum-token4/</loc>
     </url>
     
     <url>
@@ -87,39 +75,11 @@
     </url>
     
     <url>
-        <loc>http://localhost:4000/ethereum-token3/</loc>
+        <loc>http://localhost:4000/ethereum-token/</loc>
     </url>
     
     <url>
-        <loc>http://localhost:4000/ethereum-token2/</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/ethereum-token1/</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/ethereum-solidity6/</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/ethereum-solidity5/</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/ethereum-solidity4/</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/ethereum-solidity3/</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/ethereum-solidity2/</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/ethereum-solidity1/</loc>
+        <loc>http://localhost:4000/ethereum-solidity/</loc>
     </url>
     
     <url>
@@ -127,35 +87,11 @@
     </url>
     
     <url>
-        <loc>http://localhost:4000/ethereum-transaction7/</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/ethereum-transaction6/</loc>
-    </url>
-    
-    <url>
         <loc>http://localhost:4000/hyperledger-eyfn1/</loc>
     </url>
     
     <url>
-        <loc>http://localhost:4000/ethereum-transaction5/</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/ethereum-transaction4/</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/ethereum-transaction3/</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/ethereum-transaction2/</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/ethereum-transaction1/</loc>
+        <loc>http://localhost:4000/ethereum-transaction/</loc>
     </url>
     
     <url>
@@ -168,14 +104,6 @@
     
     <url>
         <loc>http://localhost:4000/swmaestro-start/</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/ethereum-wallet3/</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/ethereum-wallet2/</loc>
     </url>
     
     <url>
@@ -195,11 +123,7 @@
     </url>
     
     <url>
-        <loc>http://localhost:4000/ethereum-wallet1/</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/ethereum-cryptography3/</loc>
+        <loc>http://localhost:4000/ethereum-wallet/</loc>
     </url>
     
     <url>
@@ -215,11 +139,7 @@
     </url>
     
     <url>
-        <loc>http://localhost:4000/ethereum-cryptography2/</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/ethereum-cryptography1/</loc>
+        <loc>http://localhost:4000/ethereum-cryptography/</loc>
     </url>
     
     <url>
@@ -1036,38 +956,6 @@
     
     <url>
         <loc>http://localhost:4000/page30/</loc>
-    </url>
-    
-    
-    
-    
-    
-    <url>
-        <loc>http://localhost:4000/page31/</loc>
-    </url>
-    
-    
-    
-    
-    
-    <url>
-        <loc>http://localhost:4000/page32/</loc>
-    </url>
-    
-    
-    
-    
-    
-    <url>
-        <loc>http://localhost:4000/page33/</loc>
-    </url>
-    
-    
-    
-    
-    
-    <url>
-        <loc>http://localhost:4000/page34/</loc>
     </url>
     
     
