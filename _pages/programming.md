@@ -18,6 +18,11 @@ layout: single
 * [Java Overloading / Overriding 비교](/java-overriding)
 * [Java Abstract Class와 Interface의 차이](/java-abstractclassinterface)
 
+---
+
+
+
+
 ### Python
 
 * [Python sturct 구현](/python-struct)
@@ -28,6 +33,11 @@ layout: single
 * [Python 디렉토리의 파일 리스트 가져오기](/python-directory)
 * [PyPy 가 CPython 보다 빠른 이유](/pypy-cpython)
 * [Python 동기 / 비동기 구현 -1-](/python-syncasync1)
+
+---
+
+* [Python Profiling to Find Bottlenecks](/pythonperformance-findbottlenecks)
+* [Python Lists and Tuples](/pythonperformance-listtuple)
 
 ### Scala
 

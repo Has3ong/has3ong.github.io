@@ -1,0 +1,638 @@
+I"<p><em>이 포스트는 <a href="">Optimizing Java</a> 를 바탕으로 작성하였습니다.</em></p>
+
+<p>Java 코드 한조각의 성능을 정확히 측정하기란 매우 미묘하고 어려운 작업입니다. 마이크로벤치마킹이란 무엇이며 올바른 사용법을 알아보겠습니다.</p>
+
+<blockquote>
+  <p>첫 번째 원칙은, 절대로 스스로를 속이면 안 된다는 겁니다. 여러분은 가장 속아 넘어가기 쉬운 사람이지요. - 리처드 파인만</p>
+</blockquote>
+
+<h2 id="introduction-to-measuring-java-performance">Introduction to Measuring Java Performance</h2>
+
+<p>벤치마크란 입출력을 지닌 일종의 블랙박스와 같습니다. 개발자는 어떤 결과를 추측/추론하는 데 필요한 데이터를 수집하려고 하지만, 단지 데이터를 모으는 것으로 충분하지 않고 그 데이터에 현혹되지 않도록 주의해야 합니다.</p>
+
+<blockquote>
+  <p>벤치마크에서 수치는 중요하지 않습니다. 이 수치들로부터 어떤 모델을 이끌어 내느냐 하는 점이 관건입니다.</p>
+</blockquote>
+
+<p>Java 플랫폼을 벤치마크할 때에는 Java 런타임의 정교함이 문제입니다. 최적화의 맥락에서 벤치마크를 과학적인 테스트로 바라보면 우리가 가진 선택지는 제한적입니다.</p>
+
+<p>따라서 최적화가 미치는 영향을 구체적으로 완전히 이해하고 설명하기란 사실 불가능합니다. 어플리케이션 코드가 정말 정확히 투영된 성능 모델은 생성하기 어렵고 적용 범위가 한정됩니다.</p>
+
+<p>다시 말해, Java 코드 실행은 JIT 컴파일러, 메모리 관리, Java 런타임이 제공하는 서브 시스템과 완전히 떼어넣고 생각할 수 없습니다. 테스트 실행 당시 OS, 하드웨어, 런타임 조건의 작용 또한 무시할 수 없습니다.</p>
+
+<blockquote>
+  <p>그 누구도 온전한 전체일 뿐 섬이 압닙니다. - 존 던</p>
+</blockquote>
+
+<p>이와 같은 여러가지 작용은 큰 단위 로 처리하여 상쇄시킬 수 있습니다. 반대로, 작은 규모로 마이크로벤치마크를 할 때는 물밑에서 작동하는 런타임과 어플리케이션 코드를 확실히 떼어놓기가 어렵습니다. 이것이 마이크로벤치마킹이 어려운 이유입니다.</p>
+
+<p>100,000 개 숫자를 정렬하는 벤치마크 코드를 예로 들어보겠습니다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ClassicSort</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">N</span> <span class="o">=</span> <span class="mi">1_000</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">I</span> <span class="o">=</span> <span class="mi">150_000</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">testData</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Random</span> <span class="n">randomGenerator</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Random</span><span class="o">();</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">N</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="n">testData</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">randomGenerator</span><span class="o">.</span><span class="na">nextInt</span><span class="o">(</span><span class="nc">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span><span class="o">));</span>
+        <span class="o">}</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Testing Sort Algorithm"</span><span class="o">);</span>
+
+        <span class="kt">double</span> <span class="n">startTime</span> <span class="o">=</span> <span class="nc">System</span><span class="o">.</span><span class="na">nanoTime</span><span class="o">();</span>
+
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">I</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">copy</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;(</span><span class="n">testData</span><span class="o">);</span>
+            <span class="nc">Collections</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">copy</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="kt">double</span> <span class="n">endTime</span> <span class="o">=</span> <span class="nc">System</span><span class="o">.</span><span class="na">nanoTime</span><span class="o">();</span>
+        <span class="kt">double</span> <span class="n">timePerOperation</span> <span class="o">=</span> <span class="o">((</span><span class="n">endTime</span> <span class="o">-</span> <span class="n">startTime</span><span class="o">)</span> <span class="o">/</span> <span class="o">(</span><span class="mi">1_000_000_000L</span> <span class="o">*</span> <span class="no">I</span><span class="o">));</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Result: "</span> <span class="o">+</span> <span class="o">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">timePerOperation</span><span class="o">)</span> <span class="o">+</span> <span class="s">" op/s"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>먼저, 무작위 정수 배열 생성 후 벤치마크 시작 시간을 로깅합니다. 그리고 루프를 돌며 이 배열을 다른 배열로 복사한 후 전체 원소를 정렬합니다. I 번 루프 실행이 끝난 뒤 소요 시간을 초 단위로 바꾸고 반복 횟수로 나누면 작업당 소요 시간(<code class="highlighter-rouge">timePerOperation</code>) 이 계산됩니다.</p>
+
+<p>이 벤치마크의 첫 번째 문제점은 JVM 의 웜업을 전혀 고려하지 않은 채 그냥 코드를 테스트했다는 사실입니다. 운영계 서버 어플리케이션에서 이렇게 정렬을 실행하면 몇 시간 씩 걸릴 수 있지만, JIT 컴파일러가 JVM 에 내장된 덕분에 인터프리티드 바이트코드는 고도로 최적화한 기계어로 변환됩니다. JIT 컴파일러는 메소드를 몇 번 실행해본 다음 곧바로 임무를 개시합니다.</p>
+
+<p>따라서 이 테스트만으로는 운영계에서 어떻게 작동할지 확실히 모릅니다. 벤치마크 도중에 JVM 이 메소드 호출을 최적화 하느라 시간을 소비할게 확실하기 떄문입니다. 정말 그런지 몇 가지 플래그를 붙여보겠습니다.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>java <span class="nt">-Xms2048m</span> <span class="nt">-Xmx2048m</span> <span class="nt">-XX</span>:+PrintCompilation ClassicSort
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">-Xms</code>, <code class="highlighter-rouge">-Xmx</code> 는 힙 크기를 조장하는 옵션입니다. 여기서는 둘 다 2 GB 로 잡았습니다. <code class="highlighter-rouge">PrintCompilation</code> 은 메서도를 컴파일할 때마다 로깅을 하라는 지령입니다. 실행 결과는 다음과 같습니다.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Testing Sort Algorithm
+  73    29   3   java.util.ArrayList::ensureExplicitCapacity <span class="o">(</span>26 bytes<span class="o">)</span>
+  73    31   3   java.lang.Integer::valueOf <span class="o">(</span>32 bytes<span class="o">)</span>
+  74    32   3   java.util.concurrent.atomic.AtomicLong::get <span class="o">(</span>5 bytes<span class="o">)</span>
+  74    33   3   java.util.concurrent.atomic.AtomicLong::compareAndSet <span class="o">(</span>13 bytes<span class="o">)</span>
+  74    35   3   java.util.Random::next <span class="o">(</span>47 bytes<span class="o">)</span>
+  74    36   3   java.lang.Integer::compareTo <span class="o">(</span>9 bytes<span class="o">)</span>
+  74    38   3   java.lang.Integer::compare <span class="o">(</span>20 bytes<span class="o">)</span>
+  74    37   3   java.lang.Integer::compareTo <span class="o">(</span>12 bytes<span class="o">)</span>
+  74    39   4   java.lang.Integer::compareTo <span class="o">(</span>9 bytes<span class="o">)</span>
+  75    36   3   java.lang.Integer::compareTo <span class="o">(</span>9 bytes<span class="o">)</span> made not entrant
+  76    40   3   java.util.ComparableTimSort::binarySort <span class="o">(</span>223 bytes<span class="o">)</span>
+  77    41   3   java.util.ComparableTimSort::mergeLo <span class="o">(</span>656 bytes<span class="o">)</span>
+  79    42   3   java.util.ComparableTimSort::countRunAndMakeAscending <span class="o">(</span>123 bytes<span class="o">)</span>
+  79    45   3   java.util.ComparableTimSort::gallopRight <span class="o">(</span>327 bytes<span class="o">)</span>
+  80    43   3   java.util.ComparableTimSort::pushRun <span class="o">(</span>31 bytes<span class="o">)</span>
+</code></pre></div></div>
+
+<p>JIT 컴파일러는 코드를 조금이라도 효율적으로 작동시키려고 <strong>호출 계층(Call Hierachy)</strong> 을 최적화하므로 벤치마크 성능은 캡처 타이밍에 따라 달라집니다. 이 실험에서는 무심코 우리가 통제할 수 없는 변수 하나를 방치했는데, 타이밍을 캡처하기 전에 JVM 이 가동 준비를 마칠 수 있게 웜업 기간을 두는 게 좋습니다. 보통 타이밍 세부를 캡처하지 않은 상태로 벤치마크 대상 코드를 여러 번 반복 실행하는 식으로 JVM 을 예열합니다.</p>
+
+<p>또 고려할 외부 요인은 가비지 수집입니다. 타이밍 캡처 도중에 GC 가 일어나지 않게 설정한 다음 가동시키면 좋겠지만, 가비지 수집은 원래 불확정적이어서 개발자 마음대로 할 수 없습니다.</p>
+
+<p>GC 가 일어날 시기에 타이밍을 캡처하지 않는게 최선의 방법입니다. GC 를 해달라고 시스템에 요청하고 잠시 대기하는 방법도 잇지만, 시스템이 이 요청을 무시할 가능성이 있습니다. 또 이 상태로는 타이밍 범위가 너무 넓어지므로 발생이 임박한 가비지 수집 이벤트에 관한 자세한 정보가 필요합니다.</p>
+
+<p>타이밍 시점을 선택하는 것뿐만 아니라 이터레이션 횟수도 정해야 하는데, 시행 착오를 반복해도 적절한 값을 찾기 어려울 때도 있습니다. 가비지 수집이 작동되는 모습은 다음 VM 플르개를 추가하며 엿볼 수 있습니다.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>java <span class="nt">-Xms2048m</span> <span class="nt">-Xmx2048m</span> <span class="nt">-verbose</span>: gc ClassicSort
+</code></pre></div></div>
+
+<p>실행결과 아래와 같은 GC 로그 엔트리가 보입니다.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Testing Sort Algorithm
+<span class="o">[</span>GC <span class="o">(</span>Allocation Failure<span class="o">)</span>  524800K-&gt;632K<span class="o">(</span>2010112K<span class="o">)</span>, 0.0009038 secs]
+<span class="o">[</span>GC <span class="o">(</span>Allocation Failure<span class="o">)</span>  525432K-&gt;672K<span class="o">(</span>2010112K<span class="o">)</span>, 0.0008671 secs]
+Result: 9838.556465303362 op/s
+</code></pre></div></div>
+
+<p>벤치마크에서 흔히 저지르는 또 다른 실수는 테스트하려는 코드에서 생성된 결과를 실제로 사용하지 않는 것입니다. 벤치마크서 <code class="highlighter-rouge">copy</code> 는 사실상 죽은 코드이므로 JIT 컴파일러가 이를 죽은 경로로 식별하고 정작 우리가 벤치마크하려던 것을 최적화해버릴 가능성이 있습니다.</p>
+
+<p>또한, 한번 측정한 결과로 평균을 내도 벤치마크가 어떻게 수행됐는지 전체 사정을 알 수 없습니다. <strong>허용 오차(Margin of Error)</strong> 를 구해 수집한 값의 신뢰도를 파악하는게 좋겠지만, 허용 오차가 큰 것은 통제불능 변수가 있다는 뜻이거나 개발된 코드 자체가 성능 기준에 미치지 못함을 의미합니다.</p>
+
+<p>단순한 정렬 알고리즘을 벤치마크하는 경우도 자칫 벤치마킹 자체를 걷잡을 수 없는 방향으로 흘러가게 만들지만 복잡도가 높아지면 상황은 더욱 나빠집니다. 가령 멀티스레드 코드를 평가하는 벤치마크는 까다롭습니다. 정확한 결과를 얻기 위해선 처음부터 각 스레드가 완전히 시작될 때 까지 전체 스레드를 출반선에 대기시켜야 합니다. 이렇게 하지 않으면 허용 오차가 높게 나옵니다.</p>
+
+<p>벤치마크를 할 때 정확한 결과를 얻기 위한 해결 방안은 두 가지입니다.</p>
+
+<p>첫 번째 시스템 전체를 벤치마크 합니다. 저수준 수치는 수집하지 않거나 무시합니다. 수많은 개별 작용의 전체 결과는 평균을 내어 더 큰 규모에서 유의미한 결과를 얻는 겁니다.</p>
+
+<p>두 번째, 연관된 저수준의 결과를 의미있게 비교하기 위해 앞서 언급한 많은 문제를 공통 프레임워크를 이용해 처리하는것입니다. 이상적인 프레임워크라면 몇 가지 문제는 어느 정도 해결할것입니다. 이런 툴은 새로운 최적화 및 다른 외부 제어 변수가 잘 관리되도록 OpenJDK 의 개발 흐름을 잘 따라가야합니다.</p>
+
+<h2 id="introduction-to-jmh">Introduction to JMH</h2>
+
+<p>마이크로벤치마킹 대상으로 적합한 유스케이스를 분별하는 휴리스틱을 소개하겠습니다.</p>
+
+<h3 id="dont-microbenchmark-if-you-can-help-it-a-true-story">Don’t Microbenchmark If You Can Help It (A True Story)</h3>
+
+<p>많이 사용하는 라이브러리의 최신 버전을 이용해 차기 버전을 개발했지만, 성능은 예전보다 별 나을게 없었습니다. 그래서 문제의 원인을 밝히기 위해 코드 일부를 들어내고 소규모 벤치마크를 작성했습니다.</p>
+
+<p>하지만, 모래밭에서 바늘찾기 같은 방식은 아닌것 같아 방식을 달리했으며, 이내 곧 어플리케이션의 CPU 사용률이 정점을 찍고 있다는 사실을 파악했습니다. 문제의 원인은 어플리케이션 코드가 아니라 새로 들어온 라이브러리였습니다.</p>
+
+<p>이와 비슷한 사례는 의외로 많습니다. 개발자가 숲을 못 보고 코드가 성능을 떨어뜨렸을 거란 강박관념에 사로잡힌 사례입니다.</p>
+
+<h3 id="heuristics-for-when-to-microbenchmark">Heuristics for When to Microbenchmark</h3>
+
+<p>Java 플랫폼은 원래 천성이 동적이며 가비지 수집 및 공격적인 JIT 최적화 같은 특성이 있어 성능을 직접 가늠하기가 어렵습니다. 또한 어플리케이션을 측정한 각 런타임 환경마다 성능 수치도 제각각입니다.</p>
+
+<p>하지만 어쩔 수 없이 메소드 또는 코드 조각 하나를 직접 성능 분석해야 할 때가 있습니다. 그런데 섣불리 덤벼들면 안 됩니다. 일반적으로 저수준 분석이나 마이크로벤치마킹을 하는 주요 유스케이스는 다음 세 가지입니다.</p>
+
+<ul>
+  <li>You’re developing general-purpose library code with broad use cases.</li>
+  <li>You’re a developer on OpenJDK or another Java platform implementation.</li>
+  <li>You’re developing extremely latency-sensitive code (e.g., for low-latency trading).</li>
+</ul>
+
+<p>위 유스케이스를 뒷받침하는 3 가지 근거는 각각 다릅니다.</p>
+
+<p><strong>범용 라이브러리</strong> 는 이 라이브러리가 쓰이는 컨텍스트에 관한 정보가 제한적이며, 아주 폭넓은 유스케이스에 걸쳐 쓸만한 성능을 보여줘야합니다. 범용라이브러리는 원래 적용 범위가 넓기 때문에 전통적인 성능/용량 테스트 기법 대신 마이크로벤치마킹을 쓸 수 밖에 없는 때가 있습니다.</p>
+
+<p><strong>플랫폼 개발자</strong> 는 마이크로벤치마크의 핵심 사용 커뮤니티를 형성하는 사람들 입니다. JMH 도 원래 OpenJDK 개발팀 본인들이 사용할려고 개발한 툴인데, 입소문이 나며 성능 전문가 세상에도 알려지게 된겁니다.</p>
+
+<p>마지막으로, 자바 성능의 최첨단을 추구하는 개발자 입니다. 자신이 개발한 어플리케이션과 극단적 유스케이스에 가장 잘 맞는 알고리즘 / 기법을 선택하기 위해 마이크로 벤치마크를 활용하는 사람들입니다. 주로 저지연 금융 거래분야에 쓰이며, 그 밖의 유스케이스는 상대적으로 적습니다.</p>
+
+<p>일반적으로 마이크로벤치마크는 가장 극단적인 어플리케이션에 한하여 사용하는게 좋습니다. 딱 정해진 기준은 없지만, 다음에 열거한 항목을 All / Most 충족하는 어플리케이션이 아니라면 마이크로벤치마킹을 수행해도 가치 있는 결과를 도출하기 어렵습니다.</p>
+
+<ul>
+  <li>총 코드 경로 실행 시간은 적어도 1 ms 보다 짧아야한다.</li>
+  <li>메모리 할당을 측정하는데, 그 값은 1 MB/s 미만, 가급적 0 에 가까운 값이어야 한다.</li>
+  <li>100 % 에 가깝게 CPU 를 사용하며 시스템 이용률은 낮게 유지해야 한다.</li>
+  <li>실행 프로파일러로 CPU 를 소비하는 메소드들의 분포를 이해해야 한다. 분포 그래프에서 지배적인 영향을 끼치는 메소드가 많아야 2 ~ 3 개 정도다.</li>
+</ul>
+
+<h3 id="the-jmh-framework">The JMH Framework</h3>
+
+<blockquote>
+  <p>JMH 는 Java 를 비롯해 JVM 을 타깃으로 하는 언어로 작성된 나노 / 마이크로 / 밀리 / 매크로 벤치마크를 제작, 실행, 분석하는 Java 도구 입니다. - OpenJDK</p>
+</blockquote>
+
+<p>JMH 는 JM 을 빌드한 사람들이 직접 만든 프레임워크라서, JMH 제작자는 JVM 버전별로 숨겨진 함정과 최적화 베어 트랩을 어떻게 피하는지 누구보다 잘 알고 있습니다. JMH 는 각 JVM 릴리즈마다 꼭 맞는 벤치마킹 툴 세트로 함께 진화해왔고, 덕분에 개발자는 툴 사용법을 익히고 벤치마크 코드에만 전념할 수 있게 됐습니다.</p>
+
+<p>벤치마크 프레임워크는 컴파일 타임에 벤치마크 내용을 알 수 없으므로 동적이어야 합니다. 리플렉션을 써서 작성한 벤치마크를 실행하는 우회 방법도 있지만, 벤치마크 실행 경로에 복잡한 JVM 서브시스템이 하나 더 끼어들게 됩니다. 그래서 JMH 는 벤치마크 코드에 애너테이션을 붙여 Java 소스를 추가 생성하는 식으로 작동합니다.</p>
+
+<blockquote>
+  <p>애너테이션 기반의 유명 Java 프레임워크는 대부분 리플렉션을 사용하기 때문에 추가 소스 생성 작업에 프로세서를 사용하면서 다소 예기치 못한 결과를 초래할 때가 있습니다.</p>
+</blockquote>
+
+<p>벤치마크 프레임워크가 유저 코드를 엄청나게 반복 호출할 경우, 루프 최적화를 수행하는것도 문제입니다. 벤치마크 코드를 실행하는 실제 프로세스가 결과 신뢰도에 영향을 미칠 가능성이 있습니다.</p>
+
+<p>JMH 는 벤치마크 코드가 루프 최적화에 걸리지 않을 정도로 조심스레 반복 횟수를 설정한 루프 안에 감싸 넣는 기지를 발휘합니다.</p>
+
+<h3 id="executing-benchmarks">Executing Benchmarks</h3>
+
+<p>JMH 에서 복잡한 부분은 유저가 볼 수 없게 숨겨져 있고, 유저는 메이븐을 이용하여 단순 벤치마크를 쉽게 설정할 수 있습니다. 다음 명령어로 JMH 프로젝트를 새로 만듭니다.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>mvn archetype:generate <span class="se">\</span>
+          <span class="nt">-DinteractiveMode</span><span class="o">=</span><span class="nb">false</span> <span class="se">\</span>
+          <span class="nt">-DarchetypeGroupId</span><span class="o">=</span>org.openjdk.jmh <span class="se">\</span>
+          <span class="nt">-DarchetypeArtifactId</span><span class="o">=</span>jmh-java-benchmark-archetype <span class="se">\</span>
+          <span class="nt">-DgroupId</span><span class="o">=</span>org.sample <span class="se">\</span>
+          <span class="nt">-DartifactId</span><span class="o">=</span><span class="nb">test</span> <span class="se">\</span>
+          <span class="nt">-Dversion</span><span class="o">=</span>1.0
+</code></pre></div></div>
+
+<p>필요한 Artifact 를 모두 내려받으면 코드를 짜 넣을 벤치마크 스텁이 생성됩니다.</p>
+
+<p>이 프레임워크가 여러 설정 태스크를 마친 후 실행시킬 벤치마크 메소드에는 <code class="highlighter-rouge">@Benchmark</code> 를 붙입니다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyBenchmark</span> <span class="o">{</span>
+    <span class="nd">@Benchmark</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testMethod</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// Stub for code</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>벤치마크 실행을 설정하는 매개변수는 명령줄에 넣거나, 다음과 같이 <code class="highlighter-rouge">main()</code> 메소드에 세팅합니다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyBenchmark</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">RunnerException</span> <span class="o">{</span>
+        <span class="nc">Options</span> <span class="n">opt</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">OptionsBuilder</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">include</span><span class="o">(</span><span class="nc">SortBenchmark</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getSimpleName</span><span class="o">())</span>
+                <span class="o">.</span><span class="na">warmupIterations</span><span class="o">(</span><span class="mi">100</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">measurementIterations</span><span class="o">(</span><span class="mi">5</span><span class="o">).</span><span class="na">forks</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">jvmArgs</span><span class="o">(</span><span class="s">"-server"</span><span class="o">,</span> <span class="s">"-Xms2048m"</span><span class="o">,</span> <span class="s">"-Xmx2048m"</span><span class="o">).</span><span class="na">build</span><span class="o">();</span>
+
+        <span class="k">new</span> <span class="nf">Runner</span><span class="o">(</span><span class="n">opt</span><span class="o">).</span><span class="na">run</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>명령줄에 넣은 매개변수가 우선순위가 더 높기 때문에 <code class="highlighter-rouge">main()</code> 메소드에 세팅한 매개변수를 Override 합니다.</p>
+
+<p>벤치마크를 할 때는 보통 데이터셋 생성 또는 성능 비교용 대조군에 필요한 조건 세팅 등 몇 가지 설정 작업이 필요합니다.</p>
+
+<p>JMH 프레임워크는 상태를 제어하는 기능까지 제공합니다. <code class="highlighter-rouge">@State</code> 애너테이션으로 <code class="highlighter-rouge">Benchmark</code>, <code class="highlighter-rouge">Group</code>, <code class="highlighter-rouge">Thread</code> 세 상태가 정의된 <code class="highlighter-rouge">Scope</code> 이늄을 받습니다. <code class="highlighter-rouge">@State</code> 를 붙인 객체는 벤치마크 도중 액세스할 수 있으므로 어떤 설정을 하는 용도로 사용할 수 있습니다.</p>
+
+<p>멀티스레드 코드 역시 상태를 제대로 관리되지 않아 벤치마크가 편향되지 않게 하려면 조심스럽게 다루어야 합니다.</p>
+
+<p>일반적으로 JVM 은 메소드 내에서 실행된 코드가 <strong>부수 효과(Side Effect)</strong> 를 전혀 일으키지 않고 그 결과를 사용하지 않을 경우 해당 메소드를 삭제 대상으로 삼습니다. JMH 는 이런 일이 없도록 벤치마크 메소드가 반환한 단일 결괏값을 암묵적으로 <strong>블랙홀(Blackhole)</strong> 에 할당합니다. 그 덕에 벤치마크 작성자는 일처리가 간단해집니다.</p>
+
+<p>계산량이 많은 벤치마크는 메소드에서 결과를 조합해 반환하는 비용이 많이 듭니다. 이럴 때 블랙홀을 매개변수로 받는 벤치마크를 작성해서 명시적으로 블랙홀을 벤치마크 안에 주입하면 됩니다.</p>
+
+<p>블랙홀은 네 가지 장치를 이용해 벤치마크에 영향을 줄 수 있는 최적화로부터 보호합니다. 스코프가 한정된 탓에 벤치마크가 <strong>OverOptimization</strong> 되지 않게 하거나 런타임에 데이터 패턴을 예측 실행하지 못하게 하는 장치들입니다. 평상시 시스템 실행 중에는 이런 일이 발생하지 않습니다.</p>
+
+<ul>
+  <li>런타임에 죽은 코드를 제거하는 최적화를 못하게 한다.</li>
+  <li>반복되는 계산을 <strong>상수 폴딩(Constant Folding)</strong> 하지 않게 만든다.</li>
+  <li>값을 읽거나 쓰는 행위가 현재 캐시 라인에 영향을 끼치는 잘못된 공유 현상을 방지한다.</li>
+  <li><strong>쓰기 장벽(Write Wall)</strong> 으로부터 보호한다.</li>
+</ul>
+
+<p>성능 분야에서 <strong>장벽(Wall)</strong> 이란, 일반적으로 리소스가 포화돼서 사실상 어플리케이션에 병목을 초래하는 지점을 가리킵니다. 쓰기 장벽에 이르면 캐시에 영향을 미치고 쓰기 전용 버퍼가 오염될 수 있습니다. 벤치마크 내부에서 이런 일이 벌어지면 큰일 납니다.</p>
+
+<p>블랙홀 Java 문서에도 기술되어 있듯이, 벤치마크가 최적화를 피해갈 수 있게 이런 보호장치를 제공하려면 무엇보다 개발자 스스로 JIT 컴파일러를 자세히 잘 알고 있어야 합니다.</p>
+
+<p>JMH 가 어떤 트릭을 쓰는지 이해하기 위해 블랙홀을 사용한 다음 두 <code class="highlighter-rouge">consume()</code> 메소드를 살펴보겠습니다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">volatile</span> <span class="kt">int</span> <span class="n">i1</span> <span class="o">=</span> <span class="mi">1</span><span class="o">,</span> <span class="n">i2</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>
+
+<span class="cm">/**
+ * Consume object. This call provides a side effect preventing JIT to eliminate
+ * dependent computations.
+ *
+ * @param i int to consume.
+ */</span>
+<span class="kd">public</span> <span class="kd">final</span> <span class="kt">void</span> <span class="nf">consume</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">i1</span> <span class="o">&amp;</span> <span class="n">i</span> <span class="o">==</span> <span class="n">i2</span><span class="o">)</span> <span class="o">{</span>
+     	<span class="c1">// SHOULD NEVER HAPPEN</span>
+        <span class="n">nullBait</span><span class="o">.</span><span class="na">i1</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span> <span class="c1">// implicit null pointer exception</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>다른 기본형을 소비하는 코드도 이런 형태로 Overload 돼 있습니다. <code class="highlighter-rouge">i1</code>, <code class="highlighter-rouge">i2</code> 는 <code class="highlighter-rouge">volatile</code> 로 선언된 변수라 런타임은 반드시 이 두 변수를 재평가합니다. <code class="highlighter-rouge">if</code> 조건문이 <code class="highlighter-rouge">true</code> 가 될 일은 없지만, 컴파일러는 어떻게든 이 코드를 실행시켜야 합니다. <code class="highlighter-rouge">if</code> 문에 비트 연산자가 <code class="highlighter-rouge">AND</code> 가 있기 때문에 추가 분기 로직이 문제 될 일도 없고 일정한 성능이 보장됩니다.</p>
+
+<p>다음은 두 번째 메소드입니다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span> <span class="n">tlr</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="nc">System</span><span class="o">.</span><span class="na">nanoTime</span><span class="o">();</span>
+
+<span class="cm">/**
+ * Consume object. This call provides a side effect preventing JIT to eliminate
+ * dependent computations.
+ *
+ * @param obj object to consume.
+ */</span>
+<span class="kd">public</span> <span class="kd">final</span> <span class="kt">void</span> <span class="nf">consume</span><span class="o">(</span><span class="nc">Object</span> <span class="n">obj</span><span class="o">)</span> <span class="o">{</span>
+	<span class="kt">int</span> <span class="n">tlr</span> <span class="o">=</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">tlr</span> <span class="o">=</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">tlr</span> <span class="o">*</span> <span class="mi">1664525</span> <span class="o">+</span> <span class="mi">1013904223</span><span class="o">));</span>
+    <span class="k">if</span> <span class="o">((</span><span class="n">tlr</span> <span class="o">&amp;</span> <span class="n">tlrMask</span><span class="o">)</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+    	<span class="c1">// SHOULD ALMOST NEVER HAPPEN IN MEASUREMENT</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">obj1</span> <span class="o">=</span> <span class="n">obj</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">tlrMask</span> <span class="o">=</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">tlrMask</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="o">)</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>언뜻 보면 유저가 보유한 어떤 객체도 블랙홀에 빠진 객체와 동등할 가능성은 0 이니 객체에도 똑같은 로직을 적용할 수 있을 것 같지만, 컴파일러는 이 부분에서도 영리하게 처리하려고 고심합니다. 컴파일러가 <strong>탈출 분석(Escape Analysis)</strong> 을 해보고 이 객체가 그 어느 객체와도 동등할 수 없다고 결론 내리면 비교문 자체가 <code class="highlighter-rouge">return false;</code> 하나로 최적화될 수 있습니다.</p>
+
+<p>대신, 객체는 아주 드문 경우에만 실행된다는 조건하에 소비됩니다. <code class="highlighter-rouge">tlr</code> 값을 계산해서 <code class="highlighter-rouge">tlrMask</code> 와 <code class="highlighter-rouge">AND</code> 연산을 하면 그 결과 0 이 될 확률은 줄지만 그렇다고 완전히 없애지는 못합니다. 이렇게 해서 객체를 할당하지 않아도 소비할 수 있게 만드는 것입니다. 벤치마크 프레임워크 코드는 유저들이 많이 봤던 일반 Java 어플리케이션 코드와는 아주 달라서 보면 볼수록 재미가 있습니다. 물론, 그렇다고 이런 코드를 자바 어플리케이션 제품에 집어넣는 개발자는 금방 해고될겁니다.</p>
+
+<p>JMH 개발팀은 정확한 마이크로벤치마킹 툴을 개발하면서 클래스 문서화도 감명 깊게 잘해놨습니다. <a href="https://openjdk.java.net/projects/code-tools/jmh/">공식사이트</a> 에서 확인할 수 있습니다.</p>
+
+<p>JVM 과 밀접하게 맞닿아 작동하는 JMH 는 다음 기능을 제공합니다.</p>
+
+<ul>
+  <li>컴파일러 제어</li>
+  <li>벤치마크 도중 CPU 사용 수준 시뮬레이션</li>
+</ul>
+
+<p>블랙홀을 이용하면 실제로 CPU 사이클을 소모해 다양한 CPU 부하 상황에서 벤치마크를 시뮬레이션 해볼 수 있습니다.</p>
+
+<p>JVM 이 인라이닝 또는 컴파일을 하므로 성능 이슈가 발생한걸로 의심될 경우 <code class="highlighter-rouge">@CompilerControl</code> 애너테이션을 활용하면 됩니다. 모드를 지정해 인라이닝을 못하게 하거나(<code class="highlighter-rouge">CompilerControl.Mode.DONT_INLINE</code>), 명시적으로 인라이닝 못하게 하거나(<code class="highlighter-rouge">CompilerControl.Mode.INLINE</code>), 메소드를 컴파일하지 않도록(<code class="highlighter-rouge">CompilerControl.Mode.EXCLUDE</code>) 컴파일러에게 지시할 수 있습니다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@State</span><span class="o">(</span><span class="nc">Scope</span><span class="o">.</span><span class="na">Benchmark</span><span class="o">)</span>
+<span class="nd">@BenchmarkMode</span><span class="o">(</span><span class="nc">Mode</span><span class="o">.</span><span class="na">Throughput</span><span class="o">)</span>
+<span class="nd">@Warmup</span><span class="o">(</span><span class="n">iterations</span> <span class="o">=</span> <span class="mi">5</span><span class="o">,</span> <span class="n">time</span> <span class="o">=</span> <span class="mi">1</span><span class="o">,</span> <span class="n">timeUnit</span> <span class="o">=</span> <span class="nc">TimeUnit</span><span class="o">.</span><span class="na">SECONDS</span><span class="o">)</span>
+<span class="nd">@Measurement</span><span class="o">(</span><span class="n">iterations</span> <span class="o">=</span> <span class="mi">5</span><span class="o">,</span> <span class="n">time</span> <span class="o">=</span> <span class="mi">1</span><span class="o">,</span> <span class="n">timeUnit</span> <span class="o">=</span> <span class="nc">TimeUnit</span><span class="o">.</span><span class="na">SECONDS</span><span class="o">)</span>
+<span class="nd">@OutputTimeUnit</span><span class="o">(</span><span class="nc">TimeUnit</span><span class="o">.</span><span class="na">SECONDS</span><span class="o">)</span>
+<span class="nd">@Fork</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SortBenchmark</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">N</span> <span class="o">=</span> <span class="mi">1_000</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">testData</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+
+    <span class="nd">@Setup</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">void</span> <span class="nf">setup</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">Random</span> <span class="n">randomGenerator</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Random</span><span class="o">();</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">N</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="n">testData</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">randomGenerator</span><span class="o">.</span><span class="na">nextInt</span><span class="o">(</span><span class="nc">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span><span class="o">));</span>
+        <span class="o">}</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Setup Complete"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Benchmark</span>
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="nf">classicSort</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">copy</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;(</span><span class="n">testData</span><span class="o">);</span>
+        <span class="nc">Collections</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">copy</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">copy</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Benchmark</span>
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="nf">standardSort</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">testData</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">sorted</span><span class="o">().</span><span class="na">collect</span><span class="o">(</span><span class="nc">Collectors</span><span class="o">.</span><span class="na">toList</span><span class="o">());</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Benchmark</span>
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="nf">parallelSort</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">testData</span><span class="o">.</span><span class="na">parallelStream</span><span class="o">().</span><span class="na">sorted</span><span class="o">().</span><span class="na">collect</span><span class="o">(</span><span class="nc">Collectors</span><span class="o">.</span><span class="na">toList</span><span class="o">());</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">RunnerException</span> <span class="o">{</span>
+        <span class="nc">Options</span> <span class="n">opt</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">OptionsBuilder</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">include</span><span class="o">(</span><span class="nc">SortBenchmark</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getSimpleName</span><span class="o">())</span>
+                <span class="o">.</span><span class="na">warmupIterations</span><span class="o">(</span><span class="mi">100</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">measurementIterations</span><span class="o">(</span><span class="mi">5</span><span class="o">).</span><span class="na">forks</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">jvmArgs</span><span class="o">(</span><span class="s">"-server"</span><span class="o">,</span> <span class="s">"-Xms2048m"</span><span class="o">,</span> <span class="s">"-Xmx2048m"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">addProfiler</span><span class="o">(</span><span class="nc">GCProfiler</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">addProfiler</span><span class="o">(</span><span class="nc">StackProfiler</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+
+        <span class="k">new</span> <span class="nf">Runner</span><span class="o">(</span><span class="n">opt</span><span class="o">).</span><span class="na">run</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>벤치마크 실행 결과는 다음과 같습니다.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Benchmark                            Mode  Cnt      Score      Error  Units
+optjava.SortBenchmark.classicSort   thrpt  200  14373.039 ±  111.586  ops/s
+optjava.SortBenchmark.parallelSort  thrpt  200   7917.702 ±   87.757  ops/s
+optjava.SortBenchmark.standardSort  thrpt  200  12656.107 ±   84.849  ops/s
+</code></pre></div></div>
+
+<p>이 벤치마크만 보면 스트림을 쓰는 것보다 고전적인 방법으로 정렬하는 게 더 낫다는 결론을 섣불리 내리기 쉽습니다. 양쪽 모두 하나의 배열 사본을 가지고 한번 정렬 했다면 응당 그렇겠죠. 개발자들은 에러율이 낮고 처리율은 높게 나왔으니 벤치마크 결과가 틀림없다고 여길 겁니다.</p>
+
+<p>하지만 <em>이 벤치마크가 성능을 정확히 반영하지 못한 부분은 없을까</em> 라는 질문을 던져보겠습니다. 먼저, <code class="highlighter-rouge">classicSort</code> 메소드를 테스트할 때 가비지 수집 영향도를 알아보겠습니다.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Iteration   1:
+<span class="o">[</span>GC <span class="o">(</span>Allocation Failure<span class="o">)</span>  65496K-&gt;1480K<span class="o">(</span>239104K<span class="o">)</span>, 0.0012473 secs]
+<span class="o">[</span>GC <span class="o">(</span>Allocation Failure<span class="o">)</span>  63944K-&gt;1496K<span class="o">(</span>237056K<span class="o">)</span>, 0.0013170 secs]
+10830.105 ops/s
+Iteration   2:
+<span class="o">[</span>GC <span class="o">(</span>Allocation Failure<span class="o">)</span>  62936K-&gt;1680K<span class="o">(</span>236032K<span class="o">)</span>, 0.0004776 secs]
+10951.704 ops/s
+</code></pre></div></div>
+
+<p>스냅샷을 떠보면 1회 반복할 때마다 GC 사이클이 발생한 패턴입니다. 병렬 정렬하는 경우와 비교해보니 흥미롭습니다.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Iteration   1:
+<span class="o">[</span>GC <span class="o">(</span>Allocation Failure<span class="o">)</span>  52952K-&gt;1848K<span class="o">(</span>225792K<span class="o">)</span>, 0.0005354 secs]
+<span class="o">[</span>GC <span class="o">(</span>Allocation Failure<span class="o">)</span>  52024K-&gt;1848K<span class="o">(</span>226816K<span class="o">)</span>, 0.0005341 secs]
+<span class="o">[</span>GC <span class="o">(</span>Allocation Failure<span class="o">)</span>  51000K-&gt;1784K<span class="o">(</span>223744K<span class="o">)</span>, 0.0005509 secs]
+<span class="o">[</span>GC <span class="o">(</span>Allocation Failure<span class="o">)</span>  49912K-&gt;1784K<span class="o">(</span>225280K<span class="o">)</span>, 0.0003952 secs]
+9526.212 ops/s
+Iteration   2:
+<span class="o">[</span>GC <span class="o">(</span>Allocation Failure<span class="o">)</span>  49400K-&gt;1912K<span class="o">(</span>222720K<span class="o">)</span>, 0.0005589 secs]
+<span class="o">[</span>GC <span class="o">(</span>Allocation Failure<span class="o">)</span>  49016K-&gt;1832K<span class="o">(</span>223744K<span class="o">)</span>, 0.0004594 secs]
+<span class="o">[</span>GC <span class="o">(</span>Allocation Failure<span class="o">)</span>  48424K-&gt;1864K<span class="o">(</span>221696K<span class="o">)</span>, 0.0005370 secs]
+<span class="o">[</span>GC <span class="o">(</span>Allocation Failure<span class="o">)</span>  47944K-&gt;1832K<span class="o">(</span>222720K<span class="o">)</span>, 0.0004966 secs]
+<span class="o">[</span>GC <span class="o">(</span>Allocation Failure<span class="o">)</span>  47400K-&gt;1864K<span class="o">(</span>220672K<span class="o">)</span>, 0.0005004 secs]
+</code></pre></div></div>
+
+<p>플래그를 추가해 예상하지 못했던 차이를 발생시키는 원인을 찾아보니 벤치마크에 노이즈가 일어나고 있음을 짐작할 수 있습니다.</p>
+
+<p>요약하면, 벤치마크가 통제된 환경을 나타낸다고 쉽게 가정하지만 실제로는 전혀 그렇지 못한 경우도 많습니다. 통제되지 않은 변수는 대개 찾아내기 어려워 JMH 같은 툴을 쓰더라도 각별히 잘 살펴야합니다.</p>
+
+<h2 id="statistics-for-jvm-performance">Statistics for JVM Performance</h2>
+
+<p>모든 측정은 어느 정도의 오차를 수반합니다. Java 개발자가 성능 분석시 흔히 맞이하는 두 가지 주요 오차 유형을 설명하겠습니다.</p>
+
+<h3 id="types-of-error">Types of Error</h3>
+
+<p>자주 접하는 오차의 주된 근원은 두 가지 입니다.</p>
+
+<p><strong>랜덤 오차(random error)</strong></p>
+
+<p>측정 오차 또는 무관계 요인이 어떤 상관관계 없이 결과에 영향을 미칩니다.</p>
+
+<p><strong>계통 오차(systematic error)</strong></p>
+
+<p>원인을 알 수 없는 요인이 상관관계 있는 형태로 측정에 영향을 미칩니다.</p>
+
+<p><strong>정확도(accuracy)</strong> 는 계통 오차의 수준을 나타내는 용어로 정확도가 높으면 계통 오차가 낮은 것입니다. 마찬가지로 <strong>정밀도(precision)</strong> 은 랜덤 오차를 나타내는 용어로 정밀도가 높으면 랜덤 오차가 낮은것입니다.</p>
+
+<p>아래 그림 <code class="highlighter-rouge">Example 1</code> 을 통해 알아보겠습니다.</p>
+
+<blockquote>
+  <p>Example 1 - Different types of error</p>
+</blockquote>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/74661982-5d686880-51dc-11ea-80b1-bc042a9642ee.png" alt="image" /></p>
+
+<p>첫 번째 과녁은 정확도와 정밀도 모두 높은 것입니다. 두 번째 과녁은 정밀도는 높으나 정확도가 낮은 경우입니다. 세 번째 과녁은 정확도가 높지만 정밀도가 낮은 경우입니다. 마지막 과녁은 정확도 정밀도 모두 낮은 경우입니다.</p>
+
+<p><strong>계통 오차</strong></p>
+
+<p><code class="highlighter-rouge">Example 2</code> 는 부하 생성 도구인 Apache JMeter 용 JP GC 확장팩을 이용해 얻은 그래프입니다. 확인해보면 2 가지 계통 효과가 작용하고 있습니다.</p>
+
+<blockquote>
+  <p>Example 2 - Systematic error</p>
+</blockquote>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/74662234-de276480-51dc-11ea-88bd-fde759dbaf99.png" alt="image" /></p>
+
+<p>첫째, 선형 패턴으로 증가하는 위쪽 그래프를 보니 어떤 한정된 서버 리소스가 조금씩 소모되고 있습니다. 메모리가 발생하거나, 어떤 스레드가 요청 처리 도중 다른 리소스를 점유하여 놔주질 않는 상황에서 주로 나타나는 패턴입니다. 진짜 원인일 수 있으니 추가 조사가 필요합니다.</p>
+
+<p>둘째, 다른 서비스는 대부분 180 밀리초 안팎의 일정한 응답 시간을 보이는데, 이 대목이 수상합니다. 요청을 접수해 처리하는 작업량은 서비스마다 제각각인데, 결과가 일정하게 나온 이유는 무엇일까요</p>
+
+<p>확인결과, 테스트 대상 서버는 영국 런던이며, 부하 테스트는 인도 뭄바이에서 한것이였습니다. 뭄바이와 런던을 오가며 줄일 수 없는 왕복 네트워크 지연 시간이 응답시간에 포함된것입니다. 120 ~ 150 밀리초 범위의 지연 시간이 특이점을 제외한 절대다수의 서비스 응답 시간을 차지했습니다.</p>
+
+<p>계통 효과가 커서 실제 응답 시간의 차이가 묻혀버린 것입니다. 계통 오차는 테스트 설정부터 잘못돼서 발생한 것이며, 런던에서 다시 수행할 시 오차는 사라질것입니다.</p>
+
+<p><strong>랜덤 오차</strong></p>
+
+<p>원인을 알 수 없는 요인이 상관관계 있는 형태로 측정에 영향을 미칩니다. 소프트웨어에서는 측정 툴을 못 믿을 이유가 없으므로 랜덤 오차의 근원은 오직 운영 환경뿐입니다.</p>
+
+<p>랜덤 오차는 대부분 정규분포를 따릅니다. (<code class="highlighter-rouge">Example 3</code>) 정규 분포는 오차가 측정값에 미치는 긍정 / 부정적 영향도가 얼추 비슷한 경우에는 적합하지만 JVM 에는 이 모델에 맞지 않습니다.</p>
+
+<blockquote>
+  <p>Example 3 - A Gaussian distribution (aka normal distribution or bell curve)</p>
+</blockquote>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/74662719-c8ff0580-51dd-11ea-96d2-216a9fe7d10a.png" alt="image" /></p>
+
+<p><strong>허위 상관</strong></p>
+
+<p>통계학에서 아주 유명한 격언이 있습니다. <em>상관은 인과를 나타내지 않는다.</em> 두 변수가 비슷하게 움직인다고 해서 이들 사이에 연결고리가 있다고 볼 수는 없습니다.</p>
+
+<p>아무 관계도 없는 측정값에서 상관관계가 발견되는 경우가 있습니다. 예를 들어, 아래 <code class="highlighter-rouge">Example 4</code> 는 미국 치킨 소비량과 총 원유 수입량 사이의 밀접한 상관관계를 나타냅니다.</p>
+
+<blockquote>
+  <p>Example 4 - A completely spurious correlation (Vigen)</p>
+</blockquote>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/74662890-272be880-51de-11ea-83d5-6f17b2a8d17a.png" alt="image" /></p>
+
+<p>우리가 주의해야할 상관관계는 이런 터무니없는 상관관계가 아닙니다.</p>
+
+<p>아래 <code class="highlighter-rouge">Example 5</code> 는 비디오 아케이드 게임 매출액과 컴퓨터 과학 박사 학위 수여자 인원수 사이의 상관관계를 나타낸 그래프입니다. 이 그래프를 바탕으로 <em>스트레스를 받은 박사학위 과정 학생들이 비디오 게임을 즐기며 심신의 안정을 찾곤 했다.</em> 라고 주장하는 모습을 상상할 수 있습니다. 공통 요인은 없는데도 이상한 철학을 늘어놓는 사람들이 의외로 많습니다.</p>
+
+<blockquote>
+  <p>Example 5 - A less spurious correlation? (Vigen)</p>
+</blockquote>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/74662908-314de700-51de-11ea-8995-fd8e97b0e4d4.png" alt="image" /></p>
+
+<p>JVM 과 성능 분석 영역에서는 그럴싸 해보이는 연결고리와 상관관계만 보고 측정값 간의 인과관계를 넘겨짚지 않도록 조심해야 합니다.</p>
+
+<h3 id="non-normal-statistics">Non-Normal Statistics</h3>
+
+<p>통계학 학생들은 평균과 표준편차 계산법을 배우고, 더러는 <strong>왜도(skewness)</strong>, <strong>첨도(kurtois)</strong> 같은 높은 수준의 내용도 배웁니다. 하지만 이런 분석 기법은 분포 그래프에 멀찍이 동떨어진 특이점이 몇 개만 있어도 결과가 왜곡되기 쉬운 단점이 있습니다.</p>
+
+<p>아래 <code class="highlighter-rouge">Example 6</code> 은 메소드 시간 분포를 좀 더 현실적으로 나타낸 그래프입니다. 확실히 정규 분포와는 거리가 멉니다.</p>
+
+<blockquote>
+  <p>Example 6 - A more realistic view of the distribution of transaction times</p>
+</blockquote>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/74734419-d70e5e00-5291-11ea-9d11-7f93dff3829c.png" alt="image" /></p>
+
+<p><code class="highlighter-rouge">Example 6</code> 형태는 JVM 에 대해 직관적으로 알고 있는 것, 즉 모든 관련 코드가 이미 JIT 컴파일돼서 GC 사이클이 없는 핫 패스의 존재를 시사합니다. 이는 최상의 시나리오로 이보다 더 빠른 호출은 있을 수 없습니다.</p>
+
+<p>가우시안 통계학의 근본 가정과 정면으로 배치되는 이런 모습 때문에 비정규 분포를 생각하지 않을 수 없습니다.</p>
+
+<p>JVM 이 생성한 <strong>긴 꼬리형(Long-Tail)</strong> 비정규 분포를 다루는 데 아주 유용한 기법 중 하나는, 백분의 수 개념을 조금 변용하는 겁니다. 분포는 수치 하나로 나타낼 수 없는, 데이터 형상, 즉 전체 그래프입니다.</p>
+
+<p>전체 분포를 단일 결괏값으로 표현하는 평균을 계산하지 말고 구간별로 샘플링을 하면 어떤 결과가 나올까요. 정규 분포를 따르는 데이터에 적용하면 일정 구간마다 샘플을 채취하겠지만, 살짝 방법을 달리하면 JVM 통계에도 이 기법을 응용할 수 있씁니다.</p>
+
+<p>다음은 <strong>메소드 타이밍(method timing)</strong> 결과입니다. 긴 꼬리형 분포임을 감안해 평균, 90% 백분위 수를 구한 뒤 이후부터 대수적으로 샘플링한 것입니다.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>50.0% level was 23 ns
+90.0% level was 30 ns
+99.0% level was 43 ns
+99.9% level was 164 ns
+99.99% level was 248 ns
+99.999% level was 3,458 ns
+99.9999% level was 17,463 ns
+</code></pre></div></div>
+
+<p>게터 메소드 하나를 실행하는 데 평균 23 ns 가 걸렸고, 요청 1,000 개당 하나는 실행 시간이 <strong>한 크기 정도(Order of Magnitude)</strong> 나빠지며, 요청 100,000 개당 하나는 실행 시간이 두 크기 정도 나빠진다는 사실을 알 수 있습니다.</p>
+
+<p>긴 꼬리형 분포는 <strong>고동적 범위 분포(high dynamic range)</strong> 라고도 합니다. 보통 측정값의 동적 범위는 기록한 최댓값을 최솟값으로 나눈 값으로 정의합니다.</p>
+
+<p><strong>대수 백분위수(Logarithmic percentiles)</strong> 은 긴 꼬리형 분포를 이해하는 데 도움이 되는 간단한 도구지만, 고도 동적 범위에 분포된 데이터셋을 처리하는 <strong>HdrHistogram</strong> 라는 공개라이브러리를 이용하면 더 정교한 분석이 가능합니다.</p>
+
+<p>HdrHistogram 은 메이븐 중앙 저장소에서 내려받을 수 있습니다. 현재 최신 버전인 2.1.10 라이브러리를 다음과 같이 <em>pom.xml</em> 에 추가하면됩니다.</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.hdrhistogram<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>HdrHistogram<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>2.1.9<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<p>간단한 HdrHistogram 예제를 살펴보겠습니다. 다음은 숫자로 가득 찬 파일을 입력받아 인접한 값 사이의 차이를 HdrHistogram 으로 계산하는 코드입니다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">BenchmarkWithHdrHistogram</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">long</span> <span class="no">NORMALIZER</span> <span class="o">=</span> <span class="mi">1_000_000</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">Histogram</span> <span class="no">HISTOGRAM</span>
+            <span class="o">=</span> <span class="k">new</span> <span class="nc">Histogram</span><span class="o">(</span><span class="nc">TimeUnit</span><span class="o">.</span><span class="na">MINUTES</span><span class="o">.</span><span class="na">toMicros</span><span class="o">(</span><span class="mi">1</span><span class="o">),</span> <span class="mi">2</span><span class="o">);</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="kd">final</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">values</span> <span class="o">=</span> <span class="nc">Files</span><span class="o">.</span><span class="na">readAllLines</span><span class="o">(</span><span class="nc">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">]));</span>
+        <span class="kt">double</span> <span class="n">last</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kd">final</span> <span class="nc">String</span> <span class="n">tVal</span> <span class="o">:</span> <span class="n">values</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kt">double</span> <span class="n">parsed</span> <span class="o">=</span> <span class="nc">Double</span><span class="o">.</span><span class="na">parseDouble</span><span class="o">(</span><span class="n">tVal</span><span class="o">);</span>
+            <span class="kt">double</span> <span class="n">gcInterval</span> <span class="o">=</span> <span class="n">parsed</span> <span class="o">-</span> <span class="n">last</span><span class="o">;</span>
+            <span class="n">last</span> <span class="o">=</span> <span class="n">parsed</span><span class="o">;</span>
+            <span class="no">HISTOGRAM</span><span class="o">.</span><span class="na">recordValue</span><span class="o">((</span><span class="kt">long</span><span class="o">)(</span><span class="n">gcInterval</span> <span class="o">*</span> <span class="no">NORMALIZER</span><span class="o">));</span>
+        <span class="o">}</span>
+        <span class="no">HISTOGRAM</span><span class="o">.</span><span class="na">outputPercentileDistribution</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">,</span> <span class="mf">1000.0</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>실행 결과, 다음 GC 로그에서 보다시피 연이은 가비지 수집 간의 시간이 표시됩니다.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>       Value     Percentile TotalCount 1/<span class="o">(</span>1-Percentile<span class="o">)</span>
+
+       14.02 0.000000000000          1           1.00
+     1245.18 0.100000000000         37           1.11
+     1949.70 0.200000000000         82           1.25
+     1966.08 0.300000000000        126           1.43
+     1982.46 0.400000000000        157           1.67
+
+...
+
+    28180.48 0.996484375000        368         284.44
+    28180.48 0.996875000000        368         320.00
+    28180.48 0.997265625000        368         365.71
+    36438.02 0.997656250000        369         426.67
+    36438.02 1.000000000000        369
+<span class="c">#[Mean    =      2715.12, StdDeviation   =      2875.87]</span>
+<span class="c">#[Max     =     36438.02, Total count    =          369]</span>
+<span class="c">#[Buckets =           19, SubBuckets     =          256]</span>
+</code></pre></div></div>
+
+<p>맨자료만 봐서는 분석하기 어렵지만, HdrHistogram 은 이런 자료를 멋진 히스토그램으로 보기 좋게 표시하는 온라인 포메터를 제공합니다.</p>
+
+<p>아래 <code class="highlighter-rouge">Example 7</code> 은 HdrHistogram Ploter 로 그린 그래프입니다.</p>
+
+<blockquote>
+  <p>Example 7 - Example HdrHistogram visualization</p>
+</blockquote>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/74734948-04a7d700-5293-11ea-9e42-514001289806.png" alt="image" /></p>
+
+<p>Java 성능 튜닝 중 측정한 값은 대부분 통계적으로 심한 비정규 분포를 나타냅니다. 그래서 데이터 형상을 시각화하여 파악하고 싶을 때 HdrHistogram 을 이용하면 좋습니다.</p>
+
+<h2 id="interpretation-of-statistics">Interpretation of Statistics</h2>
+
+<p>경험 데이터와 측정 결과는 아무 의미 없이 그냥 존재하지 않습니다. 어플리케이션을 측정해서 얻은 결과값을 해석하는 일이야말로 가장 힘들고 어려운 일입니다.</p>
+
+<p>아래 <code class="highlighter-rouge">Example 8</code> 은 실제 Java 어플리케이션의 메모리 할당률을 측정한 그래프로 센섬이라는 가비지 수집 분석기로 캡처한 화면입니다.</p>
+
+<blockquote>
+  <p>Example 8 - Example allocation rate</p>
+</blockquote>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/74734981-18533d80-5293-11ea-99e0-24c9ebfc1be3.png" alt="image" /></p>
+
+<p>할당 데이터는 비교적 신호가 명확한 편이라 해석하기 쉽습니다. 측정 시간 내 할당률은 350 ~ 700 MB /s 안정적입니다. JVM 시작 후 대략 5 시간까지는 할당률이 차츰 감소하다 9, 10 시간 사이에 바닥을 치고 다시 쭉 올라갑니다.</p>
+
+<p>할당률은 어플리케이션이 실제로 수행 중인 작업량을 반영하므로 이렇게 하루 중 시간대별로 차이가 나는건 당연합니다. 그러나 막상 실제 측정한 값을 해석할 때에는 이보다 더 복잡한 그림이 나오는 경우가 많습니다.</p>
+
+<p><code class="highlighter-rouge">Example 9</code> 는 HTTP 요청 - 응답 시간을 측정한 복잡한 히스토그램 같습니다. 하지만, 몇가지 간단한 조각으로 이루어져있습니다.</p>
+
+<blockquote>
+  <p>Example 9 - Hat, or elephant eaten by a boa?</p>
+</blockquote>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/74735019-2dc86780-5293-11ea-900e-91b749b3d692.png" alt="image" /></p>
+
+<p>웹 어플리케이션 응답은 아주 일반적인 서버 응답입니다. 요청 처리 성공, 클라이언트 에러, 서버 에러 같은 응답 코드가 있다는 사실만 알고 있으면 응답 히스토그램을 해석할 수 있습니다.</p>
+
+<p>응답 유형마다 응답 시간 분포는 다릅니다. 매핑되지 않은 URL 을 클라이언트가 요청하면 웹 서버는 곧장 응답(404) 을 줍니다. 클라이언트 에러 응답 한 가지만 히스토그램으로 그려보면 <code class="highlighter-rouge">Example 10</code> 과 같습니다.</p>
+
+<blockquote>
+  <p>Example 10 - Client errors</p>
+</blockquote>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/74735038-3882fc80-5293-11ea-83e3-2b393d698475.png" alt="image" /></p>
+
+<p>반면 서버 에러는 장시간 처리하다 발생하는 편입니다. 서버 에러 응답만 히스토그램을 그려보면 <code class="highlighter-rouge">Example 11</code> 과 같은 모습입니다.</p>
+
+<blockquote>
+  <p>Example 11 - Server errors</p>
+</blockquote>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/74735122-5a7c7f00-5293-11ea-823d-16d93d11f90a.png" alt="image" /></p>
+
+<p>성공한 요청은 긴 꼬리형 분포를 보이지만 <strong>극댓값(local maximum)</strong> 이 여럿인 <strong>다봉분포(multimodel distribution)</strong> 를 나타냅니다. 아래 <code class="highlighter-rouge">Example 12</code> 를 보면 응답 시간이 완전 다른 어플리케이션 공통 실행 경로가 둘 존재할 가능성이 있습니다.</p>
+
+<blockquote>
+  <p>Example 12 - Successful requests</p>
+</blockquote>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/74735131-636d5080-5293-11ea-9bc4-063659c9e694.png" alt="image" /></p>
+
+<p>유형이 다른 세 가지 응답 시간을 하나로 조합하면 <code class="highlighter-rouge">Example 13</code> 그래프가 완성됩니다.</p>
+
+<blockquote>
+  <p>Example 13 - Hat or elephant revisited</p>
+</blockquote>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/74735150-6a945e80-5293-11ea-9f46-47d00640a22f.png" alt="image" /></p>
+
+<p>이런 일반적인 측정값을 보다 유의미한 하위 구성 요소들로 분해하는 개념은 아주 유용합니다. 분석자는 결과값을 보고 결론을 도출하기 전에 먼저 본인이 데이터 및 도메인을 충분히 이해해야 합니다.</p>
+
+:ET
