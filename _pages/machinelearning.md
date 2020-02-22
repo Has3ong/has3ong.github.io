@@ -12,6 +12,10 @@ layout: single
 
 * [Supervised Learning / Unsupervised Learning](/supervised-unsupervised)
 
+---
+
+* [Machine Learning Perceptron](/machinelearning-perceptronintro)
+
 ## Keras
 
 * [Keras Linear Regression Analysis](/keras-linearregression)
