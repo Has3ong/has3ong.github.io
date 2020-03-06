@@ -1,0 +1,13 @@
+I"ç<ul class="toc__menu">
+  <li><a href="#caches">Caches</a>
+    <ul>
+      <li><a href="#principle-of-locality">Principle of Locality</a></li>
+      <li><a href="#cache-metrics">Cache Metrics</a></li>
+      <li><a href="#caching-line">Caching line</a></li>
+      <li><a href="#direct-mapping">Direct Mapping</a></li>
+      <li><a href="#associative-mapping">Associative Mapping</a></li>
+      <li><a href="#set-associative-mapping">Set Associative Mapping</a></li>
+    </ul>
+  </li>
+</ul>
+:ET

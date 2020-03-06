@@ -8,6 +8,10 @@ layout: single
 
 * [Linux Ubuntu MySQL install](/ubuntu-mysqlinstall)
 
+## PostgreSQL
+
+* [To PostgreSQL 12.2 Documentation](/postgre)
+
 ## MongoDB
 
 * [Linux Ubuntu MongoDB install](/ubuntu-mongodbinstall)

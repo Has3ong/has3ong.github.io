@@ -1,0 +1,14 @@
+I"É<ul class="toc__menu">
+  <li><a href="#values">Values</a></li>
+  <li><a href="#variables">Variables</a></li>
+  <li><a href="#naming">Naming</a></li>
+  <li><a href="#types">Types</a>
+    <ul>
+      <li><a href="#numeric-data-types">Numeric Data Types</a></li>
+      <li><a href="#strings">Strings</a></li>
+      <li><a href="#an-overview-of-scala-types">An Overview of Scala Types</a></li>
+      <li><a href="#tuples">Tuples</a></li>
+    </ul>
+  </li>
+</ul>
+:ET

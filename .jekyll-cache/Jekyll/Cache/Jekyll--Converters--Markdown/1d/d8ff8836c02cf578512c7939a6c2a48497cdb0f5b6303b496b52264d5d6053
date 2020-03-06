@@ -1,0 +1,22 @@
+I"Q<ul class="toc__menu">
+  <li><a href="#interpreting-and-classloading">Interpreting and Classloading</a></li>
+  <li><a href="#executing-bytecode">Executing Bytecode</a></li>
+  <li><a href="#introducing-hotspot">Introducing HotSpot</a>
+    <ul>
+      <li><a href="#introducing-just-in-time-compilation">Introducing Just-in-Time Compilation</a></li>
+    </ul>
+  </li>
+  <li><a href="#jvm-memory-management">JVM Memory Management</a></li>
+  <li><a href="#threading-and-the-java-memory-model">Threading and the Java Memory Model</a></li>
+  <li><a href="#meet-the-jvms">Meet the JVMs</a>
+    <ul>
+      <li><a href="#a-note-on-licenses">A Note on Licenses</a></li>
+    </ul>
+  </li>
+  <li><a href="#monitoring-and-tooling-for-the-jvm">Monitoring and Tooling for the JVM</a>
+    <ul>
+      <li><a href="#visualvm">VisualVM</a></li>
+    </ul>
+  </li>
+</ul>
+:ET

@@ -1,0 +1,15 @@
+I"£<ul class="toc__menu">
+  <li><a href="#procedures">Procedures</a></li>
+  <li><a href="#functions-with-empty-parentheses">Functions with Empty Parentheses</a></li>
+  <li><a href="#function-invocation-with-expression-blocks">Function Invocation with Expression Blocks</a></li>
+  <li><a href="#recursive-functions">Recursive Functions</a></li>
+  <li><a href="#nested-functions">Nested Functions</a></li>
+  <li><a href="#calling-functions-with-named-parameters">Calling Functions with Named Parameters</a></li>
+  <li><a href="#parameters-with-default-values">Parameters with Default Values</a></li>
+  <li><a href="#vararg-parameters">Vararg Parameters</a></li>
+  <li><a href="#parameter-groups">Parameter Groups</a></li>
+  <li><a href="#type-parameters">Type Parameters</a></li>
+  <li><a href="#methods-and-operators">Methods and Operators</a></li>
+  <li><a href="#writing-readable-functions">Writing Readable Functions</a></li>
+</ul>
+:ET

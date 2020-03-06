@@ -20,9 +20,6 @@ layout: single
 
 ---
 
-
-
-
 ### Python
 
 * [Python sturct 구현](/python-struct)
@@ -38,6 +35,7 @@ layout: single
 
 * [Python Profiling to Find Bottlenecks](/pythonperformance-findbottlenecks)
 * [Python Lists and Tuples](/pythonperformance-listtuple)
+* [Python Dictionarys and Sets](/pythonperformance-dictset)
 
 ### Scala
 
@@ -51,3 +49,12 @@ layout: single
 * [Scala Pattern Macthing](/scala-pattern)
 * [Scala Implicit](/scala-implicit)
 * [Scala Generic](/scala-generic)
+
+---
+
+* [Scala Working with Data: Literals, Values, Variables, and Types](/scala-datatype)
+* [Scala Expressions and Conditionals](/scala-expressioncondition)
+* [Scala Functions](/scala-function)
+* [Scala First-Class Functions](/scala-firstclassfunction)
+* [Scala Common Collections](/scala-commoncollections)
+* [Scala More Collections](/scala-morecollections)

@@ -1,0 +1,10 @@
+I"#<ul class="toc__menu">
+  <li><a href="#generator">Generator</a>
+    <ul>
+      <li><a href="#동작">동작</a></li>
+      <li><a href="#장점">장점</a></li>
+    </ul>
+  </li>
+  <li><a href="#generator-iterator-iterable-간-관계">Generator, Iterator, Iterable 간 관계</a></li>
+</ul>
+:ET

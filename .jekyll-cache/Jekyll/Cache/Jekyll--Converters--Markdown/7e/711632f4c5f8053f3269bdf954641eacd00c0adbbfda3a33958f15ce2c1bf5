@@ -1,0 +1,11 @@
+I"8<ul class="toc__menu">
+  <li><a href="#ci-지속적인-통합-continuous-integration">CI (지속적인 통합, Continuous Integration)</a></li>
+  <li><a href="#cd-지속적인-서비스-제공-continuous-delivery-continuous-deployment">CD (지속적인 서비스 제공, Continuous Delivery, Continuous Deployment)</a>
+    <ul>
+      <li><a href="#원칙">원칙</a></li>
+      <li><a href="#cd1---continuous-delivery">CD(1) - Continuous Delivery</a></li>
+      <li><a href="#cd2---continuous-deployment">CD(2) - Continuous Deployment</a></li>
+    </ul>
+  </li>
+</ul>
+:ET

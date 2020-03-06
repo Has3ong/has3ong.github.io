@@ -1,0 +1,13 @@
+I"h<ul class="toc__menu">
+  <li><a href="#kafka-producer">Kafka Producer</a></li>
+  <li><a href="#constructing-a-kafka-producer">Constructing a Kafka Producer</a>
+    <ul>
+      <li><a href="#bootstrapservers">bootstrap.servers</a></li>
+      <li><a href="#keyserializer--valueserializer">key.serializer // value.serializer</a></li>
+    </ul>
+  </li>
+  <li><a href="#sending-a-message-to-kafka">Sending a Message to Kafka</a></li>
+  <li><a href="#sending-a-message-synchronously">Sending a Message Synchronously</a></li>
+  <li><a href="#sending-a-message-asynchronously">Sending a Message Asynchronously</a></li>
+</ul>
+:ET

@@ -1,0 +1,15 @@
+I"·<ul class="toc__menu">
+  <li><a href="#project-structure">Project Structure</a></li>
+  <li><a href="#configuration-options">Configuration Options</a></li>
+  <li><a href="#application-package">Application Package</a>
+    <ul>
+      <li><a href="#using-an-application-factory">Using an Application Factory</a></li>
+      <li><a href="#implementing-application-functionality-in-a-blueprint">Implementing Application Functionality in a Blueprint</a></li>
+    </ul>
+  </li>
+  <li><a href="#launch-script">Launch Script</a></li>
+  <li><a href="#requirements-file">Requirements File</a></li>
+  <li><a href="#unit-tests">Unit Tests</a></li>
+  <li><a href="#database-setup">Database Setup</a></li>
+</ul>
+:ET

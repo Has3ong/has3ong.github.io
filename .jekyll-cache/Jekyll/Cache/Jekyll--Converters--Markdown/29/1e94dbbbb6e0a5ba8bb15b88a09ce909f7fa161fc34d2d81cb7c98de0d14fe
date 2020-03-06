@@ -1,0 +1,17 @@
+I"�<ul class="toc__menu">
+  <li><a href="#sqlstructed-query-language">SQL(Structed Query Language)</a>
+    <ul>
+      <li><a href="#ddl-data-definition-language">DDL (Data Definition Language)</a></li>
+      <li><a href="#dml-data-manipulation-language">DML (Data Manipulation Language)</a></li>
+      <li><a href="#dcl-data-control-language">DCL (Data Control Language)</a></li>
+      <li><a href="#tcl-transaction-control-language">TCL (Transaction Control Language)</a></li>
+    </ul>
+  </li>
+  <li><a href="#mysql-vs-mariadb">Mysql vs MariaDB</a>
+    <ul>
+      <li><a href="#가상칼럼">가상칼럼</a></li>
+      <li><a href="#동적칼럼">동적칼럼</a></li>
+    </ul>
+  </li>
+</ul>
+:ET

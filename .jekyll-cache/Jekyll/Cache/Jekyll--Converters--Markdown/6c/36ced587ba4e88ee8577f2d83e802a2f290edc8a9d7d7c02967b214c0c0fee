@@ -1,0 +1,42 @@
+I"8<ul class="toc__menu">
+  <li><a href="#update-parameter">Update Parameter</a>
+    <ul>
+      <li><a href="#stochastic-gradient-descent-method">Stochastic Gradient Descent method</a></li>
+      <li><a href="#disadvantages-of-sgd">Disadvantages of SGD</a></li>
+      <li><a href="#momentum">Momentum</a></li>
+      <li><a href="#adagrad">AdaGrad</a></li>
+      <li><a href="#adam">Adam</a></li>
+      <li><a href="#which-update-method-will-be-used">Which Update Method will be Used?</a></li>
+      <li><a href="#comparing-the-update-method-with-mnist-datasets">Comparing the Update Method with MNIST Datasets</a></li>
+    </ul>
+  </li>
+  <li><a href="#weight-initial-value">Weight Initial Value</a>
+    <ul>
+      <li><a href="#when-the-initial-value-is-set-to-0">When the initial value is set to 0</a></li>
+      <li><a href="#distribution-of-activation-value-of-hidden-layer">Distribution of Activation Value of Hidden Layer</a></li>
+      <li><a href="#initial-weight-value-when-using-relu">Initial Weight Value When Using ReLU</a></li>
+      <li><a href="#comparison-of-initial-values-in-mnist-data-sets">Comparison of Initial Values in MNIST Data Sets</a></li>
+    </ul>
+  </li>
+  <li><a href="#batch-normalization">Batch Normalization</a>
+    <ul>
+      <li><a href="#batch-normalization-algorithm">Batch Normalization Algorithm</a></li>
+      <li><a href="#effect-of-batch-normalization">Effect of Batch Normalization</a></li>
+    </ul>
+  </li>
+  <li><a href="#for-correct-learning">For Correct Learning</a>
+    <ul>
+      <li><a href="#overfitting">Overfitting</a></li>
+      <li><a href="#weight-decay">Weight Decay</a></li>
+      <li><a href="#dropout">Dropout</a></li>
+    </ul>
+  </li>
+  <li><a href="#find-the-appropriate-hyperparameter-value">Find the Appropriate Hyperparameter Value</a>
+    <ul>
+      <li><a href="#validation-data">Validation Data</a></li>
+      <li><a href="#hyperparameter-optimization">Hyperparameter Optimization</a></li>
+      <li><a href="#implementation-of-hyperparameter-optimization">Implementation of Hyperparameter Optimization</a></li>
+    </ul>
+  </li>
+</ul>
+:ET

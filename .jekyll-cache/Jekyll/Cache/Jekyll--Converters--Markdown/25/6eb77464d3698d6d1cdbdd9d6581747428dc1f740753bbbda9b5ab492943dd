@@ -1,0 +1,15 @@
+I"P<ul class="toc__menu">
+  <li><a href="#settings">Settings</a></li>
+  <li><a href="#handson">HandsOn</a>
+      - {:.} <a href="#manually-generate-the-artifacts">Manually generate the artifacts</a>
+      - {:.} <a href="#create-a-channel-configuration-transaction">Create a Channel Configuration Transaction</a>
+      - {:.} <a href="#start-the-network">Start the network</a>
+      - {:.} <a href="#create--join-channel">Create &amp; Join Channel</a>
+      - {:.} <a href="#update-anchor-peer">Update Anchor Peer</a>
+      - {:.} <a href="#install-chaincode">Install Chaincode</a>
+      - {:.} <a href="#chacincode-instantiate">ChacinCode Instantiate</a>
+      - {:.} <a href="#chaincode-query">ChainCode Query</a>
+      - {:.} <a href="#chaincode-invoke">ChainCode Invoke</a>
+      - {:.} <a href="#chaincode-query-1">ChainCode Query</a></li>
+</ul>
+:ET

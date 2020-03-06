@@ -1,0 +1,11 @@
+I"c<ul class="toc__menu">
+  <li><a href="#replication">Replication</a>
+    <ul>
+      <li><a href="#leader-replica">Leader replica</a></li>
+      <li><a href="#follower-replica">Follower replica</a></li>
+      <li><a href="#preferred-leader">Preferred Leader</a></li>
+    </ul>
+  </li>
+  <li><a href="#isrin-sync-replica">ISR(In Sync Replica)</a></li>
+</ul>
+:ET

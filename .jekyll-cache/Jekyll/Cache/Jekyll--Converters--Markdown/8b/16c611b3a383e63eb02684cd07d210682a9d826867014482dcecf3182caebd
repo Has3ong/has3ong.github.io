@@ -1,0 +1,10 @@
+I"'<ul class="toc__menu">
+  <li><a href="#struct">Struct</a>
+    <ul>
+      <li><a href="#byte-order-size-and-alignment">Byte Order, Size, and Alignment</a></li>
+      <li><a href="#character-format">Character Format</a></li>
+    </ul>
+  </li>
+  <li><a href="#collection">Collection</a></li>
+</ul>
+:ET

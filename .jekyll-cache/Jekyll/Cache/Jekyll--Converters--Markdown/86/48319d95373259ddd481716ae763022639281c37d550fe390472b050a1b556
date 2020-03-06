@@ -1,0 +1,14 @@
+I"E<ul class="toc__menu">
+  <li><a href="#apache-kafka">Apache Kafka</a></li>
+  <li><a href="#kafka-architecture">Kafka Architecture</a>
+    <ul>
+      <li><a href="#topic--partition">Topic / Partition</a></li>
+      <li><a href="#producer--consumer">Producer / Consumer</a></li>
+      <li><a href="#consumer-group">Consumer Group</a></li>
+      <li><a href="#broker">Broker</a></li>
+      <li><a href="#zookeeper">Zookeeper</a></li>
+    </ul>
+  </li>
+  <li><a href="#파일-시스템을-활용한-고성능-디자인">파일 시스템을 활용한 고성능 디자인</a></li>
+</ul>
+:ET

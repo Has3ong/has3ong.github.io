@@ -1,0 +1,38 @@
+I"Å<ul class="toc__menu">
+  <li><a href="#learning-from-data">Learning from Data!</a>
+    <ul>
+      <li><a href="#data-driven-learning">Data-Driven Learning</a></li>
+      <li><a href="#training-data-and-test-data">Training Data and Test Data</a></li>
+    </ul>
+  </li>
+  <li><a href="#loss-function">Loss Function</a>
+    <ul>
+      <li><a href="#sum-of-squares-for-error">Sum of Squares for Error</a></li>
+      <li><a href="#cross-entropy-error">Cross Entropy Error</a></li>
+      <li><a href="#mini-batch-learning">Mini-Batch Learning</a></li>
+      <li><a href="#to-implement-cross-entropy-errors">To Implement Cross Entropy Errors</a></li>
+      <li><a href="#why-set-the-loss-function">Why Set the Loss Function?</a></li>
+    </ul>
+  </li>
+  <li><a href="#numerical-differential">Numerical Differential</a>
+    <ul>
+      <li><a href="#differential">Differential</a></li>
+      <li><a href="#an-example-of-a-numerical-differential">An Example of a Numerical Differential</a></li>
+      <li><a href="#partial-differential">partial differential</a></li>
+    </ul>
+  </li>
+  <li><a href="#gradient">Gradient</a>
+    <ul>
+      <li><a href="#gradient-gradient-descent-method">Gradient (Gradient Descent Method)</a></li>
+      <li><a href="#gradient-in-neural-network">Gradient in Neural Network</a></li>
+    </ul>
+  </li>
+  <li><a href="#implementing-learning-algorithms">Implementing Learning Algorithms</a>
+    <ul>
+      <li><a href="#implementing-a-two-layer-neural-network-class">Implementing a Two-Layer Neural Network Class</a></li>
+      <li><a href="#implement-mini-batch-learning">Implement Mini-Batch Learning</a></li>
+      <li><a href="#evaluate-with-test-data">Evaluate with Test Data</a></li>
+    </ul>
+  </li>
+</ul>
+:ET

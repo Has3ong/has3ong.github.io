@@ -1,0 +1,28 @@
+I"g<ul class="toc__menu">
+  <li><a href="#프로세스-스케쥴링process-scheduling">프로세스 스케쥴링(Process Scheduling)</a></li>
+  <li><a href="#프로세스-상태process-state">프로세스 상태(Process State)</a>
+    <ul>
+      <li><a href="#프로세스의-상태-전이">프로세스의 상태 전이</a></li>
+    </ul>
+  </li>
+  <li><a href="#선점--비선점-스케줄링">선점 &amp; 비선점 스케줄링</a>
+    <ul>
+      <li><a href="#선점형-스케줄링preemptive-scheduling">선점형 스케줄링(Preemptive Scheduling)</a></li>
+      <li><a href="#비선점형-스케줄링non-preemptive-scheduling">비선점형 스케줄링(Non-Preemptive Scheduling)</a></li>
+    </ul>
+  </li>
+  <li><a href="#정적--동적-스케줄링">정적 &amp; 동적 스케줄링</a>
+    <ul>
+      <li><a href="#정적-스케줄링static-scheduling">정적 스케줄링(Static Scheduling)</a></li>
+      <li><a href="#동적-스케줄링dynamic-scheduling">동적 스케줄링(Dynamic Scheduling)</a></li>
+    </ul>
+  </li>
+  <li><a href="#장기--중기--단기-스케줄링">장기 &amp; 중기 &amp; 단기 스케줄링</a>
+    <ul>
+      <li><a href="#장기-스케줄링">장기 스케줄링</a></li>
+      <li><a href="#중기-스케줄링">중기 스케줄링</a></li>
+      <li><a href="#단기-스케줄링">단기 스케줄링</a></li>
+    </ul>
+  </li>
+</ul>
+:ET

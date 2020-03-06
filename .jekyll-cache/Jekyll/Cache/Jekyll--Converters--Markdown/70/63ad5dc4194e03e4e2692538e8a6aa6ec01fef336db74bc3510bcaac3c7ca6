@@ -1,0 +1,10 @@
+I"±<ul class="toc__menu">
+  <li><a href="#email-support-with-flask-mail">Email Support with Flask-Mail</a>
+    <ul>
+      <li><a href="#sending-email-from-the-python-shell">Sending Email from the Python Shell</a></li>
+      <li><a href="#integrating-emails-with-the-application">Integrating Emails with the Application</a></li>
+      <li><a href="#sending-asynchronous-email">Sending Asynchronous Email</a></li>
+    </ul>
+  </li>
+</ul>
+:ET

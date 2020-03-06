@@ -4,6 +4,8 @@ permalink: /about/
 layout: single
 ---
 
+![60fpsparrot](https://user-images.githubusercontent.com/44635266/75249174-0d5f5680-5819-11ea-896a-de4e0c4dc13b.gif)
+
 ### Introduction
 
 * 수원대학교 정보미디어 학과 2019-2 졸업

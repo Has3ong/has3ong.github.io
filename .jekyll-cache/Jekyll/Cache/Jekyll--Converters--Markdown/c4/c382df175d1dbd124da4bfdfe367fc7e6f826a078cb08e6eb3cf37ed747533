@@ -1,0 +1,10 @@
+I"<ul class="toc__menu">
+  <li><a href="#엔디언endianness">엔디언(Endianness)</a></li>
+  <li><a href="#장단점">장단점</a>
+    <ul>
+      <li><a href="#리틀-엔디안">리틀 엔디안</a></li>
+      <li><a href="#빅-엔디안">빅 엔디안</a></li>
+    </ul>
+  </li>
+</ul>
+:ET

@@ -1,0 +1,44 @@
+I"ç
+<ul class="toc__menu">
+  <li><a href="#what-is-a-smart-contract">What Is a Smart Contract?</a></li>
+  <li><a href="#life-cycle-of-a-smart-contract">Life Cycle of a Smart Contract</a></li>
+  <li><a href="#introduction-to-ethereum-high-level-languages">Introduction to Ethereum High-Level Languages</a></li>
+  <li><a href="#building-a-smart-contract-with-solidity">Building a Smart Contract with Solidity</a>
+    <ul>
+      <li><a href="#selecting-a-version-of-solidity">Selecting a Version of Solidity</a></li>
+      <li><a href="#download-and-install">Download and Install</a></li>
+      <li><a href="#writing-a-simple-solidity-program">Writing a Simple Solidity Program</a></li>
+      <li><a href="#compiling-with-the-solidity-compiler-solc">Compiling with the Solidity Compiler (solc)</a></li>
+    </ul>
+  </li>
+  <li><a href="#the-ethereum-contract-abi">The Ethereum Contract ABI</a>
+    <ul>
+      <li><a href="#selecting-a-solidity-compiler-and-language-version">Selecting a Solidity Compiler and Language Version</a></li>
+    </ul>
+  </li>
+  <li><a href="#programming-with-solidity">Programming with Solidity</a>
+    <ul>
+      <li><a href="#data-types">Data Types</a></li>
+      <li><a href="#predefined-global-variables-and-functions">Predefined Global Variables and Functions</a></li>
+      <li><a href="#transactionmessage-call-context">Transaction/message call context</a></li>
+      <li><a href="#transaction-context">Transaction context</a></li>
+      <li><a href="#block-context">Block context</a></li>
+      <li><a href="#address-object">address object</a></li>
+      <li><a href="#built-in-functions">Built-in functions</a></li>
+      <li><a href="#contract-definition">Contract Definition</a></li>
+      <li><a href="#functions">Functions</a></li>
+      <li><a href="#contract-constructor-and-selfdestruct">Contract Constructor and selfdestruct</a></li>
+      <li><a href="#adding-a-constructor-and-selfdestruct-to-our-faucet-example">Adding a Constructor and selfdestruct to Our Faucet Example</a></li>
+      <li><a href="#function-modifiers">Function Modifiers</a></li>
+      <li><a href="#contract-inheritance">Contract Inheritance</a></li>
+      <li><a href="#error-handling-assert-require-revert">Error Handling (assert, require, revert)</a></li>
+      <li><a href="#event">Event</a></li>
+      <li><a href="#catching-events">Catching events</a></li>
+      <li><a href="#calling-other-contracts-send-call-callcode-delegatecall">Calling Other Contracts (send, call, callcode, delegatecall)</a></li>
+      <li><a href="#creating-a-new-instance">Creating a new instance</a></li>
+      <li><a href="#addressing-an-existing-instance">Addressing an existing instance</a></li>
+      <li><a href="#raw-call-delegatecall">Raw call, delegatecall</a></li>
+    </ul>
+  </li>
+</ul>
+:ET

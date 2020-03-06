@@ -1,0 +1,24 @@
+I"x<ul class="toc__menu">
+  <li><a href="#rest">REST</a>
+    <ul>
+      <li><a href="#restful-api">RESTful API</a></li>
+      <li><a href="#rest-6-가지-원칙">REST 6 가지 원칙</a></li>
+    </ul>
+  </li>
+  <li><a href="#rest-method">REST Method</a>
+    <ul>
+      <li><a href="#장점">장점</a></li>
+      <li><a href="#단점">단점</a></li>
+    </ul>
+  </li>
+  <li><a href="#uri-vs-url-vs-urn">URI vs URL vs URN</a>
+    <ul>
+      <li><a href="#uri-통합-자원-식별자-uniform-resource-identifier">URI (통합 자원 식별자, Uniform Resource Identifier)</a></li>
+      <li><a href="#url-파일-식별자-uniform-resource-locator">URL (파일 식별자, Uniform Resource Locator)</a></li>
+      <li><a href="#urn--uniform-resource-name">URN — Uniform Resource Name</a></li>
+    </ul>
+  </li>
+  <li><a href="#mime">MIME</a></li>
+  <li><a href="#proxy">Proxy</a></li>
+</ul>
+:ET

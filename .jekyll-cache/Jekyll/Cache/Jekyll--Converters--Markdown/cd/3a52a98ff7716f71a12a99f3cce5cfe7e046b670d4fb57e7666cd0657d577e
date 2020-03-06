@@ -1,0 +1,29 @@
+I"·<ul class="toc__menu">
+  <li><a href="#what-is-perceptron">What is Perceptron?</a></li>
+  <li><a href="#simple-logic-gate">Simple Logic Gate</a>
+    <ul>
+      <li><a href="#and-gate">AND GATE</a></li>
+      <li><a href="#nand-gate--or-gate">NAND GATE / OR GATE</a></li>
+    </ul>
+  </li>
+  <li><a href="#implementing-perceptron">Implementing Perceptron</a>
+    <ul>
+      <li><a href="#from-simple-implementation">From simple implementation</a></li>
+      <li><a href="#introduction-of-weights-and-bias">Introduction of weights and bias</a></li>
+      <li><a href="#to-implement-weights-and-deflections">To implement weights and deflections</a></li>
+    </ul>
+  </li>
+  <li><a href="#perceptrons-limit">Perceptronâ€™s Limit</a>
+    <ul>
+      <li><a href="#xor-gate">XOR Gate</a></li>
+      <li><a href="#linear-and-nonlinear">Linear and Nonlinear</a></li>
+    </ul>
+  </li>
+  <li><a href="#if-a-multi---layered-perceptron-goes-in">If a multi - layered Perceptron goes in,</a>
+    <ul>
+      <li><a href="#to-combine-existing-logic-gates">To combine existing Logic Gates</a></li>
+      <li><a href="#implementing-an-xor-logical-circuit">Implementing an XOR logical circuit</a></li>
+    </ul>
+  </li>
+</ul>
+:ET

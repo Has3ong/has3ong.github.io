@@ -1,0 +1,709 @@
+I"�k<p><em>이 포스트는 <a href="">Learning Scala</a> 를 바탕으로 작성하였습니다.</em></p>
+
+<h3 id="mutable-collections">Mutable Collections</h3>
+
+<p>List, Set, Map 은 생성된 후 변경할 수 없습니다. 하지만 새로운 컬렉션으로 변형될 수 있습니다. 예를 들어 불변의 맵을 생성하고 난 뒤 이 중 하나의 매핑을 제거하고 다른 매핑을 추가하여 변형할 수 있습니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">m</span> <span class="k">=</span> <span class="nc">Map</span><span class="o">(</span><span class="s">"AAPL"</span> <span class="o">-&gt;</span> <span class="mi">597</span><span class="o">,</span> <span class="s">"MSFT"</span> <span class="o">-&gt;</span> <span class="mi">40</span><span class="o">)</span>
+<span class="n">m</span><span class="k">:</span> <span class="kt">scala.collection.immutable.Map</span><span class="o">[</span><span class="kt">String</span>,<span class="kt">Int</span><span class="o">]</span> <span class="k">=</span>
+ <span class="nc">Map</span><span class="o">(</span><span class="nc">AAPL</span> <span class="o">-&gt;</span> <span class="mi">597</span><span class="o">,</span> <span class="nc">MSFT</span> <span class="o">-&gt;</span> <span class="mi">40</span><span class="o">)</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">n</span> <span class="k">=</span> <span class="n">m</span> <span class="o">-</span> <span class="s">"AAPL"</span> <span class="o">+</span> <span class="o">(</span><span class="s">"GOOG"</span> <span class="o">-&gt;</span> <span class="mi">521</span><span class="o">)</span>
+<span class="n">n</span><span class="k">:</span> <span class="kt">scala.collection.immutable.Map</span><span class="o">[</span><span class="kt">String</span>,<span class="kt">Int</span><span class="o">]</span> <span class="k">=</span>
+ <span class="nc">Map</span><span class="o">(</span><span class="nc">MSFT</span> <span class="o">-&gt;</span> <span class="mi">40</span><span class="o">,</span> <span class="nc">GOOG</span> <span class="o">-&gt;</span> <span class="mi">521</span><span class="o">)</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="nf">println</span><span class="o">(</span><span class="n">m</span><span class="o">)</span>
+<span class="nc">Map</span><span class="o">(</span><span class="nc">AAPL</span> <span class="o">-&gt;</span> <span class="mi">597</span><span class="o">,</span> <span class="nc">MSFT</span> <span class="o">-&gt;</span> <span class="mi">40</span><span class="o">)</span>
+</code></pre></div></div>
+
+<h3 id="creating-new-mutable-collections">Creating New Mutable Collections</h3>
+
+<p>가장 간단하게 컬렉션을 변경하는 방법은 가변의 컬렉션 타입을 이용하는것입니다. 아래 표에는 표준 불변 타입인 List, Map, Set 에 대응하는 가변 데이터 타입을 보여줍니다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Immutable type</th>
+      <th style="text-align: left">Mutable counterpart</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">collection.immutable.List</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">collection.mutable.Buffer</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">collection.immutable.Set</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">collection.mutable.Set</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">collection.immutable.Map</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">collection.mutable.Map</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><code class="highlighter-rouge">collection.immutable</code> 패키지는 Scala 에서 현재 네임스페이스에 자동으로 추가되는 반면, <code class="highlighter-rouge">collection.mutable</code> 패키지는 아닙니다. 가변의 컬렉션을 생성할 때 그 타입의 전체 패키지 이름을 포함하였는지 반드시 확인해야 합니다.</p>
+
+<p><code class="highlighter-rouge">collection.mutable.Buffer</code> 타입은 범용적인 가변의 시퀀스이며, 그 시작과 중간, 끝에 요소들을 추가할 수 있습니다.</p>
+
+<p>다음은 이 타입을 이용하여 하나의 요소로 시작해서 정수 리스트를 만드는 것을 보여줍니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">nums</span> <span class="k">=</span> <span class="nv">collection</span><span class="o">.</span><span class="py">mutable</span><span class="o">.</span><span class="py">Buffer</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span>
+<span class="n">nums</span><span class="k">:</span> <span class="kt">scala.collection.mutable.Buffer</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nc">ArrayBuffer</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="nf">for</span> <span class="o">(</span><span class="n">i</span> <span class="k">&lt;-</span> <span class="mi">2</span> <span class="n">to</span> <span class="mi">10</span><span class="o">)</span> <span class="n">nums</span> <span class="o">+=</span> <span class="n">i</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="nf">println</span><span class="o">(</span><span class="n">nums</span><span class="o">)</span>
+<span class="nc">Buffer</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">8</span><span class="o">,</span> <span class="mi">9</span><span class="o">,</span> <span class="mi">10</span><span class="o">)</span>
+</code></pre></div></div>
+
+<p>맵과 집합도 유사한 과정으로 만들 수 있습니다. 새로운 집합의 타입 매개변수나 새로운 맵의 키와 값의 타입 매개변수를 지정하는 것은 빈 컬렉션을 생성할 때에만 필요합니다.</p>
+
+<p>가변적인 버퍼는 <code class="highlighter-rouge">toList</code> 메소드를 이용하여 어느 때라도 다시 불변의 List 로 전환할 수 있습니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="nf">println</span><span class="o">(</span><span class="n">nums</span><span class="o">)</span>
+<span class="nc">Buffer</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">8</span><span class="o">,</span> <span class="mi">9</span><span class="o">,</span> <span class="mi">10</span><span class="o">)</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">l</span> <span class="k">=</span> <span class="nv">nums</span><span class="o">.</span><span class="py">toList</span>
+<span class="n">l</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">8</span><span class="o">,</span> <span class="mi">9</span><span class="o">,</span> <span class="mi">10</span><span class="o">)</span>
+</code></pre></div></div>
+
+<h3 id="creating-mutable-collections-from-immutable-ones">Creating Mutable Collections from Immutable Ones</h3>
+
+<p>가변적인 컬렉션을 직접 생성하는 다른 방법으로는 불변의 컬렉션으로부터 전환하는 것입니다. 이 방법은 이미 시작한 불변의 컬렉션이 있어 이를 변경하여 사용하고 싶거나 <code class="highlighter-rouge">collection.mutable.Buffer()</code> 대신 <code class="highlighter-rouge">List()</code> 를 타이핑하고 싶을 때 유용합니다.</p>
+
+<p>불변의 컬렉션인 List, Map, Set 모두 <code class="highlighter-rouge">toBuffer</code> 메소드를 이용하여 가변적인 타입 <code class="highlighter-rouge">collection.mutable.Buffer()</code> 으로 전환할 수 있습니다.</p>
+
+<p>List 에서는 이 방법이 간단한데, 버퍼와 List 타입 모드 시퀀스이기 때문입니다. <code class="highlighter-rouge">Iterable</code> 의 서브타입인 맵 또한 시퀀스로 간주될 수 있으며, Key-Value 튜플의 시퀀스로서 버퍼로 전환됩니다.</p>
+
+<p>다음은 불변하는 맵을 가변적인 버퍼로 전환한 다음, 다시 불변의 맵으로 전환하는 예제입니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">m</span> <span class="k">=</span> <span class="nc">Map</span><span class="o">(</span><span class="s">"AAPL"</span> <span class="o">-&gt;</span> <span class="mi">597</span><span class="o">,</span> <span class="s">"MSFT"</span> <span class="o">-&gt;</span> <span class="mi">40</span><span class="o">)</span>
+<span class="n">m</span><span class="k">:</span> <span class="kt">scala.collection.immutable.Map</span><span class="o">[</span><span class="kt">String</span>,<span class="kt">Int</span><span class="o">]</span> <span class="k">=</span>
+ <span class="nc">Map</span><span class="o">(</span><span class="nc">AAPL</span> <span class="o">-&gt;</span> <span class="mi">597</span><span class="o">,</span> <span class="nc">MSFT</span> <span class="o">-&gt;</span> <span class="mi">40</span><span class="o">)</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">b</span> <span class="k">=</span> <span class="nv">m</span><span class="o">.</span><span class="py">toBuffer</span>
+<span class="n">b</span><span class="k">:</span> <span class="kt">scala.collection.mutable.Buffer</span><span class="o">[(</span><span class="kt">String</span>, <span class="kt">Int</span><span class="o">)]</span> <span class="k">=</span>
+ <span class="nc">ArrayBuffer</span><span class="o">((</span><span class="nc">AAPL</span><span class="o">,</span><span class="mi">597</span><span class="o">),</span> <span class="o">(</span><span class="nc">MSFT</span><span class="o">,</span><span class="mi">40</span><span class="o">))</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="n">b</span> <span class="n">trimStart</span> <span class="mi">1</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="n">b</span> <span class="o">+=</span> <span class="o">(</span><span class="s">"GOOG"</span> <span class="o">-&gt;</span> <span class="mi">521</span><span class="o">)</span>
+<span class="n">res1</span><span class="k">:</span> <span class="kt">b.</span><span class="k">type</span> <span class="o">=</span> <span class="nc">ArrayBuffer</span><span class="o">((</span><span class="nc">MSFT</span><span class="o">,</span><span class="mi">40</span><span class="o">),</span> <span class="o">(</span><span class="nc">GOOG</span><span class="o">,</span><span class="mi">521</span><span class="o">))</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">n</span> <span class="k">=</span> <span class="nv">b</span><span class="o">.</span><span class="py">toMap</span>
+<span class="n">n</span><span class="k">:</span> <span class="kt">scala.collection.immutable.Map</span><span class="o">[</span><span class="kt">String</span>,<span class="kt">Int</span><span class="o">]</span> <span class="k">=</span>
+ <span class="nc">Map</span><span class="o">(</span><span class="nc">MSFT</span> <span class="o">-&gt;</span> <span class="mi">40</span><span class="o">,</span> <span class="nc">GOOG</span> <span class="o">-&gt;</span> <span class="mi">521</span><span class="o">)</span>
+</code></pre></div></div>
+
+<p>버퍼를 불변의 컬렉션으로 전환할 때 <code class="highlighter-rouge">toMap</code> 과 함께 버퍼 메소드 <code class="highlighter-rouge">toList</code>, <code class="highlighter-rouge">toSet</code> 을 사용할 수 있습니다.</p>
+
+<p>Set 의 모든 항목은 유일해야 한다는 제약 조건을 검증하기 위해, 우선 이 버퍼에 중복 요소를 추가해보겠습니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="n">b</span> <span class="o">+=</span> <span class="o">(</span><span class="s">"GOOG"</span> <span class="o">-&gt;</span> <span class="mi">521</span><span class="o">)</span>
+<span class="n">res2</span><span class="k">:</span> <span class="kt">b.</span><span class="k">type</span> <span class="o">=</span> <span class="nc">ArrayBuffer</span><span class="o">((</span><span class="nc">MSFT</span><span class="o">,</span><span class="mi">40</span><span class="o">),</span> <span class="o">(</span><span class="nc">GOOG</span><span class="o">,</span><span class="mi">521</span><span class="o">),</span> <span class="o">(</span><span class="nc">GOOG</span><span class="o">,</span><span class="mi">521</span><span class="o">))</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">l</span> <span class="k">=</span> <span class="nv">b</span><span class="o">.</span><span class="py">toList</span>
+<span class="n">l</span><span class="k">:</span> <span class="kt">List</span><span class="o">[(</span><span class="kt">String</span>, <span class="kt">Int</span><span class="o">)]</span> <span class="k">=</span> <span class="nc">List</span><span class="o">((</span><span class="nc">MSFT</span><span class="o">,</span><span class="mi">40</span><span class="o">),</span> <span class="o">(</span><span class="nc">GOOG</span><span class="o">,</span><span class="mi">521</span><span class="o">),</span> <span class="o">(</span><span class="nc">GOOG</span><span class="o">,</span><span class="mi">521</span><span class="o">))</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">s</span> <span class="k">=</span> <span class="nv">b</span><span class="o">.</span><span class="py">toSet</span>
+<span class="n">s</span><span class="k">:</span> <span class="kt">scala.collection.immutable.Set</span><span class="o">[(</span><span class="kt">String</span>, <span class="kt">Int</span><span class="o">)]</span> <span class="k">=</span> <span class="nc">Set</span><span class="o">((</span><span class="nc">MSFT</span><span class="o">,</span><span class="mi">40</span><span class="o">),</span> <span class="o">(</span><span class="nc">GOOG</span><span class="o">,</span><span class="mi">521</span><span class="o">))</span>
+</code></pre></div></div>
+
+<p>List 는 중복된 항목을 포함하지만 Set 은 유일한 항목만 포함되는것을 확인할 수 있습니다.</p>
+
+<p>Buffer 타입은 범용적으로 사용되는 좋은 가변적인 컬렉션으로 List 와 유사하지만, 그 내용을 추가, 삭제, 교체가 가능합니다. <code class="highlighter-rouge">Buffer</code> 타입이 지원하는 전환 메소드는 자신에 대응하는 불변의 타입에 적용하는 <code class="highlighter-rouge">toBuffer</code> 메소드와 함께 가변적인 데이터로 작업하기에 유용한 메커니즘을 만듭니다.</p>
+
+<p>Buffer 의 유일한 단점은 너무 광범위하게 적용될 수 있다는 것입니다. 예를 들어 루프 내에서 컬렉션을 반복적으로 추가하는 작업이라면 Buffer 대신 빌더(Builder) 를 사용하는 것이 더 나을것입니다.</p>
+
+<h3 id="using-collection-builders">Using Collection Builders</h3>
+
+<p>Builder 는 Buffer 를 단순화한 형태로 할당된 컬렉션 타입을 생성하고, 추가 연산만을 지원하도록 제한되어있습니다.</p>
+
+<p>특정 컬렉션 타입의 빌더를 생성하려면 해당 타입의 <code class="highlighter-rouge">newBuilder</code> 메소드를 호출하고, 해당 타입의 컬렉션 구성 요소를 포함하면 됩니다. 빌더의 <code class="highlighter-rouge">result</code> 메소드를 호출하면 이를 최종적으로 Set 로 전환해줍니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">b</span> <span class="k">=</span> <span class="nv">Set</span><span class="o">.</span><span class="py">newBuilder</span><span class="o">[</span><span class="kt">Char</span><span class="o">]</span>
+<span class="n">b</span><span class="k">:</span> <span class="kt">scala.collection.mutable.Builder</span><span class="o">[</span><span class="kt">Char</span>,<span class="kt">scala.collection.immutable.</span>
+ <span class="kt">Set</span><span class="o">[</span><span class="kt">Char</span><span class="o">]]</span> <span class="k">=</span> <span class="nv">scala</span><span class="o">.</span><span class="py">collection</span><span class="o">.</span><span class="py">mutable</span><span class="o">.</span><span class="py">SetBuilder</span><span class="k">@</span><span class="mf">726d</span><span class="n">cf2c</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="n">b</span> <span class="o">+=</span> <span class="sc">'h'</span>
+<span class="n">res3</span><span class="k">:</span> <span class="kt">b.</span><span class="k">type</span> <span class="o">=</span> <span class="nv">scala</span><span class="o">.</span><span class="py">collection</span><span class="o">.</span><span class="py">mutable</span><span class="o">.</span><span class="py">SetBuilder</span><span class="nd">@d13d812</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="n">b</span> <span class="o">++=</span> <span class="nc">List</span><span class="o">(</span><span class="sc">'e'</span><span class="o">,</span> <span class="sc">'l'</span><span class="o">,</span> <span class="sc">'l'</span><span class="o">,</span> <span class="sc">'o'</span><span class="o">)</span>
+<span class="n">res4</span><span class="k">:</span> <span class="kt">b.</span><span class="k">type</span> <span class="o">=</span> <span class="nv">scala</span><span class="o">.</span><span class="py">collection</span><span class="o">.</span><span class="py">mutable</span><span class="o">.</span><span class="py">SetBuilder</span><span class="nd">@d13d812</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">helloSet</span> <span class="k">=</span> <span class="nv">b</span><span class="o">.</span><span class="py">result</span>
+<span class="n">helloSet</span><span class="k">:</span> <span class="kt">scala.collection.immutable.Set</span><span class="o">[</span><span class="kt">Char</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Set</span><span class="o">(</span><span class="n">h</span><span class="o">,</span> <span class="n">e</span><span class="o">,</span> <span class="n">l</span><span class="o">,</span> <span class="n">o</span><span class="o">)</span>
+</code></pre></div></div>
+
+<h2 id="arrays">Arrays</h2>
+
+<p>Array 는 고정된 크기를 가지며, 내용을 변경할 수 있으며, 인덱스를 가지고 있는 컬렉션 입니다. 이것은 <code class="highlighter-rouge">scala.collections</code> 패키지에 있지 않고 루트 Iterable 타입으로부터 확장된 타입이 아니므로 공식적으로 컬렉션은 아닙니다.</p>
+
+<p>Array 타입은 실제로 Java 의 배열 타입을 <strong>묵시적 클래스(Implicit class)</strong> 라 부르는 고급 특징으로 감싼 wrapper 입니다.</p>
+
+<p>묵시적 클래스는 배열을 시퀀스로 사용할 수 있도록 해줍니다. Scala 는 JVM 라이브러리 및 Java 코드와의 호환성을 위해 Array 타입을 제공합니다.</p>
+
+<p>다음은 배열로 작업하는 예시입니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">colors</span> <span class="k">=</span> <span class="nc">Array</span><span class="o">(</span><span class="s">"red"</span><span class="o">,</span> <span class="s">"green"</span><span class="o">,</span> <span class="s">"blue"</span><span class="o">)</span>
+<span class="n">colors</span><span class="k">:</span> <span class="kt">Array</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Array</span><span class="o">(</span><span class="n">red</span><span class="o">,</span> <span class="n">green</span><span class="o">,</span> <span class="n">blue</span><span class="o">)</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="nf">colors</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span> <span class="k">=</span> <span class="s">"purple"</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="n">colors</span>
+<span class="n">res0</span><span class="k">:</span> <span class="kt">Array</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Array</span><span class="o">(</span><span class="n">purple</span><span class="o">,</span> <span class="n">green</span><span class="o">,</span> <span class="n">blue</span><span class="o">)</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="nf">println</span><span class="o">(</span><span class="s">"very purple: "</span> <span class="o">+</span> <span class="n">colors</span><span class="o">)</span>
+<span class="n">very</span> <span class="n">purple</span><span class="k">:</span> <span class="err">[</span><span class="kt">Ljava.lang.String</span><span class="o">;</span><span class="k">@</span><span class="mi">70</span><span class="n">cf32e3</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">files</span> <span class="k">=</span> <span class="k">new</span> <span class="nv">java</span><span class="o">.</span><span class="py">io</span><span class="o">.</span><span class="py">File</span><span class="o">(</span><span class="s">"."</span><span class="o">).</span><span class="py">listFiles</span>
+<span class="n">files</span><span class="k">:</span> <span class="kt">Array</span><span class="o">[</span><span class="kt">java.io.File</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Array</span><span class="o">(./</span><span class="nv">Build</span><span class="o">.</span><span class="py">scala</span><span class="o">,</span> <span class="o">./</span><span class="nv">Dependencies</span><span class="o">.</span><span class="py">scala</span><span class="o">,</span>
+ <span class="o">./</span><span class="nv">build</span><span class="o">.</span><span class="py">properties</span><span class="o">,</span> <span class="o">./</span><span class="nv">JunitXmlSupport</span><span class="o">.</span><span class="py">scala</span><span class="o">,</span> <span class="o">./</span><span class="nv">Repositories</span><span class="o">.</span><span class="py">scala</span><span class="o">,</span>
+ <span class="o">./</span><span class="nv">plugins</span><span class="o">.</span><span class="py">sbt</span><span class="o">,</span> <span class="o">./</span><span class="n">project</span><span class="o">,</span> <span class="o">./</span><span class="nv">SBTInitialization</span><span class="o">.</span><span class="py">scala</span><span class="o">,</span> <span class="o">./</span><span class="n">target</span><span class="o">)</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">scala</span> <span class="k">=</span> <span class="n">files</span> <span class="nf">map</span> <span class="o">(</span><span class="nv">_</span><span class="o">.</span><span class="py">getName</span><span class="o">)</span> <span class="nf">filter</span><span class="o">(</span><span class="k">_</span> <span class="n">endsWith</span> <span class="s">"scala"</span><span class="o">)</span>
+<span class="n">scala</span><span class="k">:</span> <span class="kt">Array</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Array</span><span class="o">(</span><span class="nv">Build</span><span class="o">.</span><span class="py">scala</span><span class="o">,</span> <span class="nv">Dependencies</span><span class="o">.</span><span class="py">scala</span><span class="o">,</span>
+ <span class="nv">JunitXmlSupport</span><span class="o">.</span><span class="py">scala</span><span class="o">,</span> <span class="nv">Repositories</span><span class="o">.</span><span class="py">scala</span><span class="o">,</span> <span class="nv">SBTInitialization</span><span class="o">.</span><span class="py">scala</span><span class="o">)</span>
+</code></pre></div></div>
+
+<p>Java 배열은 모든 Java 와 Scala 객체가 상속하는 <code class="highlighter-rouge">toString()</code> 메소드를 재정의하지 않기 때문에 타입 매개변수와 참조를 출력하는 기본 구현을 사용합니다.</p>
+
+<p>따라서 Array 에서 <code class="highlighter-rouge">toString()</code> 을 호출하면 마지막 예제처럼 읽을 수 없는 결과를 보여줍니다. 하지만 Scala 컬렉션은 그렇지 않은데 Scala 컬렉션은 <code class="highlighter-rouge">toString()</code> 을 재정의해서 사용가능합니다.</p>
+
+<h2 id="seq-and-sequences">Seq and Sequences</h2>
+
+<p><code class="highlighter-rouge">Seq</code> 는 모든 시퀀스의 루트 타입으로, List 와 같은 연결 리스트와 Vector 같은 색인 List 를 포함합니다. 루트 타입으로서 <code class="highlighter-rouge">Seq</code> 는 인스턴스화될 수 없지만, List 를 생성하는 빠른 방법으로 <code class="highlighter-rouge">Seq</code> 를 호출할 수 있습니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">inks</span> <span class="k">=</span> <span class="nc">Seq</span><span class="o">(</span><span class="sc">'C'</span><span class="o">,</span><span class="sc">'M'</span><span class="o">,</span><span class="sc">'Y'</span><span class="o">,</span><span class="sc">'K'</span><span class="o">)</span>
+<span class="n">inks</span><span class="k">:</span> <span class="kt">Seq</span><span class="o">[</span><span class="kt">Char</span><span class="o">]</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="n">C</span><span class="o">,</span> <span class="n">M</span><span class="o">,</span> <span class="n">Y</span><span class="o">,</span> <span class="n">K</span><span class="o">)</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>Example 1 - The sequence collections hierarchy</p>
+</blockquote>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/76055116-0d4c1d00-5fb6-11ea-8bc3-1eff0dd99916.png" alt="image" /></p>
+
+<p>아래 표는 각 타입에 대한 설명입니다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Name</th>
+      <th style="text-align: left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Seq</td>
+      <td style="text-align: left">모든 시퀀스의 루트, <code class="highlighter-rouge">List()</code> 의 간단한 방법</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">IndexedSeq</td>
+      <td style="text-align: left">색인 시퀀스의 루트, <code class="highlighter-rouge">Vector()</code> 의 가장 손쉬운 방법</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Range</td>
+      <td style="text-align: left">정수의 범위, 데이터를 즉시 생성함</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">LinearSeq</td>
+      <td style="text-align: left">선형 시퀀스의 루트</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">List</td>
+      <td style="text-align: left">구성 요소들의 단방향 연결 리스트</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Queue</td>
+      <td style="text-align: left">FIFO 리스트</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Stack</td>
+      <td style="text-align: left">LIFO 리스트</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Stream</td>
+      <td style="text-align: left">지연 리스트, 항목들은 그 항목에 접근할 때 추가됨</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">String</td>
+      <td style="text-align: left">문자의 컬렉션</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Vector 타입은 저장을 위해 Array 로 구현됩니다. 색인 시퀀스로 Vector 에 인덱스로 항목에 접근할 수 있습니다. 반면에, List 의 n 번째 항목에 접근하려면 리스트의 헤드로부터 n-1 단계가 필요합니다.</p>
+
+<p>시퀀스에 String 타입도 포함이 됩니다. Scala 에서는 다른 타입들과 마찬가지로 유효한 컬렉션입니다. String 도 문자들의 연속이므로 Char 구성요소를 가지는 시퀀스가 됩니다. String 타입은 불변하는 컬렉션이며, Iterable 에서 확장된 타입으로 Iterable 연산뿐 아니라 <code class="highlighter-rouge">split</code>, <code class="highlighter-rouge">trim</code> 같은 <code class="highlighter-rouge">java.lang.String</code> 연산도 지원합니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">hi</span> <span class="k">=</span> <span class="s">"Hello, "</span> <span class="o">++</span> <span class="s">"worldly"</span> <span class="n">take</span> <span class="mi">12</span> <span class="nf">replaceAll</span> <span class="o">(</span><span class="s">"w"</span><span class="o">,</span><span class="s">"W"</span><span class="o">)</span>
+<span class="n">hi</span><span class="k">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="nc">Hello</span><span class="o">,</span> <span class="nc">World</span>
+</code></pre></div></div>
+
+<h2 id="streams">Streams</h2>
+
+<p>Stream 타입은 하나 또는 그 이상의 시작 요소들과 재귀 함수로 생성되는 <strong>지연(lazy)</strong> 컬렉션입니다. 다른 불변의 컬렉션들은 그 내용의 100 % 를 초기화 시점에 받지만, Stream 의 구성 요소들은 최초로 접근될 때 컬렉션에 추가됩니다.</p>
+
+<p>Stream 이 생성한 구성 요소들은 캐시에 저장되어 각 요소가 한 번만 생성되는것을 보장합니다. Stream 은 무한히 커질 수 있으며, 이론적으로 구성 요소들이 접근 시에만 현실화되는 무한 컬렉션입니다. Stream 은 <code class="highlighter-rouge">List.Nil</code> 에 대응하는 항목인 <code class="highlighter-rouge">Stream.Empty</code> 로 종료될 수 있습니다.</p>
+
+<p>Stream 은 List 와 마찬가지로 Head 와 Tail 로 구성된 재귀적 데이터 구조입니다. 다음은 새로운 Stream 을 구성하고 재귀적으로 생성하는 함수입니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">def</span> <span class="nf">inc</span><span class="o">(</span><span class="n">i</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span><span class="k">:</span> <span class="kt">Stream</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nv">Stream</span><span class="o">.</span><span class="py">cons</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="nf">inc</span><span class="o">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">))</span>
+<span class="n">inc</span><span class="k">:</span> <span class="o">(</span><span class="kt">i:</span> <span class="kt">Int</span><span class="o">)</span><span class="kt">Stream</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">s</span> <span class="k">=</span> <span class="nf">inc</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span>
+<span class="n">s</span><span class="k">:</span> <span class="kt">Stream</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Stream</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="o">?)</span>
+</code></pre></div></div>
+
+<p>Stream 은 시작값과 다음 데이터에 약속값(?) 만 포함하고 있스빈다. 이들을 가져와서 내용을 List 에 검색하여 시작값 다음으로 4 개의 값을 추가해보겠습니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">l</span> <span class="k">=</span> <span class="nv">s</span><span class="o">.</span><span class="py">take</span><span class="o">(</span><span class="mi">5</span><span class="o">).</span><span class="py">toList</span>
+<span class="n">l</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">)</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="n">s</span>
+<span class="n">res1</span><span class="k">:</span> <span class="kt">Stream</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Stream</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="o">?)</span>
+</code></pre></div></div>
+
+<p>Stream 은 재귀 함수 호출을 포함하고 있어서 이를 이용하여 끝없이 새로운 요소들을 생성할 수 있습니다.</p>
+
+<p><code class="highlighter-rouge">Streams.cons</code> 연산자 대신 <code class="highlighter-rouge">#::</code> 연산자가 있는데 간단히 Stream 을 위한 생성 연산자라고 합니다. 이 연산자는 <code class="highlighter-rouge">Streams.cons</code> 와 동일한 기능을 수행하지만 오른쪽-결합형 표기법이라는 점에서 다르며 List 의 생성 연산자 <code class="highlighter-rouge">::</code> 를 보완합니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">def</span> <span class="nf">inc</span><span class="o">(</span><span class="n">head</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span><span class="k">:</span> <span class="kt">Stream</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="n">head</span> <span class="o">#::</span> <span class="nf">inc</span><span class="o">(</span><span class="n">head</span><span class="o">+</span><span class="mi">1</span><span class="o">)</span>
+<span class="n">inc</span><span class="k">:</span> <span class="o">(</span><span class="kt">head:</span> <span class="kt">Int</span><span class="o">)</span><span class="kt">Stream</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="nf">inc</span><span class="o">(</span><span class="mi">10</span><span class="o">).</span><span class="py">take</span><span class="o">(</span><span class="mi">10</span><span class="o">).</span><span class="py">toList</span>
+<span class="n">res0</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="mi">10</span><span class="o">,</span> <span class="mi">11</span><span class="o">,</span> <span class="mi">12</span><span class="o">,</span> <span class="mi">13</span><span class="o">,</span> <span class="mi">14</span><span class="o">,</span> <span class="mi">15</span><span class="o">,</span> <span class="mi">16</span><span class="o">,</span> <span class="mi">17</span><span class="o">,</span> <span class="mi">18</span><span class="o">,</span> <span class="mi">19</span><span class="o">)</span>
+</code></pre></div></div>
+
+<p><strong>한정된 스트림(Bounded Stream)</strong> 을 만들어보겠습니다. 재귀 함수는 두 인수를 받는데, 하나는 새로운 헤드요소이며, 다른 하나는 추가될 마지막 요소입니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">def</span> <span class="nf">to</span><span class="o">(</span><span class="n">head</span><span class="k">:</span> <span class="kt">Char</span><span class="o">,</span> <span class="n">end</span><span class="k">:</span> <span class="kt">Char</span><span class="o">)</span><span class="k">:</span> <span class="kt">Stream</span><span class="o">[</span><span class="kt">Char</span><span class="o">]</span> <span class="k">=</span> <span class="o">(</span><span class="n">head</span> <span class="o">&gt;</span> <span class="n">end</span><span class="o">)</span> <span class="k">match</span> <span class="o">{</span>
+ <span class="o">|</span> <span class="k">case</span> <span class="kc">true</span> <span class="k">=&gt;</span> <span class="nv">Stream</span><span class="o">.</span><span class="py">empty</span>
+ <span class="o">|</span> <span class="k">case</span> <span class="kc">false</span> <span class="k">=&gt;</span> <span class="n">head</span> <span class="o">#::</span> <span class="nf">to</span><span class="o">((</span><span class="n">head</span><span class="o">+</span><span class="mi">1</span><span class="o">).</span><span class="py">toChar</span><span class="o">,</span> <span class="n">end</span><span class="o">)</span>
+ <span class="o">|</span> <span class="o">}</span>
+<span class="n">to</span><span class="k">:</span> <span class="o">(</span><span class="kt">head:</span> <span class="kt">Char</span><span class="o">,</span> <span class="kt">end:</span> <span class="kt">Char</span><span class="o">)</span><span class="nc">Stream</span><span class="o">[</span><span class="kt">Char</span><span class="o">]</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">hexChars</span> <span class="k">=</span> <span class="nf">to</span><span class="o">(</span><span class="sc">'A'</span><span class="o">,</span> <span class="sc">'F'</span><span class="o">).</span><span class="py">take</span><span class="o">(</span><span class="mi">20</span><span class="o">).</span><span class="py">toList</span>
+<span class="n">hexChars</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Char</span><span class="o">]</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="n">A</span><span class="o">,</span> <span class="n">B</span><span class="o">,</span> <span class="n">C</span><span class="o">,</span> <span class="n">D</span><span class="o">,</span> <span class="n">E</span><span class="o">,</span> <span class="n">F</span><span class="o">)</span>
+</code></pre></div></div>
+
+<p>위와 같이 새로운 함수 <code class="highlighter-rouge">to</code> 를 이용하여 16 진수를 쓸 때 사용되는, 문자로 구성된 한정된 Stream 을 생성할 수 있습니다.</p>
+
+<p>재귀 함수는 새로운 Stream 을 생성하고 매번 새로운 헤드 요소를 유도하는 데 사용합니다.</p>
+
+<h2 id="monadic-collections">Monadic Collections</h2>
+
+<p><strong>모나딕 컬렉션(Monadic Collection)</strong> 은 Iterable 연산 같은 변형 연산을 지원하지만, 하나 이상의 요소는 포함할 수 없습니다.</p>
+
+<h3 id="option-collections">Option Collections</h3>
+
+<p>크기가 1 이 넘지 않는 컬렉션으로 Option 타입은 단일 값의 존재 또는 부재를 나타냅니다.</p>
+
+<p>Option 을 Null 의 안전한 대체재로 보는데, 사용자에게 값이 누락될 수 있음을 알리고 <code class="highlighter-rouge">NullPointerException</code> 을 일으킬 가능성을 줄여주기 때문입니다.</p>
+
+<p>Option 타입은 하나의 요소로 구성된 타입-매개변수화된 컬렉션인 Some 과 빈 컬렉션인 None, 이 두 서브타입에 기반하여 구현할 수 있습니다. None 타입은 타입 매개변수가 없는데 그 안에 어떤 것도 포함되어 있지 않기 때문입니다.</p>
+
+<p>이 두 타입을 직접 사용하거나 <code class="highlighter-rouge">Option()</code> 을 호출하여 Null 값을 감지하고 적절한 서브타입을 선택할 수 있습니다.</p>
+
+<p>Option 을 생성해보겠습니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">var</span> <span class="n">x</span><span class="k">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"Indeed"</span>
+<span class="n">x</span><span class="k">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="nc">Indeed</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">var</span> <span class="n">a</span> <span class="k">=</span> <span class="nc">Option</span><span class="o">(</span><span class="n">x</span><span class="o">)</span>
+<span class="n">a</span><span class="k">:</span> <span class="kt">Option</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Some</span><span class="o">(</span><span class="nc">Indeed</span><span class="o">)</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="n">x</span> <span class="k">=</span> <span class="kc">null</span>
+<span class="n">x</span><span class="k">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="kc">null</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">var</span> <span class="n">b</span> <span class="k">=</span> <span class="nc">Option</span><span class="o">(</span><span class="n">x</span><span class="o">)</span>
+<span class="n">b</span><span class="k">:</span> <span class="kt">Option</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span> <span class="k">=</span> <span class="nc">None</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">isDefined</code> 와 <code class="highlighter-rouge">isEmpty</code> 를 사용하여 주어진 <code class="highlighter-rouge">Option</code> 이 각각 <code class="highlighter-rouge">Some</code> 인지 <code class="highlighter-rouge">None</code> 인지 확인할 수 있습니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="nf">println</span><span class="o">(</span><span class="n">s</span><span class="s">"a is defined? ${a.isDefined}"</span><span class="o">)</span>
+<span class="n">a</span> <span class="n">is</span> <span class="n">defined</span><span class="o">?</span> <span class="kc">true</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="nf">println</span><span class="o">(</span><span class="n">s</span><span class="s">"b is not defined? ${b.isEmpty}"</span><span class="o">)</span>
+<span class="n">b</span> <span class="n">is</span> <span class="n">not</span> <span class="n">defined</span><span class="o">?</span> <span class="kc">true</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">Option</code> 값을 반환하는 함수를 정의해보겠습니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">def</span> <span class="nf">divide</span><span class="o">(</span><span class="n">amt</span><span class="k">:</span> <span class="kt">Double</span><span class="o">,</span> <span class="n">divisor</span><span class="k">:</span> <span class="kt">Double</span><span class="o">)</span><span class="k">:</span> <span class="kt">Option</span><span class="o">[</span><span class="kt">Double</span><span class="o">]</span> <span class="k">=</span> <span class="o">{</span>
+ <span class="o">|</span> <span class="nf">if</span> <span class="o">(</span><span class="n">divisor</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="nc">None</span>
+ <span class="o">|</span> <span class="k">else</span> <span class="nc">Option</span><span class="o">(</span><span class="n">amt</span> <span class="o">/</span> <span class="n">divisor</span><span class="o">)</span>
+ <span class="o">|</span> <span class="o">}</span>
+<span class="n">divide</span><span class="k">:</span> <span class="o">(</span><span class="kt">amt:</span> <span class="kt">Double</span><span class="o">,</span> <span class="kt">divisor:</span> <span class="kt">Double</span><span class="o">)</span><span class="nc">Option</span><span class="o">[</span><span class="kt">Double</span><span class="o">]</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">legit</span> <span class="k">=</span> <span class="nf">divide</span><span class="o">(</span><span class="mi">5</span><span class="o">,</span> <span class="mi">2</span><span class="o">)</span>
+<span class="n">legit</span><span class="k">:</span> <span class="kt">Option</span><span class="o">[</span><span class="kt">Double</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Some</span><span class="o">(</span><span class="mf">2.5</span><span class="o">)</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">illegit</span> <span class="k">=</span> <span class="nf">divide</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="mi">0</span><span class="o">)</span>
+<span class="n">illegit</span><span class="k">:</span> <span class="kt">Option</span><span class="o">[</span><span class="kt">Double</span><span class="o">]</span> <span class="k">=</span> <span class="nc">None</span>
+</code></pre></div></div>
+
+<p>값을 Option 컬렉션에 감싸서 반환하는 함수는 그 함수가 입력값에 적용되지 않을수도 있으며, 그에 따라 유효한 결과를 반환하지 못할 수도 있음을 의미합니다. 이는 호출자에게 그 함숫값이 단지 가능성일 뿐이라는 것을 명확하게 알려주고 그 결과는 신중하게 처리되어야 함을 확인시켜줍니다. 이렇게 하여 Option 은 함수 결과를 처리하는 타입에 안전한 방식을 제공하며 누락된 값을 의미하는 Null 값을 반환하는 Java 보다 더 안전합니다.</p>
+
+<p>Scala 컬렉션은 Option 타입을 사용하여 빈 컬렉션이 발생하는 상황을 처리하는 안전한 연산을 제공합니다. Head 연산이 비어 있지 않은 List 에 동작하지만 빈 List 에 대해서는 에러를 발생시킵니다. 빈 List 에도 동작할 수 있도록 Option 에 헤드 옵션을 깜사서 반환하는 <code class="highlighter-rouge">headOption</code> 을 사용합니다.</p>
+
+<p>빈 컬렉션을 안전하게 처리하는 <code class="highlighter-rouge">headOption</code> 호출을 보겠습니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">odds</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">5</span><span class="o">)</span>
+<span class="n">odds</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">5</span><span class="o">)</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">firstOdd</span> <span class="k">=</span> <span class="nv">odds</span><span class="o">.</span><span class="py">headOption</span>
+<span class="n">firstOdd</span><span class="k">:</span> <span class="kt">Option</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Some</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">evens</span> <span class="k">=</span> <span class="n">odds</span> <span class="nf">filter</span> <span class="o">(</span><span class="k">_</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span>
+<span class="n">evens</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nc">List</span><span class="o">()</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">firstEven</span> <span class="k">=</span> <span class="nv">evens</span><span class="o">.</span><span class="py">headOption</span>
+<span class="n">firstEven</span><span class="k">:</span> <span class="kt">Option</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nc">None</span>
+</code></pre></div></div>
+
+<p>컬렉션 옵션의 다른 용도는 <code class="highlighter-rouge">find</code> 연산으로, 조건자 함수에 맞는 첫 번째 요소를 반환하는 <code class="highlighter-rouge">filter</code> 와 <code class="highlighter-rouge">headOption</code> 의 조합입니다. 다음은 <code class="highlighter-rouge">find</code> 를 이용한 검색 예제를 보겠습니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">words</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="s">"risible"</span><span class="o">,</span> <span class="s">"scavenger"</span><span class="o">,</span> <span class="s">"gist"</span><span class="o">)</span>
+<span class="n">words</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="n">risible</span><span class="o">,</span> <span class="n">scavenger</span><span class="o">,</span> <span class="n">gist</span><span class="o">)</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">uppercase</span> <span class="k">=</span> <span class="n">words</span> <span class="nf">find</span> <span class="o">(</span><span class="n">w</span> <span class="k">=&gt;</span> <span class="n">w</span> <span class="o">==</span> <span class="nv">w</span><span class="o">.</span><span class="py">toUpperCase</span><span class="o">)</span>
+<span class="n">uppercase</span><span class="k">:</span> <span class="kt">Option</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span> <span class="k">=</span> <span class="nc">None</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">lowercase</span> <span class="k">=</span> <span class="n">words</span> <span class="nf">find</span> <span class="o">(</span><span class="n">w</span> <span class="k">=&gt;</span> <span class="n">w</span> <span class="o">==</span> <span class="nv">w</span><span class="o">.</span><span class="py">toLowerCase</span><span class="o">)</span>
+<span class="n">lowercase</span><span class="k">:</span> <span class="kt">Option</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Some</span><span class="o">(</span><span class="n">risible</span><span class="o">)</span>
+</code></pre></div></div>
+
+<p>List 축소 연산을 사용하여 컬렉션을 단일 Option 으로 축소하였습니다. 하지만, Option 자체가 컬렉션이기 때문에 계속해서 이를 변환할 수 있습니다.</p>
+
+<p><code class="highlighter-rouge">fliter</code> 와 <code class="highlighter-rouge">map</code> 을 사용하여 값을 유지하는 방식으로 값을 잃어버리는 방식으로도 변환할 수 있습니다. 각 연산은 타입에 안전하며 <code class="highlighter-rouge">NullPointerException</code> 에러를 일으키지 않습니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">filtered</span> <span class="k">=</span> <span class="n">lowercase</span> <span class="nf">filter</span> <span class="o">(</span><span class="k">_</span> <span class="n">endsWith</span> <span class="s">"ible"</span><span class="o">)</span> <span class="nf">map</span> <span class="o">(</span><span class="nv">_</span><span class="o">.</span><span class="py">toUpperCase</span><span class="o">)</span>
+<span class="n">filtered</span><span class="k">:</span> <span class="kt">Option</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Some</span><span class="o">(</span><span class="nc">RISIBLE</span><span class="o">)</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">exactSize</span> <span class="k">=</span> <span class="n">filtered</span> <span class="nf">filter</span> <span class="o">(</span><span class="nv">_</span><span class="o">.</span><span class="py">size</span> <span class="o">&gt;</span> <span class="mi">15</span><span class="o">)</span> <span class="nf">map</span> <span class="o">(</span><span class="nv">_</span><span class="o">.</span><span class="py">size</span><span class="o">)</span>
+<span class="n">exactSize</span><span class="k">:</span> <span class="kt">Option</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nc">None</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">filter</code> 는 <code class="highlighter-rouge">RISIBLE</code> 에 적용될 수 없으므로 <code class="highlighter-rouge">None</code> 을 반환합니다. <code class="highlighter-rouge">None</code> 에 뒤따라 나오는 <code class="highlighter-rouge">map</code> 연산은 어떤 영향도 줄 수 없으며 다시 <code class="highlighter-rouge">None</code> 을 반환합니다.</p>
+
+<p>이는 모나딕 컬렉션으로서 Option 의 훌룡한 예제입니다. 연산에서 안전하게 실행될 수 있는 하나의 단위를 제공합니다.</p>
+
+<p>연산은 현재 값(Some) 에 적용되고 누락 된 값(None) 에는 적용 되지 않지만, 결과 타입은 마지막 연산의 타입과 일치하게됩니다.</p>
+
+<p><strong>Extracting values from Options</strong></p>
+
+<p>추출 연산 중 <code class="highlighter-rouge">get()</code> 연산은 안전하지 않습니다. Some 인스턴스에는 값을 성공적으로 받지만, None 인스턴스에 <code class="highlighter-rouge">get()</code> 을 호출하면 <code class="highlighter-rouge">no such element</code> 에러가 발생합니다.</p>
+
+<p>아래 예제는 매번 유효한 Option 값과 누락된 Option 값 중 하나를 임의로 반환하는 <code class="highlighter-rouge">nextOption</code> 함수를 호출하겠습니다. 이 예제를 통해 Some 과 None 이 연산의 결과를 바꾸는지 보겠습니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">def</span> <span class="nf">nextOption</span> <span class="k">=</span> <span class="nf">if</span> <span class="o">(</span><span class="nv">util</span><span class="o">.</span><span class="py">Random</span><span class="o">.</span><span class="py">nextInt</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="nc">Some</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span> <span class="k">else</span> <span class="nc">None</span>
+<span class="n">nextOption</span><span class="k">:</span> <span class="kt">Option</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">a</span> <span class="k">=</span> <span class="n">nextOption</span>
+<span class="n">a</span><span class="k">:</span> <span class="kt">Option</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Some</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">b</span> <span class="k">=</span> <span class="n">nextOption</span>
+<span class="n">b</span><span class="k">:</span> <span class="kt">Option</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nc">None</span>
+</code></pre></div></div>
+
+<p>아래 표는 연산 중 일부를 정리했습니다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Name</th>
+      <th style="text-align: left">Example</th>
+      <th style="text-align: left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">fold</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">nextOption.fold(-1)(x =&gt; x)</code></td>
+      <td style="text-align: left">Some 인 경우 주어진 함수로 부터 추출한 값, None 인 경우 시작 값을 반환함</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">getOrElse</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">nextOption getOrElse 5</code> 또는 <code class="highlighter-rouge">nextOption getOrElse { println("error!"); -1 }</code></td>
+      <td style="text-align: left">Some 의 값을 반환하거나 아니면 이름 매개변수의 결과를 반환</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">orElse</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">nextOption orElse nextOption</code></td>
+      <td style="text-align: left">실제 값을 호출하지 않지만, None 인 경우 값을 채우려함. Option 이 비어 있지 않으면 Option 을 반한화고, 그렇지 않은 경우 주어진 이름 매개변수로부터 Option 을 반환</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Match expressions</td>
+      <td style="text-align: left"><code class="highlighter-rouge">nextOption match { case Some(x) =&gt; x; case None =&gt; -1 }</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">Some(x)</code> 의 표현식은 데이터를 추출하여 매치 표현식의 결괏값으로 사용되거나 또 다른 변환에 재사용할 수 있는 지정된 값 <code class="highlighter-rouge">x</code> 에 넣음</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="try-collections">Try Collections</h3>
+
+<p><code class="highlighter-rouge">util.Try</code> 컬렉션은 에러 처리를 컬렉션 관리로 바꿔 놓습니다. 주어진 함수 매개변수에서 발생한 에러를 잡아내는 메커니즘을 제공합니다.</p>
+
+<p>Scala 는 <strong>예외(Exception)</strong> 을 발생시켜 에러를 일으킬 수 있습니다. 예외가 제대로 처리되지 않으면 퍼를리케이션은 종료하게 됩니다.</p>
+
+<p>예외는 코드, 라이브러리, JVM 에서 발생할 수 있습니다. 만약 <code class="highlighter-rouge">None.get</code> 또는 <code class="highlighter-rouge">Nil.head</code> 를 호출한다면 JVM 은 <code class="highlighter-rouge">java.util.NoSuchElementException</code> 을 일으키며, Null 값인 필드나 메소드에 접근한다면 <code class="highlighter-rouge">java.lang.NullPointerException</code> 을 발생시킵니다.</p>
+
+<p>예외를 발생시키기 위해 새로운 <code class="highlighter-rouge">Exception</code> 키워드나 <code class="highlighter-rouge">throw</code> 를 사용하면 됩니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">throw</span> <span class="k">new</span> <span class="nc">Exception</span><span class="o">(</span><span class="s">"No DB connection, exiting..."</span><span class="o">)</span>
+<span class="nv">java</span><span class="o">.</span><span class="py">lang</span><span class="o">.</span><span class="py">Exception</span><span class="k">:</span> <span class="kt">No</span> <span class="kt">DB</span> <span class="kt">connection</span><span class="o">,</span> <span class="n">exiting</span><span class="o">...</span>
+ <span class="o">...</span> <span class="mi">32</span> <span class="n">elided</span>
+</code></pre></div></div>
+
+<p>예외를 발생시켜 보겠습니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">def</span> <span class="nf">loopAndFail</span><span class="o">(</span><span class="n">end</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">failAt</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="o">{</span>
+ <span class="o">|</span> <span class="nf">for</span> <span class="o">(</span><span class="n">i</span> <span class="k">&lt;-</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">end</span><span class="o">)</span> <span class="o">{</span>
+ <span class="o">|</span> <span class="nf">println</span><span class="o">(</span><span class="n">s</span><span class="s">"$i) "</span><span class="o">)</span>
+ <span class="o">|</span> <span class="nf">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">failAt</span><span class="o">)</span> <span class="k">throw</span> <span class="k">new</span> <span class="nc">Exception</span><span class="o">(</span><span class="s">"Too many iterations"</span><span class="o">)</span>
+ <span class="o">|</span> <span class="o">}</span>
+ <span class="o">|</span> <span class="n">end</span>
+ <span class="o">|</span> <span class="o">}</span>
+<span class="n">loopAndFail</span><span class="k">:</span> <span class="o">(</span><span class="kt">end:</span> <span class="kt">Int</span><span class="o">,</span> <span class="kt">failAt:</span> <span class="kt">Int</span><span class="o">)</span><span class="nc">Int</span>
+</code></pre></div></div>
+
+<p>검사 기준보다 더 많이 반복하여 <code class="highlighter-rouge">loopAndFail</code> 로부터 예외가 발생하는지 확인해 보겠습니다. 다음은 예외가 어떻게 <code class="highlighter-rouge">for</code> 루프와 함수를 방해하는지 알아보겠습니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="nf">loopAndFail</span><span class="o">(</span><span class="mi">10</span><span class="o">,</span> <span class="mi">3</span><span class="o">)</span>
+<span class="mi">1</span><span class="o">)</span>
+<span class="mi">2</span><span class="o">)</span>
+<span class="mi">3</span><span class="o">)</span>
+<span class="nv">java</span><span class="o">.</span><span class="py">lang</span><span class="o">.</span><span class="py">Exception</span><span class="k">:</span> <span class="kt">Too</span> <span class="kt">many</span> <span class="kt">iterations</span>
+ <span class="n">at</span> <span class="nv">$anonfun$loopAndFail$1</span><span class="o">.</span><span class="py">apply$mcVI$sp</span><span class="o">(&lt;</span><span class="n">console</span><span class="k">&gt;:</span><span class="mi">10</span><span class="o">)</span>
+ <span class="n">at</span> <span class="nv">$anonfun$loopAndFail$1</span><span class="o">.</span><span class="py">apply</span><span class="o">(&lt;</span><span class="n">console</span><span class="k">&gt;:</span><span class="mi">8</span><span class="o">)</span>
+ <span class="n">at</span> <span class="nv">$anonfun$loopAndFail$1</span><span class="o">.</span><span class="py">apply</span><span class="o">(&lt;</span><span class="n">console</span><span class="k">&gt;:</span><span class="mi">8</span><span class="o">)</span>
+ <span class="n">at</span> <span class="nv">scala</span><span class="o">.</span><span class="py">collection</span><span class="o">.</span><span class="py">immutable</span><span class="o">.</span><span class="py">Range</span><span class="o">.</span><span class="py">foreach</span><span class="o">(</span><span class="nv">Range</span><span class="o">.</span><span class="py">scala</span><span class="k">:</span><span class="err">160</span><span class="o">)</span>
+ <span class="n">at</span> <span class="o">.</span><span class="py">loopAndFail</span><span class="o">(&lt;</span><span class="n">console</span><span class="k">&gt;:</span><span class="mi">8</span><span class="o">)</span>
+ <span class="o">...</span> <span class="mi">32</span> <span class="n">elided</span>
+</code></pre></div></div>
+
+<p>Option 처럼 <code class="highlighter-rouge">util.Try</code> 타입은 구현되어 있지 않지만, 2 개의 구현된 서브타입인 <code class="highlighter-rouge">Success</code> 와 <code class="highlighter-rouge">Failure</code> 를 가지고 있습니다. 각각 무슨 의미를 하는지 예제를 통해 알아보겠습니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">t1</span> <span class="k">=</span> <span class="nv">util</span><span class="o">.</span><span class="py">Try</span><span class="o">(</span> <span class="nf">loopAndFail</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">)</span> <span class="o">)</span>
+<span class="mi">1</span><span class="o">)</span>
+<span class="mi">2</span><span class="o">)</span>
+<span class="n">t1</span><span class="k">:</span> <span class="kt">scala.util.Try</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Success</span><span class="o">(</span><span class="mi">2</span><span class="o">)</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">t2</span> <span class="k">=</span> <span class="nv">util</span><span class="o">.</span><span class="py">Try</span><span class="o">{</span> <span class="nf">loopAndFail</span><span class="o">(</span><span class="mi">4</span><span class="o">,</span> <span class="mi">2</span><span class="o">)</span> <span class="o">}</span>
+<span class="mi">1</span><span class="o">)</span>
+<span class="mi">2</span><span class="o">)</span>
+<span class="n">t2</span><span class="k">:</span> <span class="kt">scala.util.Try</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Failure</span><span class="o">(</span>
+ <span class="nv">java</span><span class="o">.</span><span class="py">lang</span><span class="o">.</span><span class="py">Exception</span><span class="k">:</span> <span class="kt">Too</span> <span class="kt">many</span> <span class="kt">iterations</span><span class="o">)</span> 
+</code></pre></div></div>
+
+<p>아래 표는 에러를 처리하는 전략입니다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Name</th>
+      <th style="text-align: left">Example</th>
+      <th style="text-align: left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">flatMap</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">nextError flatMap { _ =&gt; nextError }</code></td>
+      <td style="text-align: left">Success 인 경우 <code class="highlighter-rouge">util.Try</code> 를 반환하는 함수를 호출함으로써 현재의 반환값을 새로운 내장된 반환값에 매핑함. 예제 함수는 입력값을 취하지 않기 때문에 Success 로부터 사용하지 않는 입력값을 나타내는 언더스코어 사용</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">foreach</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">nextError foreach(x =&gt; println("success!" + x))</code></td>
+      <td style="text-align: left">Success 인 경우 주어진 함수를 한 번 실행하고, Failure 일 때는 실행하지 않음</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">getOrElse</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">nextError getOrElse 0</code></td>
+      <td style="text-align: left">Success 에 내장된 값을 반환하거나, Failure 인 경우 이름에 의한 매개변수 반환</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">orElse</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">nextError orElse nextError</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">flatMap</code> 의 반대되는 메소드로 Failure 인 경우 <code class="highlighter-rouge">util.Try</code> 를 반환하는 함수 호출함. <code class="highlighter-rouge">orElse</code> 로 Failure 를 Success 로 전환할 수 있음</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">toOption</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">nextError.toOption</code></td>
+      <td style="text-align: left">Success 는 Some 으로 Failure 는 None 이 됨.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">map</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">nextError map (_ * 2)</code></td>
+      <td style="text-align: left">Success 인 경우 새로운 값에 내장된 값을 매핑하는 함수를 호출</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">Match expressions</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">nextError match { case util.Success(x) =&gt; x; case util.Failure(error) =&gt; -1 }</code></td>
+      <td style="text-align: left">Success 를 반환값으로 또는 Failure 를 예외로 처리하기 위해 매치표현식을 사용함</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">Do nothing</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">nextError</code></td>
+      <td style="text-align: left">가장 쉬운 에러처리 방식</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>많은 개발자들이 처리해야할 보편적인 예외는 문자열에 저장된 숫자를 검증하는 것입니다. 아래 예제는 <code class="highlighter-rouge">orElse</code> 연산자를 이용하여 문자열에서 숫자를 파싱하고, 성공 시 그 결과를 출력하는 <code class="highlighter-rouge">ofreach</code> 연산 사용 예제입니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">input</span> <span class="k">=</span> <span class="s">" 123 "</span>
+<span class="n">input</span><span class="k">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">" 123 "</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">result</span> <span class="k">=</span> <span class="nv">util</span><span class="o">.</span><span class="py">Try</span><span class="o">(</span><span class="nv">input</span><span class="o">.</span><span class="py">toInt</span><span class="o">)</span> <span class="n">orElse</span> <span class="nv">util</span><span class="o">.</span><span class="py">Try</span><span class="o">(</span><span class="nv">input</span><span class="o">.</span><span class="py">trim</span><span class="o">.</span><span class="py">toInt</span><span class="o">)</span>
+<span class="n">result</span><span class="k">:</span> <span class="kt">scala.util.Try</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Success</span><span class="o">(</span><span class="mi">123</span><span class="o">)</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="n">result</span> <span class="n">foreach</span> <span class="o">{</span> <span class="n">r</span> <span class="k">=&gt;</span> <span class="nf">println</span><span class="o">(</span><span class="n">s</span><span class="s">"Parsed '$input' to $r!"</span><span class="o">)</span> <span class="o">}</span>
+<span class="nc">Parsed</span> <span class="o">'</span> <span class="mi">123</span> <span class="o">'</span> <span class="n">to</span> <span class="mi">123</span><span class="o">!</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">x</span> <span class="k">=</span> <span class="n">result</span> <span class="k">match</span> <span class="o">{</span>
+ <span class="o">|</span> <span class="k">case</span> <span class="nv">util</span><span class="o">.</span><span class="py">Success</span><span class="o">(</span><span class="n">x</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="nc">Some</span><span class="o">(</span><span class="n">x</span><span class="o">)</span>
+ <span class="o">|</span> <span class="k">case</span> <span class="nv">util</span><span class="o">.</span><span class="py">Failure</span><span class="o">(</span><span class="n">ex</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="o">{</span>
+ <span class="o">|</span> <span class="nf">println</span><span class="o">(</span><span class="n">s</span><span class="s">"Couldn't parse input '$input'"</span><span class="o">)</span>
+ <span class="o">|</span> <span class="nc">None</span>
+ <span class="o">|</span> <span class="o">}</span>
+ <span class="o">|</span> <span class="o">}</span>
+<span class="n">x</span><span class="k">:</span> <span class="kt">Option</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Some</span><span class="o">(</span><span class="mi">123</span><span class="o">)</span>
+</code></pre></div></div>
+
+<h3 id="future-collections">Future Collections</h3>
+
+<p>Future 는 백그라운드 작업을 개시합니다.</p>
+
+<p>기본적으로 Scala 는 JVM 의 main 스레드에서 동작하지만, 병행 스레드에서 백그라운드 작업을 실행할 수 있도록 지원할 수 있습니다. Future 를 함수로 호출하면 현행 스레드가 계속 작업하는 동안 별도의 스레드에서 그 함수를 실행합니다. 따라서 Future 는 그 스레드의 최종 반환값의 모나딕 컨테이너일 뿐 아니라 백그라운드 Java 스레드의 감시자이기도 합니다.</p>
+
+<p>메세지를 출력하는 함수로 Future 를 생성해보겠습니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">import</span> <span class="nn">concurrent.ExecutionContext.Implicits.global</span>
+<span class="k">import</span> <span class="nn">concurrent.ExecutionContext.Implicits.global</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">f</span> <span class="k">=</span> <span class="nv">concurrent</span><span class="o">.</span><span class="py">Future</span> <span class="o">{</span> <span class="nf">println</span><span class="o">(</span><span class="s">"hi"</span><span class="o">)</span> <span class="o">}</span>
+<span class="n">hi</span>
+<span class="n">f</span><span class="k">:</span> <span class="kt">scala.concurrent.Future</span><span class="o">[</span><span class="kt">Unit</span><span class="o">]</span> <span class="k">=</span>
+ <span class="nv">scala</span><span class="o">.</span><span class="py">concurrent</span><span class="o">.</span><span class="py">impl</span><span class="o">.</span><span class="py">Promise$DefaultPromise</span><span class="k">@</span><span class="mi">29852487</span>
+</code></pre></div></div>
+
+<p>백그라운드 작업은 Future 가 값을 반환하기도 전에 <em>hi</em> 를 출력했습니다. 다른 예로 백그라운드 작업이 여전히 실행하는 동안 퓨처를 받을 수 있게 Java 의 <code class="highlighter-rouge">Thread.sleep</code> 을 이용해보겠습니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">f</span> <span class="k">=</span> <span class="nv">concurrent</span><span class="o">.</span><span class="py">Future</span> <span class="o">{</span> <span class="nv">Thread</span><span class="o">.</span><span class="py">sleep</span><span class="o">(</span><span class="mi">5000</span><span class="o">);</span> <span class="nf">println</span><span class="o">(</span><span class="s">"hi"</span><span class="o">)</span> <span class="o">}</span>
+<span class="n">f</span><span class="k">:</span> <span class="kt">scala.concurrent.Future</span><span class="o">[</span><span class="kt">Unit</span><span class="o">]</span> <span class="k">=</span>
+ <span class="nv">scala</span><span class="o">.</span><span class="py">concurrent</span><span class="o">.</span><span class="py">impl</span><span class="o">.</span><span class="py">Promise$DefaultPromise</span><span class="k">@</span><span class="mi">4</span><span class="n">aa3d36</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="nf">println</span><span class="o">(</span><span class="s">"waiting"</span><span class="o">)</span>
+<span class="n">waiting</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="n">hi</span>
+</code></pre></div></div>
+
+<p>백그라운드 작업은 5 초 동안 잠든 후 <em>hi</em> 메세지를 출력했고 그 사이에 main 스레드에서의 코드는 백그라운드 작업이 완료되기 전에 <em>waiting</em> 메세지를 출력했습니다.</p>
+
+<p>Future 의 작업이 완료될 때 실행할 콜백 함수 또는 추가적인 퓨처도 설정할 수 있습니다. Future 는 비동기 / 동기식 모두 관리 될 수 있습니다.</p>
+
+<p><strong>Handling Futures Asynchronously</strong></p>
+
+<p>Future 가 완료된 다음 실행될 함수나 Future 에 결괏값을 전달하여 연결할 수 있습니다. 이 방식으로 처리된 Future 는 결국 그 함수의 반환값 또는 예외를 포함한 <code class="highlighter-rouge">util.Try</code> 를 반환합니다. 반환값을 받아 성공하면 연결된 함수 도는 Future 는 반환값에 전달되고, 성꽁 또는 실패를 반환하는 Future 로 전환됩니다.</p>
+
+<p>Future 의 최종 결과를 받기 위해 콜백 함수를 지정할 수 있습니다. 콜백 함수는 최종 성공적인 값 또는 예외를 받아 그 Future 를 생성했던 원래 코드를 해제하여 다른 작업으로 넘어갈 수 있게 해줍니다.</p>
+
+<p>아래 표는 Future 를 연결하고 콜백 함수를 설정하는 연산입니다. 이전 테이블에서와 같이 무작위로 실제 테스트 케이스를 제공하는 함수를 만들어 보겠습니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">import</span> <span class="nn">concurrent.ExecutionContext.Implicits.global</span>
+<span class="k">import</span> <span class="nn">concurrent.ExecutionContext.Implicits.global</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">import</span> <span class="nn">concurrent.Future</span>
+<span class="k">import</span> <span class="nn">concurrent.Future</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">def</span> <span class="nf">nextFtr</span><span class="o">(</span><span class="n">i</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">0</span><span class="o">)</span> <span class="k">=</span> <span class="nc">Future</span> <span class="o">{</span>
+ <span class="o">|</span> <span class="k">def</span> <span class="nf">rand</span><span class="o">(</span><span class="n">x</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">=</span> <span class="nv">util</span><span class="o">.</span><span class="py">Random</span><span class="o">.</span><span class="py">nextInt</span><span class="o">(</span><span class="n">x</span><span class="o">)</span>
+ <span class="o">|</span>
+ <span class="o">|</span> <span class="nv">Thread</span><span class="o">.</span><span class="py">sleep</span><span class="o">(</span><span class="nf">rand</span><span class="o">(</span><span class="mi">5000</span><span class="o">))</span>
+ <span class="o">|</span> <span class="nf">if</span> <span class="o">(</span><span class="nf">rand</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">)</span> <span class="k">else</span> <span class="k">throw</span> <span class="k">new</span> <span class="nc">Exception</span>
+ <span class="o">|</span> <span class="o">}</span>
+<span class="n">nextFtr</span><span class="k">:</span> <span class="o">(</span><span class="kt">i:</span> <span class="kt">Int</span><span class="o">)</span><span class="kt">scala.concurrent.Future</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Name</th>
+      <th style="text-align: left">Example</th>
+      <th style="text-align: left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">fallbackTo</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">nextFtr(1) fallbackTo nextFtr(2)</code></td>
+      <td style="text-align: left">2 번째 Future 를 1 번째 Future 에 연결하고 새로운 종합적인 Future 를 반환</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">flatMap</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">nextFtr(1) flatMap nextFtr()</code></td>
+      <td style="text-align: left">2 번째 Future 를 1 번째 Future 에 연결하고 새로운 종합적인 Future 를 반환, 1 번째가 성공적이면 그 반환값이 2 번째를 호출하는 데 사용</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">map</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">nextFtr(1) map (_ * 2)</code></td>
+      <td style="text-align: left">주어진 함수를 Future 에 연결하고 새로운 종합적인 Future 를 반환</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">onComplete</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">nextFtr() onComplete { _ getOrElse 0 }</code></td>
+      <td style="text-align: left">Future 의 작업이 완료된 후 주어진 함수가 값 또는 예외를 포함한 <code class="highlighter-rouge">util.Try</code> 를 이용하여 호출</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">onFailure</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">nextFtr() onFailure { case _ =&gt; "Error!" }</code></td>
+      <td style="text-align: left">Future 의 작업이 예외를 발생시키면 주어진 함수는 그 반환값을 가지고 호출</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">onSuccess</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">nextFtr() onSuccess { case x =&gt; s"Got $x" }</code></td>
+      <td style="text-align: left">Future 의 작업이 성공적으로 완료되면 주어진 함수는 그 반환값을 가지고 호출</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">Future.sequence</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">concurrent.Future sequence List(nextFtr(1), nextFtr(5))</code></td>
+      <td style="text-align: left">주어진 시퀀스에서 Future 를 병행으로 실행하여 새로운 Future 를 반환</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Handling Futures Synchronously</strong></p>
+
+<p>백그라운드 스레드가 완료되기를 기다리는 동안 스레드를 차단하는 것은 자원이 많이 소요되는 작업입니다. 트래픽 양이 많거나 높은 성능을 요구하는 어플리케이션이라면 이 방식을 피하고 <code class="highlighter-rouge">onComplete</code> 나 <code class="highlighter-rouge">onSuccess</code> 같은 콜백 함수를 사용하는것이 좋습니다.</p>
+
+<p>현행 스레드를 차단하고 다른 스레드가 완료되기를 기다리기 위해서 백그라운드 스레드와 기다릴 수 있는 최대 시간을 취하는 <code class="highlighter-rouge">conCurrent.Await.result()</code> 를 사용합니다.</p>
+
+<p>만약 Future 가 더 빨리 종료된다면 <code class="highlighter-rouge">Future</code> 의 결과가 반환되지만 Future 가 시간내에 완료되지 않으면 <code class="highlighter-rouge">java.util.concurrent.TimeoutException</code> 을 일으킵니다.</p>
+
+<p>아래는 <code class="highlighter-rouge">concurret.Await.result</code> 사용법을 알기 위해 위에서 사용한 비동기식 함수를 사용하여 예를 들어보겠습니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">import</span> <span class="nn">concurrent.duration._</span>
+<span class="k">import</span> <span class="nn">concurrent.duration._</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">maxTime</span> <span class="k">=</span> <span class="nc">Duration</span><span class="o">(</span><span class="mi">10</span><span class="o">,</span> <span class="nc">SECONDS</span><span class="o">)</span>
+<span class="n">maxTime</span><span class="k">:</span> <span class="kt">scala.concurrent.duration.FiniteDuration</span> <span class="o">=</span> <span class="mi">10</span> <span class="n">seconds</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">amount</span> <span class="k">=</span> <span class="nv">concurrent</span><span class="o">.</span><span class="py">Await</span><span class="o">.</span><span class="py">result</span><span class="o">(</span><span class="nf">nextFtr</span><span class="o">(</span><span class="mi">5</span><span class="o">),</span> <span class="n">maxTime</span><span class="o">)</span>
+<span class="n">amount</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">6</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">amount</span> <span class="k">=</span> <span class="nv">concurrent</span><span class="o">.</span><span class="py">Await</span><span class="o">.</span><span class="py">result</span><span class="o">(</span><span class="nf">nextFtr</span><span class="o">(</span><span class="mi">5</span><span class="o">),</span> <span class="n">maxTime</span><span class="o">)</span>
+<span class="nv">java</span><span class="o">.</span><span class="py">lang</span><span class="o">.</span><span class="py">Exception</span>
+ <span class="n">at</span> <span class="nv">$anonfun$nextFtr$1</span><span class="o">.</span><span class="py">apply$mcI$sp</span><span class="o">(&lt;</span><span class="n">console</span><span class="k">&gt;:</span><span class="mi">18</span><span class="o">)</span>
+ <span class="n">at</span> <span class="nv">$anonfun$nextFtr$1</span><span class="o">.</span><span class="py">apply</span><span class="o">(&lt;</span><span class="n">console</span><span class="k">&gt;:</span><span class="mi">15</span><span class="o">)</span>
+ <span class="n">at</span> <span class="nv">$anonfun$nextFtr$1</span><span class="o">.</span><span class="py">apply</span><span class="o">(&lt;</span><span class="n">console</span><span class="k">&gt;:</span><span class="mi">15</span><span class="o">)</span>
+ <span class="o">...</span>
+</code></pre></div></div>
+
+:ET

@@ -1,0 +1,11 @@
+I"Z<ul class="toc__menu">
+  <li><a href="#os">OS</a></li>
+  <li><a href="#installing-java">Installing Java</a></li>
+  <li><a href="#installing-zookeeper--kafka">Installing Zookeeper / Kafka</a>
+    <ul>
+      <li><a href="#zookeeper-ensemble">Zookeeper Ensemble</a></li>
+      <li><a href="#start-kafka">Start Kafka</a></li>
+    </ul>
+  </li>
+</ul>
+:ET

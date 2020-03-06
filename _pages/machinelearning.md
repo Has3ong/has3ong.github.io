@@ -15,6 +15,10 @@ layout: single
 ---
 
 * [Machine Learning Perceptron](/machinelearning-perceptronintro)
+* [Machine Learning Neural Network](/machinelearning-neuralnetwork)
+* [Machine Learning Neural Network Learning](/machinelearning-neuralnetworklearn)
+* [Machine Learning Backpropagation](/machinelearning-backpropagation)
+* [Machine Learning Learning-Related Skill](/machinelearning-learningskill)
 
 ## Keras
 

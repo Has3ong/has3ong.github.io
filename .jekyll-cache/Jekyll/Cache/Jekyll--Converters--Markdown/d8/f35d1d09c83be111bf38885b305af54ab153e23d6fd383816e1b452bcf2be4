@@ -1,0 +1,24 @@
+I"�<ul class="toc__menu">
+  <li><a href="#zookeeper">Zookeeper</a></li>
+  <li><a href="#zookeeper-기능">Zookeeper 기능</a>
+    <ul>
+      <li><a href="#설정-관리configuration-management">설정 관리(Configuration management)</a></li>
+      <li><a href="#클러스터-관리cluster-management">클러스터 관리(Cluster management)</a></li>
+      <li><a href="#리더-채택leader-selection">리더 채택(Leader selection)</a></li>
+      <li><a href="#락-동기화-서비스locking-and-synchronization-service">락, 동기화 서비스(Locking and synchronization service)</a></li>
+    </ul>
+  </li>
+  <li><a href="#zookeeper-architecture">Zookeeper Architecture</a></li>
+  <li><a href="#znode">znode</a>
+    <ul>
+      <li><a href="#버전-넘버version-number">버전 넘버(version number)</a></li>
+      <li><a href="#aclaction-control-list">ACL(Action control list)</a></li>
+      <li><a href="#타입스탬프timestamp">타입스탬프(Timestamp)</a></li>
+      <li><a href="#데이터-길이data-length">데이터 길이(Data length)</a></li>
+      <li><a href="#persistence-znode">Persistence znode</a></li>
+      <li><a href="#ephemeral-znode">Ephemeral znode</a></li>
+      <li><a href="#sequential-znode">Sequential znode</a></li>
+    </ul>
+  </li>
+</ul>
+:ET

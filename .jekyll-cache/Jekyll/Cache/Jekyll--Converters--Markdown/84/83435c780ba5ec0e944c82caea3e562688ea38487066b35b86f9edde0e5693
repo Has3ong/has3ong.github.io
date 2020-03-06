@@ -1,0 +1,11 @@
+I"¯<ul class="toc__menu">
+  <li><a href="#function-types-and-values">Function Types and Values</a></li>
+  <li><a href="#higher-order-functions">Higher-Order Functions</a></li>
+  <li><a href="#function-literals">Function Literals</a></li>
+  <li><a href="#placeholder-syntax">Placeholder Syntax</a></li>
+  <li><a href="#partially-applied-functions-and-currying">Partially Applied Functions and Currying</a></li>
+  <li><a href="#by-name-parameters">By-Name Parameters</a></li>
+  <li><a href="#partial-functions">Partial Functions</a></li>
+  <li><a href="#invoking-higher-order-functions-with-function-literal-blocks">Invoking Higher-Order Functions with Function Literal Blocks</a></li>
+</ul>
+:ET

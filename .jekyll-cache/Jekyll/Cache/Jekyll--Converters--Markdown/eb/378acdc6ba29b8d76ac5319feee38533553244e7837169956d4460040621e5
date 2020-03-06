@@ -1,0 +1,11 @@
+I"è<ul class="toc__menu">
+  <li><a href="#reliability-guarantees">Reliability Guarantees</a></li>
+  <li><a href="#replication">Replication</a>
+    <ul>
+      <li><a href="#replication-factor">Replication Factor</a></li>
+      <li><a href="#unclean-leader-election">Unclean Leader Election</a></li>
+      <li><a href="#minimum-in-sync-replicas">Minimum In-Sync Replicas</a></li>
+    </ul>
+  </li>
+</ul>
+:ET

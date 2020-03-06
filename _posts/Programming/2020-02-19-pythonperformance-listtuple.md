@@ -109,16 +109,16 @@ for i in xrange(10):
 
 # important_numbers will already be in order because we inserted new elements
 # with bisect.insort
-print important_numbers
+print (important_numbers)
 
 closest_index = find_closest(important_numbers, -250)
-print "Closest value to -250: ", important_numbers[closest_index]
+print ("Closest value to -250: ", important_numbers[closest_index])
 
 closest_index = find_closest(important_numbers, 500)
-print "Closest value to 500: ", important_numbers[closest_index]
+print ("Closest value to 500: ", important_numbers[closest_index])
 
 closest_index = find_closest(important_numbers, 1100)
-print "Closest value to 1100: ", important_numbers[closest_index] 
+print ("Closest value to 1100: ", important_numbers[closest_index]) 
 ```
 
 이처럼 올바른 자료구조를 선택하고 일관되게 사용하는것은 효율적인 코드를 작성하는 기본 법칙이기도 합니다.

@@ -1,0 +1,633 @@
+I"��<p><em>이 포스트는 <a href="">Optimizing Java</a> 를 바탕으로 작성하였습니다.</em></p>
+
+<p>초창기 Java GC 의 성능에 대한 불만은 쏟아져 나왔습니다.</p>
+
+<p>하지만 현대에 이르러 유저가 제어할 수 없는 강제적인 초기 GC 의 비전은 그 정당성이 충분히 입증되었습니다. 메모리를 직접 손으로 관리해야한다는 의견에 동조하는 어플리케이션 개발자는 없습니다. 새로운 언어에서도 메모리 관리는 컴파일러나 런타임의 영역이라고 보는 시각이 지배적입니다.</p>
+
+<p>Java 가비지 수집의 요체는, 시스템에 있는 모든 객체의 수명을 정확히 몰라도 런타임이 대신 객체를 추적하며 쓸모없는 객체를 알아서 제거하는 것입니다. 이렇게 자동 회수한 메모리는 깨끗이 비우고 재활용할 수 있습니다.</p>
+
+<p>모든 가비지 수집 구현체는 다음 두 가지 기본 원칙을 준수해야 합니다.</p>
+
+<ul>
+  <li>알고리즘은 반드시 모든 가비지를 수집해야 한다.</li>
+  <li>살아 있는 객체는 절대 수집해선 안된다.</li>
+</ul>
+
+<p>두 번째 원칙이 더 중요합니다. 살아 있는 객체를 수집했다간 <strong>세그먼테이션 결함(Segmentation Fault)</strong> 가 발생하거나 프로그램 데이터가 조용히 더럽혀지기 때문입니다.</p>
+
+<h2 id="introducing-mark-and-sweep">Introducing Mark and Sweep</h2>
+
+<p>Java 에서 가비지 수집이 뭐냐고 물어보면 <strong>Mark and Sweep</strong> 알고리즘이 기초라는 정도만 알고있지만, 실제로 그 프로세스가 어떻게 작동하는지 모르는 개발자들이 많습니다.</p>
+
+<p>가장 초보적인 마크 앤 스위프 알고리즘은 할당됐지만, 아직 회수되지 않은 객체를 가리키는 포인터를 포함한 <strong>할당 리스트(allocated list)</strong> 를 사용합니다.</p>
+
+<p>전체적인 GC 알고리즘은 다음과 같습니다.</p>
+
+<ol>
+  <li>할당 리스트를 순회하며 <strong>마크 비트(Mark Bit)</strong> 를 지운다.</li>
+  <li>GC 루트로부터 살아 있는 객체를 찾는다.</li>
+  <li>이렇게 찾은 객체마다 마크 비트를 세팅한다.</li>
+  <li>할당 리스트를 순회하며 마크 비트가 세팅되지 않은 객체를 찾는다.
+    <ol>
+      <li>힙에서 메모리를 회수해 <strong>프리 리스트(free list)</strong> 에 되돌린다.</li>
+      <li>할당 리스트에서 객체를 삭제한다.</li>
+    </ol>
+  </li>
+</ol>
+
+<p>살아 있는 객체는 대부분 DFS 방식으로 찾습니다. 이렇게 해서 생성된 객체 그래프를 <strong>라이브 객체 그래프(Life Object Graph)</strong> 라 하며, <strong>접근 가능한 객체의 전이 폐쇄(Transitive Closure of Reachable Objects)</strong> 라고도 합니다.(<code class="highlighter-rouge">Example 1</code>)</p>
+
+<blockquote>
+  <p>Example 1 - Simple view of memory layout</p>
+</blockquote>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/74736754-c7454880-5296-11ea-8a19-1fcd74ebd090.png" alt="image" /></p>
+
+<p>힙 상태는 시각화하여 살펴보기 어렵습니다. 하지만 명령줄에서 간단히 <code class="highlighter-rouge">jmap -histo</code> 하면 다음과 같이 타입별로 할당된 바이트 수와 그만큼의 메모리를 차지한 인스턴스 개수를 확인할 수 있습니다.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>num    <span class="c">#instances       #bytes  class name</span>
+<span class="nt">----------------------------------------------</span>
+  1:        20839     14983608  <span class="o">[</span>B
+  2:       118743     12370760  <span class="o">[</span>C
+  3:        14528      9385360  <span class="o">[</span>I
+  4:          282      6461584  <span class="o">[</span>D
+  5:       115231      3687392  java.util.HashMap<span class="nv">$Node</span>
+  6:       102237      2453688  java.lang.String
+  7:        68388      2188416  java.util.Hashtable<span class="nv">$Entry</span>
+  8:         8708      1764328  <span class="o">[</span>Ljava.util.HashMap<span class="nv">$Node</span><span class="p">;</span>
+  9:        39047      1561880  jdk.nashorn.internal.runtime.CompiledFunction
+ 10:        23688      1516032  com.mysql.jdbc.Co...<span class="nv">$BooleanConnectionProperty</span>
+ 11:        24217      1356152  jdk.nashorn.internal.runtime.ScriptFunction
+ 12:        27344      1301896  <span class="o">[</span>Ljava.lang.Object<span class="p">;</span>
+ 13:        10040      1107896  java.lang.Class
+ 14:        44090      1058160  java.util.LinkedList<span class="nv">$Node</span>
+ 15:        29375       940000  java.util.LinkedList
+ 16:        25944       830208  jdk.nashorn.interna...FinalScriptFunctionData
+ 17:           20       655680  <span class="o">[</span>Lscala.concurrent.forkjoin.ForkJoinTask<span class="p">;</span>
+ 18:        19943       638176  java.util.concurrent.ConcurrentHashMap<span class="nv">$Node</span>
+ 19:          730       614744  <span class="o">[</span>Ljava.util.Hashtable<span class="nv">$Entry</span><span class="p">;</span>
+ 20:        24022       578560  <span class="o">[</span>Ljava.lang.Class<span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="garbage-collection-glossary">Garbage Collection Glossary</h3>
+
+<p>GC 알고리즘을 설명하는 의미가 명확한 몇 가지 기본 용어를 살펴보겠습니다.</p>
+
+<p><strong>Stop-the-world (STW)</strong></p>
+
+<p>GC 사이클이 발생하여 가비지를 수집하는 동안에는 모든 어플리케이션 스레드가 중단됩니다. 따라서 어플리케이션 코드는 GC 스레드가 바라보는 힙 상태를 무효화할 수 없습니다. 단순 GC 알고리즘에서는 대부분 이럴 때 STW 가 일어납니다.</p>
+
+<p><strong>Concurrent</strong></p>
+
+<p>GC 스레드는 어플리케이션 스레드와 동시 실행될 수 있습니다. 이는 계산 비용 면에서 아주 어렵고 비싼 작업인 데다, 실상 100 % 동시 실행을 보장하는 알고리즘은 없습니다. 핫스팟의 <strong>CMS(Concurrent Mark and Sweep)</strong> 는 사실상 준 동시 수집기라 해야 맞습니다.</p>
+
+<p><strong>Parallel</strong></p>
+
+<p>여러 스레드를 동원하여 가비지 수집을 합니다.</p>
+
+<p><strong>Exact</strong></p>
+
+<p>정확한 GC 스킴은 전체 가비지를 한방에 수집할 수 있게 힙 상태에 관한 충분한 타입 정보를 지니고 있습니다. 대략 int 와 포인터의 차이점을 언제 분간할 수 있는 속성을 지닌 스킴이 정확한 것입니다.</p>
+
+<p><strong>Conservative</strong></p>
+
+<p>보수적인 스킴은 정확한 스킴의 정보가 없습니다. 그래서 리소스를 낭비하는 일이 잦고 근본적으로 타입 체계를 무시하기 때문에 훨신 비효율적입니다.</p>
+
+<p><strong>Moving</strong></p>
+
+<p>이동 수집기에서 객체는 메모리를 여기저기 오갈 수 있습니다. 즉, 객체 주소가 고정된 게 아닙니다. <strong>Raw Pointer</strong> 로 직접 액세스하는 환경은 이동 수집기와 잘 맞지 않습니다.</p>
+
+<p><strong>Compacting</strong></p>
+
+<p>할당된 메모리는 GC 사이클을 마지막에 연속된 단일 영역으로 배열되며, 객체 쓰기가 가능한 여백의 시작점을 가리키는 포인터가 있습니다. 압착 수집기는 <strong>메모리 단편화(Memory Fragmentation)</strong> 를 방지합니다.</p>
+
+<p><strong>Evacuating</strong></p>
+
+<p>수집 사이클 마지막에 할당된 영역을 완전히 비우고 살아남은 객체는 모두 다른 메모리 영역으로 이동합니다.</p>
+
+<h2 id="introducing-the-hotspot-runtime">Introducing the HotSpot Runtime</h2>
+
+<p>앞서 나열한 일반적인 GC 용어 뿐만 아니라 구현체에 특정한 용어도 있습니다. 가비지 수집의 작동 원리를 온전히 이해하려면 시시콜콜한 핫스팟 내부도 알아야 합니다.</p>
+
+<p>Java 언어에서는 2 가지 언어만 사용합니다.</p>
+
+<ul>
+  <li>Primitive types (byte, int, etc.)</li>
+  <li>Object references*</li>
+</ul>
+
+<p>많은 Java 프로그래머들이 객체를 대충 말하는데 Java 는 C++ 과 달리 주소를 <strong>역참조(Dereference)</strong> 하는 메커니즘이 없고 오직 <strong>오프셋 연산자(Offset Operator)</strong> 만으로 필드에 액세스하거나 <strong>객체 레퍼런스</strong> 의 메소드를 호출할 수 있습니다. 또 Java 는 <strong>값으로 호출(Call-By-Value)</strong> 방식으로만 메소드를 호출합니다. 물론 객체 레퍼런스으 ㅣ경우 복사된 값은 힙에 있는 객체의 주소입니다.</p>
+
+<h3 id="representing-objects-at-runtime">Representing Objects at Runtime</h3>
+
+<p>핫스팟은 런타엠에 <strong>oop</strong> 라는 구조체로 Java 객체를 나타냅니다. oop 는 <strong>평범한 객체포인터(Ordinary Object Pointer)</strong> 입니다. oop 는 <strong>참조형(Reference Type)</strong> 지역 변수 안에 위치합니다. 여기서 Java 메소드의 스택 프레임으로부터 Java 힙을 구헝하는 메모리 영역 내부를 가리킵니다.</p>
+
+<p>oop 를 구성하는 자료구조눈 여러 가지가 있습니다. 그중 <strong>instanceOop</strong> 라는 Java 클래스의 인스턴스를 나타냅니다.</p>
+
+<p>instanceOop 의 메모리 레이아웃은 모든 객체에 대해 기계어 워드 2 개로 구성된 헤더로 시작합니다. <strong>Mark</strong> (인스턴스 관련 메타데이터를 가리키는 포인터) 워드가 먼저 나오고, 그 다음은 <strong>Klass</strong> (클래스 메타데이터를 가리키는 포인터) 워드가 나옵니다.</p>
+
+<p>Java 7 까지는 instanceOop 의 Klass 워드가 Java 힙의 일부인 <strong>펌젠(Permgen)</strong> 이라는 메모리 영역을 가리켰습니다. Java 힙에 있는 건 예외 없이 객체 헤더를 갖고 다녀야 한다는 게 기본 원칙 이었고, 실제로 Java 옛 버전은 메타데이터를 klassOop 로 참조했습니다. <strong>klassOop</strong> 의 메모리 레이아웃은 정말 단순해서 그냥 객체 헤더 바로 다음이 klass 메타데이터가 나옵니다.</p>
+
+<p>Java 8 부터는 Klass 가 Java 힙의 주 영역 밖으로 빠지게 됐습니다. 그래서 최신 버전의 Java 는 Klass 워드가 Java 힙 밖을 가리키므로 객체 헤더가 필요 없습니다.</p>
+
+<p>아래 <code class="highlighter-rouge">Example 6</code> 를 보면 차이점을 알 수 있습니다. klassOop 는 클래스용 <strong>가상 함수 테이블(Virtual Function Table)</strong> (vtable) 이 있지만 Class 객체에는 리플렉션으로 호출할 Method 객체의 레퍼런스 배열이 담겨있습니다.</p>
+
+<blockquote>
+  <p>Example 2 - klassOops and Class objects</p>
+</blockquote>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/75155560-b17eca00-5753-11ea-8b31-bc8673db00fa.png" alt="image" /></p>
+
+<p>oop 는 대부분 기계어 워드라 예전 32 bit 프로세서는 32 bit, 요즘 프로세서는 64 bit 입니다. 하지만 이런 구조로는 메모리가 낭비될 우려가 있어서 핫스팟은 조금이라도 메모리를 절약할 수 있게 <strong>압축 oop(Compressed oop)</strong> 라는 기법을 제공합니다. 다음 옵션을 주면,</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">-XX</span>:+UseCompressedOops
+</code></pre></div></div>
+
+<p>힙에 있는 다음 oop 가 압축됩니다.</p>
+
+<ul>
+  <li>The klass word of every object in the heap</li>
+  <li>Instance fields of reference type</li>
+  <li>Every element of an array of objects</li>
+</ul>
+
+<p>핫스팟 객체 헤더는 일반적으로 다음과 같이 구성됩니다.</p>
+
+<ul>
+  <li>Mark word at full native size</li>
+  <li>Klass word (possibly compressed)</li>
+  <li>Length word if the object is an array—always 32 bits</li>
+  <li>A 32-bit gap (if required by alignment rules)</li>
+</ul>
+
+<p>객체 인스턴스 필드는 헤더 바로 다음에 나열됩니다. klassOop 는 Klass 워드 다음에 메소드 vtable 이 나옵니다. 아래 <code class="highlighter-rouge">Example 3</code> 은 압축 oop 의 메모리 레이아웃입니다.</p>
+
+<blockquote>
+  <p>Example 3 - Compressed oops</p>
+</blockquote>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/75155588-bd6a8c00-5753-11ea-8736-5d017168f826.png" alt="image" /></p>
+
+<p>과거, 지연에 민감한 어플리케이션에서 힙 크기 증가를 대가로 압축 oop 기능을 끄면 성능이 개선되기도 했지만, 대단한 성능 향상이라 할 정도는 아니였습니다.</p>
+
+<p>Java 에서 배열은 객체입니다. 그래서 JVM 의 배열도 oop 로 표시되며, 배열은 Mark 워드, Klass 워드 다음에 배열 길이를 나타내는 Length 워드가 붙습니다. Java 배열 인덱스가 32 bit 값으로 제한되는건 이 때문입니다.</p>
+
+<p>JVM 환경에서 Java 레퍼런스는 instanceOop 를 제외한 어떤 것도 가리킬 수 없습니다. 저수준에서는 이런 의미입니다.</p>
+
+<ul>
+  <li>Java 값은 기본형 값 또는 instanceOop 주소에 대응되는 비트 패턴이다.</li>
+  <li>모든 Java 레퍼런스는 Java 힙의 주 영역에 있는 주소를 가리키는 포인터라 볼 수 있습니다.</li>
+  <li>Java 레퍼런스가 가리키는 주소에는 Mark 워드 + Klass 워드가 들어 있다.</li>
+  <li>kassOop 와 Class&lt;&gt; 인스턴스는 다르며 (klassOop 는 힙의 메타데이터 영역에 존재), klassOop 을 Java 변수 안에 넣을 수 없다.</li>
+</ul>
+
+<p>핫스팟의 oop 체계는 <em>.hpp</em> 파일에 정의돼있습니다. 다음은 oop 의 전체 상속 구조입니다.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>oop <span class="o">(</span>abstract base<span class="o">)</span>
+ instanceOop <span class="o">(</span>instance objects<span class="o">)</span>
+ methodOop <span class="o">(</span>representations of methods<span class="o">)</span>
+ arrayOop <span class="o">(</span>array abstract base<span class="o">)</span>
+ symbolOop <span class="o">(</span>internal symbol / string class<span class="o">)</span>
+ klassOop <span class="o">(</span>klass header<span class="o">)</span> <span class="o">(</span>Java 7 and before only<span class="o">)</span>
+ markOop
+</code></pre></div></div>
+
+<p>이렇듯 런타임에 oop 구조체를 이용해 한 포인터는 클래스 메타데이터를 , 다른 포인터는 인스턴스 메타데이터를 가리켜 객체를 나타내는 건 드문 방식이 아닙니다. 다른 JVM 이나 실행환경도 이와 비슷한 메커니즘을 사용합니다.</p>
+
+<h3 id="gc-roots-and-arenas">GC Roots and Arenas</h3>
+
+<p><strong>GC 루트</strong> 는 메모리의 고정점으로, 메모리 풀 외부에서 내부를 가리키는 포인터입니다. 메모리 풀 내부에서 같은 메모리 풀 내부의 다른 메모리 위치를 가리키는 <strong>내부 포인터(Internal Pointer)</strong> 와 정 반대인 <strong>외부 포인터(External Pointer)</strong> 입니다.</p>
+
+<p>GC 루트는 다음과 같이 종류가 다양합니다.</p>
+
+<ul>
+  <li>Stack Frame</li>
+  <li>JNI</li>
+  <li>Register</li>
+  <li>Code roots</li>
+  <li>Globals</li>
+  <li>Class metadata from loaded classes</li>
+</ul>
+
+<p>힙에 있는 객체를 가리키는 참조형 지역변수도 말하자면 가장 단순한 형태의 GC 루트입니다. 핫스팟 GC 는 <strong>아레나(arena)</strong> 라는 메모리 영역에서 작동합니다. GC 는 저수준 장치라 일반 Java 개발자가 세세하게 작동 원리를 숙지할 필욘 없지만, 성능 엔지니어는 경우에 따라 JVM 내부를 깊이 다뤄야 할 수도 있습니다.</p>
+
+<p>핫스팟은 Java 힙을 관리할 때 시스템 콜을 하지 않습니다. 핫스팟은 유저 공간 코드에서 힙 크기를 관리하므로 단순 측정값을 이용해 GC 서브 시스템으이 어떤 성능 문제를 일으키고 있는지 파악할 수 있습니다.</p>
+
+<p>이제 Java / JVM 워크로드의 가비지 수집을 일으키는 2 가지 주요 특성에대해 알아보겠습니다.</p>
+
+<h2 id="allocation-and-lifetime">Allocation and Lifetime</h2>
+
+<p>Java 어플리케이션에서 가비지 수집이 일어나는 주된 원인은 다음 2 가지 입니다.</p>
+
+<ul>
+  <li>Allocation Rate</li>
+  <li>Object Lifetime</li>
+</ul>
+
+<p>할당률은 일정기간 새로 생성된 객체가 사용한 메모리량입니다. JVM 은 할당률을 직접 기록하지 않지만, 이 값은 비교적 쉽게 측정할 수 있습니다.</p>
+
+<p>하지만, 객체 수명은 대부분 측정하기 어렵습니다. 수동 메모리 관리 시스템에서 가장 논라이 됐던 부분 중 하나가, 실제 어플리케이션에서 객체 수명을 제대로 파악하기가 너무 복잡하다는 겁니다. 그 결과 객체 수명이 할당률보다 더 핵심적인 요인입니다.</p>
+
+<p>객체가 생성된 후 잠시 존재하고 그 상태를 보관하는 데 사용한 메모리를 다시 회수한다는 발상이 핵심입니다.</p>
+
+<h3 id="weak-generational-hypothesis">Weak Generational Hypothesis</h3>
+
+<p><strong>약한 세대별 가설(Weak Generational Hypothesis)</strong> 은 소프트웨어 시스템 런타임 작용을 관찰한 결과 알게된 경험 지식으로 JVM 메모리 관리의 이런적 근간을 형성합니다.</p>
+
+<p><em>JVM 및 소프트웨어 시스템에서 객체 수명은 <strong>이원적(bimodal)</strong> 분포 양상을 보입니다. 거의 대부분의 객체는 아주 짧은 시간만 살아 있지만, 나머지 객체는 기대 수명이 훨씬 길다.</em></p>
+
+<p>이 법칙은 객체 지향 워크로드를 상대로 실제 실험을 하며 얻은 것으로, 결론은 <em>가비지를 수집하는 힙은 단명 객체를 쉽고 빠르게 수집할 수 있게 설계해야 하며, 장수 객체와 단명 객체를 완전히 떼어놓는게 가장 좋다</em> 라는 의미입니다.</p>
+
+<p>핫스팟은 몇 가지 메커니즘을 응용하여 약한 세대별 가설을 활용합니다.</p>
+
+<ul>
+  <li>객체마다 <strong>세대 카운트(Gnenrational Count)</strong> 를 센다
+    <ul>
+      <li>객체가 지금까지 무사 통과한 가비지 수집 횟수</li>
+    </ul>
+  </li>
+  <li>큰 객체를 제외한 나머지 객체는 <strong>에덴(Eden)</strong> 공간에 생성한다. 여기서 살아남은 객체는 다른 곳으로 옮긴다.</li>
+  <li>장수했다 할 정도로 오래 살아남은 객체들은 별도의 메모리 영역(Old / Tenured) 에 보관한다.</li>
+</ul>
+
+<p><code class="highlighter-rouge">Example 4</code> 는 이러한 접근 방식을 나타낸 것입니다.</p>
+
+<blockquote>
+  <p>Example 4 - Generational collection</p>
+</blockquote>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/75155609-cb201180-5753-11ea-8e4b-c113da25e3d9.png" alt="image" /></p>
+
+<p>세대별 수집 목적에 따라 메모리를 상이한 영역으로 나누면 핫스팟의 마크 앤 스위프 수집의 구현에 따라 그 결과가 세분화 됩니다. 여기서 중요한 건, 외부에서 <strong>영(Young)</strong> 세대 내부를 가리키는 포인터를 계속 추적하는 기법입니다. 덕분에 GC 사이클에서 살아남은 젊은 객체들을 찾아내기 위해 전체 그래프를 탐색할 필요가 없습니다.</p>
+
+<p>핫스팟은 <strong>카드 테이블(Card Table)</strong> 이라는 자료 구조에 늙은 객체가 젊은 객체를 참조하는 정보를 기록합니다. 카드 테이블은 JVM 이 관리하는 바이트 배열로, 각 원소는 올드 세대 공간의 512 Byte 를 가리킵니다.</p>
+
+<p>핵심 로직은 아래와 같습니다.</p>
+
+<p>늙은 객체 o 에 이쓴ㄴ 참조형 필드값이 바뀌면 o 에 해당하는 instanceOop 가 들어있는 카드를 찾아 해당 엔트리를 더티 마킹합니다. 핫스팟은 레퍼런스 필드를 업데이트할 때마다 단순 <strong>쓰기 배리어(Write Barrier)</strong> 를 이용합니다. 필드 저장이 끝나면 결국 어딘가에서 다음 코드 조각이 실행됩니다.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cards[<span class="k">*</span>instanceOop <span class="o">&gt;&gt;</span> 9] <span class="o">=</span> 0<span class="p">;</span>
+</code></pre></div></div>
+
+<p>여기서 카드에 더티하다 표시한 값이 0 이고, 카드 테이블이 512 byte 라 9 bit 우측 shift 합니다.</p>
+
+<h2 id="garbage-collection-in-hotspot">Garbage Collection in HotSpot</h2>
+
+<p>Java 는 C / C++ 계열의 환경과 달리 OS 를 이용해 동적으로 메모리를 관리하지 않습니다. 대신, 일단 프로세스가 시작되면 JVM 은 메모리를 할당하고 유저 공간에서 연속된 단일 메모리 풀을 관리합니다.</p>
+
+<p>이 메모리 풀은 각자의 목적에 따라 서로 다른 영역으로 구성되며, 객체는 보통 에덴 영역에 생성됩니다. 수집기가 졸곧 객체를 이동시키기 때문에 객체가 차지한 주소는 시간이 흐르면서 아주 빈번하게 바뀝니다. 이처럼 객체를 이동시키는것을 방출이라고 합니다. 핫스팟 수집기는 대부분 방출 수집기입니다.</p>
+
+<h3 id="thread-local-allocation">Thread-Local Allocation</h3>
+
+<p>JVM 은 성능을 강화하여 에덴을 관리합니다. 에덴은 대부분의 객체가 탄생하는 장소이고 단명 객체는 다른곳에 위치할 수 없어서 특별히 관리를 잘해야 하는 영역입니다.</p>
+
+<p>JVM 은 에덴을 여러버퍼에서 나누어 각 어플리케이션 스레드가 새 겍체를 할당하는 구역으로 활용하도록 배포합니다. 이렇게 하면 각 스레드는 혹여 다른 스레드가 자신의 버퍼에 객체를 할당하지는 않을까 염려할 필요가 업습니다. 이 구역을 <strong>스레드 로컬 할당 버퍼(Thread-Local Allocation Buffer, TLAB)</strong> 라 합니다.</p>
+
+<p>어플리케이션 스레드가 자신의 TLAB 를 배타적으로 제어한다는건 JVM 스레드의 할당 복잡도가 O(1) 이라는 뜻입니다. 스레드가 객체를 생성할 때 이 객체에 저장 공간이 할당되고 스레드 - 로컬 포인터는 그다음 비어 있는 메모리 주소를 가리키도록 업데이트하기 때문입니다. C 런타임 용어를 빌리면, 단순 <strong>포인터 범프(Pointer Bump)</strong>, 즉 다음 빈 포인터로 계속 쭉 이동시키는 부가 명령어 입니다.</p>
+
+<p><code class="highlighter-rouge">Example 5</code> 롤 보면 각 어플레키이션 스레드가 새 객체를 할당할 버퍼를 가지고 있습니다. 어플리케이션 스레드가 버퍼를 다 채우면 JVM 은 새 에덴 영역을 가리키는 포인터를 내어줍니다.</p>
+
+<blockquote>
+  <p>Example 5 - Thread-local allocation</p>
+</blockquote>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/75155637-d5421000-5753-11ea-86cb-f78cf3e6b72f.png" alt="image" /></p>
+
+<h3 id="hemispheric-collection">Hemispheric Collection</h3>
+
+<p><strong>반구형 (방출) 수집기(Hemispheric Evacuating Collector)</strong> 는 두 공간을 사용하는 독특한 방출 수집기입니다. 실제로 장수하지 못한 객체를 임시 수용소에 담아 두자는 아이더이입니다. 덕분에 단명 객체가 테뉴어드 세대를 어지럽히지 않게 하고 풀 GC 발생 빈도를 줄일 수 있습니다. 이 두 공간은 2 가지 기본적인 특성을 지닙니다.</p>
+
+<ul>
+  <li>수집기가 라이브 반구를 수집할 때 객체들은 다른 반구로 압칙시켜 옮기고 수집된 반구는 비워서 재사용한다.</li>
+  <li>절반의 공간은 항상 완전히 비어둔다.</li>
+</ul>
+
+<p>이 방법은 수집기 반구 내부에 실제로 보관 가능한 메모리 공간보다 2 배를 더 사용하게 되어 낭비지만, 공간이 너무 크지 않다면 유용한 기법입니다. 핫스팟은 이 반구형 기법과 에덴 공간을 접목시켜 영 세대 수집을 합니다.</p>
+
+<p>핫스팟에서는 영 힙의 반구부를 <strong>서바이버(Survivor) 공간</strong> 이라고 합니다.  <code class="highlighter-rouge">Example 6</code> 에서 보다시피 일반적으로 서바이버 공간은 에덴보다 작으며, 이 공간으 ㅣ역할은 각 영 세대 수집을 교환하는 것입니다.</p>
+
+<blockquote>
+  <p>Example 6 - The VisualGC plug-in</p>
+</blockquote>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/75155671-e0953b80-5753-11ea-930c-f1317b19a4f8.png" alt="image" /></p>
+
+<p>VisualGC 를 활용하면 힙에서 재배치된 객체나 각 영 세대마다 발생한 서바이버 공간 사이의 순환 등 가비지 수집의 결합 효과도 확인할 수 있습니다.</p>
+
+<h2 id="the-parallel-collectors">The Parallel Collectors</h2>
+
+<p>Java 8 이전까지 JVM 디폴트 가비지 수집기는 <strong>병렬 수집기(Parrel Collector)</strong> 입니다. 병렬 수집기는 처리율에 최적화되어 있고 영 GC, 풀 GC 모두 풀 STW 를 일으킵니다. 어플리케이션 스레드를 모두 중단시킨 다음, 가용 CPU 코어를 동원해 빠르게 메모리를 수집합니다. 병렬 수집기도 여러가지가 있습니다.</p>
+
+<p><strong>Parallel GC</strong></p>
+
+<p>가장 단순한 영 세대용 병렬 수집기입니다.</p>
+
+<p><strong>ParNew GC</strong></p>
+
+<p>CMS 수집기와 함께 사용할 수 있게 Parallel GC 를 조금 변형한것입니다.</p>
+
+<p><strong>ParallelOld GC</strong></p>
+
+<p>올드(테뉴어드) 세대용 병렬 수집기입니다.</p>
+
+<p>종류가 달라도 여러 스레드를 이용해 가급적 빠른 시간 내에 살아 있는 객체를 식별하고 기록 작업을 최소화하도록 설계된 점은 비슷합니다. 많이 쓰이는 두 수집기의 차이점을 자세히 살펴보겠습니다.</p>
+
+<h3 id="young-parallel-collections">Young Parallel Collections</h3>
+
+<p>가장 흔한 가비지 수집 형태입니다. 스레드가 에덴에 객체를 할당하려는데 자신이 할당받은 TLAB 공간은 부족하고 JVM 은 새 TLAB 를 할당할 수 없을 때 영 세대 수집이 발생합니다. 영 세대 수집이 일어나면 JVM 은 어쩔 수 없이 전체 어플리케이션 스레드를 중단 시킵니다. 어떤 스레드에서 객체를 할당할 수 없다면 삽시간에 다른 스레드도 같은 처지가 될것입니다.</p>
+
+<p>전체 어플리케이션 스레드가 중단되면 핫스팟은 영 세대를 뒤져서 가비지 아닌 객체를 골라냅니다. 이때 GC 루트를 병렬 마킹 스캔 작업의 출발점으로 삼습니다.</p>
+
+<p>그리고, Parallel GC 는 살아남은 객체를 현재 비어 있는 서바이버 공간으로 모두 방출한 후, 세대 카운트를 늘려 한 차례 이동했음을 기록합니다. 마지막으로, 에덴과 이제 막 객체들을 방출시킨 서바이버 공간을 재사용 간으한 빈 공간으로 표시하고, 어플리케이션 스레드를 재시작해 TLAB 를 어플리케이션 스레드에 배포하는 프로세스를 재개합니다. <code class="highlighter-rouge">(Example 7, Example 8)</code></p>
+
+<blockquote>
+  <p>Example 7 - Collecting the young generation</p>
+</blockquote>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/75155693-ea1ea380-5753-11ea-9477-9c0ef3b6c130.png" alt="image" /></p>
+
+<blockquote>
+  <p>Example 8 - Evacuating the young generation</p>
+</blockquote>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/75155714-f276de80-5753-11ea-84d0-b7ad4844b40e.png" alt="image" /></p>
+
+<p>살아있는 객체만 건드려 약한 세대별 가설의 이점을 최대한 활용하고, 가능한 코어를 총동원해 STW 중단 시간을 조금이라도 단축해 가비지를 효율적으로 수집하겠다는 의도입니다.</p>
+
+<h3 id="old-parallel-collections">Old Parallel Collections</h3>
+
+<p>ParallelOld GC 는 디폴트 올드 세대 수집기입니다. Paallel GC 와 비슷하지만, 근본적인 차이가 있습니다. Parallel GC 는 객체를 방출하는 반구형 수집기 이지만, ParallelOld GC 는 하나의 메모리 공간에 압착하는 수집기입니다.</p>
+
+<p>올드 세데에 더 이상 방출할 공간이 없으면 병렬 수집기는 올드 세대 내부에서 객체들을 재배치해서 ㄴ륵은 객체가 죽고 빠져 버려진 공간을 회수하려고 합니다. 따라서 메모리 사용 면에서 아주 효율적이고 메모리 단편화가 일어날 일도 없습니다.</p>
+
+<p>풀 GC 사이클 내내 CPU 를 점유하는 대가로 메모리는 아주 효율적으로 배치되는 셈입니다. <code class="highlighter-rouge">Example 9</code> 는 방출과 압착 두 기법의 차이점을 나타낸 것입니다.</p>
+
+<blockquote>
+  <p>Example 9 - Evacuating versus compacting</p>
+</blockquote>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/75155734-fb67b000-5753-11ea-8b92-933a7a6c613a.png" alt="image" /></p>
+
+<p>두 메모리 공간은 애초 쓰임새부터가 다르므로 수집 양상 또한 전혀 다릅니다. 영 세대 수집은 단명 객체 처리가 목적이기 때문에 영 공간의 점유 상태는 GC 이벤트가 발생할 때마다 메모리 할당 및 소거가 일어나면서 급격히 변합니다.</p>
+
+<p>반면, 올드 공간은 눈에 띄는 변화가 없습니다. 가끔 큰 객체가 테뉴어드 세대에 직접 생성될 때도 있지만, 그 밖에는 영 세대 객체가 승격되거나, 올드 / 풀 수집이 일어난 객체를 재 탐색 후 다시 배치되는 등의 수집이 일어날때만 변합니다.</p>
+
+<h3 id="limitations-of-parallel-collectors">Limitations of Parallel Collectors</h3>
+
+<p>병렬 수집기는 세대 전체 컨텐츠를 대상으로 한 번에, 가능한 한 효율적으로 가비지를 수집합니다. 하지만 이러한 설계 방식에도 단점이 있는데, 우선 풀 STW 를 유발합니다. 약한 세대별 가설에 따르면 극소수 객체만 살아남기 때문에 영 수집에서는 STW 가 문제 되지 않습니다.</p>
+
+<p>전체 힙에서 힙 영역을 작게 구성한 설계는 기본적으로 대부분의 워크로드에서 영 수집에 따른 중단 시간이 매우 짧다고 가정했습니다. 실제 최신 2 GB JVM 에서 영 수집 중단 시간은 거의 대부분 10 ms 이하입니다.</p>
+
+<p>하지만 올드 수집은 디폴트 크기 자체가 영 세대의 7 배나 됩니다. 이 사실 하나만으로도 풀 수집 시 STW 시간이 영 수집보다 훨씬 길어집니다. 올드 수집의 가장 큰 약점은 STW 시간이 힙 크기에 비례하는 점입니다. 힙이 계속 커질수록 ParallelOld GC 중단 시간도 함께 나빠집니다.</p>
+
+<p>GC 에 순진하게 접근했다간 큰코다치는 사례를 하나 보겠습니다. TLAB 할당은 할당 성능을 엄청나게 올리지만, 수집 사이클에는 전혀 도움이 안됩니다. 다음 코드를 보면서 이유를 알아보겠습니다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span><span class="o">[]</span> <span class="n">anInt</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">1</span><span class="o">];</span>
+        <span class="n">anInt</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="mi">42</span><span class="o">;</span>
+        <span class="nc">Runnable</span> <span class="n">r</span> <span class="o">=</span> <span class="o">()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="n">anInt</span><span class="o">[</span><span class="mi">0</span><span class="o">]++;</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Changed: "</span><span class="o">+</span> <span class="n">anInt</span><span class="o">[</span><span class="mi">0</span><span class="o">]);</span>
+        <span class="o">};</span>
+        <span class="k">new</span> <span class="nf">Thread</span><span class="o">(</span><span class="n">r</span><span class="o">).</span><span class="na">start</span><span class="o">();</span>
+    <span class="o">}</span>
+</code></pre></div></div>
+
+<p>변수 <code class="highlighter-rouge">anInt</code> 는 정수 하나를 포함한 배열 객체입니다. 이 변수는 처음에 메인 스레드가 관할하는 TLAB 에 할당되지만 곧바로 새로운 스레드로 넘어갑니다. 하나의 스레드에만 귀속되는 TLAB 의 특성은 할당이 일어나는 지점에서만 그렇고 기본적으로 객체가 할당되자마자 깨질 수 있습니다.</p>
+
+<p>손쉽게 스레드를 생성하는 Java 의 능력은 플랫폼으로서 아주 강력한 장점이지만, 새 스레드는 곧 실행 스택을 의미하고 실행 스택의 각 프레임은 GC 루트의 원천이므로 가비지 수집 관점에서 보면 전체적인 모양새가 점점 더 복잡해집니다.</p>
+
+<h2 id="the-role-of-allocation">The Role of Allocation</h2>
+
+<p>Java 의 가비지 수집 프로세스는 보통 유입된 메모리 할당 요청을 수용하기에 메모리가 부족할 때 작동하여 필요한 만큼 공급합니다. GC 사이클은 그때그때 필요에 의해 발생합니다.</p>
+
+<p>불규칙하게 발생한다는 점이 가비지 수집의 가장 중요한 특징입니다. GC 사이클은 하나 이상의 힙 메모리 공간이 꽉 채워져 더 이상 객체를 생성할 공간이 없을 때 일어납니다.</p>
+
+<p>GC 가 발생하면 모든 어플리케이션 스레드가 멈춥니다. JVM 은 모든 코어를 총 동원해 가비지를 수집하고 메모리를 회수한 후 어플리케이션 스레드를 재개합니다.</p>
+
+<p>할당의 중요성을 설명하기위해 단순한 사례를 들어보겠습니다. 다음과 같이 힙 매개변수 값을 설정하고 이값들은 시간이 지나도 변하지 않는다고 가정해보겠습니다. 물론 실제로는 어플리케이션이 힙 크기를 동적으로 조정하지만 이건 간단한 가정입니다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Heap Area</th>
+      <th style="text-align: left">Size</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Overall</td>
+      <td style="text-align: left">2 GB</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Old Generation</td>
+      <td style="text-align: left">1.5 GB</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Young Generation</td>
+      <td style="text-align: left">500 MB</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Eden</td>
+      <td style="text-align: left">400 MB</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">S1</td>
+      <td style="text-align: left">50 MB</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">S2</td>
+      <td style="text-align: left">50 MB</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>다음은 어플리케이션이 <strong>정상 상태(Steady State)</strong> 에 도달한 이후 측정한 GC 지표입니다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Allocate Rate</th>
+      <th style="text-align: left">100 MB/s</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Young GC Time</td>
+      <td style="text-align: left">2 ms</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Full GC Time</td>
+      <td style="text-align: left">100 ms</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Object Lifetime</td>
+      <td style="text-align: left">200 ms</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>에덴은 4 초면 다채워지므로 정상 상태에서는 4 초마다 한번씩 영 GC 가 발생합니다. 에덴에 있는 객체는 대부분 사망하지만, 살아남은 객체는 서바이버 공간으로 방출됩니다. 이 모형에서는, 마지막 200 ms 이내에 생성된 객체는 사망할 시간조차 없으니 무조건 살아남습니다.</p>
+
+<p>|GC0|@ 4 s|20 MB Eden -&gt; SS1 (20 MB)|
+|:–:|:–:|:–:|</p>
+
+<p>초가 더 지나 다시 에덴은 꽉 채워지고 객체를 방출시켜야 하지만, 이 단순 모형에서는 GC0 때 살아남아 SS1 으로 승격된 객체는 하나도 생존하지 못합니다. 객체 수명이 겨우 200 ms 인데 4초가 더 경과했으니 살아남았을 리 만무합니다.</p>
+
+<p>|GC1|@ 9.002 s|20 MB Eden -&gt; SS2 (20 MB)|
+|:–:|:–:|:–:|</p>
+
+<p>다시 말하면, GC1 이후 SS2 는 에덴에 새로 도착한 객체들로만 채워지고 SS2 객체 중 세대 나이 1 인 객체는 없습니다. 한번 더 수집을 진행하면 패턴이 좀 더 분명해집니다.</p>
+
+<p>|GC2|@ 12.004 s|20 MB Eden -&gt; SS1 (20 MB)|
+|:–:|:–:|:–:|</p>
+
+<p>위와 같이 이상적인 모형에서는 결국 어느 객체도 테뉴어드 세대로 승격될 수 없고 이 공간은 실행하는 동안 계속 빈 상태일것입니다.</p>
+
+<p>대신 약한 세대별 가설에 따르면, 객체 수명은 어떤 분포를 보이며, 이 분포가 불확실한 탓에 결국 일부 객체는 테뉴어드에 도달할 것입니다.</p>
+
+<p>이런식으로 할당되는 시나리오를 간단한 시뮬레이터로 살펴보겠습니다. 이 시뮬레이터가 할당하는 객체는 대부분 단명하지만, 일부는 꽤 오랫동안 살아남습니다. 할당을 정의하는 매개변수는 이렇습니다. 객체크기는 <code class="highlighter-rouge">x</code>, <code class="highlighter-rouge">y</code> 할당률은 <code class="highlighter-rouge">mbPerSec</code>, 단명 객체 수명은 <code class="highlighter-rouge">shortLivedMS</code>, 시뮬레이션 대상 스레드 개수는 <code class="highlighter-rouge">nThreads</code> 입니다.</p>
+
+<p>디폴트 값은 다음과 같이 세팅합니다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ModelAllocator</span> <span class="kd">implements</span> <span class="nc">Runnable</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">volatile</span> <span class="kt">boolean</span> <span class="n">shutdown</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="kt">double</span> <span class="n">chanceOfLongLived</span> <span class="o">=</span> <span class="mf">0.02</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">multiplierForLongLived</span> <span class="o">=</span> <span class="mi">20</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">1024</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">1024</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">mbPerSec</span> <span class="o">=</span> <span class="mi">50</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">shortLivedMs</span> <span class="o">=</span> <span class="mi">100</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">nThreads</span> <span class="o">=</span> <span class="mi">8</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Executor</span> <span class="n">exec</span> <span class="o">=</span> <span class="nc">Executors</span><span class="o">.</span><span class="na">newFixedThreadPool</span><span class="o">(</span><span class="n">nThreads</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>다음 코드는 <code class="highlighter-rouge">main()</code> 및 여타 시작 / 매개변수 세팅 코드를 뺀 나머지 <code class="highlighter-rouge">ModelAllocator</code> 입니다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kd">final</span> <span class="kt">int</span> <span class="n">mainSleep</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="o">(</span><span class="mf">1000.0</span> <span class="o">/</span> <span class="n">mbPerSec</span><span class="o">);</span>
+
+        <span class="k">while</span> <span class="o">(!</span><span class="n">shutdown</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">mbPerSec</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+                <span class="nc">ModelObjectAllocation</span> <span class="n">to</span> <span class="o">=</span>
+                    <span class="k">new</span> <span class="nf">ModelObjectAllocation</span><span class="o">(</span><span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">,</span> <span class="n">lifetime</span><span class="o">());</span>
+                <span class="n">exec</span><span class="o">.</span><span class="na">execute</span><span class="o">(</span><span class="n">to</span><span class="o">);</span>
+                <span class="k">try</span> <span class="o">{</span>
+                    <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="n">mainSleep</span><span class="o">);</span>
+                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">ex</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">shutdown</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Simple function to model Weak Generational Hypothesis</span>
+    <span class="c1">// Returns the expected lifetime of an object - usually this</span>
+    <span class="c1">// is very short, but there is a small chance of an object</span>
+    <span class="c1">// being "long-lived"</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">lifetime</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="nc">Math</span><span class="o">.</span><span class="na">random</span><span class="o">()</span> <span class="o">&lt;</span> <span class="n">chanceOfLongLived</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">multiplierForLongLived</span> <span class="o">*</span> <span class="n">shortLivedMs</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="n">shortLivedMs</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>메인 실행기에 단순 목 객체를 붙여 어플리케이션의 객체 할당을 흉내 내보겠습니다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ModelObjectAllocation</span> <span class="kd">implements</span> <span class="nc">Runnable</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span><span class="o">[][]</span> <span class="n">allocated</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">lifeTime</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">ModelObjectAllocation</span><span class="o">(</span><span class="kd">final</span> <span class="kt">int</span> <span class="n">x</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">y</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">liveFor</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">allocated</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">x</span><span class="o">][</span><span class="n">y</span><span class="o">];</span>
+        <span class="n">lifeTime</span> <span class="o">=</span> <span class="n">liveFor</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="n">lifeTime</span><span class="o">);</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">()</span> <span class="o">+</span><span class="s">": "</span><span class="o">+</span> <span class="n">allocated</span><span class="o">.</span><span class="na">length</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">ex</span><span class="o">)</span> <span class="o">{</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>VisualVM 로 보면 메모리 사용 패턴이 단순 톱니형으로 표시됩니다. 힙을 효율적으로 사용하는 Java 어플리케이션에서 흔히 나타내는 패턴입니다.(<code class="highlighter-rouge">Example 10</code>)</p>
+
+<blockquote>
+  <p>Example 10 - Simple sawtooth</p>
+</blockquote>
+
+<p><img src="https://user-images.githubusercontent.com/44635266/75601658-a71c5180-5b00-11ea-9106-7b4d1fbb2724.png" alt="image" /></p>
+
+<p>일반적인 할당 패턴을 한 가지 더 살펴보며 할당 이야기를 마무리하겠습니다. 할당률은 실제로 아주 심하게 변하거나 갑자기 확 치솟기도합니다. 앞서 보았던 정상 상태의 어플리케이션에서 다음과 같은 지표를 얻었다고 합니다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"> </th>
+      <th style="text-align: center"> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">2 초 간 정상 상태 할당</td>
+      <td style="text-align: center">100 MB/s</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">1 초 간 할당를 급중</td>
+      <td style="text-align: center">1 GB/s</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">100 초 후 정상 상태로 돌아옴</td>
+      <td style="text-align: center">100 MB/s</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>처음 정상 상태로 2 초 동안 200 MB 의 객체가 에덴에 할당됐습니다. 장수 객체가 없다면 이 메모리에 있는 모든 객체의 수명은 100 ms 입니다. 그리고 할당률이 확 치솟아 불과 0.2 초 만에 200 MB 가 에덴에 추가 할당됩니다. 그 결과 나아가 100 ms 이하인 객체는 다 합쳐서 100 MB 입니다. 살아남은 객체 용량이 서바이버 공간보다 크기 때문에 JVM 은 어쩔 수 없이 바로 테뉴어드로 보냅니다.</p>
+
+<p>|GC0|@ 2.2 s|100 MB Eden -&gt; Tenured (100 MB)|
+|:–:|:–:|:–:|</p>
+
+<p>할당률이 가파르게 상승해 100 MB 의 객체가 살아남았지만, 이 모형에서 생존한 객체는 전원은 금세 죽은 객체가 되므로 테뉴어드 세대는 지저분해집니다. 이런 가비지는 풀 수집이 일어나기 전까지 회수되지 않습니다.</p>
+
+<p>몇 번 더 수집이 진행되면 패턴이 도드라집니다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"> </th>
+      <th style="text-align: center"> </th>
+      <th style="text-align: center"> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">GC1</td>
+      <td style="text-align: center">@ 2.602 s</td>
+      <td style="text-align: center">200 MB Eden -&gt; Tenured (300 MB)</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">GC2</td>
+      <td style="text-align: center">@ 3.004 s</td>
+      <td style="text-align: center">200 MB Eden -&gt; Tenured (500 MB)</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">GC3</td>
+      <td style="text-align: center">@ 7.006 s</td>
+      <td style="text-align: center">20 MB Eden -&gt; SS1 (20 MB) [+ Tenured (500 MB)]</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>이가비지 수집기는 일정한 주기마다 실행되는 게 아니라 필요에 따라 그때마다 실행됩니다. 할당률이 높을수록 GC 는 더 자주 발생합니다. 할당률이 너무 높으면 객체는 어쩔수 없이 테뉴어드로 곧장 승격됩니다.</p>
+
+<p>이 현상을 <strong>조기 승격(Premature Promotion)</strong> 이라 합니다. 가비지 수집에서 가장 중요한건 간접 효과이자, 많은 튜닝 활동의 출발점 중 하나입니다.</p>
+:ET

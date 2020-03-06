@@ -1,0 +1,22 @@
+I"�<p>회사에서 주로 사용하는 Database 가 PostgreSQL 이라 공부삼아 만들어봤습니다. 자료는 <a href="https://www.postgresql.org/docs/12/index.html">PostgresSQL 12 Documentation</a> 에서 가져왔습니다.</p>
+
+<p>일단 제 목표는 천천히 하루에 한 번 빠짐없이 공부를하는것입니다.</p>
+
+<ol>
+  <li>Getting Started</li>
+  <li>The SQL Language</li>
+  <li>Advanced Features</li>
+  <li>SQL Syntax</li>
+  <li>Data Definition</li>
+  <li>Data Manipulation</li>
+  <li>Queries</li>
+  <li>Data Types</li>
+  <li>Functions and Operators</li>
+  <li>Type Conversion</li>
+  <li>Indexes</li>
+  <li>Full Text Search</li>
+  <li>Concurrency Control</li>
+  <li>Performance Tips</li>
+  <li>Parallel Query</li>
+</ol>
+:ET

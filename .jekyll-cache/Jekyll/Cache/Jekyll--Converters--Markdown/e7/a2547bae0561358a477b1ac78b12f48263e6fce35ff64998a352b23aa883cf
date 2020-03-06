@@ -1,0 +1,45 @@
+I"�<ul class="toc__menu">
+  <li><a href="#settings">Settings</a>
+    <ul>
+      <li><a href="#hyperledger-indy---getting-started-환경-구성하기">Hyperledger Indy - Getting Started 환경 구성하기</a>
+        <ul>
+          <li><a href="#version">Version</a></li>
+          <li><a href="#1-vm-생성--재시작">1. VM 생성 / 재시작</a></li>
+          <li><a href="#2-vm-접속">2. VM 접속</a></li>
+          <li><a href="#3-vm-중지">3. VM 중지</a></li>
+          <li><a href="#4-vm-삭제">4. VM 삭제</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#handson">HandsOn</a>
+    <ul>
+      <li><a href="#1-vm-접속-실습파일-다운로드-및-적용">1. VM 접속 실습파일 다운로드 및 적용</a>
+        <ul>
+          <li><a href="#11-vm-접속">1.1 VM 접속</a></li>
+          <li><a href="#12-실습파일-다운로드-및-적용">1.2 실습파일 다운로드 및 적용</a></li>
+        </ul>
+      </li>
+      <li><a href="#2-getting-started-예제-구동">2. Getting Started 예제 구동</a>
+        <ul>
+          <li><a href="#21-ip-확인">2.1 IP 확인</a></li>
+          <li><a href="#22-docker-compose-구동">2.2 Docker Compose 구동</a></li>
+          <li><a href="#23-jupyter-notebook-구동">2.3 Jupyter Notebook 구동</a></li>
+        </ul>
+      </li>
+      <li><a href="#hyperledger-indy-getting-started">Hyperledger Indy Getting Started</a>
+        <ul>
+          <li><a href="#overview">Overview</a></li>
+          <li><a href="#1-초기화">1. 초기화</a></li>
+          <li><a href="#2-wallet-did-생">2. Wallet DID 생</a></li>
+          <li><a href="#3-credential-schema-생성---transcript-job-certificate-by-government">3. Credential Schema 생성 - Transcript, Job Certificate by Government</a></li>
+          <li><a href="#4-credential-definition-생성---faber--acme">4. Credential Definition 생성 - Faber / Acme</a></li>
+          <li><a href="#5-faber-college로-부터-transcript-발급for-alice">5. Faber College로 부터 Transcript 발급(for Alice)</a></li>
+          <li><a href="#6-acme-corp-입사-지원for-alice">6. Acme Corp 입사 지원(for Alice)</a></li>
+          <li><a href="#7-종료">7. 종료</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+:ET

@@ -1,0 +1,21 @@
+I"é<ul class="toc__menu">
+  <li><a href="#settings">Settings</a></li>
+  <li><a href="#handson">HandsOn</a>
+    <ul>
+      <li><a href="#bring-org3-into-the-channel-manually">Bring Org3 into the Channel Manually</a></li>
+      <li><a href="#generate-the-org3-crypto-material">Generate the Org3 Crypto Material</a></li>
+      <li><a href="#prepare-the-cli-environment">Prepare the CLI Environment</a></li>
+      <li><a href="#fetch-the-configuration">Fetch the Configuration</a></li>
+      <li><a href="#convert-the-configuration-to-json-and-trim-it-down">Convert the Configuration to JSON and Trim It Down</a></li>
+      <li><a href="#add-the-org3-crypto-material">Add the Org3 Crypto Material</a></li>
+      <li><a href="#sign-and-submit-the-config-update">Sign and Submit the Config Update</a></li>
+      <li><a href="#join-org3-to-the-channel">Join Org3 to the Channel</a></li>
+      <li><a href="#setting-environments-variables">Setting Environments Variables</a></li>
+      <li><a href="#fetch--join-channel">Fetch &amp; Join Channel</a></li>
+      <li><a href="#install-chaincode">Install Chaincode</a></li>
+      <li><a href="#upgrade-chaincode">Upgrade Chaincode</a></li>
+      <li><a href="#invoke-query">Invoke, Query</a></li>
+    </ul>
+  </li>
+</ul>
+:ET

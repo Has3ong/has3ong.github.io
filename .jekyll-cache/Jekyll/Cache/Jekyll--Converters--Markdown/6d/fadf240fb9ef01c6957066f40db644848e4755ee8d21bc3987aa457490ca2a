@@ -1,0 +1,19 @@
+I"Â<ul class="toc__menu">
+  <li><a href="#wallet-technology-overview">Wallet Technology Overview</a></li>
+  <li><a href="#nondeterministic-random-wallets">Nondeterministic (Random) Wallets</a>
+    <ul>
+      <li><a href="#deterministic-seeded-wallets">Deterministic (Seeded) Wallets</a></li>
+      <li><a href="#hierarchical-deterministic-wallets-bip-32bip-44">Hierarchical Deterministic Wallets (BIP-32/BIP-44)</a></li>
+      <li><a href="#seeds-and-mnemonic-codes-bip-39">Seeds and Mnemonic Codes (BIP-39)</a></li>
+    </ul>
+  </li>
+  <li><a href="#wallet-best-practices">Wallet Best Practices</a>
+    <ul>
+      <li><a href="#mnemonic-code-words-bip-39">Mnemonic Code Words (BIP-39)</a></li>
+      <li><a href="#generating-mnemonic-words">Generating mnemonic words</a></li>
+      <li><a href="#from-mnemonic-to-seed">From mnemonic to seed</a></li>
+      <li><a href="#optional-passphrase-in-bip-39">Optional passphrase in BIP-39</a></li>
+    </ul>
+  </li>
+</ul>
+:ET

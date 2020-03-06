@@ -1,0 +1,12 @@
+I"�<ul class="toc__menu">
+  <li><a href="#pypy">PyPy</a></li>
+  <li><a href="#cpython">CPython</a></li>
+  <li><a href="#pypy-vs-cpython">PyPy vs CPython</a></li>
+  <li><a href="#jit-just-in-time">JIT (Just-In-Time)</a>
+    <ul>
+      <li><a href="#인터프리터-방식과-비교">인터프리터 방식과 비교</a></li>
+    </ul>
+  </li>
+  <li><a href="#rpythonrestricted-python">RPython(Restricted Python)</a></li>
+</ul>
+:ET

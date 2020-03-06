@@ -1,0 +1,9 @@
+I"q<ul class="toc__menu">
+  <li><a href="#the-kubernetes-api">The Kubernetes API</a>
+    <ul>
+      <li><a href="#basic-objects-pods-replicasets-and-services">Basic Objects: Pods, ReplicaSets, and Services</a></li>
+      <li><a href="#storage-persistent-volumes-configmaps-and-secrets">Storage: Persistent Volumes, ConfigMaps, and Secrets</a></li>
+    </ul>
+  </li>
+</ul>
+:ET

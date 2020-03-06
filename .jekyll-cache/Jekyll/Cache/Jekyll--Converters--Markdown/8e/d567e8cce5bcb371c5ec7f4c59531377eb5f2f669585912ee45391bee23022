@@ -1,0 +1,701 @@
+I"`<p><em>이 포스트는 <a href="">Learning Scala</a> 를 바탕으로 작성하였습니다.</em></p>
+
+<p>Scala 는 JVM 언어이므로 Scala 코드에서 Java 컬렉션 라이브러리 전체에 접근하고 사용할 수 있습니다.</p>
+
+<p>또한, Scala 도 Java 와 마찬가지로 <em>high-performance, object-oriented, type-parameterized</em> 의 컬렉션 프레임워크를 가지고 있습니다. 하지만 Scala 의 컬렉션은 <code class="highlighter-rouge">map</code>, <code class="highlighter-rouge">filter</code>, <code class="highlighter-rouge">reduce</code> 와 같이 짧고 표현력 있는 표현식으로 데이터를 관리하고 처리하는 고차 연산도 가지고 있습니다. 또한, 가변적 컬렉션 타입 계층구조와 불변의 컬렉션 타입 계층구조를 별개로 가지고 있어서 불변의 데이터와 가변적인 데이터 사이의 전환을 쉽게 만들어줍니다.</p>
+
+<h2 id="lists-sets-and-maps">Lists, Sets, and Maps</h2>
+
+<p>불변의 단방향 연결 리스트인 List 를 알아보겟습니다. 리스트는 함수를 호출하여 생성할 수 있습니다. 호출 시 그 리스트에 포함될 내용을 쉼표로 구분된 매개변수 형태로 전달합니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">numbers</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="mi">32</span><span class="o">,</span> <span class="mi">95</span><span class="o">,</span> <span class="mi">24</span><span class="o">,</span> <span class="mi">21</span><span class="o">,</span> <span class="mi">17</span><span class="o">)</span>
+<span class="n">numbers</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="mi">32</span><span class="o">,</span> <span class="mi">95</span><span class="o">,</span> <span class="mi">24</span><span class="o">,</span> <span class="mi">21</span><span class="o">,</span> <span class="mi">17</span><span class="o">)</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">colors</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="s">"red"</span><span class="o">,</span> <span class="s">"green"</span><span class="o">,</span> <span class="s">"blue"</span><span class="o">)</span>
+<span class="n">colors</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="n">red</span><span class="o">,</span> <span class="n">green</span><span class="o">,</span> <span class="n">blue</span><span class="o">)</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="nf">println</span><span class="o">(</span><span class="n">s</span><span class="s">"I have ${colors.size} colors: $colors"</span><span class="o">)</span>
+<span class="n">I</span> <span class="n">have</span> <span class="mi">3</span> <span class="n">colors</span><span class="k">:</span> <span class="kt">List</span><span class="o">(</span><span class="kt">red</span><span class="o">,</span> <span class="kt">green</span><span class="o">,</span> <span class="n">blue</span><span class="o">)</span>
+</code></pre></div></div>
+
+<p>모든 컬렉션과 String 인스턴스에서 사용할 수 있는, <code class="highlighter-rouge">size</code> 메소드는 컬렉션에 포함된 항목들의 개수를 반환합니다. 컬렉션 또한 타입 - 매개변수화 되어 초기화할 때 사용했던 타입을 기억하고 고수합니다. REPL 은 타입 - 매개변수화된 컬렉션을 <code class="highlighter-rouge">List[Int]</code> 와 <code class="highlighter-rouge">List[String]</code> 으로 표시됩니다.</p>
+
+<p>List 스타일의 <code class="highlighter-rouge">head()</code> 와 <code class="highlighter-rouge">tail()</code> 메소드를 사용하여 리스트의 첫 번째 요소와 뒤쪽 요소에 각각 접근해보겟습니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">colors</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="s">"red"</span><span class="o">,</span> <span class="s">"green"</span><span class="o">,</span> <span class="s">"blue"</span><span class="o">)</span>
+<span class="n">colors</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="n">red</span><span class="o">,</span> <span class="n">green</span><span class="o">,</span> <span class="n">blue</span><span class="o">)</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="nv">colors</span><span class="o">.</span><span class="py">head</span>
+<span class="n">res0</span><span class="k">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="n">red</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="nv">colors</span><span class="o">.</span><span class="py">tail</span>
+<span class="n">res1</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="n">green</span><span class="o">,</span> <span class="n">blue</span><span class="o">)</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="nf">colors</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span>
+<span class="n">res2</span><span class="k">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="n">green</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="nf">colors</span><span class="o">(</span><span class="mi">2</span><span class="o">)</span>
+<span class="n">res3</span><span class="k">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="n">blue</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">for</code> 루프로 리스트를 반복해서 접근할 수 있습니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">numbers</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="mi">32</span><span class="o">,</span> <span class="mi">95</span><span class="o">,</span> <span class="mi">24</span><span class="o">,</span> <span class="mi">21</span><span class="o">,</span> <span class="mi">17</span><span class="o">)</span>
+<span class="n">numbers</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="mi">32</span><span class="o">,</span> <span class="mi">95</span><span class="o">,</span> <span class="mi">24</span><span class="o">,</span> <span class="mi">21</span><span class="o">,</span> <span class="mi">17</span><span class="o">)</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">var</span> <span class="n">total</span> <span class="k">=</span> <span class="mi">0</span><span class="o">;</span> <span class="nf">for</span> <span class="o">(</span><span class="n">i</span> <span class="k">&lt;-</span> <span class="n">numbers</span><span class="o">)</span> <span class="o">{</span> <span class="n">total</span> <span class="o">+=</span> <span class="n">i</span> <span class="o">}</span>
+<span class="n">total</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">189</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">colors</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="s">"red"</span><span class="o">,</span> <span class="s">"green"</span><span class="o">,</span> <span class="s">"blue"</span><span class="o">)</span>
+<span class="n">colors</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="n">red</span><span class="o">,</span> <span class="n">green</span><span class="o">,</span> <span class="n">blue</span><span class="o">)</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="nf">for</span> <span class="o">(</span><span class="n">c</span> <span class="k">&lt;-</span> <span class="n">colors</span><span class="o">)</span> <span class="o">{</span> <span class="nf">println</span><span class="o">(</span><span class="n">c</span><span class="o">)</span> <span class="o">}</span>
+<span class="n">red</span>
+<span class="n">green</span>
+<span class="n">blue</span>
+</code></pre></div></div>
+
+<p>List 와 컬렉션에서 사용할 수 있는 고차 함수인 <code class="highlighter-rouge">foreach(), map(), reduce()</code> 를 사용해보겠습니다. 이 함수 리터럴에는 괄호로 묶인 입력 매개변수의 함수 반복문이 포함되어있습니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">colors</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="s">"red"</span><span class="o">,</span> <span class="s">"green"</span><span class="o">,</span> <span class="s">"blue"</span><span class="o">)</span>
+<span class="n">colors</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="n">red</span><span class="o">,</span> <span class="n">green</span><span class="o">,</span> <span class="n">blue</span><span class="o">)</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="nv">colors</span><span class="o">.</span><span class="py">foreach</span><span class="o">(</span> <span class="o">(</span><span class="n">c</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="nf">println</span><span class="o">(</span><span class="n">c</span><span class="o">)</span> <span class="o">)</span>
+<span class="n">red</span>
+<span class="n">green</span>
+<span class="n">blue</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">sizes</span> <span class="k">=</span> <span class="nv">colors</span><span class="o">.</span><span class="py">map</span><span class="o">(</span> <span class="o">(</span><span class="n">c</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="nv">c</span><span class="o">.</span><span class="py">size</span> <span class="o">)</span>
+<span class="n">sizes</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">4</span><span class="o">)</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">numbers</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="mi">32</span><span class="o">,</span> <span class="mi">95</span><span class="o">,</span> <span class="mi">24</span><span class="o">,</span> <span class="mi">21</span><span class="o">,</span> <span class="mi">17</span><span class="o">)</span>
+<span class="n">numbers</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="mi">32</span><span class="o">,</span> <span class="mi">95</span><span class="o">,</span> <span class="mi">24</span><span class="o">,</span> <span class="mi">21</span><span class="o">,</span> <span class="mi">17</span><span class="o">)</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">total</span> <span class="k">=</span> <span class="nv">numbers</span><span class="o">.</span><span class="py">reduce</span><span class="o">(</span> <span class="o">(</span><span class="n">a</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">b</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">)</span>
+<span class="n">total</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">189</span>
+</code></pre></div></div>
+
+<p>Set 은 유일한 요소들로 이루어진 순서가 없는 불변의 컬렉션이지만, List 와 유사하게 동작합니다. 다음은 중복된 항목들로 Set 을 생성하는 예제입니다. Iterable 의 또 다른 서브타입으로 Set 인스턴스는 List 와 마찬가지로 동일한 연산을 지원합니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">unique</span> <span class="k">=</span> <span class="nc">Set</span><span class="o">(</span><span class="mi">10</span><span class="o">,</span> <span class="mi">20</span><span class="o">,</span> <span class="mi">30</span><span class="o">,</span> <span class="mi">20</span><span class="o">,</span> <span class="mi">20</span><span class="o">,</span> <span class="mi">10</span><span class="o">)</span>
+<span class="n">unique</span><span class="k">:</span> <span class="kt">scala.collection.immutable.Set</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Set</span><span class="o">(</span><span class="mi">10</span><span class="o">,</span> <span class="mi">20</span><span class="o">,</span> <span class="mi">30</span><span class="o">)</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">sum</span> <span class="k">=</span> <span class="nv">unique</span><span class="o">.</span><span class="py">reduce</span><span class="o">(</span> <span class="o">(</span><span class="n">a</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">b</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">)</span>
+<span class="n">sum</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">60</span>
+</code></pre></div></div>
+
+<p>Map 은 불변의 Key-Value 의 저장소로, 다른 언어에서는 HaspMap, Dictionary, Associatve Array 로 알려져 있습니다. Map 에 주어진 유일한 키로 저장된 값은 그 키를 이용하여 추출할 수 있습니다. Key 와 Value 는 타입 매개변수화되어 문자열을 정수에 매핑할 수 있습니다.</p>
+
+<p>Map 은 <code class="highlighter-rouge">-&gt;</code> 관계 연산자를 사용하여 기술할 수 있습니다. Map 을 활용한 예제를 보겠습니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">colorMap</span> <span class="k">=</span> <span class="nc">Map</span><span class="o">(</span><span class="s">"red"</span> <span class="o">-&gt;</span> <span class="mh">0xFF0000</span><span class="o">,</span> <span class="s">"green"</span> <span class="o">-&gt;</span> <span class="mh">0xFF00</span><span class="o">,</span>
+ <span class="s">"blue"</span> <span class="o">-&gt;</span> <span class="mh">0xFF</span><span class="o">)</span>
+<span class="n">colorMap</span><span class="k">:</span> <span class="kt">scala.collection.immutable.Map</span><span class="o">[</span><span class="kt">String</span>,<span class="kt">Int</span><span class="o">]</span> <span class="k">=</span>
+ <span class="nc">Map</span><span class="o">(</span><span class="n">red</span> <span class="o">-&gt;</span> <span class="mi">16711680</span><span class="o">,</span> <span class="n">green</span> <span class="o">-&gt;</span> <span class="mi">65280</span><span class="o">,</span> <span class="n">blue</span> <span class="o">-&gt;</span> <span class="mi">255</span><span class="o">)</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">redRGB</span> <span class="k">=</span> <span class="nf">colorMap</span><span class="o">(</span><span class="s">"red"</span><span class="o">)</span>
+<span class="n">redRGB</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">16711680</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">cyanRGB</span> <span class="k">=</span> <span class="nf">colorMap</span><span class="o">(</span><span class="s">"green"</span><span class="o">)</span> <span class="o">|</span> <span class="nf">colorMap</span><span class="o">(</span><span class="s">"blue"</span><span class="o">)</span>
+<span class="n">cyanRGB</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">65535</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">hasWhite</span> <span class="k">=</span> <span class="nv">colorMap</span><span class="o">.</span><span class="py">contains</span><span class="o">(</span><span class="s">"white"</span><span class="o">)</span>
+<span class="n">hasWhite</span><span class="k">:</span> <span class="kt">Boolean</span> <span class="o">=</span> <span class="kc">false</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="nf">for</span> <span class="o">(</span><span class="n">pairs</span> <span class="k">&lt;-</span> <span class="n">colorMap</span><span class="o">)</span> <span class="o">{</span> <span class="nf">println</span><span class="o">(</span><span class="n">pairs</span><span class="o">)</span> <span class="o">}</span>
+<span class="o">(</span><span class="n">red</span><span class="o">,</span><span class="mi">16711680</span><span class="o">)</span>
+<span class="o">(</span><span class="n">green</span><span class="o">,</span><span class="mi">65280</span><span class="o">)</span>
+<span class="o">(</span><span class="n">blue</span><span class="o">,</span><span class="mi">255</span><span class="o">)</span>
+</code></pre></div></div>
+
+<h2 id="whats-in-a-list">What’s in a List?</h2>
+
+<p>List 나 다른 타입의 컬렉셔능ㄹ 생성하는 표준 방식은 그 타입을 원하는 내용과 함께 호출하는것입니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">colors</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="s">"red"</span><span class="o">,</span> <span class="s">"green"</span><span class="o">,</span> <span class="s">"blue"</span><span class="o">)</span>
+<span class="n">colors</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="n">red</span><span class="o">,</span> <span class="n">green</span><span class="o">,</span> <span class="n">blue</span><span class="o">)</span>
+</code></pre></div></div>
+
+<p>컬렉션에는 지금까지 사용했던 문자열과 숫자 대신 어떤 타입의 값도 저장할 수 있습니다. 예를 들어 컬렉션의 컬렉션을 만들 수 있습니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">oddsAndEvents</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="nc">List</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">5</span><span class="o">),</span> <span class="nc">List</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">6</span><span class="o">))</span>
+<span class="n">oddsAndEvents</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">]]</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="nc">List</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">5</span><span class="o">),</span> <span class="nc">List</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">6</span><span class="o">))</span>
+</code></pre></div></div>
+
+<p>또는 2 개의 항목으로 이루어진 튜플의 컬렉션을 가질 수 있어서 Map 과 유사하게 생긴 List 를 생성할 수 있습니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">keyValues</span> <span class="k">=</span> <span class="nc">List</span><span class="o">((</span><span class="sc">'A'</span><span class="o">,</span> <span class="mi">65</span><span class="o">),</span> <span class="o">(</span><span class="sc">'B'</span><span class="o">,</span><span class="mi">66</span><span class="o">),</span> <span class="o">(</span><span class="sc">'C'</span><span class="o">,</span><span class="mi">67</span><span class="o">))</span>
+<span class="n">keyValues</span><span class="k">:</span> <span class="kt">List</span><span class="o">[(</span><span class="kt">Char</span>, <span class="kt">Int</span><span class="o">)]</span> <span class="k">=</span> <span class="nc">List</span><span class="o">((</span><span class="n">A</span><span class="o">,</span><span class="mi">65</span><span class="o">),</span> <span class="o">(</span><span class="n">B</span><span class="o">,</span><span class="mi">66</span><span class="o">),</span> <span class="o">(</span><span class="n">C</span><span class="o">,</span><span class="mi">67</span><span class="o">))</span>
+</code></pre></div></div>
+
+<p>Scala 의 단일 구성 요소에는 그 요소를 가리키는 인덱스 번호와 함께 List 를 함수로 호출하여 접근할 수 있습니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">primes</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">11</span><span class="o">,</span> <span class="mi">13</span><span class="o">)</span>
+<span class="n">primes</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">11</span><span class="o">,</span> <span class="mi">13</span><span class="o">)</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">first</span> <span class="k">=</span> <span class="nf">primes</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span>
+<span class="n">first</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">fourth</span> <span class="k">=</span> <span class="nf">primes</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span>
+<span class="n">fourth</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">7</span>
+</code></pre></div></div>
+
+<p>List 를 List 의 첫 번째 항목 <strong>헤드(Head)</strong> 와 나머지 항목들인 <strong>테일(Tail)</strong> 로 분해할 수 있습니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">first</span> <span class="k">=</span> <span class="nv">primes</span><span class="o">.</span><span class="py">head</span>
+<span class="n">first</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">remaining</span> <span class="k">=</span> <span class="nv">primes</span><span class="o">.</span><span class="py">tail</span>
+<span class="n">remaining</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">11</span><span class="o">,</span> <span class="mi">13</span><span class="o">)</span>
+</code></pre></div></div>
+
+<p>List 는 불변의 재귀적인 데이터 구조이므로 List 의 각 요소는 자신만의 헤드와 점진적으로 더 짧아지는 테일을 가지고 있습니다. 이를 사용하여 헤드로 시작하여 테일들이 지나가는 길을 만들면서 List Iterator 를 만들 수 있습니다.</p>
+
+<p>반복자를 만들 때 어려운 부분은 List 의 마지막에 언제 도착하는지 알아내는것입니다. List 에는 순회하지 않아도 되는 <code class="highlighter-rouge">isEmpty</code> 메소드가 있습니다.</p>
+
+<p><code class="highlighter-rouge">isEmpty</code> 를 이용한 <code class="highlighter-rouge">while</code> 루프를 구현해보겠습니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">primes</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">11</span><span class="o">,</span> <span class="mi">13</span><span class="o">)</span>
+<span class="n">primes</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">11</span><span class="o">,</span> <span class="mi">13</span><span class="o">)</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">var</span> <span class="n">i</span> <span class="k">=</span> <span class="n">primes</span>
+<span class="n">i</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">11</span><span class="o">,</span> <span class="mi">13</span><span class="o">)</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="nf">while</span><span class="o">(!</span> <span class="nv">i</span><span class="o">.</span><span class="py">isEmpty</span><span class="o">)</span> <span class="o">{</span> <span class="nf">print</span><span class="o">(</span><span class="nv">i</span><span class="o">.</span><span class="py">head</span> <span class="o">+</span> <span class="s">", "</span><span class="o">);</span> <span class="n">i</span> <span class="k">=</span> <span class="nv">i</span><span class="o">.</span><span class="py">tail</span> <span class="o">}</span>
+<span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">11</span><span class="o">,</span> <span class="mi">13</span><span class="o">,</span>
+</code></pre></div></div>
+
+<p>또는 다음과 같이 가변적인 변수를 사용하지 않고 재귀적 형태로 List 를 순회하는 함수를 만들 수 있습니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">primes</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">11</span><span class="o">,</span> <span class="mi">13</span><span class="o">)</span>
+<span class="n">primes</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">11</span><span class="o">,</span> <span class="mi">13</span><span class="o">)</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">def</span> <span class="nf">visit</span><span class="o">(</span><span class="n">i</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">])</span> <span class="o">{</span> <span class="nf">if</span> <span class="o">(</span><span class="nv">i</span><span class="o">.</span><span class="py">size</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span> <span class="nf">print</span><span class="o">(</span><span class="nv">i</span><span class="o">.</span><span class="py">head</span> <span class="o">+</span> <span class="s">", "</span><span class="o">);</span>
+ <span class="nf">visit</span><span class="o">(</span><span class="nv">i</span><span class="o">.</span><span class="py">tail</span><span class="o">)</span> <span class="o">}</span> <span class="o">}</span>
+<span class="n">visit</span><span class="k">:</span> <span class="o">(</span><span class="kt">i:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">])</span><span class="nc">Unit</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="nf">visit</span><span class="o">(</span><span class="n">primes</span><span class="o">)</span>
+<span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">11</span><span class="o">,</span> <span class="mi">13</span><span class="o">,</span>
+</code></pre></div></div>
+
+<p>이 재귀적 함수는 List 에 얼마나 많은 메소드들이 구현되어 있는지를 대표적으로 보여줍니다.</p>
+
+<p>List 의 마지막인지를 검사하기위해 <code class="highlighter-rouge">isEmpty</code> 를 호출하는것도 효율적이지만, 다른 방법도 있습니다. 모든 List 는 종점으로 <code class="highlighter-rouge">Nil</code> 의 인스턴스로 끝나기 때문에 반복자는 현재의 항목과 <code class="highlighter-rouge">Nil</code> 을 비교하여 List 의 끝을 확인할 수 있습니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">primes</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">11</span><span class="o">,</span> <span class="mi">13</span><span class="o">)</span>
+<span class="n">primes</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">11</span><span class="o">,</span> <span class="mi">13</span><span class="o">)</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">var</span> <span class="n">i</span> <span class="k">=</span> <span class="n">primes</span>
+<span class="n">i</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">11</span><span class="o">,</span> <span class="mi">13</span><span class="o">)</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="nf">while</span><span class="o">(</span><span class="n">i</span> <span class="o">!=</span> <span class="nc">Nil</span><span class="o">)</span> <span class="o">{</span> <span class="nf">print</span><span class="o">(</span><span class="nv">i</span><span class="o">.</span><span class="py">head</span> <span class="o">+</span> <span class="s">", "</span><span class="o">);</span> <span class="n">i</span> <span class="k">=</span> <span class="nv">i</span><span class="o">.</span><span class="py">tail</span> <span class="o">}</span>
+<span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">11</span><span class="o">,</span> <span class="mi">13</span><span class="o">,</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">Nil</code> 은 근본적으로 <code class="highlighter-rouge">List[Nothing]</code> 의 싱글턴 인스턴스입니다. 타입 <code class="highlighter-rouge">Nothing</code> 은 다른 모든 Scala 타입의 서브타입으로 인스턴스화할 수 없습니다. 따라서 <code class="highlighter-rouge">Nothing</code> 타입의 List 는 모든 타입의 리스트와 호환되어, 종점으로 사용할 수 있습니다.</p>
+
+<p>새로운 빈 List 를 생성하면 실제로는 새로 생긴 인스턴스 대신 <code class="highlighter-rouge">Nil</code> 을 반환합니다. 단일 항목을 가지는 새로운 리스트를 생성하는 것은 자신의 테일로 <code class="highlighter-rouge">Nil</code> 을 가리키는 단일 리스트 항목을 생성합니다.</p>
+
+<p>몇 가지 예제를 통해 알아보겠습니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">l</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nc">List</span><span class="o">()</span>
+<span class="n">l</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nc">List</span><span class="o">()</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="n">l</span> <span class="o">==</span> <span class="nc">Nil</span>
+<span class="n">res0</span><span class="k">:</span> <span class="kt">Boolean</span> <span class="o">=</span> <span class="kc">true</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">m</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="s">"a"</span><span class="o">)</span>
+<span class="n">m</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="n">a</span><span class="o">)</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="nv">m</span><span class="o">.</span><span class="py">head</span>
+<span class="n">res1</span><span class="k">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="n">a</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="nv">m</span><span class="o">.</span><span class="py">tail</span> <span class="o">==</span> <span class="nc">Nil</span>
+<span class="n">res2</span><span class="k">:</span> <span class="kt">Boolean</span> <span class="o">=</span> <span class="kc">true</span>
+</code></pre></div></div>
+
+<p>데이터 타입과 상관없이 List 가 언제나 <code class="highlighter-rouge">Nil</code> 로 끝나는것을 확인할 수 있습니다.</p>
+
+<h3 id="the-cons-operator">The Cons Operator</h3>
+
+<p>List 를 생성하는 다른 방법은 <code class="highlighter-rouge">Nil</code> 관계를 이용하는것입니다. List 를 인정하는 또 다른 의미로, Scala 는 List 를 만들기 위해 <strong>생성(Cons,Construct)</strong> 연산자 사용을 지원합니다. <code class="highlighter-rouge">Nil</code> 기반으로 항목들을 결합하기 위해 <em>오른쪽-결합형(Right-Associative)</em> 생성 연산자 <code class="highlighter-rouge">::</code> 를 사용하여 리스트를 만들 수 있습니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">numbers</span> <span class="k">=</span> <span class="mi">1</span> <span class="o">::</span> <span class="mi">2</span> <span class="o">::</span> <span class="mi">3</span> <span class="o">::</span> <span class="nc">Nil</span>
+<span class="n">numbers</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">)</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">::</code> 는 단순히 List 에서 제공하는 메소드라는 점을 기억하면됩니다. 이 메소드는 새로운 List 의 헤드가 될 단일 값을 취하며, 그 테일은 <code class="highlighter-rouge">::</code> 가 호출된 List 를 가리킵니다. 생성 연산자에 전형적인 점 표기법도 이용할 수 있습니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">first</span> <span class="k">=</span> <span class="nc">Nil</span><span class="o">.::(</span><span class="mi">1</span><span class="o">)</span>
+<span class="n">first</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="nv">first</span><span class="o">.</span><span class="py">tail</span> <span class="o">==</span> <span class="nc">Nil</span>
+<span class="n">res3</span><span class="k">:</span> <span class="kt">Boolean</span> <span class="o">=</span> <span class="kc">true</span>
+</code></pre></div></div>
+
+<p>기존 리스트의 앞에 값을 추가하여 새로운 리스트를 만들기 위해 연산자를 사용해보겠습니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">second</span> <span class="k">=</span> <span class="mi">2</span> <span class="o">::</span> <span class="n">first</span>
+<span class="n">second</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">1</span><span class="o">)</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="nv">second</span><span class="o">.</span><span class="py">tail</span> <span class="o">==</span> <span class="n">first</span>
+<span class="n">res4</span><span class="k">:</span> <span class="kt">Boolean</span> <span class="o">=</span> <span class="kc">true</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">second</code> List 가 <code class="highlighter-rouge">first</code> List 를 포함하지만 이 둘 모두 독자적으로 사용할 수 있는 유효한 List 입니다. 하나의 값을 다른 값에 추가하여 하나의 List 를 만드는 이 예제는 Scala 의 불변의 List 가 가지는 재귀적이며 재사용 가능한 특성을 보여줍니다.</p>
+
+<h2 id="list-arithmetic">List Arithmetic</h2>
+
+<p>List 의 기본 산술 연산에 초점을 맞춰보겠습니다. 아래 표는 List 에서 사용하는 산술 연산자입니다. 전체 메소드 목록을 보려면 <a href="https://www.scala-lang.org/api/current/scala/collection/immutable/List.html">Scala 공식 문서</a> 를 참조하시면 됩니다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Name</th>
+      <th style="text-align: left">Example</th>
+      <th style="text-align: left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">::</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">1 :: 2 :: Nil</code></td>
+      <td style="text-align: left">List 에 개별 요소를 덧붙임, 오른쪽-결합형 연산자</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">:::</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">List(1, 2) ||| List(2, 3)</code></td>
+      <td style="text-align: left">이 List 앞에 다른 리스트를 추가함, 오른쪽 - 결합형 연산자</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">++</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">List(1, 2) ++ Set(3, 4, 3)</code></td>
+      <td style="text-align: left">이 List 에 다른 컬렉션을 덧붙임</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">==</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">List(1, 2) == List(1, 2)</code></td>
+      <td style="text-align: left">두 컬렉션의 타입과 내용을 비교</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">distinct</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">List(3, 5, 4, 3, 4).distinct</code></td>
+      <td style="text-align: left">중복 요소가 없는 List 버전을 반환함</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">drop</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">List(1, 2, 3, 4) drop 2</code></td>
+      <td style="text-align: left">List 의 첫 번째 n 개 요소를 뺌</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">filter</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">List(23, 8, 14, 21) filter ( _ &gt; 18)</code></td>
+      <td style="text-align: left">참 / 거짓 함수를 통과한 List 의 요소를 반환</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">flatten</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">List(List(1, 2), List(3, 4)).flatten</code></td>
+      <td style="text-align: left">List 의 List 구조를 그 요소들을 모두 포함하는 단일 리스트로 전환함</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">partition</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">List(1, 2, 3, 4, 5) partition (_ &lt; 3)</code></td>
+      <td style="text-align: left">List 의 요스들을 참 / 거짓 함수의 결과에 따라 분류하여 2 개의 List 를 포함하는 Tuple 로 만듬</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">reverse</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">List(1, 2, 3).reverse</code></td>
+      <td style="text-align: left">List 요소들의 순서를 거꾸로 함</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">slice</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">List(2, 3, 5, 7) slice (1, 3)</code></td>
+      <td style="text-align: left">첫 번째 인덱스부터 두 번재 인덱스 -1 까지 해당하는 부분을 반환</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">sortBy</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">List("apple", "to") sortBy (_.size)</code></td>
+      <td style="text-align: left">주어진 함수로부터 반환된 값으로 List 순서를 정렬</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">sorted</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">List("apple", "to").sorted</code></td>
+      <td style="text-align: left">핵심 Scala 타입의 List 를 자연값 기준으로 정렬</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">splitAt</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">List(2, 3, 5, 7) splitAt 2</code></td>
+      <td style="text-align: left">List 요소들을 주어진 인덱스의 앞에 위치하는지 뒤에 위치하는지에 따라 두 List 의 Tuple 로 반환</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">take</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">List(2, 3, 5, 7, 11, 13) take 3</code></td>
+      <td style="text-align: left">List 첫 번째 n 개의 요소들을 추출</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">zip</code></td>
+      <td style="text-align: left">`List(1, 2) zip List(“a”, “b”)</td>
+      <td style="text-align: left">두 List 를 각 인덱스에 해당하는 요소들기리 구성된 Tuple 의 List 로 결합</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>위에서 알아본 함수 중 고차 연산 3 가지 예제를 살펴보겠습니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">f</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="mi">23</span><span class="o">,</span> <span class="mi">8</span><span class="o">,</span> <span class="mi">14</span><span class="o">,</span> <span class="mi">21</span><span class="o">)</span> <span class="nf">filter</span> <span class="o">(</span><span class="k">_</span> <span class="o">&gt;</span> <span class="mi">18</span><span class="o">)</span>
+<span class="n">f</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="mi">23</span><span class="o">,</span> <span class="mi">21</span><span class="o">)</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">p</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">)</span> <span class="nf">partition</span> <span class="o">(</span><span class="k">_</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="o">)</span>
+<span class="n">p</span><span class="k">:</span> <span class="o">(</span><span class="kt">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">],</span> <span class="nc">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">])</span> <span class="k">=</span> <span class="o">(</span><span class="nc">List</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">),</span><span class="nc">List</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">))</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">s</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="s">"apple"</span><span class="o">,</span> <span class="s">"to"</span><span class="o">)</span> <span class="nf">sortBy</span> <span class="o">(</span><span class="nv">_</span><span class="o">.</span><span class="py">size</span><span class="o">)</span>
+<span class="n">s</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="n">to</span><span class="o">,</span> <span class="n">apple</span><span class="o">)</span>
+</code></pre></div></div>
+
+<h2 id="mapping-lists">Mapping Lists</h2>
+
+<p>Map 메소드는 함수를 취하여 각 함수를 리스트의 모든 요소들에 적용하고, 그 결과를 새로운 리스트에 수집합니다. 한 리스트의 각 항목을 다른 List 에 매핑하며, 다른 List 는 첫 번째 List 와 같은 크기에 다른 데이터 또는 요소 타입을 가집니다. 아래 표는 Scala Lis 에서 사용할 수 있는 map 메소드 중 일부입니다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Name</th>
+      <th style="text-align: left">Example</th>
+      <th style="text-align: left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">collect</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">List(0, 1, 0) collect {case 1 =&gt; "ok"}</code></td>
+      <td style="text-align: left">각 요소를 부분 함수를 사용하여 변환하고, 해당 함수를 적용할 수 있는 요소를 유지함</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">flatMap</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">List("milk, tea") flatMap (_.splut(','))</code></td>
+      <td style="text-align: left">주어진 함수를 이용하여 각 요소를 변환하고, 그 결과 List 를 이 List 에 평면화한다.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">map</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">List("milk", "tea") map (_.toUpperCase)</code></td>
+      <td style="text-align: left">주어진 함수를 이용하여 각 요소를 변환함</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>List-Mapping 연산자가 REPL 에서 어떻게 작동하는지 알아보겠습니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="nc">List</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">0</span><span class="o">)</span> <span class="n">collect</span> <span class="o">{</span><span class="k">case</span> <span class="mi">1</span> <span class="k">=&gt;</span> <span class="s">"ok"</span><span class="o">}</span>
+<span class="n">res0</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="n">ok</span><span class="o">)</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="nc">List</span><span class="o">(</span><span class="s">"milk,tea"</span><span class="o">)</span> <span class="nf">flatMap</span> <span class="o">(</span><span class="nv">_</span><span class="o">.</span><span class="py">split</span><span class="o">(</span><span class="sc">','</span><span class="o">))</span>
+<span class="n">res1</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="n">milk</span><span class="o">,</span> <span class="n">tea</span><span class="o">)</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="nc">List</span><span class="o">(</span><span class="s">"milk"</span><span class="o">,</span><span class="s">"tea"</span><span class="o">)</span> <span class="nf">map</span> <span class="o">(</span><span class="nv">_</span><span class="o">.</span><span class="py">toUpperCase</span><span class="o">)</span>
+<span class="n">res2</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="nc">MILK</span><span class="o">,</span> <span class="nc">TEA</span><span class="o">)</span>
+</code></pre></div></div>
+
+<h2 id="reducing-lists">Reducing Lists</h2>
+
+<p>List <strong>축소(Reducing)</strong> 는 컬렉션으로 작업하는 데 있어 보편적인 연산입니다. 등급 List 를 합산하거나 단일 값으로 축소를 합니다.</p>
+
+<p>내장된 수학적 축소 연산을 살펴보겠습니다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Name</th>
+      <th style="text-align: left">Example</th>
+      <th style="text-align: left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">max</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">List(41, 59, 26).max</code></td>
+      <td style="text-align: left">List 의 최댓값 구하기</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">min</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">List(10.9, 32.5, 4.23, 5.67).min</code></td>
+      <td style="text-align: left">List 의 최솟값 구하기</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">product</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">List(5, 6, 7).product</code></td>
+      <td style="text-align: left">List 의 숫자들을 곱하기</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">sum</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">List(11.3, 23.5, 7.2).sum</code></td>
+      <td style="text-align: left">List 의 숫자들을 합산하기</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>다음은 단일 부울값으로 축소하는 연산을 보겠습니다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Name</th>
+      <th style="text-align: left">Example</th>
+      <th style="text-align: left">Description</th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">contains</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">List(34, 29, 18) contains 29</code></td>
+      <td style="text-align: left">List 가 이 요소를 포함하고 있는지를 검사</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">endsWith</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">List(0, 4, 3) endsWith List(4, 3)</code></td>
+      <td style="text-align: left">List 가 주어진 List 로 끝나는지 검사</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">exists</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">List(24, 17, 32) exists (_ &lt; 18)</code></td>
+      <td style="text-align: left">List 에서 최소 하나의 요소에 대해 조건자가 성립하는지 검사</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">forall</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">List(24, 17, 32) forall (_ &lt; 18)</code></td>
+      <td style="text-align: left">List 의 모든 요소에 대해 조건자가 성립하는지 검사</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">startsWith</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">List(0, 4, 3) startsWith List(0)</code></td>
+      <td style="text-align: left">List 가 주어진 List 로 시작하는지를 테스트</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>부울 축소 연산에 대한 예제를 살펴보겠습니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">validations</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="kc">true</span><span class="o">,</span> <span class="kc">true</span><span class="o">,</span> <span class="kc">false</span><span class="o">,</span> <span class="kc">true</span><span class="o">,</span> <span class="kc">true</span><span class="o">,</span> <span class="kc">true</span><span class="o">)</span>
+<span class="n">validations</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Boolean</span><span class="o">]</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="kc">true</span><span class="o">,</span> <span class="kc">true</span><span class="o">,</span> <span class="kc">false</span><span class="o">,</span> <span class="kc">true</span><span class="o">,</span> <span class="kc">true</span><span class="o">,</span> <span class="kc">true</span><span class="o">)</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">valid1</span> <span class="k">=</span> <span class="o">!(</span><span class="n">validations</span> <span class="n">contains</span> <span class="kc">false</span><span class="o">)</span>
+<span class="n">valid1</span><span class="k">:</span> <span class="kt">Boolean</span> <span class="o">=</span> <span class="kc">false</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">valid2</span> <span class="k">=</span> <span class="n">validations</span> <span class="nf">forall</span> <span class="o">(</span><span class="k">_</span> <span class="o">==</span> <span class="kc">true</span><span class="o">)</span>
+<span class="n">valid2</span><span class="k">:</span> <span class="kt">Boolean</span> <span class="o">=</span> <span class="kc">false</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">valid3</span> <span class="k">=</span> <span class="nv">validations</span><span class="o">.</span><span class="py">exists</span><span class="o">(</span><span class="k">_</span> <span class="o">==</span> <span class="kc">false</span><span class="o">)</span> <span class="o">==</span> <span class="kc">false</span>
+<span class="n">valid3</span><span class="k">:</span> <span class="kt">Boolean</span> <span class="o">=</span> <span class="kc">false</span>
+</code></pre></div></div>
+
+<p>이 축소 연산들이 어떻게 구현되는지 보기위해 직접 축소 연산을 만들어 보겠습니다. 먼저 누곗값을 가지는 <strong>누산기(Accumulator)</strong> 변수와 현재 요소를 기반으로 누산기를 업데이트하는 로직을 가지고 컬렉션을 반복해야합니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">def</span> <span class="nf">contains</span><span class="o">(</span><span class="n">x</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">l</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">])</span><span class="k">:</span> <span class="kt">Boolean</span> <span class="o">=</span> <span class="o">{</span>
+ <span class="o">|</span> <span class="k">var</span> <span class="n">a</span><span class="k">:</span> <span class="kt">Boolean</span> <span class="o">=</span> <span class="kc">false</span>
+ <span class="o">|</span> <span class="nf">for</span> <span class="o">(</span><span class="n">i</span> <span class="k">&lt;-</span> <span class="n">l</span><span class="o">)</span> <span class="o">{</span> <span class="nf">if</span> <span class="o">(!</span><span class="n">a</span><span class="o">)</span> <span class="n">a</span> <span class="k">=</span> <span class="o">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">x</span><span class="o">)</span> <span class="o">}</span>
+ <span class="o">|</span> <span class="n">a</span>
+ <span class="o">|</span> <span class="o">}</span>
+<span class="n">contains</span><span class="k">:</span> <span class="o">(</span><span class="kt">x:</span> <span class="kt">Int</span><span class="o">,</span> <span class="kt">l:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">])</span><span class="nc">Boolean</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">included</span> <span class="k">=</span> <span class="nf">contains</span><span class="o">(</span><span class="mi">19</span><span class="o">,</span> <span class="nc">List</span><span class="o">(</span><span class="mi">46</span><span class="o">,</span> <span class="mi">19</span><span class="o">,</span> <span class="mi">92</span><span class="o">))</span>
+<span class="n">included</span><span class="k">:</span> <span class="kt">Boolean</span> <span class="o">=</span> <span class="kc">true</span>
+</code></pre></div></div>
+
+<p>정확히 작동하지만 <code class="highlighter-rouge">contains</code> 로직을 함수 매개변수로 옮겨서 <code class="highlighter-rouge">boolReduce</code> 라는 함수를 구현했습니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">def</span> <span class="nf">boolReduce</span><span class="o">(</span><span class="n">l</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">],</span> <span class="n">start</span><span class="k">:</span> <span class="kt">Boolean</span><span class="o">)(</span><span class="n">f</span><span class="k">:</span> <span class="o">(</span><span class="kt">Boolean</span><span class="o">,</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">=&gt;</span>
+ <span class="o">|</span> <span class="nc">Boolean</span><span class="o">)</span><span class="k">:</span> <span class="kt">Boolean</span> <span class="o">=</span> <span class="o">{</span>
+ <span class="o">|</span>
+ <span class="o">|</span> <span class="k">var</span> <span class="n">a</span> <span class="k">=</span> <span class="n">start</span>
+ <span class="o">|</span> <span class="nf">for</span> <span class="o">(</span><span class="n">i</span> <span class="k">&lt;-</span> <span class="n">l</span><span class="o">)</span> <span class="n">a</span> <span class="k">=</span> <span class="nf">f</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">i</span><span class="o">)</span>
+ <span class="o">|</span> <span class="n">a</span>
+ <span class="o">|</span> <span class="o">}</span>
+<span class="n">boolReduce</span><span class="k">:</span> <span class="o">(</span><span class="kt">l:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">],</span> <span class="n">start</span><span class="k">:</span> <span class="kt">Boolean</span><span class="o">)(</span><span class="n">f</span><span class="k">:</span> <span class="o">(</span><span class="kt">Boolean</span><span class="o">,</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="nc">Boolean</span><span class="o">)</span><span class="nc">Boolean</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">included</span> <span class="k">=</span> <span class="nf">boolReduce</span><span class="o">(</span><span class="nc">List</span><span class="o">(</span><span class="mi">46</span><span class="o">,</span> <span class="mi">19</span><span class="o">,</span> <span class="mi">92</span><span class="o">),</span> <span class="kc">false</span><span class="o">)</span> <span class="o">{</span> <span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">i</span><span class="o">)</span> <span class="k">=&gt;</span>
+ <span class="o">|</span> <span class="nf">if</span> <span class="o">(</span><span class="n">a</span><span class="o">)</span> <span class="n">a</span> <span class="nf">else</span> <span class="o">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">19</span><span class="o">)</span>
+ <span class="o">|</span> <span class="o">}</span>
+<span class="n">included</span><span class="k">:</span> <span class="kt">Boolean</span> <span class="o">=</span> <span class="kc">true</span>
+</code></pre></div></div>
+
+<p>다음은 <code class="highlighter-rouge">reduceOp</code> 로 <code class="highlighter-rouge">boolReduce</code> 연산을 다시 작성한것입니다. 이 연산은 Int 와 Boolean 타입을 각각 타입 매개변수 A 와 B 로 치환했습니다. 아래는 <code class="highlighter-rouge">sum</code> 예제를 추가한것입니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">def</span> <span class="nf">reduceOp</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">](</span><span class="n">l</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">A</span><span class="o">],</span> <span class="n">start</span><span class="k">:</span> <span class="kt">B</span><span class="o">)(</span><span class="n">f</span><span class="k">:</span> <span class="o">(</span><span class="kt">B</span><span class="o">,</span> <span class="kt">A</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">B</span><span class="o">)</span><span class="k">:</span> <span class="kt">B</span> <span class="o">=</span> <span class="o">{</span>
+ <span class="o">|</span> <span class="k">var</span> <span class="n">a</span> <span class="k">=</span> <span class="n">start</span>
+ <span class="o">|</span> <span class="nf">for</span> <span class="o">(</span><span class="n">i</span> <span class="k">&lt;-</span> <span class="n">l</span><span class="o">)</span> <span class="n">a</span> <span class="k">=</span> <span class="nf">f</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">i</span><span class="o">)</span>
+ <span class="o">|</span> <span class="n">a</span>
+ <span class="o">|</span> <span class="o">}</span>
+<span class="n">reduceOp</span><span class="k">:</span> <span class="err">[</span><span class="kt">A</span><span class="o">,</span> <span class="n">B</span><span class="err">]</span><span class="o">(</span><span class="n">l</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">A</span><span class="o">],</span> <span class="n">start</span><span class="k">:</span> <span class="kt">B</span><span class="o">)(</span><span class="n">f</span><span class="k">:</span> <span class="o">(</span><span class="kt">B</span><span class="o">,</span> <span class="kt">A</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">B</span><span class="o">)</span><span class="n">B</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">included</span> <span class="k">=</span> <span class="nf">reduceOp</span><span class="o">(</span><span class="nc">List</span><span class="o">(</span><span class="mi">46</span><span class="o">,</span> <span class="mi">19</span><span class="o">,</span> <span class="mi">92</span><span class="o">),</span> <span class="kc">false</span><span class="o">)</span> <span class="o">{</span> <span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">i</span><span class="o">)</span> <span class="k">=&gt;</span>
+ <span class="o">|</span> <span class="nf">if</span> <span class="o">(</span><span class="n">a</span><span class="o">)</span> <span class="n">a</span> <span class="nf">else</span> <span class="o">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">19</span><span class="o">)</span>
+ <span class="o">|</span> <span class="o">}</span>
+<span class="n">included</span><span class="k">:</span> <span class="kt">Boolean</span> <span class="o">=</span> <span class="kc">true</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">answer</span> <span class="k">=</span> <span class="nf">reduceOp</span><span class="o">(</span><span class="nc">List</span><span class="o">(</span><span class="mf">11.3</span><span class="o">,</span> <span class="mf">23.5</span><span class="o">,</span> <span class="mf">7.2</span><span class="o">),</span> <span class="mf">0.0</span><span class="o">)(</span><span class="k">_</span> <span class="o">+</span> <span class="k">_</span><span class="o">)</span>
+<span class="n">answer</span><span class="k">:</span> <span class="kt">Double</span> <span class="o">=</span> <span class="mf">42.0</span>
+</code></pre></div></div>
+
+<p>Scala 컬렉션에서는 <code class="highlighter-rouge">reduceOp</code> 와 유사한 내장 연산을 제공합니다. 이 내장 연산은 왼쪽-오른쪽, 오른쪽-왼쪽 방향 그리고 순서와 무관한 버전을 모두 제공하며, 누산기와 누곗값으로 작업하는 다른 방법들을 제공하기도 합니다.</p>
+
+<p>이렇게 List 를 입력 함수 기반으로 축소하는 고차 함수를 속칭 <strong>리스트-접기(List-Folding)</strong> 연산이라 하는데, List 를 축소하는 함수는 <strong>접기(Fold)</strong> 로 더 잘 알려져 있기 때문입니다.</p>
+
+<p>아래는 Scala 컬렉션에서 List-Fold 함수 중 일부입니다.</p>
+
+<p>|Name|Example|Description|
+|:–|:–|:–|
+|<code class="highlighter-rouge">fold</code>|<code class="highlighter-rouge">List(4, 5, 6).fold(0)(_ + _)</code>|주어진 시작값과 축소 함수로 List 를 축소|
+|<code class="highlighter-rouge">foldLeft</code>|<code class="highlighter-rouge">List(4, 5, 6).foldLeft(0)(_ + _)</code>|주어진 시작값과 축소 함수로 List 를 왼쪽에서 오른쪽으로 축소함|
+|<code class="highlighter-rouge">foldRight</code>|<code class="highlighter-rouge">Left(4, 5, 6).foldRight(0)(_ + _)|주어진 시작값과 축소 함수로 List 를 오른쪽에서 왼쪽으로 축소함|
+|</code>reduce<code class="highlighter-rouge">|</code>List(4, 5, 6).reduce(_ + <em>)<code class="highlighter-rouge">|List 의 첫 번째 요소를 시작으로, 주어진 축소 함수로 List 를 축소함|
+|</code>reduceLeft<code class="highlighter-rouge">|</code>List(4, 5, 6).reduceLeft(</em> + <em>)<code class="highlighter-rouge">|List 의 첫 번째 요소를 시작으로, 주어진 축소 함수로 List 를 왼쪽부터 오른쪽으로 축소함|
+|</code>reduceRight<code class="highlighter-rouge">|</code>List(4, 5, 6).reduceRight(</em> + <em>)<code class="highlighter-rouge">|List 의 마지막 시작으로, 주어진 축소 함수로 List 를 오른쪽부터 왼쪽으로 축소함|
+|</code>scan<code class="highlighter-rouge">|</code>List(4, 5, 6).scan(0)(</em> + <em>)<code class="highlighter-rouge">|시작값과 축소 함수를 취하여 각각의 누곗값의 List 를 반환함|
+|</code>scanLeft<code class="highlighter-rouge">|</code>List(4, 5, 6).scanLeft(0)(</em> + <em>)<code class="highlighter-rouge">|시작값과 축소 함수를 취하고, 왼쪽부터 오른쪽으로 각각의 누곗값의 List 를 반환함|
+|</code>scanRight<code class="highlighter-rouge">|</code>List(4, 5, 6).scanRight(0)(</em> + _)`|시작값과 축소 함수를 취하고 오른쪽부터 왼쪽으로 각각의 누곗값의 List 를 반환|</p>
+
+<h2 id="converting-collections">Converting Collections</h2>
+
+<p>아래 표에는 컬렉션 전환 메소드들을 정리하였습니다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Name</th>
+      <th style="text-align: left">Example</th>
+      <th style="text-align: left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">mkString</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">List(24, 99, 104).mkString(", ")</code></td>
+      <td style="text-align: left">주어진 구분자를 사용하여 컬렉션을 String 으로 만듬</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">toBuffer</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">List('f', 't').toBuffer</code></td>
+      <td style="text-align: left">불변의 컬렉션을 가변적인 컬렉션으로 전환</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">toList</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">Map("a" -&gt; 1, "b" -&gt; 2).toList</code></td>
+      <td style="text-align: left">컬렉션을 List 로 전환</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">toMap</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">Set(1 -&gt; true, 3 -&gt; true).tmMap</code></td>
+      <td style="text-align: left">두 요소로 구성된 튜플의 컬렉션을 Map 으로 전환</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">toSet</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">List(2, 5, 5, 3, 2).toSet</code></td>
+      <td style="text-align: left">컬렉션을 Set 으로 전환</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">toString</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">List(2, 5, 5, 3, 2).toString</code></td>
+      <td style="text-align: left">컬렉션을 String 으로 컬렉션의 타입을 포함하여 만듬</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="java-and-scala-collection-compatibility">Java and Scala Collection Compatibility</h3>
+
+<p>컬렉션 전환하는 것과관련하여 하나 더 알아두어야 할 중요한 관점이 있습니다. Scala 는 JVM 으로 컴파일하고 그 위에서 동작하므로 JDK 와 상호작용뿐 아니라 어떤 Java 라이브러리도 추가할 수 있어야 하는것이 요구사항입니다.</p>
+
+<p>Java 와 Scala 상호작용의 일부는 Java 컬렉션과 Scala 컬렉션간 전환하는 것인데 이 두 컬렉션 타입은 기본적으로 호환되지 않습니다.</p>
+
+<p>Java 와 Scala 컬렉션 사이를 직접 전환할 수 있도록 다음 명령어를 추가할 수 있습니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">import</span> <span class="nn">collection.JavaConverters._</span>
+<span class="k">import</span> <span class="nn">collection.JavaConverters._</span>
+</code></pre></div></div>
+
+<p>이 <code class="highlighter-rouge">import</code> 명령어는 <code class="highlighter-rouge">JavaConverters</code> 와 그 메소드를 현재의 네임스페이스에 추가합니다. 현재의 네임스페이스가 REPL 에서는 현재 세션을 의미하지만, 소스 파일에서는 <code class="highlighter-rouge">import</code> 명령어가 추가된 파일 도는 로컬 범위의 나머지를 의미합니다.</p>
+
+<p>아래 표는 <code class="highlighter-rouge">JavaConverters</code> 가 임포트되면 Java 와 Scala 컬렉션에 추가되는 연산입니다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Name</th>
+      <th style="text-align: left">Example</th>
+      <th style="text-align: left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">asJava</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">List(12, 29).asJava</code></td>
+      <td style="text-align: left">Scala 컬렉션을 그에 대응하는 Java 컬렉션으로 전환</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">asScala</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">new java.util.ArrayList(5).asScala</code></td>
+      <td style="text-align: left">이 Java 컬렉션을 그에 대응하는 Scala 컬렉션으로 전환</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="pattern-matching-with-collections">Pattern Matching with Collections</h2>
+
+<p>아래는 컬렉션을 이용한 매치표현식 사용입니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">statuses</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="mi">500</span><span class="o">,</span> <span class="mi">404</span><span class="o">)</span>
+<span class="n">statuses</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="mi">500</span><span class="o">,</span> <span class="mi">404</span><span class="o">)</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">msg</span> <span class="k">=</span> <span class="nv">statuses</span><span class="o">.</span><span class="py">head</span> <span class="k">match</span> <span class="o">{</span>
+ <span class="o">|</span> <span class="k">case</span> <span class="n">x</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">500</span> <span class="k">=&gt;</span> <span class="s">"okay"</span>
+ <span class="o">|</span> <span class="k">case</span> <span class="k">_</span> <span class="k">=&gt;</span> <span class="s">"whoah, an error"</span>
+ <span class="o">|</span> <span class="o">}</span>
+<span class="n">msg</span><span class="k">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="n">whoah</span><span class="o">,</span> <span class="n">an</span> <span class="n">error</span>
+</code></pre></div></div>
+
+<p>컬렉션은 등호 연산자를 지원하므로 컬렉션이 패턴 매칭을 지원합니다. 전체 컬렉션을 매칭하기 위해 패턴으로 새로운 컬렉션을 사용</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">msg</span> <span class="k">=</span> <span class="n">statuses</span> <span class="k">match</span> <span class="o">{</span>
+ <span class="o">|</span> <span class="k">case</span> <span class="n">x</span> <span class="k">if</span> <span class="n">x</span> <span class="nf">contains</span><span class="o">(</span><span class="mi">500</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="s">"has error"</span>
+ <span class="o">|</span> <span class="k">case</span> <span class="k">_</span> <span class="k">=&gt;</span> <span class="s">"okay"</span>
+ <span class="o">|</span> <span class="o">}</span>
+<span class="n">msg</span><span class="k">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="n">has</span> <span class="n">error</span>
+</code></pre></div></div>
+
+<p>값 바인딩으로 모든 요소에 값을 바인딩 할 수 있습니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">msg</span> <span class="k">=</span> <span class="n">statuses</span> <span class="k">match</span> <span class="o">{</span>
+ <span class="o">|</span> <span class="k">case</span> <span class="nc">List</span><span class="o">(</span><span class="mi">500</span><span class="o">,</span> <span class="n">x</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">s</span><span class="s">"Error followed by $x"</span>
+ <span class="o">|</span> <span class="k">case</span> <span class="nc">List</span><span class="o">(</span><span class="n">e</span><span class="o">,</span> <span class="n">x</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">s</span><span class="s">"$e was followed by $x"</span>
+ <span class="o">|</span> <span class="o">}</span>
+<span class="n">msg</span><span class="k">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="nc">Error</span> <span class="n">followed</span> <span class="n">by</span> <span class="mi">404</span>
+</code></pre></div></div>
+
+<p>List 는 헤드 요소와 테일로 분해할 수 있습니다. 패턴으로서 List 헤드와 테일요소에 매칭될 수 있습니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">head</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="sc">'r'</span><span class="o">,</span><span class="sc">'g'</span><span class="o">,</span><span class="sc">'b'</span><span class="o">)</span> <span class="k">match</span> <span class="o">{</span>
+ <span class="o">|</span> <span class="k">case</span> <span class="n">x</span> <span class="o">::</span> <span class="n">xs</span> <span class="k">=&gt;</span> <span class="n">x</span>
+ <span class="o">|</span> <span class="k">case</span> <span class="nc">Nil</span> <span class="k">=&gt;</span> <span class="sc">' '</span>
+ <span class="o">|</span> <span class="o">}</span>
+<span class="n">head</span><span class="k">:</span> <span class="kt">Char</span> <span class="o">=</span> <span class="n">r</span>
+</code></pre></div></div>
+
+<p>공식적으로 컬렉션은 아니지만 튜플도 패턴 매칭과 값 바인딩을 지원합니다. 단일 튜플은 다른 타입의 값을 지원하기 때문에 튜플의 패턴 매칭이 때로는 컬렉션의 패턴 매칭보다 더 유용합니다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="nv">code</span> <span class="k">=</span> <span class="o">(</span><span class="sc">'h'</span><span class="o">,</span> <span class="mi">204</span><span class="o">,</span> <span class="kc">true</span><span class="o">)</span> <span class="k">match</span> <span class="o">{</span>
+ <span class="o">|</span> <span class="nf">case</span> <span class="o">(</span><span class="k">_</span><span class="o">,</span> <span class="k">_</span><span class="o">,</span> <span class="kc">false</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="mi">501</span>
+ <span class="o">|</span> <span class="nf">case</span> <span class="o">(</span><span class="sc">'c'</span><span class="o">,</span> <span class="k">_</span><span class="o">,</span> <span class="kc">true</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="mi">302</span>
+ <span class="o">|</span> <span class="nf">case</span> <span class="o">(</span><span class="sc">'h'</span><span class="o">,</span> <span class="n">x</span><span class="o">,</span> <span class="kc">true</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">x</span>
+ <span class="o">|</span> <span class="nf">case</span> <span class="o">(</span><span class="n">c</span><span class="o">,</span> <span class="n">x</span><span class="o">,</span> <span class="kc">true</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="o">{</span>
+ <span class="o">|</span> <span class="nf">println</span><span class="o">(</span><span class="n">s</span><span class="s">"Did not expect code $c"</span><span class="o">)</span>
+ <span class="o">|</span> <span class="n">x</span>
+ <span class="o">|</span> <span class="o">}</span>
+ <span class="o">|</span> <span class="o">}</span>
+<span class="n">code</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">204</span>
+</code></pre></div></div>
+
+:ET

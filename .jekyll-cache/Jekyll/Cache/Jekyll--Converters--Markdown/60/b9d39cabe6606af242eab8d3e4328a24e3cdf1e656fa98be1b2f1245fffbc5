@@ -1,0 +1,44 @@
+I"‰<ul class="toc__menu">
+  <li><a href="#introduction-to-find">Introduction to find</a>
+    <ul>
+      <li><a href="#specifying-which-keys-to-return">Specifying Which Keys to Return</a></li>
+      <li><a href="#limitations">Limitations</a></li>
+    </ul>
+  </li>
+  <li><a href="#query-criteria">Query Criteria</a>
+    <ul>
+      <li><a href="#query-conditionals">Query Conditionals</a></li>
+      <li><a href="#or-queries">OR Queries</a></li>
+      <li><a href="#not">$not</a></li>
+      <li><a href="#conditional-semantics">Conditional Semantics</a></li>
+    </ul>
+  </li>
+  <li><a href="#type-specific-queries">Type-Specific Queries</a>
+    <ul>
+      <li><a href="#null">null</a></li>
+      <li><a href="#regular-expressions">Regular Expressions</a></li>
+      <li><a href="#querying-arrays">Querying Arrays</a></li>
+      <li><a href="#querying-on-embedded-documents">Querying on Embedded Documents</a></li>
+    </ul>
+  </li>
+  <li><a href="#where-queries">$where Queries</a>
+    <ul>
+      <li><a href="#server-side-scripting">Server-Side Scripting</a></li>
+    </ul>
+  </li>
+  <li><a href="#cursors">Cursors</a>
+    <ul>
+      <li><a href="#limits-skips-and-sorts">Limits, Skips, and Sorts</a></li>
+      <li><a href="#avoiding-large-skips">Avoiding Large Skips</a></li>
+      <li><a href="#advanced-query-options">Advanced Query Options</a></li>
+      <li><a href="#getting-consistent-results">Getting Consistent Results</a></li>
+      <li><a href="#immortal-cursors">Immortal Cursors</a></li>
+    </ul>
+  </li>
+  <li><a href="#database-commands">Database Commands</a>
+    <ul>
+      <li><a href="#how-commands-work">How Commands Work</a></li>
+    </ul>
+  </li>
+</ul>
+:ET

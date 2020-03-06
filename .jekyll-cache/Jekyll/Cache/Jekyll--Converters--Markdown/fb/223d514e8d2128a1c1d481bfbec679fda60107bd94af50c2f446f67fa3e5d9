@@ -1,0 +1,13 @@
+I"Ñ<ul class="toc__menu">
+  <li><a href="#install-hadoop">Install Hadoop</a></li>
+  <li><a href="#configuration">Configuration</a>
+    <ul>
+      <li><a href="#1-hadoop-envsh">1. hadoop-env.sh</a></li>
+      <li><a href="#2-core-sitexml">2. core-site.xml</a></li>
+      <li><a href="#3-mapred-sitexml">3. mapred-site.xml</a></li>
+      <li><a href="#4-hdfs-sitexml">4. hdfs-site.xml</a></li>
+    </ul>
+  </li>
+  <li><a href="#start-hadoop">Start Hadoop</a></li>
+</ul>
+:ET

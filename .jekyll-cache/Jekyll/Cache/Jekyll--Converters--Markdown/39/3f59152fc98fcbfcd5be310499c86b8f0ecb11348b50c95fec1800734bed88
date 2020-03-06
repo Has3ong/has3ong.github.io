@@ -1,0 +1,45 @@
+I"�<ul class="toc__menu">
+  <li><a href="#tree">Tree</a>
+    <ul>
+      <li><a href="#용어">용어</a></li>
+    </ul>
+  </li>
+  <li><a href="#binary-tree">Binary Tree</a>
+    <ul>
+      <li><a href="#이진트리-vs-완전이진트리-vs-포화-이진트리">이진트리 vs 완전이진트리 vs 포화 이진트리</a>
+        <ul>
+          <li><a href="#완전-이진-트리complete-binary-tree">완전 이진 트리(complete binary tree)</a></li>
+          <li><a href="#포화-이진-트리full-binary-tree">포화 이진 트리(full binary tree)</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#bstbinary-search-tree">BST(Binary Search Tree)</a></li>
+  <li><a href="#avl-tree">AVL Tree</a>
+    <ul>
+      <li><a href="#single-rotation">Single Rotation</a></li>
+      <li><a href="#double-rotation">Double Rotation</a></li>
+    </ul>
+  </li>
+  <li><a href="#red-black-tree">Red Black Tree</a>
+    <ul>
+      <li><a href="#삽입">삽입</a></li>
+    </ul>
+  </li>
+  <li><a href="#b--tree">B- Tree</a>
+    <ul>
+      <li><a href="#삽입-1">삽입</a></li>
+      <li><a href="#삭제">삭제</a></li>
+    </ul>
+  </li>
+  <li><a href="#b--tree-1">B + Tree</a>
+    <ul>
+      <li><a href="#삽입-2">삽입</a></li>
+      <li><a href="#삭제-1">삭제</a></li>
+    </ul>
+  </li>
+  <li><a href="#b-tree">B* Tree</a></li>
+  <li><a href="#heap">Heap</a></li>
+  <li><a href="#trie">Trie</a></li>
+</ul>
+:ET

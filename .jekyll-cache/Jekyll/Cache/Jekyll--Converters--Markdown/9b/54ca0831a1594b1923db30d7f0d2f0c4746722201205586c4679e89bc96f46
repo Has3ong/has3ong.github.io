@@ -1,0 +1,36 @@
+I"]<ul class="toc__menu">
+  <li><a href="#전송-계층transport-layer">전송 계층(Transport Layer)</a>
+    <ul>
+      <li><a href="#주요-기능-및-특징">주요 기능 및 특징</a></li>
+    </ul>
+  </li>
+  <li><a href="#tcp-vs-udp">TCP vs UDP</a></li>
+  <li><a href="#tcp-전송-제어-프로토콜-transmission-control-protocol">TCP (전송 제어 프로토콜, Transmission Control Protocol)</a>
+    <ul>
+      <li><a href="#tcp-reassembly">tcp reassembly</a></li>
+      <li><a href="#tcp-특징">TCP 특징</a></li>
+      <li><a href="#tcp-flag-bit">TCP Flag Bit</a></li>
+      <li><a href="#tcp-three-way-handshake">TCP Three-Way Handshake</a></li>
+      <li><a href="#tcp-four-way-handshake">TCP Four-Way Handshake</a></li>
+    </ul>
+  </li>
+  <li><a href="#udp-사용자-데이터그램-프로토콜-user-datagram-protocol">UDP (사용자 데이터그램 프로토콜, User Datagram Protocol)</a>
+    <ul>
+      <li><a href="#udp-특징">UDP 특징</a></li>
+    </ul>
+  </li>
+  <li><a href="#arq-automatic-repeat-request-자동-재전송-요구-검출후-재전송-방식">ARQ (Automatic Repeat Request, 자동 재전송 요구, 검출후 재전송 방식)</a></li>
+  <li><a href="#흐름제어--혼잡제어">흐름제어 &amp; 혼잡제어</a>
+    <ul>
+      <li><a href="#흐름제어-flow-control">흐름제어 (Flow Control)</a></li>
+      <li><a href="#stop-and-wait">Stop and Wait</a></li>
+      <li><a href="#sliding-window">Sliding Window</a></li>
+      <li><a href="#혼잡제어congestion-control">혼잡제어(Congestion Control)</a></li>
+      <li><a href="#aimd-additive-increasemultiplicative-decrease">AIMD (Additive Increase/Multiplicative Decrease)</a></li>
+      <li><a href="#slow-start">Slow Start</a></li>
+      <li><a href="#fast-recovery">Fast Recovery</a></li>
+      <li><a href="#fast-retransmit">Fast Retransmit</a></li>
+    </ul>
+  </li>
+</ul>
+:ET

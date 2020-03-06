@@ -1,0 +1,18 @@
+I"É<ul class="toc__menu">
+  <li><a href="#lists-sets-and-maps">Lists, Sets, and Maps</a></li>
+  <li><a href="#whats-in-a-list">Whatâ€™s in a List?</a>
+    <ul>
+      <li><a href="#the-cons-operator">The Cons Operator</a></li>
+    </ul>
+  </li>
+  <li><a href="#list-arithmetic">List Arithmetic</a></li>
+  <li><a href="#mapping-lists">Mapping Lists</a></li>
+  <li><a href="#reducing-lists">Reducing Lists</a></li>
+  <li><a href="#converting-collections">Converting Collections</a>
+    <ul>
+      <li><a href="#java-and-scala-collection-compatibility">Java and Scala Collection Compatibility</a></li>
+    </ul>
+  </li>
+  <li><a href="#pattern-matching-with-collections">Pattern Matching with Collections</a></li>
+</ul>
+:ET

@@ -1,0 +1,37 @@
+I"4<ul class="toc__menu">
+  <li><a href="#가상-메모리">가상 메모리</a>
+    <ul>
+      <li><a href="#가상-메모리-개발-배경">가상 메모리 개발 배경</a>
+        <ul>
+          <li><a href="#프로그램의-일부분만-메모리에-올릴-수-있다면">프로그램의 일부분만 메모리에 올릴 수 있다면…</a></li>
+        </ul>
+      </li>
+      <li><a href="#가상-메모리가-하는-일">가상 메모리가 하는 일</a>
+        <ul>
+          <li><a href="#가상-주소-공간">가상 주소 공간</a></li>
+          <li><a href="#프로세스간의-페이지-공유">프로세스간의 페이지 공유</a></li>
+        </ul>
+      </li>
+      <li><a href="#demand-paging요구-페이징">Demand Paging(요구 페이징)</a>
+        <ul>
+          <li><a href="#page-fault-trap페이지-부재-트랩">Page fault trap(페이지 부재 트랩)</a></li>
+        </ul>
+      </li>
+      <li><a href="#페이지-교체">페이지 교체</a>
+        <ul>
+          <li><a href="#기본적인-방법">기본적인 방법</a></li>
+          <li><a href="#페이지-교체-알고리즘">페이지 교체 알고리즘</a>
+            <ul>
+              <li><a href="#fifo-페이지-교체">FIFO 페이지 교체</a></li>
+              <li><a href="#최적-페이지-교체optimal-page-replacement">최적 페이지 교체(Optimal Page Replacement)</a></li>
+              <li><a href="#lru-페이지-교체lru-page-replacement">LRU 페이지 교체(LRU Page Replacement)</a></li>
+              <li><a href="#lfu-페이지-교체lfu-page-replacement">LFU 페이지 교체(LFU Page Replacement)</a></li>
+              <li><a href="#mfu-페이지-교체mfu-page-replacement">MFU 페이지 교체(MFU Page Replacement)</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+:ET

@@ -1,0 +1,10 @@
+I"Q<p>회사에서 주로 사용하는 Database 가 PostgreSQL 이라 공부삼아 만들어봤습니다.</p>
+
+<p>자료는 <a href="https://www.postgresql.org/docs/12/index.html">PostgresSQL 12 Documentation</a> 에서 가져왔습니다.</p>
+
+<ol>
+  <li>Getting Started</li>
+  <li>The SQL Language</li>
+  <li>Advanced Features</li>
+</ol>
+:ET

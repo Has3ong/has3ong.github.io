@@ -1,0 +1,37 @@
+I"�<ul class="toc__menu">
+  <li><a href="#컴파일러-언어-vs-인터프리터-언어">컴파일러 언어 vs 인터프리터 언어</a>
+    <ul>
+      <li><a href="#컴파일러-언어">컴파일러 언어</a></li>
+      <li><a href="#인터프리터-언어">인터프리터 언어</a></li>
+    </ul>
+  </li>
+  <li><a href="#c--c">C / C++</a>
+    <ul>
+      <li><a href="#전처리기preprocessor">전처리기(Preprocessor)</a></li>
+      <li><a href="#컴파일러compiler">컴파일러(Compiler)</a></li>
+      <li><a href="#어셈블러assembler">어셈블러(Assembler)</a></li>
+    </ul>
+  </li>
+  <li><a href="#java">Java</a>
+    <ul>
+      <li><a href="#실행과정">실행과정</a></li>
+      <li><a href="#class-loader">Class Loader</a></li>
+      <li><a href="#execution-engine">Execution Engine</a></li>
+      <li><a href="#interpreter">Interpreter</a></li>
+      <li><a href="#jitjust-in-time">JIT(Just In Time)</a></li>
+      <li><a href="#pc-register">PC Register</a></li>
+      <li><a href="#jvm-stack-area">JVM Stack Area</a></li>
+      <li><a href="#native-method-stack">Native Method Stack</a></li>
+      <li><a href="#method-area">Method Area</a></li>
+      <li><a href="#heap-area">Heap Area</a></li>
+    </ul>
+  </li>
+  <li><a href="#python">Python</a>
+    <ul>
+      <li><a href="#컴파일">컴파일</a></li>
+      <li><a href="#파이썬-가상-머신-pvm">파이썬 가상 머신 PVM</a></li>
+    </ul>
+  </li>
+  <li><a href="#ast">AST</a></li>
+</ul>
+:ET

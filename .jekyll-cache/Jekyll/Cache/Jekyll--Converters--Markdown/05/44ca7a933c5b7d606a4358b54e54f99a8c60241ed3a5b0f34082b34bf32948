@@ -1,0 +1,10 @@
+I"<ul class="toc__menu">
+  <li><a href="#scala-trait">Scala Trait</a></li>
+  <li><a href="#scala-abstract-class">Scala Abstract Class</a>
+    <ul>
+      <li><a href="#override">Override</a></li>
+    </ul>
+  </li>
+  <li><a href="#scala-case-class">Scala Case Class</a></li>
+</ul>
+:ET

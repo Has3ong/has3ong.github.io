@@ -43,7 +43,7 @@ $$
 
 ### NAND GATE / OR GATE
 
-이어서 NAND 게이트를 알아보겠습니다. NAND 는 Not AND 를 ㄷ의미하며 그 동작은 AND 게이트의 출력을 뒤집은 것입니다. 진리표로 나타내면 `Example 3 ` 과 같이 $x_1$ 과 $x_2$ 가 모두 1 일 때만 0 을 출력하고 나머지는 1을 출력합니다.
+이어서 NAND 게이트를 알아보겠습니다. NAND 는 Not AND 를 의미하며 그 동작은 AND 게이트의 출력을 뒤집은 것입니다. 진리표로 나타내면 `Example 3 ` 과 같이 $x_1$ 과 $x_2$ 가 모두 1 일 때만 0 을 출력하고 나머지는 1을 출력합니다.
 
 > Example 3
 
@@ -60,7 +60,7 @@ $$
 
 ### From simple implementation
 
-논리 회로를 파이썬으로 구현해보겠습니다. 다음은 x1 과 x2 를 인수로 받는 AND 라는 함수입니다.
+논리 회로를 Python 으로 구현해보겠습니다. 다음은 x1 과 x2 를 인수로 받는 AND 라는 함수입니다.
 
 ```python
 def AND(x1, x2):
@@ -81,7 +81,7 @@ AND(0, 1) # 0
 AND(1, 1) # 1
 ```
 
-### introduction of weights and bias
+### Introduction of weights and bias
 
 앞에서 구현한 AND 게이트는 직관적이고 알기 쉽지만 앞으로 생각해서 다른 방식으로 수정하겠습니다. 위의 수식의 $\theta$ 를 $-b$ 로 치환하면 퍼셉튼론의 동작이 아래처럼 됩니다.
 
@@ -109,9 +109,9 @@ array([0. , 0.5])
 -0.1999999999999996
 ```
 
-Numpy 배열끼리의 곱셈은 두 배열의 원소수가 같다면 각 원소끼리ㅣ 곱합니다. 또 `np.sum()` 메소드는 입력한 배열에 담긴 모든 원소의 총합을 계산합니다.
+Numpy 배열끼리의 곱셈은 두 배열의 원소수가 같다면 각 원소끼리 곱합니다. 또 `np.sum()` 메소드는 입력한 배열에 담긴 모든 원소의 총합을 계산합니다.
 
-### To implement weights and deflections
+### To Implement weights and deflections
 
 ```python
 def AND(x1, x2):
@@ -197,7 +197,7 @@ OR 게이트는 $(x_1, x_2) = (0, 0)$ 일 때 0 을 출력하고 나머지는 1 
 
 ## If a multi - layered Perceptron goes in,
 
-퍼셉트론으로는 XOR 게이트를 ㅍ표현할 수 없습니다.
+퍼셉트론으로는 XOR 게이트를 표현할 수 없습니다.
 
 하지만 **다층 퍼셉트론(Multi-Layer Perceptron)** 을 만들 수 있습니다. 층을 하나 더 쌓아서 XOR 을 표현해보겠습니다.
 

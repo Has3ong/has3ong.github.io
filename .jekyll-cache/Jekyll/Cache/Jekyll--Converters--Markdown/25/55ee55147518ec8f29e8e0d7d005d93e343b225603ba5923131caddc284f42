@@ -1,0 +1,15 @@
+I"Ó<ul class="toc__menu">
+  <li><a href="#the-jinja2-template-engine">The Jinja2 Template Engine</a>
+    <ul>
+      <li><a href="#rendering-templates">Rendering Templates</a></li>
+      <li><a href="#variables">Variables</a></li>
+      <li><a href="#control-structure">Control Structure</a></li>
+    </ul>
+  </li>
+  <li><a href="#twitter-bootstrap-integration-with-flask-bootstrap">Twitter Bootstrap Integration with Flask-Bootstrap</a></li>
+  <li><a href="#custom-error-page">Custom Error Page</a></li>
+  <li><a href="#links">Links</a></li>
+  <li><a href="#static-files">Static Files</a></li>
+  <li><a href="#localization-of-dates-and-times-with-flask-moment">Localization of Dates and Times with Flask-Moment</a></li>
+</ul>
+:ET

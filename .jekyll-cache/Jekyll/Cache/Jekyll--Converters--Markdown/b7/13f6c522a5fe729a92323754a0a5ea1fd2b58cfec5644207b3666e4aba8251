@@ -1,0 +1,28 @@
+I"°<ul class="toc__menu">
+  <li><a href="#sql-databases">SQL Databases</a></li>
+  <li><a href="#nosql-databases">NoSQL Databases</a></li>
+  <li><a href="#sql-or-nosql">SQL or NoSQL?</a></li>
+  <li><a href="#python-database-frameworks">Python Database Frameworks</a></li>
+  <li><a href="#database-management-with-flask-sqlalchemy">Database Management with Flask-SQLAlchemy</a></li>
+  <li><a href="#model-definition">Model Definition</a></li>
+  <li><a href="#relationships">Relationships</a></li>
+  <li><a href="#database-operations">Database Operations</a>
+    <ul>
+      <li><a href="#creating-the-tables">Creating the Tables</a></li>
+      <li><a href="#inserting-rows">Inserting Rows</a></li>
+      <li><a href="#modifying-rows">Modifying Rows</a></li>
+      <li><a href="#deleting-rows">Deleting Rows</a></li>
+      <li><a href="#querying-rows">Querying Rows</a></li>
+    </ul>
+  </li>
+  <li><a href="#database-use-in-view-functions">Database Use in View Functions</a></li>
+  <li><a href="#integration-with-the-python-shell">Integration with the Python Shell</a></li>
+  <li><a href="#database-migrations-with-flask-migrate">Database Migrations with Flask-Migrate</a>
+    <ul>
+      <li><a href="#creating-a-migration-repository">Creating a Migration Repository</a></li>
+      <li><a href="#creating-a-migration-script">Creating a Migration Script</a></li>
+      <li><a href="#upgrading-the-database">Upgrading the Database</a></li>
+    </ul>
+  </li>
+</ul>
+:ET
