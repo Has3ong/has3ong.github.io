@@ -330,6 +330,14 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
     
     <url>
+        <loc>http://localhost:4000/javaoptimizing-advancedgc/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/mongodb-indexing/</loc>
+    </url>
+    
+    <url>
         <loc>http://localhost:4000/scala-morecollections/</loc>
     </url>
     
