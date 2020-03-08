@@ -8,7 +8,7 @@ tags :
 - Scala
 ---
 
-*이 포스트는 [Learning Scala]() 를 바탕으로 작성하였습니다.*
+*이 포스트는 [Learning Scala](http://188.166.46.4/get/PDF/Jason%20Swartz-Learning%20Scala_125.pdf) 를 바탕으로 작성하였습니다.*
 
 * **리터럴(Literal)** 은 숫자 5, 문자 A, 텍스트 'Hello World' 처럼 소스코드에 바로 등장하는 데이터 입니다.
 * 값은 불변의 타입을 가지는 저장 단위입니다. 값을 정의될 때 데이터가 할당될 수 있지만, 절대 재할당 될 수는 없습니다.

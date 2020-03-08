@@ -19,6 +19,7 @@ layout: single
 * [Machine Learning Neural Network Learning](/machinelearning-neuralnetworklearn)
 * [Machine Learning Backpropagation](/machinelearning-backpropagation)
 * [Machine Learning Learning-Related Skill](/machinelearning-learningskill)
+* [Machine Learning Convolutional Neural Network, CNN](/machinelearning-convolutionalnuralnetwork)
 
 ## Keras
 

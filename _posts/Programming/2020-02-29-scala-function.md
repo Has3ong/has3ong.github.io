@@ -5,7 +5,7 @@ tags :
 - Scala
 ---
 
-*이 포스트는 [Learning Scala]() 를 바탕으로 작성하였습니다.*
+*이 포스트는 [Learning Scala](http://188.166.46.4/get/PDF/Jason%20Swartz-Learning%20Scala_125.pdf) 를 바탕으로 작성하였습니다.*
 
 Scala 에서 함수는 이름을 가진 재활용가능한 표식입니다.
 

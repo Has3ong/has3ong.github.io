@@ -330,6 +330,30 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
     
     <url>
+        <loc>http://localhost:4000/postgre-2introduction/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/postgre-2createnewtable/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/postgre-2concepts/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/postgre-1creatingdatabase/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/postgre-1acessingdatabase/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/machinelearning-convolutionalnuralnetwork/</loc>
+    </url>
+    
+    <url>
         <loc>http://localhost:4000/javaoptimizing-advancedgc/</loc>
     </url>
     
@@ -1439,6 +1463,22 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
     
     <url>
         <loc>http://localhost:4000/page34/</loc>
+    </url>
+    
+    
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/page35/</loc>
+    </url>
+    
+    
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/page36/</loc>
     </url>
     
     

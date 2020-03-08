@@ -6,6 +6,8 @@ tags :
 - Scala
 ---
 
+*이 포스트는 [Learning Scala](http://188.166.46.4/get/PDF/Jason%20Swartz-Learning%20Scala_125.pdf) 를 바탕으로 작성하였습니다.*
+
 Scala 에서는 다른 데이터 타입과 마찬가지로 식별자에 할당되지 않고도 리터럴 형태로 생성될 수 있으며, 값, 변수, 또는 데이터 구조처럼 컨테이너에 저장될 수 있는 **일급 함수(First-Class Function)** 이 있으며,
 
 다른 함수를 매개변수로 받아들이거나 반환값으로 함수를 사용하는 함수를 **고차 함수(Higher-Order Function)** 가 있습니다.

@@ -11,7 +11,18 @@ layout: single
 1. Getting Started
     1. [Installation](/postgre-1installation)
     2. [Architectural Fundamentals](/postgre-1architecturalfundamentals)
+    3. [Creating a Database](/postgre-1creatingdatabase)
+    4. [Accessing a Database](/postgre-1acessingdatabase)
 2. The SQL Language
+    1. [Introduction](/postgre-2introduction)
+    2. [Concepts](/postgre-2concepts)
+    3. [Creating a New Table](/postgre-2createnewtable)
+    4. Populating a Table With Rows
+    5. Querying a Table
+    6. Joins Between Tables
+    7. Aggregate Functions
+    8. Updates
+    9. Deletions
 3. Advanced Features
 4. SQL Syntax
 5. Data Definition
