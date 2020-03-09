@@ -330,6 +330,22 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
     
     <url>
+        <loc>http://localhost:4000/postgre-2queryingtable/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/postgre-2populatingtablerow/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/postgre-2joinsbetweentables/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/postgre-2aggregatefunction/</loc>
+    </url>
+    
+    <url>
         <loc>http://localhost:4000/postgre-2introduction/</loc>
     </url>
     

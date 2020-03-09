@@ -6,9 +6,9 @@ tags :
 
 ## 2.3. Creating a New Table
 
-모든 열 이름 및 유형과 함께 테이블 이름을 지정하여 새 테이블을 만들 수 있습니다.
+모든 칼럼 이름 및 유형과 함께 테이블 이름을 지정하여 새 테이블을 만들 수 있습니다.
 
-```shell
+```sql
 CREATE TABLE weather (
     city            varchar(80),
     temp_lo         int,           -- low temperature
@@ -29,7 +29,7 @@ PostgreSQL 은 `int`, `smallint`, `real`, `double precision`, `char(N)`, `varcha
 
 두 번째 에제로는 도시와 관련 지리적 위치를 저장하는 테이블을 만들어 보겠습니다.
 
-```shell
+```sql
 CREATE TABLE cities (
     name            varchar(80),
     location        point
@@ -40,6 +40,6 @@ CREATE TABLE cities (
 
 마지막으로 더 이상 테이블을 사용하지 않을때는 다음 명령어를 통해 삭제할 수 있습니다.
 
-```shell
+```sql
 DROP TABLE tablename;
 ```
