@@ -8,12 +8,12 @@ layout: single
 
 일단 제 목표는 천천히 하루에 한 번 빠짐없이 공부를하는것입니다.
 
-1. Getting Started
+1. [Getting Started](/postgre-1tutorialstart)
     1. [Installation](/postgre-1installation)
     2. [Architectural Fundamentals](/postgre-1architecturalfundamentals)
     3. [Creating a Database](/postgre-1creatingdatabase)
     4. [Accessing a Database](/postgre-1acessingdatabase)
-2. The SQL Language
+2. [The SQL Language](/postgre-2tutorialsql)
     1. [Introduction](/postgre-2introduction)
     2. [Concepts](/postgre-2concepts)
     3. [Creating a New Table](/postgre-2createnewtable)
@@ -21,9 +21,16 @@ layout: single
     5. [Querying a Table](/postgre-2queryingtable)
     6. [Joins Between Tables](/postgre-2joinsbetweentables)
     7. [Aggregate Functions](/postgre-2aggregatefunction)
-    8. Updates
-    9. Deletions
-3. Advanced Features
+    8. [Updates](/postgre-2updates)
+    9. [Deletions](/postgre-2deletions)
+3. [Advanced Features](/postgre-3tutorialadvance)
+    1. [Introduction](/postgre-3introduction)
+    2. Views
+    3. Foreign Keys
+    4. Transactions
+    5. Window Functions
+    6. Inheritance
+    7. Conclusion
 4. SQL Syntax
 5. Data Definition
 6. Data Manipulation

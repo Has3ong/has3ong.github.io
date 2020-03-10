@@ -330,6 +330,18 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
     
     <url>
+        <loc>http://localhost:4000/postgre-3introduction/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/postgre-2updates/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/postgre-2tutorialsql/</loc>
+    </url>
+    
+    <url>
         <loc>http://localhost:4000/postgre-2queryingtable/</loc>
     </url>
     
@@ -342,7 +354,15 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
     </url>
     
     <url>
+        <loc>http://localhost:4000/postgre-2deletions/</loc>
+    </url>
+    
+    <url>
         <loc>http://localhost:4000/postgre-2aggregatefunction/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/postgre-1tutorialstart/</loc>
     </url>
     
     <url>
@@ -1495,6 +1515,14 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
     
     <url>
         <loc>http://localhost:4000/page36/</loc>
+    </url>
+    
+    
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/page37/</loc>
     </url>
     
     
