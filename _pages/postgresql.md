@@ -25,9 +25,9 @@ layout: single
     9. [Deletions](/postgre-2deletions)
 3. [Advanced Features](/postgre-3tutorialadvance)
     1. [Introduction](/postgre-3introduction)
-    2. Views
-    3. Foreign Keys
-    4. Transactions
+    2. [Views](/postgre-3view)
+    3. [Foreign Keys](/postgre-3foreignkeys)
+    4. [Transactions](/postgre-3transaction)
     5. Window Functions
     6. Inheritance
     7. Conclusion
