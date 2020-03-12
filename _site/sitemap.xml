@@ -330,6 +330,18 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
     
     <url>
+        <loc>http://localhost:4000/postgre-3windowfunction/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/boj-10814/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/spark-gentleintroduction/</loc>
+    </url>
+    
+    <url>
         <loc>http://localhost:4000/scala-class/</loc>
     </url>
     
@@ -1126,6 +1138,14 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
     
     
     <url>
+        <loc>http://localhost:4000/boj/</loc>
+    </url>
+    
+    
+    
+    
+    
+    <url>
         <loc>http://localhost:4000/cs/</loc>
     </url>
     
@@ -1551,6 +1571,14 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
     
     <url>
         <loc>http://localhost:4000/page38/</loc>
+    </url>
+    
+    
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/page39/</loc>
     </url>
     
     
