@@ -29,7 +29,7 @@ layout: single
     3. [Foreign Keys](/postgre-3foreignkeys)
     4. [Transactions](/postgre-3transaction)
     5. [Window Functions](/postgre-3windowfunction)
-    6. Inheritance
+    6. [Inheritance](/postgre-3inheritance)
     7. Conclusion
 4. SQL Syntax
 5. Data Definition

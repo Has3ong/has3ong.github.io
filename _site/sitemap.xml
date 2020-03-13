@@ -330,6 +330,18 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
     
     <url>
+        <loc>http://localhost:4000/postgre-3inheritance/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/boj-1620/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/boj-1002/</loc>
+    </url>
+    
+    <url>
         <loc>http://localhost:4000/postgre-3windowfunction/</loc>
     </url>
     
@@ -1579,6 +1591,14 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
     
     <url>
         <loc>http://localhost:4000/page39/</loc>
+    </url>
+    
+    
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/page40/</loc>
     </url>
     
     
