@@ -330,6 +330,34 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
     
     <url>
+        <loc>http://localhost:4000/ktds-vuejslecture2/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/ktds-vuejslecture1/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/postgre-3tutorialadvance/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/postgre-3conclusion/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/boj-2579/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/boj-10866/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/mongodb-specialindexcollectiontype/</loc>
+    </url>
+    
+    <url>
         <loc>http://localhost:4000/postgre-3inheritance/</loc>
     </url>
     
@@ -1599,6 +1627,14 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
     
     <url>
         <loc>http://localhost:4000/page40/</loc>
+    </url>
+    
+    
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/page41/</loc>
     </url>
     
     
