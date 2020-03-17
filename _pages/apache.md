@@ -6,8 +6,6 @@ layout: single
 
 ## Zookeeper
 
-* [Zookeeper 소개](/zookeeper-introduction)
-
 ## Kafka
 
 * [Kafka 소개](/kafka-introduction)
@@ -33,12 +31,10 @@ layout: single
 ## Hadoop
 
 * [Installing Hadoop on macOS](/hadoop-install)
-* [The Hadoop Distributed Filesystem](/hadoop-introduction)
 
 ## Spark
 
-* [Spark 소개](/spark-introduction)
-* [pyspark 설치하기](/pyspark-install)
+* [Spark Gentle Introduction](/spark-gentleintroduction)
 
 ## Reference
 

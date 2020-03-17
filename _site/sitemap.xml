@@ -618,14 +618,6 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
     </url>
     
     <url>
-        <loc>http://localhost:4000/scala-functionprogramming/</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/kubernetes-overview2/</loc>
-    </url>
-    
-    <url>
         <loc>http://localhost:4000/ethereum-token/</loc>
     </url>
     
@@ -650,23 +642,7 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
     </url>
     
     <url>
-        <loc>http://localhost:4000/kubernetes-overview1/</loc>
-    </url>
-    
-    <url>
         <loc>http://localhost:4000/swmaestro-start/</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/scala-pattern/</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/scala-implicit/</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/scala-generic/</loc>
     </url>
     
     <url>
@@ -706,10 +682,6 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
     </url>
     
     <url>
-        <loc>http://localhost:4000/python-syncasync1/</loc>
-    </url>
-    
-    <url>
         <loc>http://localhost:4000/kafka-consumer4/</loc>
     </url>
     
@@ -719,18 +691,6 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
     
     <url>
         <loc>http://localhost:4000/hadoop-install/</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/scala-traitabstractclass/</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/scala-constructor/</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/scala-accessmodifier/</loc>
     </url>
     
     <url>
@@ -758,14 +718,6 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
     </url>
     
     <url>
-        <loc>http://localhost:4000/scala-methodclassobject/</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/scala-finalval/</loc>
-    </url>
-    
-    <url>
         <loc>http://localhost:4000/kafka-intro1/</loc>
     </url>
     
@@ -782,19 +734,7 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
     </url>
     
     <url>
-        <loc>http://localhost:4000/scala-variables/</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/scala-introduction/</loc>
-    </url>
-    
-    <url>
         <loc>http://localhost:4000/python-struct/</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/python-profiler/</loc>
     </url>
     
     <url>
@@ -842,14 +782,6 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
     </url>
     
     <url>
-        <loc>http://localhost:4000/supervised-unsupervised/</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/keras-classification/</loc>
-    </url>
-    
-    <url>
         <loc>http://localhost:4000/bitcoin-ethereum/</loc>
     </url>
     
@@ -863,14 +795,6 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
     
     <url>
         <loc>http://localhost:4000/if-time/</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/tf-linearregression/</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/keras-linearregression/</loc>
     </url>
     
     <url>
@@ -971,14 +895,6 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
     
     <url>
         <loc>http://localhost:4000/caliper-gettingstarted/</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/zookeeper-introduction/</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/hadoop-introduction/</loc>
     </url>
     
     <url>
@@ -1106,10 +1022,6 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
     </url>
     
     <url>
-        <loc>http://localhost:4000/spark-introduction/</loc>
-    </url>
-    
-    <url>
         <loc>http://localhost:4000/structsize/</loc>
     </url>
     
@@ -1143,10 +1055,6 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
     
     <url>
         <loc>http://localhost:4000/oop/</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/pyspark-install/</loc>
     </url>
     
     <url>
@@ -1615,46 +1523,6 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
     
     <url>
         <loc>http://localhost:4000/page37/</loc>
-    </url>
-    
-    
-    
-    
-    
-    <url>
-        <loc>http://localhost:4000/page38/</loc>
-    </url>
-    
-    
-    
-    
-    
-    <url>
-        <loc>http://localhost:4000/page39/</loc>
-    </url>
-    
-    
-    
-    
-    
-    <url>
-        <loc>http://localhost:4000/page40/</loc>
-    </url>
-    
-    
-    
-    
-    
-    <url>
-        <loc>http://localhost:4000/page41/</loc>
-    </url>
-    
-    
-    
-    
-    
-    <url>
-        <loc>http://localhost:4000/page42/</loc>
     </url>
     
     

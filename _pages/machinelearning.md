@@ -10,10 +10,6 @@ layout: single
 
 ## Machine Learning
 
-* [Supervised Learning / Unsupervised Learning](/supervised-unsupervised)
-
----
-
 * [Machine Learning Perceptron](/machinelearning-perceptronintro)
 * [Machine Learning Neural Network](/machinelearning-neuralnetwork)
 * [Machine Learning Neural Network Learning](/machinelearning-neuralnetworklearn)
@@ -23,12 +19,7 @@ layout: single
 
 ## Keras
 
-* [Keras Linear Regression Analysis](/keras-linearregression)
-* [Keras Classification Analysis](/keras-classification)
-
 ## Tensorflow
-
-* [Tensorflow Linear Regression Analysis](/tf-linearregression)
 
 ## PyTorch
 
