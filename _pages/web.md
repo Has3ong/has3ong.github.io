@@ -15,4 +15,9 @@ layout: single
 * [Flask Email](/flask-email)
 * [Flask Large Application Structure](/flask-largeapstructure)
 
+## React
+
+* [React Emerging JavaScript](/react-emergingjavascript)
+* [React React Functional Programming with JavaScript](/react-functionalprogrammingwithjavascript)
+
 
