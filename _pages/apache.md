@@ -35,6 +35,7 @@ layout: single
 ## Spark
 
 * [Spark Gentle Introduction](/spark-gentleintroduction)
+* [Spark A Tour of Spark’s Toolset](/spark-atourofsparktoolset)
 
 ## Reference
 

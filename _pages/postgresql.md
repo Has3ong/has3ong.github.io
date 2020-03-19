@@ -32,7 +32,7 @@ layout: single
     6. [Inheritance](/postgre-3inheritance)
     7. [Conclusion](/postgre-3conclusion)
 4. [SQL Syntax](/postgre-4tutorialsqlsyntax)
-    1. Lexical Structure
+    1. [Lexical Structure](/postgre-4lexicalstructure)
         1. Identifiers and Key Words
         2. Constants
         3. Operators
