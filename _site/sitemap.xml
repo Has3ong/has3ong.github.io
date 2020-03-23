@@ -330,11 +330,15 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
     
     <url>
-        <loc>http://localhost:4000/2020-03-19-boj-1927/</loc>
+        <loc>http://localhost:4000/react-purereact/</loc>
     </url>
     
     <url>
-        <loc>http://localhost:4000/2020-03-19-boj-11279/</loc>
+        <loc>http://localhost:4000/boj-8979/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/boj-2851/</loc>
     </url>
     
     <url>
@@ -342,11 +346,39 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
     </url>
     
     <url>
+        <loc>http://localhost:4000/boj-2947/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/boj-1927/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/boj-1874/</loc>
+    </url>
+    
+    <url>
         <loc>http://localhost:4000/boj-1834/</loc>
     </url>
     
     <url>
+        <loc>http://localhost:4000/boj-1448/</loc>
+    </url>
+    
+    <url>
         <loc>http://localhost:4000/boj-1267/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/boj-11279/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/boj-1145/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/spark-structuredapioverview/</loc>
     </url>
     
     <url>
@@ -1587,6 +1619,22 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
     
     <url>
         <loc>http://localhost:4000/page39/</loc>
+    </url>
+    
+    
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/page40/</loc>
+    </url>
+    
+    
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/page41/</loc>
     </url>
     
     

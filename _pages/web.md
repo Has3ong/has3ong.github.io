@@ -19,5 +19,6 @@ layout: single
 
 * [React Emerging JavaScript](/react-emergingjavascript)
 * [React React Functional Programming with JavaScript](/react-functionalprogrammingwithjavascript)
+* [React Pure React](/react-purereact)
 
 
