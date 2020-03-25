@@ -13,6 +13,7 @@ layout: single
 ---
 
 * [Kafka Meet Kafka](/kafka-meetkafka)
+* [Kafka Installing Kafka](/kafka-installing)
 
 ## Hadoop
 
@@ -23,6 +24,7 @@ layout: single
 * [Spark Gentle Introduction](/spark-gentleintroduction)
 * [Spark A Tour of Spark’s Toolset](/spark-atourofsparktoolset)
 * [Spark Structured API Overview](/spark-structuredapioverview)
+* [Spark Basic Structured Operations](/spark-basicstructuredoperation)
 
 ## Reference
 
