@@ -14,6 +14,7 @@ layout: single
 
 * [Kafka Meet Kafka](/kafka-meetkafka)
 * [Kafka Installing Kafka](/kafka-installing)
+* [Kafka Producers - Writing Messages to Kafka](/kafka-writingmessageproducer)
 
 ## Hadoop
 
