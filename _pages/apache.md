@@ -26,6 +26,7 @@ layout: single
 * [Spark A Tour of Spark’s Toolset](/spark-atourofsparktoolset)
 * [Spark Structured API Overview](/spark-structuredapioverview)
 * [Spark Basic Structured Operations](/spark-basicstructuredoperation)
+* [Spark Working with Different Types of Data](/spark-differenttypesofdata)
 
 ## Reference
 
