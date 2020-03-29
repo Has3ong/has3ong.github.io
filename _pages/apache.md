@@ -15,6 +15,8 @@ layout: single
 * [Kafka Meet Kafka](/kafka-meetkafka)
 * [Kafka Installing Kafka](/kafka-installing)
 * [Kafka Producers - Writing Messages to Kafka](/kafka-writingmessageproducer)
+* [Kafka Consumers - Reading Data from Kafka](/kafka-readingdataconsumer)
+* [Kafka Internals](/kafka-internals)
 
 ## Hadoop
 
