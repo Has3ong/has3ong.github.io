@@ -46,3 +46,5 @@ layout: single
 * [Scala Common Collections](/scala-commoncollections)
 * [Scala More Collections](/scala-morecollections)
 * [Scala Class](/scala-class)
+* [Scala Objects, Case Classes, and Traits](/scala-objectclasstraits)
+* [Scala Advanced Typing](/scala-advancedtyping)
