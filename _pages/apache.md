@@ -17,6 +17,7 @@ layout: single
 * [Kafka Producers - Writing Messages to Kafka](/kafka-writingmessageproducer)
 * [Kafka Consumers - Reading Data from Kafka](/kafka-readingdataconsumer)
 * [Kafka Internals](/kafka-internals)
+* [Kafka Kafka Reliable Data Delivery](/kafka-reliabledatadelivery)
 
 ## Hadoop
 

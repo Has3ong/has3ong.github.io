@@ -1,4 +1,5 @@
 _site/
 docs
+test
 .jekyll-cache
 .sass-cache
