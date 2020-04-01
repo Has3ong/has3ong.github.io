@@ -18,4 +18,8 @@ layout: single
 
 ## Kubernetes
 
+## Prometheus
+
+* [Prometheus Getting Started with Prometheus](/prometheus-gettingstarted)
+
 ## References
