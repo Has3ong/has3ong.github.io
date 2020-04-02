@@ -46,7 +46,7 @@ layout: single
     4. Special Characters
     5. Comments
     6. Operator Precedence
-2. Value Expressions
+2. [Value Expressions](/postgre-4valueexpression)
     1. Column References
     2. Positional Parameters
     3. Subscripts
