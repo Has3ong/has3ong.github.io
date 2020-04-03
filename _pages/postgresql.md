@@ -61,7 +61,7 @@ layout: single
     12. Array Constructors
     13. Row Constructors
     14. Expression Evaluation Rules
-3. Calling Functions
+3. [Calling Functions](/postgre-4callingfunctions)
     1. Using Positional Notation
     2. Using Named Notation
     3. Using Mixed Notation
