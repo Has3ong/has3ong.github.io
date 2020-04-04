@@ -30,6 +30,7 @@ layout: single
 * [Spark Structured API Overview](/spark-structuredapioverview)
 * [Spark Basic Structured Operations](/spark-basicstructuredoperation)
 * [Spark Working with Different Types of Data](/spark-differenttypesofdata)
+* [Spark Aggregations](/spark-aggregation)
 
 ## Reference
 
