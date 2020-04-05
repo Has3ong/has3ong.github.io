@@ -20,6 +20,14 @@ layout: single
 
 ---
 
+* [Java Optimization and Performance Defined](/javaoptimizing-optimization)
+* [Java Overview of the JVM](/javaoptimizing-overviewjvm)
+* [Java Hardware and Operating Systems](/javaoptimizing-hwos)
+* [Java Performance Testing Patterns and Antipatterns](/javaoptimizing-patternantipatterns)
+* [Java Microbenchmarking and Statistics](/javaoptimizing-benchmarkingstatistics)
+* [Java Understanding Garbage Collection](/javaoptimizing-understandinggc)
+* [Java GC Logging, Monitoring, Tuning, and Tools](/javaoptimizing-gcloggingmonitoringtuingtools)
+
 ### Python
 
 * [Python sturct 구현](/python-struct)
