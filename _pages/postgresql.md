@@ -68,9 +68,9 @@ layout: single
 
 ### 5. Data Definition
 
-1. Table Basics
-2. Default Values
-3. Generated Columns
+1. [Table Basics](/postgre-5tablebasic)
+2. [Default Values](/postgre-5datadefinition)
+3. [Generated Columns](/postgre-5generatedcolumns)
 4. Constraints
     1. Check Constraints
     2. Not-Null Constraints
