@@ -71,14 +71,14 @@ layout: single
 1. [Table Basics](/postgre-5tablebasic)
 2. [Default Values](/postgre-5datadefinition)
 3. [Generated Columns](/postgre-5generatedcolumns)
-4. Constraints
+4. [Constraints](/postgre-5constraints)
     1. Check Constraints
     2. Not-Null Constraints
     3. Unique Constraints
     4. Primary Keys
     5. Foreign Keys
     6. Exclusion Constraints
-5. System Columns
+5. [System Columns](/postgre-5systemcolumn)
 6. Modifying Tables
     1. Adding a Column
     2. Removing a Column

@@ -1,8 +1,0 @@
-I"å<ul class="toc__menu">
-  <li><a href="#deserializers">Deserializers</a>
-    <ul>
-      <li><a href="#using-avro-deserialization-with-kafka-consumer">Using Avro deserialization with Kafka consumer</a></li>
-    </ul>
-  </li>
-</ul>
-:ET

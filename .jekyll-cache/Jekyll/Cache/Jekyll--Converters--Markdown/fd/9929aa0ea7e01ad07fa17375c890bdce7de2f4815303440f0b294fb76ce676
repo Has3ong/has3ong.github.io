@@ -1,9 +1,0 @@
-I"<ul class="toc__menu">
-  <li><a href="#직렬처리기-serializers">직렬처리기, Serializers</a>
-    <ul>
-      <li><a href="#custom-serializers">Custom Serializers</a></li>
-    </ul>
-  </li>
-  <li><a href="#avro-serializers">Avro Serializers</a></li>
-</ul>
-:ET

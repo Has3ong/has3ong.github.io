@@ -1,9 +1,0 @@
-I"(<ul class="toc__menu">
-  <li><a href="#rebalance-listeners">Rebalance Listeners</a>
-    <ul>
-      <li><a href="#consuming-records-with-specific-offsets">Consuming Records with Specific Offsets</a></li>
-      <li><a href="#but-how-do-we-exit">But How Do We Exit?</a></li>
-    </ul>
-  </li>
-</ul>
-:ET
