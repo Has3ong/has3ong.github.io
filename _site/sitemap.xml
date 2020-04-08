@@ -330,6 +330,98 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
     
     <url>
+        <loc>http://localhost:4000/postgre-5generatedcolumns/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/postgre-5datadefinition/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/postgre-5tablebasic/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/javaoptimizing-gcloggingmonitoringtuingtools/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/spark-aggregation/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/postgre-4tutorialsqlsyntax/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/postgre-4callingfunctions/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/postgre-4valueexpression/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/prometheus-gettingstarted/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/kafka-reliabledatadelivery/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/scala-advancedtyping/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/kafka-internals/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/kafka-readingdataconsumer/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/boj-1735/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/spark-differenttypesofdata/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/boj-3023/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/boj-2896/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/boj-12790/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/kafka-writingmessageproducer/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/boj-1063/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/kafka-installing/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/spark-basicstructuredoperation/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/kafka-meetkafka/</loc>
+    </url>
+    
+    <url>
         <loc>http://localhost:4000/react-purereact/</loc>
     </url>
     
@@ -726,23 +818,7 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
     </url>
     
     <url>
-        <loc>http://localhost:4000/kafka-reliabledatadelibery1/</loc>
-    </url>
-    
-    <url>
         <loc>http://localhost:4000/ethereum-wallet/</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/kafka-internals5/</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/kafka-internals4/</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/kafka-internals3/</loc>
     </url>
     
     <url>
@@ -750,63 +826,7 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
     </url>
     
     <url>
-        <loc>http://localhost:4000/kafka-internals2/</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/kafka-internals1/</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/kafka-consumer5/</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/kafka-consumer4/</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/kafka-consumer3/</loc>
-    </url>
-    
-    <url>
         <loc>http://localhost:4000/hadoop-install/</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/kafka-consumer2/</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/kafka-consumer1/</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/kafka-producer4/</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/kafka-producer3/</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/kafka-producer2/</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/kafka-producer1/</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/kafka-intro1/</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/kafka-install2/</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/kafka-install1/</loc>
     </url>
     
     <url>
@@ -1114,10 +1134,6 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
     </url>
     
     <url>
-        <loc>http://localhost:4000/kafka-logs/</loc>
-    </url>
-    
-    <url>
         <loc>http://localhost:4000/kafka-introduction/</loc>
     </url>
     
@@ -1210,6 +1226,14 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
     
     
     <url>
+        <loc>http://localhost:4000/diary/</loc>
+    </url>
+    
+    
+    
+    
+    
+    <url>
         <loc>http://localhost:4000/imageprocess/</loc>
     </url>
     
@@ -1291,14 +1315,6 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
     
     <url>
         <loc>http://localhost:4000/sitemap.xml</loc>
-    </url>
-    
-    
-    
-    
-    
-    <url>
-        <loc>http://localhost:4000/swmaestro/</loc>
     </url>
     
     
@@ -1635,6 +1651,14 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
     
     <url>
         <loc>http://localhost:4000/page41/</loc>
+    </url>
+    
+    
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/page42/</loc>
     </url>
     
     
