@@ -31,6 +31,7 @@ layout: single
 * [Spark Basic Structured Operations](/spark-basicstructuredoperation)
 * [Spark Working with Different Types of Data](/spark-differenttypesofdata)
 * [Spark Aggregations](/spark-aggregation)
+* [Spark Joins](/spark-join)
 
 ## Reference
 
