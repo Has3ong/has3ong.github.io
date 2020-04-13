@@ -21,16 +21,16 @@ tags :
 
 ```python
 def find_phonenumber(phonebook, name):
-  for n, p in phonebook:
-    if n == name:
-      return p
-  return None
+    for n, p in phonebook:
+        if n == name:
+            return p
+    return None
 
 phonebook = [
-  ("John Doe", "555-555-5555"),
-  ("Albert Einstein", "212-555-5555"),
+    ("John Doe", "555-555-5555"),
+    ("Albert Einstein", "212-555-5555"),
 ]
-print ("John Doe's phone number is", find_phonenumber(phonebook, "John Doe"))
+print(f"John Doe's phone number is {find_phonenumber(phonebook, 'John Doe')}")
 ```
 
 하지만 아래 예제처럼 사전을 이용하면 색인에서 이름을 찾아 전화번호를 바로 얻을 수 있습니다. 전체 데이터를 살펴보는 대신 직접 참조를 통해 필요한 값을 간단하게 가져오는 것입니다.
@@ -38,10 +38,10 @@ print ("John Doe's phone number is", find_phonenumber(phonebook, "John Doe"))
 
 ```python
 phonebook = {
-  "John Doe": "555-555-5555",
-  "Albert Einstein" : "212-555-5555",
+    "John Doe": "555-555-5555",
+    "Albert Einstein" : "212-555-5555",
 }
-print ("John Doe's phone number is", phonebook["John Doe"])
+print(f"John Doe's phone number is {phonebook['John Doe']}")
 ```
 
 전화번호부는 두껍기 때문에 O(1) 시간과 리스트가 제공하는 선형 탐색의 O(n) 시간의 차이는 많습니다.
@@ -50,33 +50,33 @@ print ("John Doe's phone number is", phonebook["John Doe"])
 
 ```python
 def list_unique_names(phonebook):
-  unique_names = []
-  for name, phonenumber in phonebook: #
-    first_name, last_name = name.split(" ", 1)
-    for unique in unique_names: #
-      if unique == first_name:
-        break
-      else:
-        unique_names.append(first_name)
-  return len(unique_names)
+    unique_names = []
+    for name, phonenumber in phonebook:             
+        first_name, last_name = name.split(" ", 1)
+        for unique in unique_names:                 
+            if unique == first_name:
+                break
+        else:
+            unique_names.append(first_name)
+    return len(unique_names)
 
 def set_unique_names(phonebook):
-  unique_names = set()
-  for name, phonenumber in phonebook: #
-    first_name, last_name = name.split(" ", 1)
-    unique_names.add(first_name) #
-  return len(unique_names)
+    unique_names = set()
+    for name, phonenumber in phonebook:             
+        first_name, last_name = name.split(" ", 1)
+        unique_names.add(first_name)                
+    return len(unique_names)
 
 phonebook = [
-  ("John Doe", "555-555-5555"),
-  ("Albert Einstein", "212-555-5555"),
-  ("John Murphey", "202-555-5555"),
-  ("Albert Rutherford", "647-555-5555"),
-  ("Elaine Bodian", "301-555-5555"),
+    ("John Doe", "555-555-5555"),
+    ("Albert Einstein", "212-555-5555"),
+    ("John Murphey", "202-555-5555"),
+    ("Albert Rutherford", "647-555-5555"),
+    ("Guido van Rossum", "301-555-5555"),
 ]
 
-print ("Number of unique names from set method:", set_unique_names(phonebook))
-print ("Number of unique names from list method:", list_unique_names(phonebook))
+print("Number of unique names from set method:", set_unique_names(phonebook))
+print("Number of unique names from list method:", list_unique_names(phonebook))
 ```
 
 셋을 이용한 알고리즘은 내부 루프가 없고 `set.add` 연산은 전화번호부의 크기에 상관없이 O(1) 의 시간 복잡도로 수행합니다. 상수 시간에 수행되지 않는 연산은 전화번호부를 순회하는 루프뿐이므로 최종 알고리즘은 O(n) 의 시간 복잡도를 가집니다.
@@ -85,9 +85,10 @@ print ("Number of unique names from list method:", list_unique_names(phonebook))
 
 ```python
 >>> %timeit list_unique_names(large_phonebook)
-1 loops, best of 3: 2.56 s per loop
+1.13 s ± 26.8 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+
 >>> %timeit set_unique_names(large_phonebook)
-100 loops, best of 3: 9.57 ms per loop
+4.48 ms ± 177 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
 ```
 
 셋을 이용한 알고리즘이 270 배 정도 빠릅니다. `phonebook` 의 크기가 커질수록 이 차이는 더 벌어집니다.
@@ -110,13 +111,13 @@ print ("Number of unique names from list method:", list_unique_names(phonebook))
 
 ```python
 def index_sequence(key, mask=0b111, PERTURB_SHIFT=5):
-  perturb = hash(key) #
-  i = perturb & mask
-  yield i
-  while True:
-    i = ((i << 2) + i + perturb + 1)
-    perturb >>= PERTURB_SHIFT
-    yield i & mask
+    perturb = hash(key) 
+    i = perturb & mask
+    yield i
+    while True:
+        perturb >>= PERTURB_SHIFT
+        i = (i * 5 + perturb + 1) & mask
+        yield i
 ```
 
 이상의 프로빙 과정은 선형 프로빙의 변형입니다. 선형 프로빙에서는 `i = (5 * i + 1) & mask` 값을 반환하는데, 여기서 i 의 초기값은 Key 의 해시값입니다. 여기서 중요한 점은 해시의 마지막 몇 비트만 사용하고 나머지는 무시한다는 점입니다. 하위 3비트가 같은 항목들을 해싱하면 색인이 같아져 충돌이 일어나는데 Python 은 그 항목의 해시값에서 추가 비트를 더 사용해 이 문제를 회피합니다.
@@ -133,19 +134,31 @@ def index_sequence(key, mask=0b111, PERTURB_SHIFT=5):
 
 ```python
 class City(str):
-  def __hash__(self):
-    return ord(self[0])
+    def __hash__(self):
+        return ord(self[0])
 
 # We create a dictionary where we assign arbitrary values to cities
-data = {
-  City("Rome"): 4,
-  City("San Francisco"): 3,
-  City("New York"): 5,
-   City("Barcelona"): 2,
+data =  {
+    City("Rome"): 'Italy',
+    City("San Francisco"): 'USA',
+    City("New York"): 'USA',
+    City("Barcelona"): 'Spain',
 }
 ```
 
 여기서는 `Barcelona` 와 `Rome` 의 해시가 충돌합니다.
+
+```python
+hash("Barcelona") = ord("B") & 0b111
+                  = 66 & 0b111
+                  = 0b1000010 & 0b111
+                  = 0b010 = 2
+
+hash("Rome") = ord("R") & 0b111
+             = 82 & 0b111
+             = 0b1010010 & 0b111
+             = 0b010 = 2
+```
 
 항목이 4개인 사전에서 `mask` 로 `0b111` 을 사용했는데 `Barcelona` 는 `ord("B") & 0b111 = 66 & 0b111 = 0b10000010 & 0b111 = 0b010 = 2` 과정을 거쳐 색인이 2 가 되고 `Rome` 은 `ord("R") & 0b111 = 82 & 0b111 = 0 b1010010 & 0b111 = 0b010 = 2` 의 과정을 거쳐 역시 같은 2를 색인으로 가지기 때문입니다.
 
@@ -178,8 +191,8 @@ Python 객체는 이미 `__hash__` 와 `__cmp__` 함수를 구현하여 해시�
 
 ```python
 class Point(object):
-  def __init__(self, x, y):
-    self.x, self.y = x, y
+    def __init__(self, x, y):
+        self.x, self.y = x, y
 ```
 
 만일 `x, y` 값이 동일한 `Point` 객체를 여러 개 생성하면 메모리 주소는 전부 독립적이므로 모두 다른 해시값을 가지게 됩니다. 이 객체들을 모두 하나의 셋에 추가하면, 각각의 항목이 모두 추가됩니다.
@@ -188,9 +201,9 @@ class Point(object):
 >>> p1 = Point(1,1)
 >>> p2 = Point(1,1)
 >>> set([p1, p2])
-set([<__main__.Point at 0x109b95910>])
+set([<__main__.Point at 0x1099bfc90>, <__main__.Point at 0x1099bfbd0>])
 >>> Point(1,1) in set([p1, p2])
-True
+False
 ```
 
 이 문제는 객체 메모리 주소가 아니라 실제 내용을 기반으로 하는 사용자 정의 해시 함수를 작성하여 해결할 수 있습니다. 해시 함수는 같은 내용의 객체에 대해서는 항상 같은 결과를 반환합니다.
@@ -199,14 +212,14 @@ True
 
 ```python
 class Point(object):
-  def __init__(self, x, y):
-    self.x, self.y = x, y
+    def __init__(self, x, y):
+        self.x, self.y = x, y
 
-  def __hash__(self):
-    return hash((self.x, self.y))
+    def __hash__(self):
+        return hash((self.x, self.y))
 
-  def __eq__(self, other):
-    return self.x == other.x and self.y == other.y
+    def __eq__(self, other):
+        return self.x == other.x and self.y == other.y
 ```
 
 이를 이용하면 인스턴스화한 객체의 메모리 주소가 아니라 `Point` 객체의 속성으로 사전이나 셋에 필요한 색인을 만들 수 있습니다.
@@ -238,9 +251,9 @@ $$
 
 ```python
 def twoletter_hash(key):
-  offset = ord('a')
-  k1, k2 = key
-  return (ord(k2) - offset) + 26 * (ord(k1) - offset)
+    offset = ord('a')
+    k1, k2 = key
+    return (ord(k2) - offset) + 26 * (ord(k1) - offset)
 ```
 
 아래 예제는 나쁜 해시 함수와 좋은 해시 함수를 사용한 탐색속도 비교입니다. 엄청나게 많은 차이가 나는걸 볼 수 있습니다.
@@ -250,43 +263,43 @@ import string
 import timeit
 
 class BadHash(str):
-  def __hash__(self):
-    return 42
+    def __hash__(self):
+        return 42
 
 class GoodHash(str):
-  def __hash__(self):
-    """
-    This is a slightly optimized version of twoletter_hash
-    """
-    return ord(self[1]) + 26 * ord(self[0]) - 2619
+    def __hash__(self):
+        """
+        This is a slightly optimized version of twoletter_hash
+        """
+        return ord(self[1]) + 26 * ord(self[0]) - 2619
 
 baddict = set()
 gooddict = set()
 for i in string.ascii_lowercase:
-  for j in string.ascii_lowercase:
-    key = i + j
-    baddict.add(BadHash(key))
-    gooddict.add(GoodHash(key))
+    for j in string.ascii_lowercase:
+        key = i + j
+        baddict.add(BadHash(key))
+        gooddict.add(GoodHash(key))
 
 badtime = timeit.repeat(
-  "key in baddict",
-  setup = "from __main__ import baddict, BadHash; key = BadHash('zz')",
-  repeat = 3,
-  number = 1000000,
+    "key in baddict",
+    setup = "from __main__ import baddict, BadHash; key = BadHash('zz')",
+    repeat = 3,
+    number = 1_000_000,
 )
 goodtime = timeit.repeat(
-  "key in gooddict",
-  setup = "from __main__ import gooddict, GoodHash; key = GoodHash('zz')",
-  repeat = 3,
-  number = 1000000,
+    "key in gooddict",
+    setup = "from __main__ import gooddict, GoodHash; key = GoodHash('zz')",
+    repeat = 3,
+    number = 1_000_000,
 )
 
-print "Min lookup time for baddict: ", min(badtime)
-print "Min lookup time for gooddict: ", min(goodtime)
+print(f"Min lookup time for baddict: {min(badtime)}")
+print(f"Min lookup time for gooddict: {min(goodtime)}")
 
 # Results:
-# Min lookup time for baddict: 16.3375990391
-# Min lookup time for gooddict: 0.748275995255
+#   Min lookup time for baddict: 17.719061855008476
+#   Min lookup time for gooddict: 0.42408075400453527
 ```
 
 ## Dictionaries and Namespaces 
@@ -304,45 +317,60 @@ import math
 from math import sin
 
 def test1(x):
-  """
-  >>> %timeit test1(123456)
-  1000000 loops, best of 3: 381 ns per loop
-  """
-  return math.sin(x)
+    """
+    >>> %timeit test1(123_456)
+    162 µs ± 3.82 µs per loop (mean ± std. dev. of 7 runs, 10000 loops each)
+    """
+    res = 1
+    for _ in range(1000):
+        res += math.sin(x)
+    return res
 
 def test2(x):
-  """
-  >>> %timeit test2(123456)
-  1000000 loops, best of 3: 311 ns per loop
-  """
-  return sin(x)
+    """
+    >>> %timeit test2(123_456)
+    124 µs ± 6.77 µs per loop (mean ± std. dev. of 7 runs, 10000 loops each)
+    """
+    res = 1
+    for _ in range(1000):
+        res += sin(x)
+    return res
+
 def test3(x, sin=math.sin):
-  """
-  >>> %timeit test3(123456)
-  1000000 loops, best of 3: 306 ns per loop
-  """
-  return sin(x)
+    """
+    >>> %timeit test3(123_456)
+    105 µs ± 3.35 µs per loop (mean ± std. dev. of 7 runs, 10000 loops each)
+    """
+    res = 1
+    for _ in range(1000):
+        res += sin(x)
+    return res
 ```
 
 다음은 `dis` 모듈을 사용해 함수를 역어셈블하고 네임스페이스 탐색이 어떻게 이루어지는지 보겠습니다.
 
 ```python
 >>> dis.dis(test1)
-  9           0 LOAD_GLOBAL              0 (math) # Dictionary lookup
-              2 LOAD_METHOD              1 (sin) # Dictionary lookup
-              4 LOAD_FAST                0 (x) # Local lookup
-              6 CALL_METHOD              1
-              8 RETURN_VALUE
+    ...cut..
+             20 LOAD_GLOBAL              1 (math)
+             22 LOAD_METHOD              2 (sin)
+             24 LOAD_FAST                0 (x)
+             26 CALL_METHOD              1
+    ...cut..
+
 >>> dis.dis(test2)
- 16           0 LOAD_GLOBAL              0 (sin) # Dictionary lookup
-              2 LOAD_FAST                0 (x) # Local lookup
-              4 CALL_FUNCTION            1
-              6 RETURN_VALUE
+    ...cut...
+             20 LOAD_GLOBAL              1 (sin)
+             22 LOAD_FAST                0 (x)
+             24 CALL_FUNCTION            1
+    ...cut...
+
 >>> dis.dis(test3)
- 22           0 LOAD_FAST                1 (sin) # Local lookup
-              2 LOAD_FAST                0 (x) # Local lookup
-              4 CALL_FUNCTION            1
-              6 RETURN_VALUE
+    ...cut...
+             20 LOAD_FAST                1 (sin)
+             22 LOAD_FAST                0 (x)
+             24 CALL_FUNCTION            1
+    ...cut...
 ```
 
 `test1` 은 `math` 라이브러리에서 명시적으로 `sin` 을 호출했습니다. 먼저 `math` 모듈을 로드하고 이 모듈에서 `sin` 함수를 찾았습니다. 2 번의 사전 탐색이 발생했는데, 하나는 `math` 모듈, 다른 하나는 모듈 안에서 `sin` 함수를 찾는 과정입니다.
@@ -359,24 +387,24 @@ def test3(x, sin=math.sin):
 from math import sin
 
 def tight_loop_slow(iterations):
-  """
-  >>> %timeit tight_loop_slow(10000000)
-  1 loops, best of 3: 2.21 s per loop
-  """
-  result = 0
-  for i in xrange(iterations):
-    # this call to sin requires a global lookup
-    result += sin(i)
+    """
+    >>> %timeit tight_loop_slow(10000000)
+    1 loops, best of 3: 2.21 s per loop
+    """
+    result = 0
+    for i in xrange(iterations):
+        # this call to sin requires a global lookup
+        result += sin(i)
 
 def tight_loop_fast(iterations):
-  """
-  >>> %timeit tight_loop_fast(10000000)
-  1 loops, best of 3: 2.02 s per loop
-  """
-  result = 0
-  local_sin = sin
-  for i in xrange(iterations):
-    # this call to local_sin requires a local lookup
-    result += local_sin(i)
+    """
+    >>> %timeit tight_loop_fast(10000000)
+    1 loops, best of 3: 2.02 s per loop
+    """
+    result = 0
+    local_sin = sin
+    for i in xrange(iterations):
+        # this call to local_sin requires a local lookup
+        result += local_sin(i)
 ```
 

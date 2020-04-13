@@ -27,6 +27,7 @@ layout: single
 * [Java Microbenchmarking and Statistics](/javaoptimizing-benchmarkingstatistics)
 * [Java Understanding Garbage Collection](/javaoptimizing-understandinggc)
 * [Java GC Logging, Monitoring, Tuning, and Tools](/javaoptimizing-gcloggingmonitoringtuingtools)
+* [Java Code Execution on the JVM](/java-codeexecutiononthejvm)
 
 ### Python
 

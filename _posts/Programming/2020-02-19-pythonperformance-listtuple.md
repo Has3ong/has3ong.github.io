@@ -1,4 +1,4 @@
----
+  ---
 title : Python Lists and Tuples
 tags :
 - Tuple
@@ -25,25 +25,24 @@ tags :
 예를 들어 배열의 첫 번째 항목을 찾으려고 한다면 배열이 시작하는 위치에 있는 첫 번째 바구니의 값(M)을 읽으면 됩니다. 다섯 번째 항목을 읽으려면 M+4 위치에 값을 읽으면 됩니다. 따라서 연속적인 메모리에 정렬되어 저장된 데이터는 배열의 크기에 상관없이 한 번에 읽을 수 있습니다. 따라서 시간 복잡도는 O(1) 입니다.
 
 ```python
->>> %%timeit l = range(10)
-  ...: l[5]
-  ...:
-10000000 loops, best of 3: 75.5 ns per loop
+>>> %%timeit l = list(range(10))
+        ...: l[5]
+        ...:
+30.1 ns ± 0.996 ns per loop (mean ± std. dev. of 7 runs, 10000000 loops each)
 
->>>
->>> %%timeit l = range(10000000)
-  ...: l[100000]
-  ...:
-10000000 loops, best of 3: 76.3 ns per loop
+>>> %%timeit l = list(range(10_000_000))
+        ...: l[100_000]
+        ...:
+28.9 ns ± 0.894 ns per loop (mean ± std. dev. of 7 runs, 10000000 loops each)
 ```
 
 순서가 알려지지 않은 배열에서 특정 값을 찾기 위해선 탐색해야합니다. 가장 기본적인 방법은 배열의 모든 항목을 검사해 원하는 값이 있는지 찾아내는 선형 탐색 기법입니다.
 
 ```python
 def linear_search(needle, array):
-  for i, item in enumerate(array):
-    if item == needle:
-      return i
+    for i, item in enumerate(array):
+        if item == needle:
+            return i
     return -1
 ```
 
@@ -65,17 +64,17 @@ def linear_search(needle, array):
 
 ```python
 def binary_search(needle, haystack):
-  imin, imax = 0, len(haystack)
-  while True:
-    if imin >= imax:
-      return -1
-    midpoint = (imin + imax) // 2
-    if haystack[midpoint] > needle:
-      imax = midpoint
-    elif haystack[midpoint] < needle:
-      imin = midpoint+1
-    else:
-      return midpoint
+    imin, imax = 0, len(haystack)
+    while True:
+        if imin > imax:
+            return -1
+        midpoint = (imin + imax) // 2
+        if haystack[midpoint] > needle:
+            imax = midpoint
+        elif haystack[midpoint] < needle:
+            imin = midpoint+1
+        else:
+            return midpoint
 ```
 
 리스트가 정렬된 상태라면 데이터를 사전으로 바꾸는 것보다 그냥 간단히 이진 탐색으로 데이터를 찾는 편이 더 효과적입니다.
@@ -87,38 +86,42 @@ import bisect
 import random
 
 def find_closest(haystack, needle):
-  # bisect.bisect_left will return the first value in the haystack
-  # that is greater than the needle
-  i = bisect.bisect_left(haystack, needle)
-  if i == len(haystack):
-    return i - 1
-  elif haystack[i] == needle:
+    # bisect.bisect_left will return the first value in the haystack
+    # that is greater than the needle
+    i = bisect.bisect_left(haystack, needle)
+    if i == len(haystack):
+        return i - 1
+    elif haystack[i] == needle:
+        return i
+    elif i > 0:
+        j = i - 1
+        # since we know the value is larger than needle (and vice versa for the
+        # value at j), we don't need to use absolute values here
+        if haystack[i] - needle > needle - haystack[j]:
+            return j
     return i
-  elif i > 0:
-    j = i - 1
-  # since we know the value is larger than needle (and vice versa for the
-  # value at j), we don't need to use absolute values here
-  if haystack[i] - needle > needle - haystack[j]:
-    return j
-  return i
 
 important_numbers = []
-for i in xrange(10):
-  new_number = random.randint(0, 1000)
-  bisect.insort(important_numbers, new_number)
+for i in range(10):
+    new_number = random.randint(0, 1000)
+    bisect.insort(important_numbers, new_number)
 
 # important_numbers will already be in order because we inserted new elements
 # with bisect.insort
-print (important_numbers)
+print(important_numbers)
+# > [14, 265, 496, 661, 683, 734, 881, 892, 973, 992]
 
 closest_index = find_closest(important_numbers, -250)
-print ("Closest value to -250: ", important_numbers[closest_index])
+print(f"Closest value to -250: {important_numbers[closest_index]}")
+# > Closest value to -250: 14
 
 closest_index = find_closest(important_numbers, 500)
-print ("Closest value to 500: ", important_numbers[closest_index])
+print(f"Closest value to 500: {important_numbers[closest_index]}")
+# > Closest value to 500: 496
 
 closest_index = find_closest(important_numbers, 1100)
-print ("Closest value to 1100: ", important_numbers[closest_index]) 
+print(f"Closest value to 1100: {important_numbers[closest_index]}")
+# > Closest value to 1100: 992
 ```
 
 이처럼 올바른 자료구조를 선택하고 일관되게 사용하는것은 효율적인 코드를 작성하는 기본 법칙이기도 합니다.
@@ -142,7 +145,7 @@ print ("Closest value to 1100: ", important_numbers[closest_index])
 
 ```python
 >>> numbers = [5, 8, 1, 3, 2, 6]
->>> numbers[2] = 2*numbers[0]
+>>> numbers[2] = 2*numbers[0]  
 >>> numbers
 [5, 8, 10, 3, 2, 6]
 ```
@@ -185,7 +188,7 @@ M 0 4 8 16 25 35 46 … 1120
 ```python
 l = [1, 2]
 for i in range(3, 7):
-  l.append(i)
+    l.append(i)
 ```
 
 > Example 3 - Example of how a list is mutated on multiple appends 
@@ -225,7 +228,8 @@ TypeError: 'tuple' object does not support item assignment
 
 ```python
 >>> %timeit l = [0,1,2,3,4,5,6,7,8,9]
-1000000 loops, best of 3: 285 ns per loop
+95 ns ± 1.87 ns per loop (mean ± std. dev. of 7 runs, 10000000 loops each)
+
 >>> %timeit t = (0,1,2,3,4,5,6,7,8,9)
-10000000 loops, best of 3: 55.7 ns per loop
+12.5 ns ± 0.199 ns per loop (mean ± std. dev. of 7 runs, 100000000 loops each)
 ```

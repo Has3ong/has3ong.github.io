@@ -43,19 +43,19 @@ z 의 절대값이 2보다 작으면 이 함수를 계속 반복합니다. 2 이
 
 ```python
 for z in coordinates:
-  for iteration in range(maxiter): # limited iterations per point
-    if abs(z) < 2.0: # has the escape condition been broken?
-      z = z*z + c
-    else:
-      break
-  # store the iteration count for each z and draw later
+    for iteration in range(maxiter):  # limited iterations per point
+        if abs(z) < 2.0:  # has the escape condition been broken?
+            z = z*z + c
+        else:
+            break
+    # store the iteration count for each z and draw later
 ```
 
 먼저 그리게 될 쥘리아 집합 그래프의 왼쪽 위 코너 좌표를 -1.8-1.8j 로 하겠습니다. 값을 계산하기 전에 `abs(z) < 2` 인 조건을 만족해야 합니다.
 
 ```python
 z = -1.8-1.8j
-print abs(z)
+print(abs(z))
 
 2.54558441227
 ```
@@ -68,8 +68,8 @@ print abs(z)
 c = -0.62772-0.42193j
 z = 0+0j
 for n in range(9):
-  z = z*z + c
-  print "{}: z={:33}, abs(z)={:0.2f}, c={}".format(n, z, abs(z), c)
+    z = z*z + c
+    print(f"{n}: z={z: .5f}, abs(z)={abs(z):0.3f}, c={c: .5f}")
   
 0: z= (-0.62772-0.42193j), abs(z)=0.76, c=(-0.62772-0.42193j)
 1: z= (-0.4117125265+0.1077777992j), abs(z)=0.43, c=(-0.62772-0.42193j)
@@ -97,60 +97,41 @@ for n in range(9):
 이제 쥘리아 집합을 생성하는 코드를 살펴보겠습니다. 첫 번째 프로파일링을 위해 `time` 모듈을 임포트하고 몇 가지 좌표 상수를 정의하겠습니다.
 
 ```python
-"""Julia set generator without optional PIL-based image drawing"""
-import time
-
-# area of complex space to investigate
-x1, x2, y1, y2 = -1.8, 1.8, -1.8, 1.8
-c_real, c_imag = -0.62772, -.42193
-```
-
-그래프를 그리기 위해 입력 데이터를 담을 두 리스트 `zs(복소수 z축)` 와 `cs(복소수 초기 조건)` 을 생성합니다. `cs` 를 단일 `c` 값으로 최적화 할 수 있습니다. 두 벌의 입력 리스트를 생성하는 이유는 나중에 RAM 사용량을 프로파일링 할 때 납득할 만한 데이터를 얻기 위함입니다.
-
-`zs` 리스트와 `cs` 리스트를 생성하기 위해 각 `z` 좌표를 알아야 합니다. 아래 예제에서 `xcoord` 와 `ycoord` 를 이용하여 이 좌표를 만들고 `x_step` 과 `y_step` 을 지정합니다. 약간 번잡해 보일 수 있는 이 과정은 numpy 나 다른 파이선 환경으로 코드를 포팅할 때 명확한 디버깅에 도움을 줍니다.
-
-```python
 def calc_pure_python(desired_width, max_iterations):
-  """Create a list of complex coordinates (zs) and complex parameters (cs), build Julia set, and display"""
-  x_step = (float(x2 - x1) / float(desired_width))
-  y_step = (float(y1 - y2) / float(desired_width))
-  x = []
-  y = []
-  ycoord = y2
-  
-  while ycoord > y1:
-    y.append(ycoord)
-    ycoord += y_step
-  xcoord = x1
-  
-  while xcoord < x2:
-    x.append(xcoord)
-    xcoord += x_step
-  # Build a list of coordinates and the initial condition for each cell.
-  # Note that our initial condition is a constant and could easily be removed;
-  # we use it to simulate a real-world scenario with several inputs to
-  # our function.
-  zs = []
-  cs = []
-  
-  for ycoord in y:
-    for xcoord in x:
-      zs.append(complex(xcoord, ycoord))
-      cs.append(complex(c_real, c_imag))
-      
-  print "Length of x:", len(x)
-  print "Total elements:", len(zs)
-  
-  start_time = time.time()
-  output = calculate_z_serial_purepython(max_iterations, zs, cs)
-  end_time = time.time()
-  secs = end_time - start_time
-  print calculate_z_serial_purepython.__name__ + " took", secs, "seconds"
-  
-  # This sum is expected for a 1000^2 grid with 300 iterations.
-  # It catches minor errors we might introduce when we're
-  # working on a fixed set of inputs.
-  assert sum(output) == 33219980
+    """Create a list of complex co-ordinates (zs) and complex parameters (cs), build Julia set"""
+    x_step = (x2 - x1) / desired_width
+    y_step = (y1 - y2) / desired_width
+    x = []
+    y = []
+    ycoord = y2
+    while ycoord > y1:
+        y.append(ycoord)
+        ycoord += y_step
+    xcoord = x1
+    while xcoord < x2:
+        x.append(xcoord)
+        xcoord += x_step
+    # build a list of co-ordinates and the initial condition for each cell.
+    # Note that our initial condition is a constant and could easily be removed,
+    # we use it to simulate a real-world scenario with several inputs to our function
+    zs = []
+    cs = []
+    for ycoord in y:
+        for xcoord in x:
+            zs.append(complex(xcoord, ycoord))
+            cs.append(complex(c_real, c_imag))
+
+    print("Length of x:", len(x))
+    print("Total elements:", len(zs))
+    start_time = time.time()
+    output = calculate_z_serial_purepython(max_iterations, zs, cs)
+    end_time = time.time()
+    secs = end_time - start_time
+    print(calculate_z_serial_purepython.__name__ + " took", secs, "seconds")
+
+    # This sum is expected for a 1000^2 grid with 300 iterations
+    # It ensures that our code evolves exactly as we'd intended
+    assert sum(output) == 33219980
 ```
 
 `zs` 와 `cs` 리스트를 만들어서 해당 리스트의 크기에 관한 정보를 담고 `output` 리스트에 `calculate_z_serial_purepython` 함수에서 계산한 값을 저장합니다. 마지막으로 `output` 리스트에 들어 있는 값들을 모두 더해 그 값이 기대한 값과 같은지 검사합니다.
@@ -161,26 +142,26 @@ def calc_pure_python(desired_width, max_iterations):
 
 ```python
 def calculate_z_serial_purepython(maxiter, zs, cs):
-  """Calculate output list using Julia update rule"""
-  output = [0] * len(zs)
-  for i in range(len(zs)):
-    n = 0
-    z = zs[i]
-    c = cs[i]
-    while abs(z) < 2 and n < maxiter:
-      z = z * z + c
-      n += 1
-    output[i] = n
-  return output
+    """Calculate output list using Julia update rule"""
+    output = [0] * len(zs)
+    for i in range(len(zs)):
+        n = 0
+        z = zs[i]
+        c = cs[i]
+        while abs(z) < 2 and n < maxiter:
+            z = z * z + c
+            n += 1
+        output[i] = n
+    return output
 ```
 
 이제 계산 루틴을 호출하겠습니다.
 
 ```python
 if __name__ == "__main__":
-  # Calculate the Julia set using a pure Python solution with
-  # reasonable defaults for a laptop
-  calc_pure_python(desired_width=1000, max_iterations=300)
+    # Calculate the Julia set using a pure Python solution with
+    # reasonable defaults for a laptop
+    calc_pure_python(desired_width=1000, max_iterations=300)
 ```
 
 위 코드를 실행하면 문제의 복잡도에 관한 결과를 얻을 수 있습니다.
@@ -218,18 +199,19 @@ calculate_z_serial_purepython took 12.3479790688 seconds
 from functools import wraps
 
 def timefn(fn):
-  @wraps(fn)
-  def measure_time(*args, **kwargs):
-    t1 = time.time()
-    result = fn(*args, **kwargs)
-    t2 = time.time()
-    print ("@timefn:" + fn.func_name + " took " + str(t2 - t1) + " seconds")
-    return result
-  return measure_time
-  
+    @wraps(fn)
+    def measure_time(*args, **kwargs):
+        t1 = time.time()
+        result = fn(*args, **kwargs)
+        t2 = time.time()
+        print(f"@timefn: {fn.__name__} took {t2 - t1} seconds")
+        return result
+    return measure_time
+
+
 @timefn
 def calculate_z_serial_purepython(maxiter, zs, cs):
- ...
+    ...
 ```
 
 기존의 `print` 문은 그대로 둔채 이 코들=드를 실행하면 데코레이터를 사용한 측정값이 `calc_pure_python` 함수에서 측정한 값보다 살짝 짧음을 확인할 수 있습니다. 이는 함수 호출에 의한 오버헤드입니다.
@@ -294,30 +276,30 @@ sys 0.04
 $ /usr/bin/time --verbose python julia1_nopil.py
 Length of x: 1000
 Total elements: 1000000
-calculate_z_serial_purepython took 12.3145110607 seconds
-    Command being timed: "python julia1_nopil.py"
-    User time (seconds): 13.46
-    System time (seconds): 0.05
-    Percent of CPU this job got: 99%
-    Elapsed (wall clock) time (h:mm:ss or m:ss): 0:13.53
-    Average shared text size (kbytes): 0
-    Average unshared data size (kbytes): 0
-    Average stack size (kbytes): 0
-    Average total size (kbytes): 0
-    Maximum resident set size (kbytes): 131952
-    Average resident set size (kbytes): 0
-    Major (requiring I/O) page faults: 0
-    Minor (reclaiming a frame) page faults: 58974
-    Voluntary context switches: 3
-    Involuntary context switches: 26
-    Swaps: 0
-    File system inputs: 0
-    File system outputs: 1968
-    Socket messages sent: 0
-    Socket messages received: 0
-    Signals delivered: 0
-    Page size (bytes): 4096
-    Exit status: 0
+calculate_z_serial_purepython took 8.477287530899048 seconds
+ Command being timed: "python julia1_nopil.py"
+ User time (seconds): 8.97
+ System time (seconds): 0.05
+ Percent of CPU this job got: 99%
+ Elapsed (wall clock) time (h:mm:ss or m:ss): 0:09.03
+ Average shared text size (kbytes): 0
+ Average unshared data size (kbytes): 0
+ Average stack size (kbytes): 0
+ Average total size (kbytes): 0
+ Maximum resident set size (kbytes): 98620
+ Average resident set size (kbytes): 0
+ Major (requiring I/O) page faults: 0
+ Minor (reclaiming a frame) page faults: 26645
+ Voluntary context switches: 1
+ Involuntary context switches: 27
+ Swaps: 0
+ File system inputs: 0
+ File system outputs: 0
+ Socket messages sent: 0
+ Socket messages received: 0
+ Signals delivered: 0
+ Page size (bytes): 4096
+ Exit status: 0
 ```
 
 위 지표에서 가장 눈여겨봐야 하는 항목은 `Major (requiring I/O) page faults` 항목입니다. 이 항목은 운영체제가 RAM 에서 필요한 데이터를 찾을 수 없어 디스크에서 페이지를 불러 왔는지의 여부를 나타냅니다. 이는 속도를 느리게 하는 원인입니다.
@@ -332,33 +314,28 @@ cProfile 모듈을 사용하여 코드를 실행해보겠습니다. cProfile 의
 
 ```shell
 $ python -m cProfile -s cumulative julia1_nopil.py
-
-calculate_z_serial_purepython took 9.342324018478394 seconds
-         36222239 function calls (36222238 primitive calls) in 10.050 seconds
+...
+Length of x: 1000
+Total elements: 1000000
+calculate_z_serial_purepython took 11.498265266418457 seconds
+         36221995 function calls in 12.234 seconds
 
    Ordered by: cumulative time
 
    ncalls  tottime  percall  cumtime  percall filename:lineno(function)
-      2/1    0.000    0.000   10.050   10.050 {built-in method builtins.exec}
-        1    0.030    0.030   10.050   10.050 kakao.py:1(<module>)
-        1    0.540    0.540   10.019   10.019 kakao.py:9(calc_pure_python)
-        1    7.324    7.324    9.342    9.342 kakao.py:51(calculate_z_serial_purepython)
- 34219980    2.019    0.000    2.019    0.000 {built-in method builtins.abs}
-  2002000    0.126    0.000    0.126    0.000 {method 'append' of 'list' objects}
-        1    0.011    0.011    0.011    0.011 {built-in method builtins.sum}
-        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:978(_find_and_load)
-        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:948(_find_and_load_unlocked)
-        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:663(_load_unlocked)
-        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:882(_find_spec)
-        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:1272(find_spec)
-        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:1240(_get_spec)
-        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:722(exec_module)
-        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:793(get_code)
-        3    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:1356(find_spec)
+        1    0.000    0.000   12.234   12.234 {built-in method builtins.exec}
+        1    0.038    0.038   12.234   12.234 julia1_nopil.py:1(<module>)
+        1    0.571    0.571   12.197   12.197 julia1_nopil.py:23(calc_pure_python)
+        1    8.369    8.369   11.498   11.498 julia1_nopil.py:9
+                                               (calculate_z_serial_purepython)
+ 34219980    3.129    0.000    3.129    0.000 {built-in method builtins.abs}
+  2002000    0.121    0.000    0.121    0.000 {method 'append' of 'list' objects}
+        1    0.006    0.006    0.006    0.006 {built-in method builtins.sum}
         3    0.000    0.000    0.000    0.000 {built-in method builtins.print}
-        5    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:74(_path_stat)
-        5    0.000    0.000    0.000    0.000 {built-in method posix.stat}
-...
+        2    0.000    0.000    0.000    0.000 {built-in method time.time}
+        4    0.000    0.000    0.000    0.000 {built-in method builtins.len}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of
+                                                '_lsprof.Profiler' objects}
 ```
 
 누적 소비 시간으로 정렬하면 실행 시간을 주로 소비하는 곳이 어딘지 쉽게 확인할 수 있습니다.
@@ -407,55 +384,41 @@ Sun Feb 16 23:40:48 2020    profile.stats
 
 ```shell
 In [5]: p.print_callers()
-
    Ordered by: cumulative time
 
-Function                                                                                                       was called by...
-                                                                                                                   ncalls  tottime  cumtime
-{built-in method builtins.exec}                                                                                <-       1    0.000    0.000  <frozen importlib._bootstrap>:211(_call_with_frames_removed)
-kakao.py:2(<module>)                                                                                           <-       1    0.029   10.302  {built-in method builtins.exec}
-kakao.py:10(calc_pure_python)                                                                                  <-       1    0.551   10.272  kakao.py:2(<module>)
-kakao.py:52(calculate_z_serial_purepython)                                                                     <-       1    7.519    9.585  kakao.py:10(calc_pure_python)
-{built-in method builtins.abs}                                                                                 <- 34219980    2.066    2.066  kakao.py:52(calculate_z_serial_purepython)
-{method 'append' of 'list' objects}                                                                            <- 2002000    0.128    0.128  kakao.py:10(calc_pure_python)
-{built-in method builtins.sum}                                                                                 <-       1    0.008    0.008  kakao.py:10(calc_pure_python)
-<frozen importlib._bootstrap>:978(_find_and_load)                                                              <-       1    0.000    0.000  kakao.py:2(<module>)
-<frozen importlib._bootstrap>:948(_find_and_load_unlocked)                                                     <-       1    0.000    0.000  <frozen importlib._bootstrap>:978(_find_and_load)
-<frozen importlib._bootstrap>:663(_load_unlocked)                                                              <-       1    0.000    0.000  <frozen importlib._bootstrap>:948(_find_and_load_unlocked)
-<frozen importlib._bootstrap>:882(_find_spec)                                                                  <-       1    0.000    0.000  <frozen importlib._bootstrap>:948(_find_and_load_unlocked)
-<frozen importlib._bootstrap_external>:1272(find_spec)                                                         <-       1    0.000    0.000  <frozen importlib._bootstrap>:882(_find_spec)
-<frozen importlib._bootstrap_external>:1240(_get_spec)                                                         <-       1    0.000    0.000  <frozen importlib._bootstrap_external>:1272(find_spec)
-<frozen importlib._bootstrap_external>:722(exec_module)                                                        <-       1    0.000    0.000  <frozen importlib._bootstrap>:663(_load_unlocked)
-<frozen importlib._bootstrap_external>:793(get_code)                                                           <-       1    0.000    0.000  <frozen importlib._bootstrap_external>:722(exec_module)
-<frozen importlib._bootstrap_external>:1356(find_spec)                                                         <-       3    0.000    0.000  <frozen importlib._bootstrap_external>:1240(_get_spec)
-{built-in method builtins.print}                                                                               <-       3    0.000    0.000  kakao.py:10(calc_pure_python)
+Function                                          was called by...
+                                                    ncalls  tottime cumtime
+{built-in method builtins.exec}       <-
+julia1_nopil.py:1(<module>)           <-       1    0.033   12.169  {built-in method builtins.exec}
+julia1_nopil.py:23(calc_pure_python)  <-       1    0.576   12.135  :1(<module>)
+julia1_nopil.py:9(...)                <-       1    8.266   11.429  :23(calc_pure_python)
+{built-in method builtins.abs}        <- 34219980   3.163    3.163  :9(calculate_z_serial_purepython)
+{method 'append' of 'list' objects}   <- 2002000    0.123    0.123  :23(calc_pure_python)
+{built-in method builtins.sum}        <-       1    0.006    0.006  :23(calc_pure_python)
+{built-in method builtins.print}      <-       3    0.000    0.000  :23(calc_pure_python)
+{built-in method builtins.len}        <-       2    0.000    0.000  :9(calculate_z_serial_purepython)
+                                               2    0.000    0.000  :23(calc_pure_python)
+{built-in method time.time}           <-       2    0.000    0.000  :23(calc_pure_python)
 ```
 
 반대로 해당 함수에서 호출하는 함수 목록도 확인할 수 있습니다.
 
 ```shell
 In [6]: p.print_callees()
+   Ordered by: cumulative time
 
-Ordered by: cumulative time
-
-Function                                                                                                       called...
-                                                                                                                   ncalls  tottime  cumtime
-{built-in method builtins.exec}                                                                                ->       1    0.000    0.000  /usr/local/Cellar/python/3.7.5/Frameworks/Python.framework/Versions/3.7/lib/python3.7/cProfile.py:5(<module>)
-                                                                                                                        1    0.029   10.302  kakao.py:2(<module>)
-kakao.py:2(<module>)                                                                                           ->       1    0.000    0.000  <frozen importlib._bootstrap>:978(_find_and_load)
-                                                                                                                        1    0.551   10.272  kakao.py:10(calc_pure_python)
-kakao.py:10(calc_pure_python)                                                                                  ->       1    7.519    9.585  kakao.py:52(calculate_z_serial_purepython)
-                                                                                                                        2    0.000    0.000  {built-in method builtins.len}
-                                                                                                                        3    0.000    0.000  {built-in method builtins.print}
-                                                                                                                        1    0.008    0.008  {built-in method builtins.sum}
-                                                                                                                        2    0.000    0.000  {built-in method time.time}
-                                                                                                                  2002000    0.128    0.128  {method 'append' of 'list' objects}
-kakao.py:52(calculate_z_serial_purepython)                                                                     -> 34219980    2.066    2.066  {built-in method builtins.abs}
-                                                                                                                        2    0.000    0.000  {built-in method builtins.len}
-{built-in method builtins.abs}                                                                                 ->
-{method 'append' of 'list' objects}                                                                            ->
-{built-in method builtins.sum}                                                                                 ->
-<frozen importlib._bootstrap>:978(_find_and_load)                                                              ->       1    0.000    0.000  <frozen importlib._bootstrap>:143(__init__)
+Function                                          called...
+                                                      ncalls  tottime  cumtime
+{built-in method builtins.exec}      ->       1    0.033   12.169  julia1_nopil.py:1(<module>)
+julia1_nopil.py:1(<module>)          ->       1    0.576   12.135  julia1_nopil.py:23(calc_pure_python)
+julia1_nopil.py:23(calc_pure_python) ->       1    8.266   11.429  julia1_nopil.py:9(calculate_z_serial_purepython)
+                                              2    0.000    0.000  {built-in method builtins.len}
+                                              3    0.000    0.000  {built-in method builtins.print}
+                                              1    0.006    0.006  {built-in method builtins.sum}
+                                              2    0.000    0.000  {built-in method time.time}
+                                        2002000    0.123    0.123  {method 'append' of 'list' objects}
+julia1_nopil.py:9(...)  -> 34219980    3.163    3.163  {built-in method builtins.abs}
+					      2    0.000    0.000  {built-in method builtins.len}
 ```
 
 cProfile 의 출력내용은 약간 장황한 면이 있어서, 줄바꿈 없이 깔끔하게 보고 싶으면 창을 넓게 늘려서 사용해야 합니다.
@@ -471,32 +434,30 @@ cProfile 의 출력내용은 약간 장황한 면이 있어서, 줄바꿈 없이
 `-l` 옵션은 함수 단위가 한 줄씩 프로파일링하겠다는 옵션이며 `-v` 옵션은 출력결과를 다양하게 보여줍니다.
 
 ```shell
-
-calculate_z_serial_purepython took 69.51615619659424 seconds
+$ kernprof -l -v julia1_lineprofiler.py
+...
 Wrote profile results to julia1_lineprofiler.py.lprof
 Timer unit: 1e-06 s
 
-$ kernprof -l -v julia1_lineprofiler.py
-
-Total time: 39.9619 s
+Total time: 49.2011 s
 File: julia1_lineprofiler.py
-Function: calculate_z_serial_purepython at line 53
+Function: calculate_z_serial_purepython at line 9
 
 Line #      Hits         Time  Per Hit   % Time  Line Contents
 ==============================================================
-    53                                           @profile
-    54                                           def calculate_z_serial_purepython(maxiter, zs, cs):
-    55                                             """Calculate output list using Julia update rule"""
-    56         1       6074.0   6074.0      0.0    output = [0] * len(zs)
-    57   1000001     312475.0      0.3      0.8    for i in range(len(zs)):
-    58   1000000     297751.0      0.3      0.7      n = 0
-    59   1000000     350329.0      0.4      0.9      z = zs[i]
-    60   1000000     328300.0      0.3      0.8      c = cs[i]
-    61  34219980   15072458.0      0.4     37.7      while abs(z) < 2 and n < maxiter:
-    62  33219980   12147692.0      0.4     30.4        z = z * z + c
-    63  33219980   11108739.0      0.3     27.8        n += 1
-    64   1000000     338078.0      0.3      0.8      output[i] = n
-    65         1          1.0      1.0      0.0    return output
+     9                                           @profile
+    10                                           def calculate_z_serial_purepython(maxiter, zs, cs):
+    11                                               """Calculate output list using Julia update rule"""
+    12         1       3298.0   3298.0      0.0      output = [0] * len(zs)
+    13   1000001     386087.0      0.4      0.8      for i in range(len(zs)):
+    14   1000000     365713.0      0.4      0.7          n = 0
+    15   1000000     420496.0      0.4      0.9          z = zs[i]
+    16   1000000     402887.0      0.4      0.8          c = cs[i]
+    17  34219980   18692480.0      0.5     38.0          while abs(z) < 2 and n < maxiter:
+    18  33219980   15165236.0      0.5     30.8              z = z * z + c
+    19  33219980   13357752.0      0.4     27.1              n += 1
+    20   1000000     407153.0      0.4      0.8          output[i] = n
+    21         1          1.0      1.0      0.0      return output
 ```
 
 ## Using memory_profiler to Diagnose Memory Usage 
@@ -518,72 +479,60 @@ $ pip install psutil
 아래는 `memory_profiler` 를 이용하여 메모리 사용을 측정한 예입니다. `line_profiler` 와 비교해서 시간이 더 오래 걸릴 수 있습니다.
 
 ```shell
-calculate_z_serial_purepython took 3594.8900051116943 seconds
-Filename: julia.py
+$ python -m memory_profiler julia1_memoryprofiler.py
+...
 
 Line #    Mem usage    Increment   Line Contents
 ================================================
-    10   36.180 MiB   36.180 MiB   @profile
-    11                             def calc_pure_python(desired_width, max_iterations):
-    12                                 """Create a list of complex coordinates (zs) and complex parameters (cs), build Julia set, and display"""
-    13   36.180 MiB    0.000 MiB       x_step = (float(x2 - x1) / float(desired_width))
-    14   36.180 MiB    0.000 MiB       y_step = (float(y1 - y2) / float(desired_width))
-    15   36.180 MiB    0.000 MiB       x = []
-    16   36.180 MiB    0.000 MiB       y = []
-    17   36.180 MiB    0.000 MiB       ycoord = y2
-    18
-    19   36.180 MiB    0.000 MiB       while ycoord > y1:
-    20   36.180 MiB    0.000 MiB           y.append(ycoord)
-    21   36.180 MiB    0.000 MiB           ycoord += y_step
-    22   36.180 MiB    0.000 MiB       xcoord = x1
-    23
-    24   36.184 MiB    0.000 MiB       while xcoord < x2:
-    25   36.184 MiB    0.004 MiB           x.append(xcoord)
-    26   36.184 MiB    0.000 MiB           xcoord += x_step
-    27                                 # Build a list of coordinates and the initial condition for each cell.
-    28                                 # Note that our initial condition is a constant and could easily be removed;
-    29                                 # we use it to simulate a real-world scenario with several inputs to
-    30                                 # our function.
-    31   36.184 MiB    0.000 MiB       zs = []
-    32   36.184 MiB    0.000 MiB       cs = []
-    33
-    34  119.973 MiB    0.000 MiB       for ycoord in y:
-    35  119.973 MiB    0.016 MiB           for xcoord in x:
-    36  119.973 MiB    1.098 MiB               zs.append(complex(xcoord, ycoord))
-    37  119.973 MiB    1.098 MiB               cs.append(complex(c_real, c_imag))
-    38
-    39  119.977 MiB    0.004 MiB       print("Length of x:", len(x))
-    40  119.977 MiB    0.000 MiB       print("Total elements:", len(zs))
-    41
-    42  119.977 MiB    0.000 MiB       start_time = time.time()
-    43   80.156 MiB   80.156 MiB       output = calculate_z_serial_purepython(max_iterations, zs, cs)
-    44   80.184 MiB    0.027 MiB       end_time = time.time()
-    45   80.184 MiB    0.000 MiB       secs = end_time - start_time
-    46   80.281 MiB    0.098 MiB       print(calculate_z_serial_purepython.__name__ + " took", secs, "seconds")
-    47
-    48                                 # This sum is expected for a 1000^2 grid with 300 iterations.
-    49                                 # It catches minor errors we might introduce when we're
-    50                                 # working on a fixed set of inputs.
-    51   81.172 MiB    0.891 MiB       assert sum(output) == 33219980
+     9  126.363 MiB  126.363 MiB   @profile
+    10                             def calculate_z_serial_purepython(maxiter, zs, cs):
+    11                                 """Calculate output list using Julia update rule"""
+    12  133.973 MiB    7.609 MiB       output = [0] * len(zs)
+    13  136.988 MiB    0.000 MiB       for i in range(len(zs)):
+    14  136.988 MiB    0.000 MiB           n = 0
+    15  136.988 MiB    0.000 MiB           z = zs[i]
+    16  136.988 MiB    0.000 MiB           c = cs[i]
+    17  136.988 MiB    0.258 MiB           while n < maxiter and abs(z) < 2:
+    18  136.988 MiB    0.000 MiB               z = z * z + c
+    19  136.988 MiB    0.000 MiB               n += 1
+    20  136.988 MiB    0.000 MiB           output[i] = n
+    21  136.988 MiB    0.000 MiB       return output
 
-
-Filename: julia.py
+...
 
 Line #    Mem usage    Increment   Line Contents
 ================================================
-    53  119.977 MiB  119.977 MiB   @profile
-    54                             def calculate_z_serial_purepython(maxiter, zs, cs):
-    55                               """Calculate output list using Julia update rule"""
-    56  127.609 MiB    7.633 MiB     output = [0] * len(zs)
-    57  137.910 MiB    0.000 MiB     for i in range(len(zs)):
-    58  137.910 MiB    0.000 MiB       n = 0
-    59  137.910 MiB    0.004 MiB       z = zs[i]
-    60  137.910 MiB    0.004 MiB       c = cs[i]
-    61  137.910 MiB    0.004 MiB       while abs(z) < 2 and n < maxiter:
-    62  137.910 MiB    0.004 MiB         z = z * z + c
-    63  137.910 MiB    0.000 MiB         n += 1
-    64  137.910 MiB    0.000 MiB       output[i] = n
-    65   80.105 MiB    0.000 MiB     return output
+    24   48.113 MiB   48.113 MiB   @profile
+    25                             def calc_pure_python(draw_output, desired_width, max_iterations):
+    26                                 """Create a list of complex co-ordinates (zs) and complex parameters (cs), build Julia set and display"""
+    27   48.113 MiB    0.000 MiB       x_step = (x2 - x1) / desired_width
+    28   48.113 MiB    0.000 MiB       y_step = (y1 - y2) / desired_width
+    29   48.113 MiB    0.000 MiB       x = []
+    30   48.113 MiB    0.000 MiB       y = []
+    31   48.113 MiB    0.000 MiB       ycoord = y2
+    32   48.113 MiB    0.000 MiB       while ycoord > y1:
+    33   48.113 MiB    0.000 MiB           y.append(ycoord)
+    34   48.113 MiB    0.000 MiB           ycoord += y_step
+    35   48.113 MiB    0.000 MiB       xcoord = x1
+    36   48.113 MiB    0.000 MiB       while xcoord < x2:
+    37   48.113 MiB    0.000 MiB           x.append(xcoord)
+    38   48.113 MiB    0.000 MiB           xcoord += x_step
+    44   48.113 MiB    0.000 MiB       zs = []
+    45   48.113 MiB    0.000 MiB       cs = []
+    46  125.961 MiB    0.000 MiB       for ycoord in y:
+    47  125.961 MiB    0.258 MiB           for xcoord in x:
+    48  125.961 MiB    0.512 MiB               zs.append(complex(xcoord, ycoord))
+    49  125.961 MiB    0.512 MiB               cs.append(complex(c_real, c_imag))
+    50
+    51  125.961 MiB    0.000 MiB       print("Length of x:", len(x))
+    52  125.961 MiB    0.000 MiB       print("Total elements:", len(zs))
+    53  125.961 MiB    0.000 MiB       start_time = time.time()
+    54  136.609 MiB   10.648 MiB       output = calculate_z_serial_purepython(max_iterations, zs, cs)
+    55  136.609 MiB    0.000 MiB       end_time = time.time()
+    56  136.609 MiB    0.000 MiB       secs = end_time - start_time
+    57  136.609 MiB    0.000 MiB       print(calculate_z_serial_purepython.__name__ + " took", secs, "seconds")
+    58
+    59  136.609 MiB    0.000 MiB       assert sum(output) == 33219980  # this sum is expected for 1000^2 grid with 300 iterations
 ```
 
 아래 `Example 5` 는 `mprof run julia1_memoryprofiler.py` 명령으로 생성한 것입니다. 이 명령을 실행하면 먼저 통계 파일을 생성하고 `mprof plot` 명령으로 시각화합니다.
@@ -607,17 +556,15 @@ def calculate_z_serial_purepython(maxiter, zs, cs):
     with profile.timestamp("create_output_list"):
         output = [0] * len(zs)
     time.sleep(1)
-    with profile.timestamp("create_range_of_zs"):
-        iterations = range(len(zs))
-        with profile.timestamp("calculate_output"):
-            for i in iterations:
-                n = 0
-                z = zs[i]
-                c = cs[i]
-                while n < maxiter and abs(z) < 2:
-                    z = z * z + c
-                    n += 1
-                output[i] = n
+    with profile.timestamp("calculate_output"):
+        for i in range(len(zs)):
+            n = 0
+            z = zs[i]
+            c = cs[i]
+            while n < maxiter and abs(z) < 2:
+                z = z * z + c
+                n += 1
+            output[i] = n
     return output
 ```
 
@@ -772,7 +719,7 @@ launch_memory_usage_server()
 ...
 output = calculate_z_serial_purepython(max_iterations, zs, cs)
 ...
-print "now waiting..."
+print ("now waiting...")
 while True:
     time.sleep(1)
 ```
@@ -856,7 +803,7 @@ def fn_expressive(upper = 1000000):
 def fn_terse(upper = 1000000):
   return sum(xrange(upper))
 
-print "Functions return the same result:", fn_expressive() == fn_terse()
+print ("Functions return the same result:", fn_expressive() == fn_terse())
 Functions return the same result:
 True
 ```
@@ -934,8 +881,8 @@ def some_fn(nbr):
 
 class TestCase(unittest.TestCase):
   def test(self):
-  result = some_fn(2)
-  self.assertEquals(result, 4)
+    result = some_fn(2)
+    self.assertEquals(result, 4)
 ```
 
 `nosetests` 를 실행하면 NameError 가 발생합니다.
