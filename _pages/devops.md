@@ -18,8 +18,12 @@ layout: single
 
 ## Kubernetes
 
+* [Kubernetes Introduction](/kubernetes-introduction)
+
 ## Prometheus
 
 * [Prometheus Getting Started with Prometheus](/prometheus-gettingstarted)
+* [Prometheus Instrumentation](/prometheus-instrumentation)
+* [Prometheus Metric Exposition](/prometheus-metricexposition)
 
 ## References
