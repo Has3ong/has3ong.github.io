@@ -24,6 +24,7 @@ layout: single
 
 * [Prometheus Getting Started with Prometheus](/prometheus-gettingstarted)
 * [Prometheus Instrumentation](/prometheus-instrumentation)
-* [Prometheus Metric Exposition](/prometheus-metricexposition)
+* [Prometheus Metric Exposition](/prometheus-metricexposition)\
+* [Prometheus Labels](/prometheus-label)
 
 ## References

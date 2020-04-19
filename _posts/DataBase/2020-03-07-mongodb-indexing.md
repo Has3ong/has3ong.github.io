@@ -3,6 +3,7 @@ title : MongoDB Indexing
 tags :
 - Indexing
 - MongoDB
+- Database
 ---
 
 *이 포스트는 [MongoDB: The Definitive Guide](https://github.com/wuzhouhui/misc/blob/master/programming/db/MongoDB.The.Definitive.Guide.pdf) 를 바탕으로 작성하였습니다.*
