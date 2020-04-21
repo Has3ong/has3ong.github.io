@@ -11,6 +11,7 @@ layout: single
 * 수원대학교 정보미디어 학과 2019-2 졸업
 * BaekJoon Online Judge [ID](https://www.acmicpc.net/user/khsh5592), [수원대학교](https://www.acmicpc.net/school/ranklist/318)
 * SW Maestro 10th [post](/softwaremaestro)
+* KT DS [post](/career)
 
 ### Project
 
@@ -24,7 +25,8 @@ layout: single
 
 ### Comment
 
-* 취업 준비 및 자기개발을 위해 만든 블로그입니다. 포스트에 관한 모든 지적과 피드백 남겨주시면 감사히 받겠습니다. 
+* 취업 준비 및 자기개발을 위해 만든 블로그입니다. 포스트에 관한 모든 지적과 피드백 남겨주시면 감사히 받겠습니다.
+* 2020 - 01 - 02 부로 취업했습니다.
 
 ### Reference
 
@@ -35,4 +37,4 @@ Contents Refrences [this](/references)
 [https://cultofthepartyparrot.com/](https://cultofthepartyparrot.com/)
 
 
-*Last Update - 2020 - 02 - 09*
+*Last Update - 2020 - 04 - 21*
