@@ -18,6 +18,7 @@ layout: single
 * [Kafka Consumers - Reading Data from Kafka](/kafka-readingdataconsumer)
 * [Kafka Internals](/kafka-internals)
 * [Kafka Kafka Reliable Data Delivery](/kafka-reliabledatadelivery)
+* [Kafka Building Data Pipelines](/kafka-buildingdatapipelines)
 
 ## Hadoop
 
