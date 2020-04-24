@@ -33,6 +33,7 @@ layout: single
 * [Spark Working with Different Types of Data](/spark-differenttypesofdata)
 * [Spark Aggregations](/spark-aggregation)
 * [Spark Joins](/spark-join)
+* [Spark Data Sources](/spark-datasources)
 
 ## Reference
 
