@@ -27,5 +27,6 @@ layout: single
 * [Prometheus Metric Exposition](/prometheus-metricexposition)
 * [Prometheus Labels](/prometheus-label)
 * [Prometheus Dashboarding with Grafana](/prometheus-dashboardingwithgrafana)
+* [Prometheus Node Exporter](/prometheus-nodeexporter)
 
 ## References
