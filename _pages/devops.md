@@ -19,6 +19,7 @@ layout: single
 ## Kubernetes
 
 * [Kubernetes Introduction](/kubernetes-introduction)
+* [Kubernetes First steps with Docker and Kubernetes](/kubernetes-firststepwithdockerandkubernetes)
 
 ## Prometheus
 
