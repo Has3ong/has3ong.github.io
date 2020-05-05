@@ -1,5 +1,5 @@
 ---
-title : [Centos7]  Apache - Tomcat - JK Connector 연동하기
+title : Centos7 / Apache - Tomcat - JK Connector 연동하기
 tags :
 - WEB
 - WAS
