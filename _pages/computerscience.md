@@ -42,6 +42,9 @@ TODO :: Network
 * [HTTP 1.0 / 2.0 / 3.0](/http-version)
 * [Endian](/endian)
 * [Network Gateway](/network-gateway)
+* [Web Server 와 WAS 차이](/webwas)
+* [AJP Protocol](/ajpprotocol)
+* [Load Balancing](/loadbalancing)
 
 ## Algorithm
 
