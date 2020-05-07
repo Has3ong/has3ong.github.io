@@ -18,6 +18,14 @@ layout: single
 * [C / C++ vs Java vs Python](/cjavapython)
 * [MapReduce](/mapreduce)
 
+## Algorithm
+
+* [Sort Algorithm](/sort)
+* [DFS / BFS](/dfs-bfs)
+* [Dijkstra](/dijkstra)
+* [Kruskal / Prim](/kruskal-prim)
+* [Floyd-Warshall](/floyd)
+
 ## Data Structure
 
 * [Array / LinkedList](/array-linkedlist)
@@ -28,7 +36,7 @@ layout: single
 
 ### Network
 
-TODO :: Network
+TODO :: OSI 7 Layer, Presentation Layer, Session Layer
 
 * [Protocol Stack](/protocol-stack)
 * [OSI 7 Layer](/osi-layer)
@@ -45,14 +53,6 @@ TODO :: Network
 * [Web Server 와 WAS 차이](/webwas)
 * [AJP Protocol](/ajpprotocol)
 * [Load Balancing](/loadbalancing)
-
-## Algorithm
-
-* [Sort Algorithm](/sort)
-* [DFS / BFS](/dfs-bfs)
-* [Dijkstra](/dijkstra)
-* [Kruskal / Prim](/kruskal-prim)
-* [Floyd-Warshall](/floyd)
 
 ## DataBase
 
