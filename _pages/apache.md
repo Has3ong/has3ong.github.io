@@ -34,6 +34,7 @@ layout: single
 * [Spark Aggregations](/spark-aggregation)
 * [Spark Joins](/spark-join)
 * [Spark Data Sources](/spark-datasources)
+* [Spark SQL](/spark-sql)
 
 ## Reference
 

@@ -470,9 +470,9 @@ PrivateTmp=true
 WantedBy=multi-user.target
 ```
 
-## Install Tomcat Connector
+## Install JK Connector
 
-마지막으로 WEB Server 와 WAS 를 연동시켜줄 Tomcat Connector 를 설치하겠습니다. 여러가지 커넥터가 있는데 `mod_jk` 를 사용하겠습니다.
+마지막으로 WEB Server 와 WAS 를 연동시켜줄 JK Connector 를 설치하겠습니다. 여러가지 커넥터가 있는데 `mod_jk` 를 사용하겠습니다.
 
 마찬가지로 `apxs` 를 미리 설치해주고 경로를 확인해보겠습니다.
 

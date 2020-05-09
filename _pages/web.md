@@ -23,9 +23,12 @@ layout: single
 
 ## Tomcat
 
-* [[Centos7]  Apache - Tomcat - JK Connector 연동하기](/web-apacheconnectortomcat)
-* [[Centos7]  Apache - Tomcat - JK Connector Load Balancing](/web-tomcatloadbalance)
+* [[Centos7] Apache - Tomcat - JK Connector 연동하기](/web-apacheconnectortomcat)
+* [[Centos7] Apache - Tomcat - JK Connector Load Balancing](/web-tomcatloadbalance)
+* [[Centos7] Apache - Tomcat - JK Connector Session Clustering](/web-tomcatsessionclustering)
 
 ## Wildfly
+
+* [[Centos7] Apache - Wildfly - JK Connector 연동하기](/web-apacheconnectorwildfly)
 
 ## Nginx
