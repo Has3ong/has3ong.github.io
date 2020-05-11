@@ -20,7 +20,7 @@ layout: single
 
 ### Contact
 
-* Email : gnoesah@gmail.com
+* Email : khsh5592@naver.com
 
 ### Comment
 
