@@ -35,6 +35,10 @@ layout: single
 * [Spark Joins](/spark-join)
 * [Spark Data Sources](/spark-datasources)
 * [Spark SQL](/spark-sql)
+* [Spark Dataset](/spark-dataset)
+* [Spark RDD(Resilient Distributed Datasets)](/spark-resilientdistributeddatasets)
+* [Spark Advanced RDDs](/spark-advancedrdds)
+* [Spark Distributed Shared Variables](/spark-distributedsharedvariables)
 
 ## Reference
 
