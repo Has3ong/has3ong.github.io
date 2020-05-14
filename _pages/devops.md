@@ -24,6 +24,7 @@ layout: single
 
 * [Kubernetes Introduction](/kubernetes-introduction)
 * [Kubernetes First steps with Docker and Kubernetes](/kubernetes-firststepwithdockerandkubernetes)
+* [Kubernetes Pods, running containers in Kubernetes](/kubernetes-podsrunningcontainers)
 
 ## Prometheus
 
@@ -33,5 +34,7 @@ layout: single
 * [Prometheus Labels](/prometheus-label)
 * [Prometheus Dashboarding with Grafana](/prometheus-dashboardingwithgrafana)
 * [Prometheus Node Exporter](/prometheus-nodeexporter)
+* [Prometheus Service Discovery](/prometheus-servicediscovery)
+* [Prometheus Containers and Kubernetes](/prometheus-containerandkubernetes)
 
 ## References
