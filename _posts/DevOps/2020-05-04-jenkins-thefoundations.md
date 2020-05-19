@@ -9,13 +9,13 @@ tags :
 
 ## Syntax: Scripted Pipelines Versus Declarative Pipelines
 
-스크립트 방식의 문법은 Jenkins 에서 pipelines-as-code 가 수행되는 초기 방식입니다. 이는 명령적은 스타일의 로직에 기반하고 파이프라인 스크립트의 흐름을 따릅니다. 또한 Groovy 언어와 명령어에 밀접하게 연관돼 있고, 특히 에러 확인과 예외 처리 부분에 의존성이 강합니다.
+스크립트 방식의 문법은 Jenkins 에서 pipelines-as-code 가 수행되는 초기 방식입니다. 이는 명령적은 스타일의 로직에 기반하고 파이프라인 스크립트의 흐름을 따릅니다. 또한 그루비 언어와 명령어에 밀접하게 연관돼 있고, 특히 에러 확인과 예외 처리 부분에 의존성이 강합니다.
 
 서술적 문법은 Jenkins 의 새로운 선택지입니다. 서술적 스타일로 작성된 파이프라인은 주요 영역에서 필요한 상태와 결과를 나타내는 구역이 잘 나뉘어져 있고 로직 자체에 대한 집중은 적습니다.
 
 다음 예시는 스크립트 방식의 문법으로 작성된 파이프라인과 서술적 방식으로 작성된 파이프라인의 예시입니다.
 
-```js
+```groovy
 // Scripted Pipeline
 node('worker_node1') {
     stage('Source') { // Get code
@@ -66,7 +66,7 @@ pipeline {
 스크립트 방식 파이프 라인의 단점은 다음과 같습니다.
 
 * 더 많은 프로그래밍이 필요하다.
-* 문법 검사가 Groovy 환경에 국한된다.
+* 문법 검사가 그루비 환경에 국한된다.
 * 전통적인 Jenkins 모델과 연관이 적다.
 * 서술적 파이프라인에 같은 내용이 구현이 가능하다 가정하면 상대적으로 더 복잡하다.
 
@@ -120,11 +120,11 @@ Jenkins 마스터는 Jenkins 인스턴스 제어에 중심이 됩니다. 마스�
 
 에이전트는 노드에서 실행합니다. 스크립트 방식의 파이프라인에서 노드는 에이전트가 있는 시스템을 지칭합니다. 서술적 파이프라인에서는 특정 에이전트를 명시해 노드를 할당합니다.
 
-#### DIRECTIVES VERSUS STEPS
+#### Directives Versus Steps
 
 노드는 스크립트 방식의 파이프라인과 연관이 있습니다. 기술적으로 이는 **스텝(Step)** 이 되는데 파이프 라인에서 수행돼야 할 행동을 유발시키는 역할을 합니다. 이는 엑시큐터를 노드에 할당하고 정의된 영역 안에 있는 코드를 실행합니다. 다음은 노드 단계에 짧은 예시 입니다.
 
-```js
+```groovy
 // Scripted Pipeline
 node('worker') {
     stage('Source') { // Get code
@@ -133,7 +133,7 @@ node('worker') {
 
 반면 에이전트는 서술적 파이프라인의 명령어입니다. `none` 에이전트를 사용하는 특별한 경우를 제외하고 노드를 할당하는 역할을 합니다. 다음은 에이전트의 간단한 선언 예시입니다.
 
-```js
+```groovy
 // Declarative Pipeline
 pipeline {
     agent {label:'worker'}
@@ -175,7 +175,7 @@ Jenkins 에 로그인 후 관리 페이지로 이동해 노드 관리를 클릭�
 
 레이블 영역에서는 여러 개의 레이블을 설정할 수 있습니다. 따옴표로 묶어서 스페이스를 레이블에 포함시킬 수 있습니다.
 
-#### A QUICK NOTE ABOUT NODE LABELS
+#### A Quick Note About Node Labels
 
 레이블 시스템과 사용자 모두를 위해 사용될 수 있습니다. 예를 들어, 레이블은 다음과 같은 목적으로 사용됩니다.
 
@@ -189,11 +189,11 @@ Jenkins 에 로그인 후 관리 페이지로 이동해 노드 관리를 클릭�
 
 DSL 은 Domain-Specific Language 의 약자로 특정한 상황을 위한 프로그래밍 언어입니다. 여기서 상황이란 Jenkins 파이프라인 생성을 의미합니다.
 
-Jenkins DSL 은 Groovy 언어를 이용해 작성됐습니다. Groovy 가 선택된 이유는 기능이 다른 언어보다 DSL 을 생성하기 쉽게 만들기 때문입니다. 반대로 문법에 심하게 의존하는 결과가 나오기도 합니다.
+Jenkins DSL 은 그루비 언어를 이용해 작성됐습니다. 그루비 가 선택된 이유는 기능이 다른 언어보다 DSL 을 생성하기 쉽게 만들기 때문입니다. 반대로 문법에 심하게 의존하는 결과가 나오기도 합니다.
 
 다음은 Jenkins DSL 로 표현된 간단한 파이프라인입니다.
 
-```js
+```groovy
 node ('worker1') {
 
      stage('Source') { // for display purposes
@@ -217,19 +217,19 @@ node ('worker1') {
 * master 가 실행을 위한 기본 노드로 설정됐을 경우 이 잡을 master 에서 수행합니다.
 * 그 외의 경우 비어 있는 레이블은 Jenkins 가 여러 노드 중 가용한 첫 번째 엑시큐터를 이용해 잡을 수행합니다.
 
-#### LEVERAGING MULTIPLE LABELS ON A NODE
+#### Leveraging Multiple Labels on a Node
 
 노드를 설정할 때 레이블 사이에 스페이스를 사용하면 여러 개의 레이블을 설정할 수 있습니다. or 를 위해서는 `||`, and 를 위해서는 `&&` 를 사용하면 됩니다.
 
-```js
+```groovy
 node("linux && east"){}
 ```
 
-`{}` 기호는 Groovy **클로저(Closure)** 로 파이프라인의 현재 노드에 연관되어 있는 코드 블록의 시작과 끝을 나타냅니다. 클로저는 프로그램 간 전달할 수 있는 엔티티 역할도 하며 마지막 문장이 리턴값이 됩니다. 파이프라인에서 이 부분이 실행되면, 노드에 연결되어 워크스페이스를 생성하고 엑시큐터가 사용가능할 때 코드를 수행할 수 있게 스케줄을 정의합니다.
+`{}` 기호는 그루비 **클로저(Closure)** 로 파이프라인의 현재 노드에 연관되어 있는 코드 블록의 시작과 끝을 나타냅니다. 클로저는 프로그램 간 전달할 수 있는 엔티티 역할도 하며 마지막 문장이 리턴값이 됩니다. 파이프라인에서 이 부분이 실행되면, 노드에 연결되어 워크스페이스를 생성하고 엑시큐터가 사용가능할 때 코드를 수행할 수 있게 스케줄을 정의합니다.
 
 다음 예시처럼 노드는 매핑과 연동되어 코드 블록을 어디에서 실행할 지 결정할 수 있습니다.
 
-```js
+```groovy
 parallel (
             win: { node ('win64'){
              ...
@@ -248,9 +248,9 @@ parallel (
 
 ### steps
 
-스테이지 안에는 실제 Jenkins DSL 명령어가 들어갑니다. Jenkins 에서는 이를 스탭이라 지칭합니다. 스텝은 DSL 에 가장 최소 기능 단위입니다. Groovy 명령어는 아니지만 사용할 수 있습니다. 아래 예시에서는 소스 코드를 내려받기 위해 아래와 같은 스텝을 사용합니다.
+스테이지 안에는 실제 Jenkins DSL 명령어가 들어갑니다. Jenkins 에서는 이를 스탭이라 지칭합니다. 스텝은 DSL 에 가장 최소 기능 단위입니다. 그루비 명령어는 아니지만 사용할 수 있습니다. 아래 예시에서는 소스 코드를 내려받기 위해 아래와 같은 스텝을 사용합니다.
 
-```js
+```groovy
 git 'https://github.com/brentlaster/gradle-greetings.git'
 ```
 
@@ -262,35 +262,35 @@ git 'https://github.com/brentlaster/gradle-greetings.git'
 
 Jenkins DSL 에서 스탭은 맵 형태의 매개변수를 사용합니다.
 
-```js
+```groovy
 git branch: 'test', 
     url: 'https://github.com/brentlaster/gradle-greetings.git'
 ```
 
-`branch`, `url` 매개변수가 두 개가 있는것을 볼 수 있습니다. 위는 실제 Groovy 에 사용되는 매핑 문법의 축약된 버전입니다. `[named parameter: value, named parameter: value]` 형태가 `[key: value, key: value]` 문법에 대응되는 표현입니다. 여기서 매개 변수의 이름이 맵의 키 역할을 합니다.
+`branch`, `url` 매개변수가 두 개가 있는것을 볼 수 있습니다. 위는 실제 그루비에 사용되는 매핑 문법의 축약된 버전입니다. `[named parameter: value, named parameter: value]` 형태가 `[key: value, key: value]` 문법에 대응되는 표현입니다. 여기서 매개 변수의 이름이 맵의 키 역할을 합니다.
 
-Groovy 에서는 매개 변수를 사용할 때 괄호를 생략하는 것을 허용합니다. 따라서 이러한 생략을 제외하고 더 긴 버전은 다음과 같습니다.
+그루비에서는 매개 변수를 사용할 때 괄호를 생략하는 것을 허용합니다. 따라서 이러한 생략을 제외하고 더 긴 버전은 다음과 같습니다.
 
-```js
+```groovy
 git([branch: 'test', 
    url: 'http://github.com/brentlaster/gradle-greetings.git'])
 ```
 
 또 다른 트릭은 단 하나의 매개변수만 존재할 때 키를 생략할 수 있습니다. 이를 통해 축약된 버전의 스텝이 됩니다.
 
-```js
+```groovy
 git 'https://github.com/brentlaster/gradle-greetings.git'
 ```
 
 여기서 `url` 이 제공돼야 하는 유일한 매개변수입니다. 매개 변수가 필수가 아니라면 기본 매개 변수는 `script` 객체입니다. 위 예시에서 사용하는 `bat` 스텝은 윈도우에서 **배치(Batch)** 나 **쉘(Shell)** 작업을 위해 사용합니다. 전체 문법은 다음과 같습니다.
 
-```js
+```groovy
 bat([script: 'echo hi'])
 ```
 
 축약하면 다음과 같습니다.
 
-```js
+```groovy
 bat 'echo hi'
 ```
 
@@ -330,7 +330,7 @@ Jenkinsfile 을 통해 생성된 경우 소스 코드와 함께 저장됩니다.
 
 #### Syntax checking
 
-문법 편집기는 Groovy 문법 검사 및 참조 검사를 수행합니다. `Example 8` 처럼 문자게 있는 라인에 붉은 X 표시를 나타냅니다.
+문법 편집기는 그루비 문법 검사 및 참조 검사를 수행합니다. `Example 8` 처럼 문자게 있는 라인에 붉은 X 표시를 나타냅니다.
 
 > Example 8 - Error indications in the pipeline script window
 
@@ -360,7 +360,7 @@ X 표시는 문제가 있는 라인을 알려주고 마우스를 이 표시 위�
 
 기존 폼 기반의 웹 인터페이스에서 잡과 파이프라인을 설정하는 방식에서 DSL 스크립트를 사용하는 방식으로 변경하는 것에는 많은 장점이 있습니다. 하지만 원하는 작업을 하기 위해 적합한 스텝과 문법을 아는 과정은 이에 속하지 않습니다. 위에서 다른 `git` 스텝 같은 경우는 문법과 매개 변수가 직관적이지만 그 외의 경우는 그렇지 않습니다. 스텝을 위한 올바른 문법을 위해 Jenkins 2 는 스니펫 생성기라 불리는 파이프라인 문법 지원 도구를 포함합니다.
 
-스닛 생성기는 사용 가능한 DSL 스텝을 살펴보며 원하는 문법과 내용을 고를 수 있게 합니다. 또한 내용에 대한 온라인 도움말도 제공합니다. 하지만 가장 유용한 기능은 값을 입력할 수 있는 웹 폼을 제공하는 것입니다. 웹 폼을 이용해 버튼을 눌러 원하는 스텝을 호출하는 Groovy DSL 코드를 생성할 수 있습니다. DSL 생성한 후에는 그냥 복사해서 사용하면 됩니다. 이런 기능은 특정 스텝을 사용하는 데 드는 수고를 크게 줄여줍니다.
+스닛 생성기는 사용 가능한 DSL 스텝을 살펴보며 원하는 문법과 내용을 고를 수 있게 합니다. 또한 내용에 대한 온라인 도움말도 제공합니다. 하지만 가장 유용한 기능은 값을 입력할 수 있는 웹 폼을 제공하는 것입니다. 웹 폼을 이용해 버튼을 눌러 원하는 스텝을 호출하는 그루비 DSL 코드를 생성할 수 있습니다. DSL 생성한 후에는 그냥 복사해서 사용하면 됩니다. 이런 기능은 특정 스텝을 사용하는 데 드는 수고를 크게 줄여줍니다.
 
 스니펫 생성기가 어떻게 도착하는지 예시를 통해 알아보겠습니다. 깃 코드를 가져오는 스텝이 필요한 상황을 가정해보겠습니다. `Example 11` 은 시작점을 보여줍니다.
 
@@ -382,7 +382,7 @@ X 표시는 문제가 있는 라인을 알려주고 마우스를 이 표시 위�
 
 이를 스테이지 클로저에 복사하면 다음과 같은 결과가 됩니다.
 
-```js
+```groovy
 stage('Source') {
 // Get some code from our Git repository
     git 'https://github.com/brentlaster/gradle-greetings.git'
@@ -409,7 +409,7 @@ stage('Source') {
 
 Jenkins 2 에는 전체 파이프라인을 작성하는 프로젝트 타입이 있습니다. 이제 파이프라인을 이전 깃 예시에서 처럼 `stage{}` 블록을 통해 표현할 수 있습니다. 파이프라인에 새로운 스테이지를 추가해보겠습니다. 너무 복잡하지 않게 빌드 스텝을 위한 영역만 추가하겠습니다.
 
-```js
+```groovy
 node ('worker1') {
      stage('Source') {
       // Get some code from our Git repository
@@ -454,7 +454,7 @@ node ('worker1') {
 
 > 타일이 초록색이더라도 하위 스테이지가 실패하면 장미색으로 바뀔 수 있습니다.
 
-#### VIEWING LOGS
+#### Viewing Logs
 
 전통적인 Jenkins 와 동일하게 로그를 확인하려면 Console Output 링크를 누르거나 빌드 결과화면에서 공 모양을 누르면 됩니다.
 
@@ -468,17 +468,17 @@ node ('worker1') {
 
 ![image](https://user-images.githubusercontent.com/44635266/80593859-e1e92a00-8a5c-11ea-8993-3860a934d4de.png)
 
-#### STAGE VIEW WITH ERRORS
+#### Stage View With Errors
 
 에러가 발생한 스테이지 뷰를 보겠습니다. 코드가 실행되는 환경이 리눅스라 가정하겠습니다. 파이프라인에는 아주 작은 차이만 생깁니다. 아래는 리눅스 명령어입니다.
 
-```js
+```groovy
 sh 'echo gradle build will go here'
 ```
 
 윈도우는 다음과 같이 바뀝니다.
 
-```js
+```groovy
 bat  'echo gradle build will go here' 
 ```
 

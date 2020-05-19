@@ -9,7 +9,7 @@ tags :
 
 Kubernetes 를 알아보기 전에 간단한 어플리케이션을 만들어 컨테이너 이미지로 패키징하고 관리형 Kubernetes 클러스터나 로컬의 단일 노드 클러스터에서 실행하는 방법을 살펴보겠습니다.
 
-## CREATING, RUNNING, AND SHARING A CONTAINER IMAGE
+## Creaing, Running, and Sharing a Container Image
 
 Kubernetes 에서 구동되는 어플리케이션은 컨테이너 이미지로 패키징해야 한다는 것을 배웠습니다. Docker 의 기본적인 방법은 아래와 같습니다.
 
@@ -335,7 +335,7 @@ Docker Hub 에 이미지 푸시가 완료되면 모든 사람이 이미지를 �
 $ docker run -p 8080:8080 -d luksa/kubia
 ```
 
-## SETTING UP A KUBERNETES CLUSTER
+## Setting Up a Kubernetes Cluster
 
 Docker 에서 직접 실행하는 대신 Kubernetes 클러스터에 배포할 수 있습니다. 
 
@@ -501,7 +501,7 @@ $ source <(kubectl completion bash | sed s/kubectl/k/g)
 
 이제 명령어에 많은 입력 없이도 클러스터와 상호작용할 수 있습니다. 
 
-## RUNNING YOUR FIRST APP ON KUBERNETES
+## Running Your First App on Kubernetes
 
 Kubernetes 위에 어플리케이션을 실행할 수 있는 간단한 방법을 사용하겠습니다. 보통 배포하고자 하는 구성 요소를 기수한 JSON, YAML 매니페스트를 준비해야지만 간단한 명령어 한 줄로 어플리케이션을 실행하겠습니다.
 

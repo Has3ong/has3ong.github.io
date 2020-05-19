@@ -21,7 +21,7 @@ Kubernetes 는 하드웨어 인프라를 추상화하고 데이터 센터 전체
 
 Kubernetes 는 대규모 데이터 센터에서 사용할 때 진가를 발휘합니다. Kubernetes 는 개발자가 모든 유형의 어플리케이션을 배포하고 실행할 수 있는 간단한 플랫폼을 제공하고 클라우드 공급자의 시스템 관리자가 하드웨어에서 작동하는 많은 어플리케이션을 일일이 알 필요를 없게합니다.
 
-## UNDERSTANDING THE NEED FOR A SYSTEM LIKE KUBERNETES
+## Understanding the Need for a System Like Kubernets
 
 Kubernetes 로 인해 변화된 어플리케이션의 개발 배포 방식을 알아보겠습니다.
 
@@ -91,7 +91,7 @@ Kubernetes 로 인해 변화된 어플리케이션의 개발 배포 방식을 �
 
 Kubernets 를 사용하면 하드웨어를 추상화하고 이를 어플리케이션 배포, 실행을 위한 플랫폼을 제공하여 개발자는 시스템 관리자의 도움 없이도 어플리케이션을 구성, 배포할 수 있으며 시스템 관리자는 실제 실행되는 어플리케이션을 알 필요 없이 인프라를 유지하고 운영하는 데 집중할 수 있습니다.
 
-## INTRODUCING CONTAINER TECHNOLOGIES
+## Introducing Container Technologies
 
 Kubernets 는 어플리케이션을 격리하는 기능을 제공하기 위해 리눅스 컨테이너 기술을 사용하므로, 컨테이너의 기본에 익숙해져야 합니다. 또한 Docker 나 rkt 과 같은 컨테이너 기술이 어떤 문제를 해결하는지 이해해야 합니다.
 
@@ -261,7 +261,7 @@ rkt 도 컨테이너 실행 플랫폼입니다. 보안, 결헙상, 공개, 표�
 
 Docker 를 Kubernetes 의 컨테이너 런타임으로 사용하는 데 중점을 둡니다. 최근 Kubernetes 의 컨테이너 런타임으로 rkt 를 지원하기 시작했습니다.
 
-## INTRODUCING KUBERNETES
+## Introducing Kubernetes
 
 시스템에 배포 가능한 어플리케이션 구성 요소의 수가 많아짐에 따라 모든 구성 요소의 관리가 어려워지는 것을 알았습니다. 엄청난 규모의 배포 관리를 효율적으로 처리할 수 있는 솔루션이 필요했습니다.
 
