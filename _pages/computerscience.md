@@ -36,7 +36,7 @@ layout: single
 
 ### Network
 
-TODO :: OSI 7 Layer, Presentation Layer, Session Layer
+TODO :: Presentation Layer, Session Layer
 
 * [Protocol Stack](/protocol-stack)
 * [OSI 7 Layer](/osi-layer)
