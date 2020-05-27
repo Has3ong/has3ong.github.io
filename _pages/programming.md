@@ -17,6 +17,7 @@ layout: single
 * [Java equals()와 == 의 차이](/java-equals)
 * [Java Overloading / Overriding 비교](/java-overriding)
 * [Java Abstract Class와 Interface의 차이](/java-abstractclassinterface)
+* [JAR / WAR 차이점 및 특징](/java-jarwarear)
 
 ---
 
@@ -27,7 +28,12 @@ layout: single
 * [Java Microbenchmarking and Statistics](/javaoptimizing-benchmarkingstatistics)
 * [Java Understanding Garbage Collection](/javaoptimizing-understandinggc)
 * [Java GC Logging, Monitoring, Tuning, and Tools](/javaoptimizing-gcloggingmonitoringtuingtools)
-* [Java Code Execution on the JVM](/java-codeexecutiononthejvm)
+* [Java Code Execution on the JVM](/javaoptimizing-codeexecutiononthejvm)
+* [Java Understanding JIT Compilation](/javaoptimizing-understandingjitcompilation)
+* [Java Language Performance Techniques](/javaoptimizing-languageperformancetechniques)
+* [Java Concurrent Performance Techniques](/javaoptimizing-concurrentperformancetechniques)
+* [Java Profiling](/javaoptimizing-profiling)
+* [Java High-Performance Logging and Messaging](/javaoptimizing-loggingandmessaging)
 
 ### Python
 

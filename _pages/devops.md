@@ -19,6 +19,8 @@ layout: single
 ## Jenkins
 
 * [Jenkins The Foundations](/jenkins-thefoundations)
+* [Jenkins Pipeline Execution Flow](/jenkins-pipelineexecutionflow)
+* [Jenkins Notifications and Reports](/jenkins-notificationandreport)
 
 ## Kubernetes
 
@@ -36,5 +38,6 @@ layout: single
 * [Prometheus Node Exporter](/prometheus-nodeexporter)
 * [Prometheus Service Discovery](/prometheus-servicediscovery)
 * [Prometheus Containers and Kubernetes](/prometheus-containerandkubernetes)
+* [Prometheus Common Exporters](prometheus-commonexporters)
 
 ## References

@@ -39,6 +39,8 @@ layout: single
 * [Spark RDD(Resilient Distributed Datasets)](/spark-resilientdistributeddatasets)
 * [Spark Advanced RDDs](/spark-advancedrdds)
 * [Spark Distributed Shared Variables](/spark-distributedsharedvariables)
+* [Spark How Spark Runs on a Cluster](/spark-spakrrunsonacluster)
+* [Spark Developing Spark Applications](/spark-developingsparkapplication)
 
 ## Reference
 
