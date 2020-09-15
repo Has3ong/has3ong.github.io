@@ -10,7 +10,7 @@ tags :
 - Python
 ---
 
-*이 포스트는 [Deep Learning from Scratch]() 를 바탕으로 작성하였습니다.*
+*이 포스트는 [Deep Learning from Scratch](https://github.com/WegraLee/deep-learning-from-scratch) 를 바탕으로 작성하였습니다.*
 
 기존에는 가중치 매개변수의 기울기는 수치 미분을 사용했습니다. 하지만, 수치 미분은 단순하고 구현하기 쉽지만 계산 시간이 오래걸린다는 단점이 있습니다. **오차역전파법(Backpropagation)** 을 이용하면 가중치 매개변수의 기울기를 효율적으로 계산할 수 있습니다.
 

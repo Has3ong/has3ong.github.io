@@ -6,7 +6,7 @@ tags :
 - Python
 ---
 
-*이 포스트는 [Deep Learning from Scratch]() 를 바탕으로 작성하였습니다.*
+*이 포스트는 [Deep Learning from Scratch](https://github.com/WegraLee/deep-learning-from-scratch) 를 바탕으로 작성하였습니다.*
 
 ## What is Perceptron?
 

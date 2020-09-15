@@ -7,7 +7,7 @@ tags :
 - Python
 ---
 
-*이 포스트는 [Deep Learning from Scratch]() 를 바탕으로 작성하였습니다.*
+*이 포스트는 [Deep Learning from Scratch](https://github.com/WegraLee/deep-learning-from-scratch) 를 바탕으로 작성하였습니다.*
 
 신경망을 이용하면 사람이 수동으로 설정해야하는 가중치 매개변수의 적절한 값을 데이터로부터 자동으로 학습하여 설정합니다.
 
