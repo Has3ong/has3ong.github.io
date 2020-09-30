@@ -2,8 +2,10 @@
 main:
   - title: "About"
     url: /about/
-  - title: "Contents"
-    url: /
+  - title: "Developer"
+    url: /dev/
+  - title: "Life"
+    url: /life/
   #- title : "Tags"
   #  url: /tags/
   # - title: "Sample Posts"
