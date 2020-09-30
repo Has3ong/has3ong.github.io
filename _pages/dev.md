@@ -22,7 +22,7 @@ layout: single
 
 ### Machine Learning - [Go](/machinelearning)
 
-### OSX - <a href="/osx">[Go]</a></h3>
+### OSX - [Go](/osx)
 
 ### Programming Langauge - [Go](/programming)
 
