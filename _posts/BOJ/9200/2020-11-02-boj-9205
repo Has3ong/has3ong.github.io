@@ -1,0 +1,44 @@
+---
+title : BOJ - 9205 - 맥주 마시면서 걸어가기
+tags :
+- 백준
+- Python
+- 9205
+- BOJ
+---
+
+```python
+import sys
+INF = sys.maxsize
+
+def solution():
+    T = int(input())
+    for _ in range(T):
+        arr = []
+        N = int(input())
+        distance = [[INF] * (N + 2) for _ in range(N + 2)]
+        for _ in range(N + 2):
+            X, Y = map(int, sys.stdin.readline().split())
+            arr.append([X, Y])
+
+        for idx in range(N + 2):
+            for jdx in range(N + 2):
+                if idx == jdx: continue
+
+                d = abs(arr[idx][0] - arr[jdx][0]) + abs(arr[idx][1] - arr[jdx][1])
+                if d <= 1000: distance[idx][jdx] = 1
+
+        for k in range(N + 2):
+            for i in range(N + 2):
+                for j in range(N + 2):
+                    if distance[i][j] > distance[i][k] + distance[k][j]:
+                        distance[i][j] = distance[i][k] + distance[k][j]
+
+        if 0 <= distance[0][N+1] < INF: print('happy')
+        else: print('sad')
+
+
+solution()
+```
+
+https://www.acmicpc.net/problem/9205
