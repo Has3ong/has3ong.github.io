@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../flask-vue-crud/.idea/flask-vue-crud.iml" filepath="$PROJECT_DIR$/../flask-vue-crud/.idea/flask-vue-crud.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/has3ong.github.io.iml" filepath="$PROJECT_DIR$/.idea/has3ong.github.io.iml" />
     </modules>
   </component>
