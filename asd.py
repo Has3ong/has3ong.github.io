@@ -1,16 +1,7 @@
 import sys
-
-def solution():
-    while True:
-        i = sys.stdin.readline()
-        if not (i): break
-
-        N, K = map(int, i.split())
-        S = N
-
-        while N // K:
-            S = S + N // K
-            N = N // K + N % K
-        print(S)
-
-solution()
+from decimal import Decimal
+A, B = map(str, sys.stdin.readline().split())
+A, B = Decimal(A), Decimal(B)
+c = Decimal("299792458")
+ret = (A + B) / (1 + (A * B) / (c * c))
+print("%.10f"%ret)
