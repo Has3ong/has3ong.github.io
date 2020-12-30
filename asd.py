@@ -1,31 +1,14 @@
 import sys
-
+import math
 
 def solution():
-    while True:
-        N = int(input())
-        if N == -1: return
+    T = int(sys.stdin.readline())
+    for _ in range(T):
+        x = [0, 0, 0]
+        A, B, C, D = map(int, sys.stdin.readline().split())
 
-        dx = [0, 1]
-        dy = [1, 0]
-        maps = []
-        for _ in range(N):
-            maps.append(list(sys.stdin.readline().strip()))
+        if D == 0: x[0] = 0
+        else:
 
-        dp = [[0 for _ in range(N)] for _ in range(N)]
-        dp[0][0] = 1
-        for i in range(N):
-            for j in range(N):
-                if i == N - 1 and j == N - 1: continue
-
-                mul = int(maps[i][j])
-
-                for k in range(2):
-                    nx = i + dx[k] * mul
-                    ny = j + dy[k] * mul
-                    if nx < N and ny < N:
-                        dp[nx][ny] += dp[i][j]
-
-        print(dp[-1][-1])
 
 solution()
