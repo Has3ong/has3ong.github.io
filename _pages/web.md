@@ -1,6 +1,6 @@
 ---
 title: "Web / WAS"
-permalink: /web/
+permalink: /web
 layout: single
 ---
 

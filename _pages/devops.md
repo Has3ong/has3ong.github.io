@@ -1,6 +1,6 @@
 ---
 title: "DevOps"
-permalink: /devops/
+permalink: /devops
 layout: single
 ---
 

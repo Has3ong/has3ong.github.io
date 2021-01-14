@@ -1,6 +1,6 @@
 ---
 title: "DataBase"
-permalink: /database/
+permalink: /database
 layout: single
 ---
 

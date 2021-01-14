@@ -1,6 +1,6 @@
 ---
 title: "Programming"
-permalink: /programming/
+permalink: /programming
 layout: single
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: "macOS"
-permalink: /osx/
+permalink: /osx
 layout: single
 ---
 

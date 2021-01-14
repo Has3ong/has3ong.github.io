@@ -101,6 +101,8 @@ def MyMouseMove(x, y):
 
 
 if __name__=='__main__':
+    import sys
+
     glutInit()
     glutInitWindowSize(500, 500)
     glutInitWindowPosition(100, 100)

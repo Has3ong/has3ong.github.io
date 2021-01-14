@@ -1,6 +1,6 @@
 ---
 title: Linux
-permalink: /linux/
+permalink: /linux
 layout: single
 ---
 

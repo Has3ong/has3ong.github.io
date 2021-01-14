@@ -1,6 +1,6 @@
 ---
 title: "Machine Learning"
-permalink: /machinelearning/
+permalink: /machinelearning
 layout: single
 ---
 

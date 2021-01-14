@@ -1,6 +1,6 @@
 ---
 title: BlockChain
-permalink: /blockchain/
+permalink: /blockchain
 layout: single
 ---
 

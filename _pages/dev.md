@@ -1,6 +1,6 @@
 ---
 title: "Software Developer"
-permalink: /dev/
+permalink: /dev
 layout: single
 ---
 

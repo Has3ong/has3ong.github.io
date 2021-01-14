@@ -1,6 +1,6 @@
 ---
 title: "PostgreSQL"
-permalink: /postgre/
+permalink: /postgre
 layout: single
 ---
 

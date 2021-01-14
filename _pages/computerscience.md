@@ -1,6 +1,6 @@
 ---
 title: Computer Science
-permalink: /cs/
+permalink: /cs
 layout: single
 ---
 

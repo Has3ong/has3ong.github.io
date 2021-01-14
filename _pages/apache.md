@@ -1,6 +1,6 @@
 ---
 title: Apache
-permalink: /apache/
+permalink: /apache
 layout: single
 ---
 
