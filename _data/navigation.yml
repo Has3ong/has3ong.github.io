@@ -1,11 +1,11 @@
 # main links
 main:
   - title: "About"
-    url: /about/
+    url: /about
   - title: "Developer"
-    url: /dev/
+    url: /dev
   - title: "Life"
-    url: /life/
+    url: /life
   #- title : "Tags"
   #  url: /tags/
   # - title: "Sample Posts"
