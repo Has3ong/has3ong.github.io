@@ -32,6 +32,6 @@ layout: single
 
 # ELK 
 
-* [Elastic Search Getting Started](/2021-01-14-elasticsearch-gettingstarted)
+* [Elastic Search Getting Started](/elasticsearch-gettingstarted)
 
 ## References
