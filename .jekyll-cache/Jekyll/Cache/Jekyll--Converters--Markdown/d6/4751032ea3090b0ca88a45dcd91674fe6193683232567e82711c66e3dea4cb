@@ -1,2 +1,2 @@
-I"�<p><code class="highlighter-rouge">equals()</code> 메소드는 비교자하는 대상의 내용 자체를 비교하지만, <code class="highlighter-rouge">==</code> 연산자는 비교하고자 하는 대상의 주소값을 비교합니다.</p>
+I"<p><code class="language-plaintext highlighter-rouge">equals()</code> 메소드는 비교자하는 대상의 내용 자체를 비교하지만, <code class="language-plaintext highlighter-rouge">==</code> 연산자는 비교하고자 하는 대상의 주소값을 비교합니다.</p>
 :ET

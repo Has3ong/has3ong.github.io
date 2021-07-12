@@ -1,26 +1,26 @@
-I"�P<h2 id="network-구성">Network 구성</h2>
+I"�T<h2 id="network-구성">Network 구성</h2>
 
 <p>크게 2가지로 나눠서 해보겠습니다.</p>
 
-<p>첫 번째로는 Hyperledger 에서 제공하는 <code class="highlighter-rouge">byfn.sh</code> 파일을 이용하여 간단하고 빠르게 네트워크를 구성하는 방법을 이용할것입니다.</p>
+<p>첫 번째로는 Hyperledger 에서 제공하는 <code class="language-plaintext highlighter-rouge">byfn.sh</code> 파일을 이용하여 간단하고 빠르게 네트워크를 구성하는 방법을 이용할것입니다.</p>
 
-<p>두 번째로는 hyperledger 에서 제공하는 <code class="highlighter-rouge">binary</code> 파일들을 이용하여 천천히 하나하나 명령어를 설명하면서 진행하겠습니다.</p>
+<p>두 번째로는 hyperledger 에서 제공하는 <code class="language-plaintext highlighter-rouge">binary</code> 파일들을 이용하여 천천히 하나하나 명령어를 설명하면서 진행하겠습니다.</p>
 
 <p>현 포스트는 두 번째 방법을 이용하여 네트워크를 구성해보겠습니다.</p>
 
 <h1 id="settings">Settings</h1>
 
-<p><code class="highlighter-rouge">Setting</code> 부분은 <a href="/blog/fabricnetwork1">Hyperledger Fabric Network 구성 -1-</a> 부분과 동일하니 똑같이 진행하시면 됩니다.</p>
+<p><code class="language-plaintext highlighter-rouge">Setting</code> 부분은 <a href="/blog/fabricnetwork1">Hyperledger Fabric Network 구성 -1-</a> 부분과 동일하니 똑같이 진행하시면 됩니다.</p>
 
-<p><code class="highlighter-rouge">HandOn</code> 부분부터 다릅니다.</p>
+<p><code class="language-plaintext highlighter-rouge">HandOn</code> 부분부터 다릅니다.</p>
 
 <h1 id="handson">HandsOn</h1>
 
-<p>여기서 부터는 <code class="highlighter-rouge">byfn.sh</code> 내부를 들어가서 하나하나 명령어를 치면서 따라가셔도 되고 <a href="https://hyperledger-fabric.readthedocs.io/en/release-1.4/build_network.html">Glossary</a> 문서를 따라가셔도 똑같습니다.</p>
+<p>여기서 부터는 <code class="language-plaintext highlighter-rouge">byfn.sh</code> 내부를 들어가서 하나하나 명령어를 치면서 따라가셔도 되고 <a href="https://hyperledger-fabric.readthedocs.io/en/release-1.4/build_network.html">Glossary</a> 문서를 따라가셔도 똑같습니다.</p>
 
 <p>먼저 빈 파일을 만들어보겠습니다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ mkdir has3ong
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ mkdir has3ong
 $ cd has3ong
 $ ls
 
@@ -28,9 +28,9 @@ $ ls
 
 <p>그리고 이 파일에 필요한 파일들을 복사하겠습니다.</p>
 
-<p><code class="highlighter-rouge">bin</code>, <code class="highlighter-rouge">base</code>, <code class="highlighter-rouge">chaincode</code>, <code class="highlighter-rouge">configtx.yaml</code>, <code class="highlighter-rouge">crypto-config.yaml</code>, <code class="highlighter-rouge">docker-compose-cli.yaml</code> 입니다.</p>
+<p><code class="language-plaintext highlighter-rouge">bin</code>, <code class="language-plaintext highlighter-rouge">base</code>, <code class="language-plaintext highlighter-rouge">chaincode</code>, <code class="language-plaintext highlighter-rouge">configtx.yaml</code>, <code class="language-plaintext highlighter-rouge">crypto-config.yaml</code>, <code class="language-plaintext highlighter-rouge">docker-compose-cli.yaml</code> 입니다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo cp -r ../fabric-samples/bin .
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo cp -r ../fabric-samples/bin .
 $ sudo cp -r ../fabric-samples/first-network/base .
 $ sudo cp -r ../fabric-samples/first-network/configtx.yaml .
 $ sudo cp -r ../fabric-samples/first-network/crypto-config.yaml .
@@ -40,35 +40,35 @@ $ mkdir channel-artifacts
 </code></pre></div></div>
 
 <p>파일을 다 옮기고 나면 현재와 같은 상태가 만들어집니다.</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ls
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ls
 
 base  bin  channel-artifacts  configtx.yaml  crypto-config.yaml  docker-compose-cli.yaml
 </code></pre></div></div>
 
 <h3 id="manually-generate-the-artifacts">Manually generate the artifacts</h3>
 
-<p>첫 번째로 <code class="highlighter-rouge">cryptogen</code> 파일을 이용하여 인증서 파일을 만들어 줍니다. 인증서 파일들은 <code class="highlighter-rouge">crypto-config.yaml</code>을 확인해보시면 이해가 되실겁니다.</p>
+<p>첫 번째로 <code class="language-plaintext highlighter-rouge">cryptogen</code> 파일을 이용하여 인증서 파일을 만들어 줍니다. 인증서 파일들은 <code class="language-plaintext highlighter-rouge">crypto-config.yaml</code>을 확인해보시면 이해가 되실겁니다.</p>
 
 <p>전부 하나하나 뜯어보기에는 포스트의 양이 많아지기 때문에 추후에 정리해드리겠습니다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./bin/cryptogen generate --config=./crypto-config.yaml
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./bin/cryptogen generate --config=./crypto-config.yaml
 
 org1.example.com
 org2.example.com
 </code></pre></div></div>
 
-<p>다음 <code class="highlighter-rouge">FABRIC_CFG_PATH</code>를 현재 디렉토리로 설정합니다.</p>
+<p>다음 <code class="language-plaintext highlighter-rouge">FABRIC_CFG_PATH</code>를 현재 디렉토리로 설정합니다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ export FABRIC_CFG_PATH=$PWD
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ export FABRIC_CFG_PATH=$PWD
 </code></pre></div></div>
 
-<p>그다음 우리가 사용할 Fabric 네트워크에 <code class="highlighter-rouge">profile</code> 즉, orderer type(?) 을 설정합니다. <code class="highlighter-rouge">fabric-samples</code> 에서 제공하는 종류로는 <code class="highlighter-rouge">Solo</code>, <code class="highlighter-rouge">RAFT</code>, <code class="highlighter-rouge">Kafka</code> 3가지가 있는데 지금은 <code class="highlighter-rouge">Solo</code>로 사용하겠습니다.</p>
+<p>그다음 우리가 사용할 Fabric 네트워크에 <code class="language-plaintext highlighter-rouge">profile</code> 즉, orderer type(?) 을 설정합니다. <code class="language-plaintext highlighter-rouge">fabric-samples</code> 에서 제공하는 종류로는 <code class="language-plaintext highlighter-rouge">Solo</code>, <code class="language-plaintext highlighter-rouge">RAFT</code>, <code class="language-plaintext highlighter-rouge">Kafka</code> 3가지가 있는데 지금은 <code class="language-plaintext highlighter-rouge">Solo</code>로 사용하겠습니다.</p>
 
-<p><code class="highlighter-rouge">RAFT</code>, <code class="highlighter-rouge">Kafka</code>는 추후에 포스트로 올려드리겠습니다.</p>
+<p><code class="language-plaintext highlighter-rouge">RAFT</code>, <code class="language-plaintext highlighter-rouge">Kafka</code>는 추후에 포스트로 올려드리겠습니다.</p>
 
 <p>Solo</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./bin/configtxgen -profile TwoOrgsOrdererGenesis -channelID byfn-sys-channel -outputBlock ./channel-artifacts/genesis.block
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./bin/configtxgen -profile TwoOrgsOrdererGenesis -channelID byfn-sys-channel -outputBlock ./channel-artifacts/genesis.block
 
 2019-10-22 14:55:14.818 UTC [common.tools.configtxgen] main -&gt; INFO 001 Loading configuration
 2019-10-22 14:55:14.886 UTC [common.tools.configtxgen.localconfig] completeInitialization -&gt; INFO 002 orderer type: solo
@@ -81,21 +81,21 @@ org2.example.com
 
 <p>RAFT</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./bin/configtxgen -profile SampleMultiNodeEtcdRaft -channelID byfn-sys-channel -outputBlock ./channel-artifacts/genesis.block
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./bin/configtxgen -profile SampleMultiNodeEtcdRaft -channelID byfn-sys-channel -outputBlock ./channel-artifacts/genesis.block
 </code></pre></div></div>
 
 <p>Kafka</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ../bin/configtxgen -profile SampleDevModeKafka -channelID byfn-sys-channel -outputBlock ./channel-artifacts/genesis.block
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ../bin/configtxgen -profile SampleDevModeKafka -channelID byfn-sys-channel -outputBlock ./channel-artifacts/genesis.block
 </code></pre></div></div>
 
 <h3 id="create-a-channel-configuration-transaction">Create a Channel Configuration Transaction</h3>
 
-<p><code class="highlighter-rouge">channel.tx</code>파일을 만들어 주어야 합니다. <code class="highlighter-rouge">channel.tx</code>에는 현재 우리가 구현할 채널의 정책이나 조직의 정보가 담겨져 있다고 생각하면 됩니다.</p>
+<p><code class="language-plaintext highlighter-rouge">channel.tx</code>파일을 만들어 주어야 합니다. <code class="language-plaintext highlighter-rouge">channel.tx</code>에는 현재 우리가 구현할 채널의 정책이나 조직의 정보가 담겨져 있다고 생각하면 됩니다.</p>
 
-<p>그리고, 각각의 Org에 올라갈 <code class="highlighter-rouge">AnchorPeer</code>를 설정합니다. 이 모두에 대한 정보는 <code class="highlighter-rouge">configtx.yaml</code>에서 확인할 수 있습니다.</p>
+<p>그리고, 각각의 Org에 올라갈 <code class="language-plaintext highlighter-rouge">AnchorPeer</code>를 설정합니다. 이 모두에 대한 정보는 <code class="language-plaintext highlighter-rouge">configtx.yaml</code>에서 확인할 수 있습니다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ export CHANNEL_NAME=mychannel  &amp;&amp; ../bin/configtxgen -profile TwoOrgsChannel -outputCreateChannelTx ./channel-artifacts/channel.tx -channelID $CHANNEL_NAME
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ export CHANNEL_NAME=mychannel  &amp;&amp; ../bin/configtxgen -profile TwoOrgsChannel -outputCreateChannelTx ./channel-artifacts/channel.tx -channelID $CHANNEL_NAME
 
 
 $ ./bin/configtxgen -profile TwoOrgsChannel -outputAnchorPeersUpdate ./channel-artifacts/Org1MSPanchors.tx -channelID $CHANNEL_NAME -asOrg Org1MSP
@@ -118,15 +118,15 @@ $ ./bin/configtxgen -profile TwoOrgsChannel -outputAnchorPeersUpdate ./channel-a
 2019-10-22 14:56:14.468 UTC [common.tools.configtxgen] doOutputAnchorPeersUpdate -&gt; INFO 006 Writing anchor peer update
 </code></pre></div></div>
 
-<p>여기 까지의 과정이 <code class="highlighter-rouge">byfn.sh</code>에서의 <code class="highlighter-rouge">generate</code>입니다.</p>
+<p>여기 까지의 과정이 <code class="language-plaintext highlighter-rouge">byfn.sh</code>에서의 <code class="language-plaintext highlighter-rouge">generate</code>입니다.</p>
 
 <h3 id="start-the-network">Start the network</h3>
 
-<p>이제 초기 설정은 끝났으니 네트워크를 시작해보겠습니다. <code class="highlighter-rouge">docker-compose-cli.yaml</code> 파일을 이용하여 도커 위에 올려줍니다.</p>
+<p>이제 초기 설정은 끝났으니 네트워크를 시작해보겠습니다. <code class="language-plaintext highlighter-rouge">docker-compose-cli.yaml</code> 파일을 이용하여 도커 위에 올려줍니다.</p>
 
-<p>마지막 -d 파라메터를 넣어주면 컨테이너의 로그가 안뜨고 백그라운드로 진행이 됩니다. 저는 <code class="highlighter-rouge">orderer</code>, <code class="highlighter-rouge">peer</code>들의 로그도 같이 보면서 진행할 예정이니 빼서 진행하겠습니다.</p>
+<p>마지막 -d 파라메터를 넣어주면 컨테이너의 로그가 안뜨고 백그라운드로 진행이 됩니다. 저는 <code class="language-plaintext highlighter-rouge">orderer</code>, <code class="language-plaintext highlighter-rouge">peer</code>들의 로그도 같이 보면서 진행할 예정이니 빼서 진행하겠습니다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ export IMAGE_TAG="latest"
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ export IMAGE_TAG="latest"
 $ export SYS_CHANNEL="byfn-sys-channel"
 $ export COMPOSE_PROJECT_NAME=fabric
 
@@ -137,7 +137,7 @@ docker-compose -f docker-compose-cli.yaml up -d
 
 <p>현재 docker 컨테이너의 목록입니다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ docker ps
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ docker ps
 
 CONTAINER ID        IMAGE                               COMMAND             CREATED             STATUS              PORTS                      NAMES
 d20b921e8191        hyperledger/fabric-tools:latest     "/bin/bash"         3 minutes ago       Up 3 minutes                                   cli
@@ -148,16 +148,16 @@ ac07375045df        hyperledger/fabric-peer:latest      "peer node start"   3 mi
 f8e2fcb418da        hyperledger/fabric-peer:latest      "peer node start"   3 minutes ago       Up 3 minutes        0.0.0.0:10051-&gt;10051/tcp   peer1.org2.example.com
 </code></pre></div></div>
 
-<p>그리고 <code class="highlighter-rouge">cli</code> 컨테이너에 들어가서 피어들에게 명령을 주겠습니다.</p>
+<p>그리고 <code class="language-plaintext highlighter-rouge">cli</code> 컨테이너에 들어가서 피어들에게 명령을 주겠습니다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker exec -it cli bash
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker exec -it cli bash
 
 root@0d78bb69300d:/opt/gopath/src/github.com/hyperledger/fabric/peer#
 </code></pre></div></div>
 
 <h3 id="create--join-channel">Create &amp; Join Channel</h3>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
 CORE_PEER_ADDRESS=peer0.org1.example.com:7051
 CORE_PEER_LOCALMSPID="Org1MSP"
 CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
@@ -201,7 +201,7 @@ peer channel join -b mychannel.block
 
 <h3 id="update-anchor-peer">Update Anchor Peer</h3>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ peer channel update -o orderer.example.com:7050 -c $CHANNEL_NAME -f ./channel-artifacts/Org1MSPanchors.tx --tls --cafile $ORDERER_CA
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ peer channel update -o orderer.example.com:7050 -c $CHANNEL_NAME -f ./channel-artifacts/Org1MSPanchors.tx --tls --cafile $ORDERER_CA
 
 2019-10-22 15:22:16.890 UTC [channelCmd] InitCmdFactory -&gt; INFO 001 Endorser and orderer connections initialized
 2019-10-22 15:22:16.907 UTC [channelCmd] update -&gt; INFO 002 Successfully submitted channel update
@@ -218,7 +218,7 @@ peer channel update -o orderer.example.com:7050 -c $CHANNEL_NAME -f ./channel-ar
 
 <h3 id="install-chaincode">Install Chaincode</h3>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ peer chaincode install -n mycc -v 1.0 -p github.com/chaincode/chaincode_example02/go/
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ peer chaincode install -n mycc -v 1.0 -p github.com/chaincode/chaincode_example02/go/
 
 2019-10-22 15:37:12.709 UTC [chaincodeCmd] checkChaincodeCmdParams -&gt; INFO 001 Using default escc
 2019-10-22 15:37:12.710 UTC [chaincodeCmd] checkChaincodeCmdParams -&gt; INFO 002 Using default vscc
@@ -254,14 +254,14 @@ peer chaincode install -n mycc -v 1.0 -p github.com/chaincode/chaincode_example0
 
 <p>check chaindoe</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ peer chaincode list --installed
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ peer chaincode list --installed
 
 Name: mycc, Version: 1.0, Path: github.com/chaincode/chaincode_example02/go/, Id: 476fca1a949274001971f1ec2836cb09321f0b71268b3762d68931c93f218134
 </code></pre></div></div>
 
 <h3 id="chacincode-instantiate">ChacinCode Instantiate</h3>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ peer chaincode instantiate -o orderer.example.com:7050 --tls --cafile $ORDERER_CA -C $CHANNEL_NAME -n mycc -v 1.0 -c '{"Args":["init","a","100","b","200"]}' -P "OR ('Org1MSP.peer','Org2MSP.peer')"
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ peer chaincode instantiate -o orderer.example.com:7050 --tls --cafile $ORDERER_CA -C $CHANNEL_NAME -n mycc -v 1.0 -c '{"Args":["init","a","100","b","200"]}' -P "OR ('Org1MSP.peer','Org2MSP.peer')"
 
 2019-10-22 15:40:33.013 UTC [chaincodeCmd] checkChaincodeCmdParams -&gt; INFO 001 Using default escc
 2019-10-22 15:40:33.014 UTC [chaincodeCmd] checkChaincodeCmdParams -&gt; INFO 002 Using default vscc
@@ -269,7 +269,7 @@ Name: mycc, Version: 1.0, Path: github.com/chaincode/chaincode_example02/go/, Id
 
 <h3 id="chaincode-query">ChainCode Query</h3>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ peer chaincode query -C $CHANNEL_NAME -n mycc -c '{"Args":["query","a"]}'
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ peer chaincode query -C $CHANNEL_NAME -n mycc -c '{"Args":["query","a"]}'
 100
 
 $ peer chaincode query -C $CHANNEL_NAME -n mycc -c '{"Args":["query","b"]}'
@@ -277,14 +277,14 @@ $ peer chaincode query -C $CHANNEL_NAME -n mycc -c '{"Args":["query","b"]}'
 </code></pre></div></div>
 
 <h3 id="chaincode-invoke">ChainCode Invoke</h3>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ peer chaincode invoke -o orderer.example.com:7050  --tls --cafile $ORDERER_CA  -C $CHANNEL_NAME -n mycc -c '{"Args":["invoke","a","b","10"]}'
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ peer chaincode invoke -o orderer.example.com:7050  --tls --cafile $ORDERER_CA  -C $CHANNEL_NAME -n mycc -c '{"Args":["invoke","a","b","10"]}'
 
 2019-10-22 15:42:00.760 UTC [chaincodeCmd] chaincodeInvokeOrQuery -&gt; INFO 001 Chaincode invoke successful. result: status:200
 </code></pre></div></div>
 
 <h3 id="chaincode-query-1">ChainCode Query</h3>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ peer chaincode query -C $CHANNEL_NAME -n mycc -c '{"Args":["query","a"]}'
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ peer chaincode query -C $CHANNEL_NAME -n mycc -c '{"Args":["query","a"]}'
 90
 
 $ peer chaincode query -C $CHANNEL_NAME -n mycc -c '{"Args":["query","b"]}'

@@ -1,4 +1,4 @@
-I"ߣ<p><em>이 포스트는 <code class="highlighter-rouge">Hyperledger Korea User Group</code>에서 만든 글을 바탕으로 만들었습니다.</em></p>
+I"��<p><em>이 포스트는 <code class="language-plaintext highlighter-rouge">Hyperledger Korea User Group</code>에서 만든 글을 바탕으로 만들었습니다.</em></p>
 
 <h1 id="settings">Settings</h1>
 
@@ -6,7 +6,7 @@
 
 <h3 id="version">Version</h3>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ vagrant -v
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ vagrant -v
 Vagrant 2.2.5
 
 VirtualBox 버전 6.0.10 r132072 (Qt5.6.3)
@@ -20,7 +20,7 @@ VirtualBox 버전 6.0.10 r132072 (Qt5.6.3)
   <p>Vagrantfile</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ENV["LC_ALL"] = "en_US.UTF-8"
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ENV["LC_ALL"] = "en_US.UTF-8"
 
 Vagrant.configure("2") do |config|
   vm_num = 1
@@ -105,7 +105,7 @@ end
 
 <h3 id="1-vm-생성--재시작">1. VM 생성 / 재시작</h3>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ vagrant up indy-1
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ vagrant up indy-1
 
 ==&gt; vagrant: A new version of Vagrant is available: 2.2.6 (installed version: 2.2.5)!
 ==&gt; vagrant: To upgrade visit: https://www.vagrantup.com/downloads.html
@@ -154,7 +154,7 @@ Bringing machine 'indy-1' up with 'virtualbox' provider...
 
 <h3 id="2-vm-접속">2. VM 접속</h3>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ vagrant ssh indy-1
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ vagrant ssh indy-1
 
 Welcome to Ubuntu 16.04.6 LTS (GNU/Linux 4.4.0-159-generic x86_64)
 
@@ -174,13 +174,13 @@ vagrant@indy-1:~$
 
 <h3 id="3-vm-중지">3. VM 중지</h3>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ vagrant halt indy-1
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ vagrant halt indy-1
 ==&gt; indy-1: Attempting graceful shutdown of VM...
 </code></pre></div></div>
 
 <h3 id="4-vm-삭제">4. VM 삭제</h3>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ vagrant destroy indy-1
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ vagrant destroy indy-1
     indy-1: Are you sure you want to destroy the 'indy-1' VM? [y/N] y
 ==&gt; indy-1: Destroying VM and associated drives...
 </code></pre></div></div>
@@ -191,7 +191,7 @@ vagrant@indy-1:~$
 
 <h3 id="11-vm-접속">1.1 VM 접속</h3>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ vagrant status
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ vagrant status
 Current machine states:
 
 indy-1                    poweroff (virtualbox)
@@ -246,7 +246,7 @@ $ vagrant ssh indy-1
 
 <h3 id="12-실습파일-다운로드-및-적용">1.2 실습파일 다운로드 및 적용</h3>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vagrant@indy-1:~$ git clone http://github.com/hlkug/meetup
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vagrant@indy-1:~$ git clone http://github.com/hlkug/meetup
 
 
 Cloning into 'meetup'...
@@ -276,7 +276,7 @@ vagrant@indy-1:~/meetup/201910/vagrant$ cp * /home/vagrant/indy-sdk/docs/getting
 
 <p>아래 처럼 enp0s8 인터페이스에 10.30.30.2 주소가 할당된 것을 확인하면 됩니다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vagrant@indy-1:~$ ip a
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vagrant@indy-1:~$ ip a
 
 1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
@@ -327,7 +327,7 @@ vagrant@indy-1:~/meetup/201910/vagrant$ cp * /home/vagrant/indy-sdk/docs/getting
   <li>getting_started - Jupyter Notebook 컨테이너, 제공되는 Python 코드 예제 실습</li>
 </ul>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># "Getting Started" 관련 파일은 Indy SDK 내 /docs/getting-started 폴더에 있습니다.
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># "Getting Started" 관련 파일은 Indy SDK 내 /docs/getting-started 폴더에 있습니다.
 vagrant@indy-1:~$ cd /home/vagrant/indy-sdk/docs/getting-started
 vagrant@indy-1:~/indy-sdk/docs/getting-started$ ls
 
@@ -369,13 +369,13 @@ getting_started |      or http://127.0.0.1:8888/?token=a6be01baa780e898649b0394a
 
 <h3 id="overview">Overview</h3>
 
-<p>5개의 Actor가 있다. <code class="highlighter-rouge">Government</code>, <code class="highlighter-rouge">Faber College</code>, <code class="highlighter-rouge">Acme Corp</code>, <code class="highlighter-rouge">Thrift Bank</code>, <code class="highlighter-rouge">Alice</code> 첫 4개는 조직이며 <code class="highlighter-rouge">Alice</code>는 <code class="highlighter-rouge">Getting Started</code> 예제에서 그들과 교류한다.</p>
+<p>5개의 Actor가 있다. <code class="language-plaintext highlighter-rouge">Government</code>, <code class="language-plaintext highlighter-rouge">Faber College</code>, <code class="language-plaintext highlighter-rouge">Acme Corp</code>, <code class="language-plaintext highlighter-rouge">Thrift Bank</code>, <code class="language-plaintext highlighter-rouge">Alice</code> 첫 4개는 조직이며 <code class="language-plaintext highlighter-rouge">Alice</code>는 <code class="language-plaintext highlighter-rouge">Getting Started</code> 예제에서 그들과 교류한다.</p>
 
-<p><code class="highlighter-rouge">Government</code>는 스키마의 표준을 정하는 책임이 있다. 이는 모든 조직이 따를 수 있는 다양한 유형의 스키마 표준을 갖는 것이 더 바람직하기 때문에 이치에 맞는다. 이 예에서는 두 개의 스키마가 생성된다. <code class="highlighter-rouge">Transcript Schema</code> 및 <code class="highlighter-rouge">Job-Certificate Schema</code>.</p>
+<p><code class="language-plaintext highlighter-rouge">Government</code>는 스키마의 표준을 정하는 책임이 있다. 이는 모든 조직이 따를 수 있는 다양한 유형의 스키마 표준을 갖는 것이 더 바람직하기 때문에 이치에 맞는다. 이 예에서는 두 개의 스키마가 생성된다. <code class="language-plaintext highlighter-rouge">Transcript Schema</code> 및 <code class="language-plaintext highlighter-rouge">Job-Certificate Schema</code>.</p>
 
-<p><code class="highlighter-rouge">Alice</code>는 <code class="highlighter-rouge">Acme Corp</code>에 입사지원서를 내고 있다. <code class="highlighter-rouge">Acme Corp</code>는 입사지원서의 한 가지 요건으로서 교육수준의 증명을 요구한다. <code class="highlighter-rouge">Alice</code>가 <code class="highlighter-rouge">Faber College</code>을 졸업한 후, <code class="highlighter-rouge">Alice</code>가 보관하고 있는 자격증인 <code class="highlighter-rouge">Faber College</code>의 성적표를 먼저 적용하고 있다.</p>
+<p><code class="language-plaintext highlighter-rouge">Alice</code>는 <code class="language-plaintext highlighter-rouge">Acme Corp</code>에 입사지원서를 내고 있다. <code class="language-plaintext highlighter-rouge">Acme Corp</code>는 입사지원서의 한 가지 요건으로서 교육수준의 증명을 요구한다. <code class="language-plaintext highlighter-rouge">Alice</code>가 <code class="language-plaintext highlighter-rouge">Faber College</code>을 졸업한 후, <code class="language-plaintext highlighter-rouge">Alice</code>가 보관하고 있는 자격증인 <code class="language-plaintext highlighter-rouge">Faber College</code>의 성적표를 먼저 적용하고 있다.</p>
 
-<p><code class="highlighter-rouge">Faber College</code>는 <code class="highlighter-rouge">Government</code>의 <code class="highlighter-rouge">Transcript Schema</code>를 채택한다. <code class="highlighter-rouge">Acme Corporation</code>에서 그 직장에 지원할 때, 그녀는 <code class="highlighter-rouge">Acme Corp</code>에게 이 자격증명서를준다. <code class="highlighter-rouge">Acme Corp</code>는 이 자격증명서를 <code class="highlighter-rouge">Faber College</code>로부터 받은 자신의 교육수준의 증거로 받아들인다.</p>
+<p><code class="language-plaintext highlighter-rouge">Faber College</code>는 <code class="language-plaintext highlighter-rouge">Government</code>의 <code class="language-plaintext highlighter-rouge">Transcript Schema</code>를 채택한다. <code class="language-plaintext highlighter-rouge">Acme Corporation</code>에서 그 직장에 지원할 때, 그녀는 <code class="language-plaintext highlighter-rouge">Acme Corp</code>에게 이 자격증명서를준다. <code class="language-plaintext highlighter-rouge">Acme Corp</code>는 이 자격증명서를 <code class="language-plaintext highlighter-rouge">Faber College</code>로부터 받은 자신의 교육수준의 증거로 받아들인다.</p>
 
 <p>위 경우 아래와 같은 역할을 가지게된다.</p>
 
@@ -385,9 +385,9 @@ getting_started |      or http://127.0.0.1:8888/?token=a6be01baa780e898649b0394a
   <li>Acme Corp: credential verifier</li>
 </ul>
 
-<p><code class="highlighter-rouge">Alice</code>는 <code class="highlighter-rouge">Thrift Bank</code>에서 자동차 대출을 신청하고 있다. <code class="highlighter-rouge">Thrift Bank</code>는 그녀의 고용 상태와 신분, 즉 KYC(Know Your Customer) 과정이라는 것을 증명해야 한다. <code class="highlighter-rouge">Alice</code>는 이제 <code class="highlighter-rouge">Acme Corp</code>의 취업증명서를 적용하고 있는데, 이것은 정부의 취업인증서 제도에 따라 다시 아크미사가 발행한 자격증명서다.</p>
+<p><code class="language-plaintext highlighter-rouge">Alice</code>는 <code class="language-plaintext highlighter-rouge">Thrift Bank</code>에서 자동차 대출을 신청하고 있다. <code class="language-plaintext highlighter-rouge">Thrift Bank</code>는 그녀의 고용 상태와 신분, 즉 KYC(Know Your Customer) 과정이라는 것을 증명해야 한다. <code class="language-plaintext highlighter-rouge">Alice</code>는 이제 <code class="language-plaintext highlighter-rouge">Acme Corp</code>의 취업증명서를 적용하고 있는데, 이것은 정부의 취업인증서 제도에 따라 다시 아크미사가 발행한 자격증명서다.</p>
 
-<p>현재 <code class="highlighter-rouge">Alice</code>는 두 가지 자격증을 가지고 있다. 하나는 신분을 가진 <code class="highlighter-rouge">Faber College</code> 출신이고, 하나는 고용 상태에 대한 <code class="highlighter-rouge">Acme Corportaion</code> 션 출신이다. 그녀는 이 자격증을 자동차 대출 신청서에 제출한다.</p>
+<p>현재 <code class="language-plaintext highlighter-rouge">Alice</code>는 두 가지 자격증을 가지고 있다. 하나는 신분을 가진 <code class="language-plaintext highlighter-rouge">Faber College</code> 출신이고, 하나는 고용 상태에 대한 <code class="language-plaintext highlighter-rouge">Acme Corportaion</code> 션 출신이다. 그녀는 이 자격증을 자동차 대출 신청서에 제출한다.</p>
 
 <p>위 경우 아래와 같은 역할을 가지게된다.</p>
 
@@ -397,11 +397,11 @@ getting_started |      or http://127.0.0.1:8888/?token=a6be01baa780e898649b0394a
   <li>Thrift Bank: credential verifier</li>
 </ul>
 
-<p>저는 <code class="highlighter-rouge">Hyperledger Korea User Group</code>를 정리한 문서를 바탕으로 Alice가 Acme Corporation에 취업하는 과정까지 알아보겠습니다.</p>
+<p>저는 <code class="language-plaintext highlighter-rouge">Hyperledger Korea User Group</code>를 정리한 문서를 바탕으로 Alice가 Acme Corporation에 취업하는 과정까지 알아보겠습니다.</p>
 
 <h3 id="1-초기화">1. 초기화</h3>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Getting started -&gt; started
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Getting started -&gt; started
 Open Pool Ledger: pool1
 </code></pre></div></div>
 
@@ -416,7 +416,7 @@ DID)</li>
 
 <p>pool_transactions_genesis</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{"reqSignature":{},"txn":{"data":{"data":{"alias":"Node1","blskey":"4N8aUNHSgjQVgkpm8nhNEfDf6txHznoYREg9kirmJrkivgL4oSEimFF6nsQ6M41QvhM2Z33nves5vfSn9n1UwNFJBYtWVnHYMATn76vLuL3zU88KyeAYcHfsih3He6UHcXDxcaecHVz6jhCYz1P2UZn2bDVruL5wXpehgBfBaLKm3Ba","blskey_pop":"RahHYiCvoNCtPTrVtP7nMC5eTYrsUA8WjXbdhNc8debh1agE9bGiJxWBXYNFbnJXoXhWFMvyqhqhRoq737YQemH5ik9oL7R4NTTCz2LEZhkgLJzB3QRQqJyBNyv7acbdHrAT8nQ9UkLbaVL9NBpnWXBTw4LEMePaSHEw66RzPNdAX1","client_ip":"10.0.0.2","client_port":9702,"node_ip":"10.0.0.2","node_port":9701,"services":["VALIDATOR"]},"dest":"Gw6pDLhcBcoQesN72qfotTgFa7cbuqZpkX3Xo6pLhPhv"},"metadata":{"from":"Th7MpTaRZVRYnPiabds81Y"},"type":"0"},"txnMetadata":{"seqNo":1,"txnId":"fea82e10e894419fe2bea7d96296a6d46f50f93f9eeda954ec461b2ed2950b62"},"ver":"1"}
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{"reqSignature":{},"txn":{"data":{"data":{"alias":"Node1","blskey":"4N8aUNHSgjQVgkpm8nhNEfDf6txHznoYREg9kirmJrkivgL4oSEimFF6nsQ6M41QvhM2Z33nves5vfSn9n1UwNFJBYtWVnHYMATn76vLuL3zU88KyeAYcHfsih3He6UHcXDxcaecHVz6jhCYz1P2UZn2bDVruL5wXpehgBfBaLKm3Ba","blskey_pop":"RahHYiCvoNCtPTrVtP7nMC5eTYrsUA8WjXbdhNc8debh1agE9bGiJxWBXYNFbnJXoXhWFMvyqhqhRoq737YQemH5ik9oL7R4NTTCz2LEZhkgLJzB3QRQqJyBNyv7acbdHrAT8nQ9UkLbaVL9NBpnWXBTw4LEMePaSHEw66RzPNdAX1","client_ip":"10.0.0.2","client_port":9702,"node_ip":"10.0.0.2","node_port":9701,"services":["VALIDATOR"]},"dest":"Gw6pDLhcBcoQesN72qfotTgFa7cbuqZpkX3Xo6pLhPhv"},"metadata":{"from":"Th7MpTaRZVRYnPiabds81Y"},"type":"0"},"txnMetadata":{"seqNo":1,"txnId":"fea82e10e894419fe2bea7d96296a6d46f50f93f9eeda954ec461b2ed2950b62"},"ver":"1"}
 {"reqSignature":{},"txn":{"data":{"data":{"alias":"Node2","blskey":"37rAPpXVoxzKhz7d9gkUe52XuXryuLXoM6P6LbWDB7LSbG62Lsb33sfG7zqS8TK1MXwuCHj1FKNzVpsnafmqLG1vXN88rt38mNFs9TENzm4QHdBzsvCuoBnPH7rpYYDo9DZNJePaDvRvqJKByCabubJz3XXKbEeshzpz4Ma5QYpJqjk","blskey_pop":"Qr658mWZ2YC8JXGXwMDQTzuZCWF7NK9EwxphGmcBvCh6ybUuLxbG65nsX4JvD4SPNtkJ2w9ug1yLTj6fgmuDg41TgECXjLCij3RMsV8CwewBVgVN67wsA45DFWvqvLtu4rjNnE9JbdFTc1Z4WCPA3Xan44K1HoHAq9EVeaRYs8zoF5","client_ip":"10.0.0.2","client_port":9704,"node_ip":"10.0.0.2","node_port":9703,"services":["VALIDATOR"]},"dest":"8ECVSk179mjsjKRLWiQtssMLgp6EPhWXtaYyStWPSGAb"},"metadata":{"from":"EbP4aYNeTHL6q385GuVpRV"},"type":"0"},"txnMetadata":{"seqNo":2,"txnId":"1ac8aece2a18ced660fef8694b61aac3af08ba875ce3026a160acbc3a3af35fc"},"ver":"1"}
 {"reqSignature":{},"txn":{"data":{"data":{"alias":"Node3","blskey":"3WFpdbg7C5cnLYZwFZevJqhubkFALBfCBBok15GdrKMUhUjGsk3jV6QKj6MZgEubF7oqCafxNdkm7eswgA4sdKTRc82tLGzZBd6vNqU8dupzup6uYUf32KTHTPQbuUM8Yk4QFXjEf2Usu2TJcNkdgpyeUSX42u5LqdDDpNSWUK5deC5","blskey_pop":"QwDeb2CkNSx6r8QC8vGQK3GRv7Yndn84TGNijX8YXHPiagXajyfTjoR87rXUu4G4QLk2cF8NNyqWiYMus1623dELWwx57rLCFqGh7N4ZRbGDRP4fnVcaKg1BcUxQ866Ven4gw8y4N56S5HzxXNBZtLYmhGHvDtk6PFkFwCvxYrNYjh","client_ip":"10.0.0.2","client_port":9706,"node_ip":"10.0.0.2","node_port":9705,"services":["VALIDATOR"]},"dest":"DKVxG2fXXTU8yT5N7hGEbXB3dfdAnYv1JczDUHpmDxya"},"metadata":{"from":"4cU41vWW82ArfxJxHkzXPG"},"type":"0"},"txnMetadata":{"seqNo":3,"txnId":"7e9f355dffa78ed24668f0e0e369fd8c224076571c51e2ea8be5f26479edebe4"},"ver":"1"}
 {"reqSignature":{},"txn":{"data":{"data":{"alias":"Node4","blskey":"2zN3bHM1m4rLz54MJHYSwvqzPchYp8jkHswveCLAEJVcX6Mm1wHQD1SkPYMzUDTZvWvhuE6VNAkK3KxVeEmsanSmvjVkReDeBEMxeDaayjcZjFGPydyey1qxBHmTvAnBKoPydvuTAqx5f7YNNRAdeLmUi99gERUU7TD8KfAa6MpQ9bw","blskey_pop":"RPLagxaR5xdimFzwmzYnz4ZhWtYQEj8iR5ZU53T2gitPCyCHQneUn2Huc4oeLd2B2HzkGnjAff4hWTJT6C7qHYB1Mv2wU5iHHGFWkhnTX9WsEAbunJCV2qcaXScKj4tTfvdDKfLiVuU2av6hbsMztirRze7LvYBkRHV3tGwyCptsrP","client_ip":"10.0.0.2","client_port":9708,"node_ip":"10.0.0.2","node_port":9707,"services":["VALIDATOR"]},"dest":"4PS3EDQ3dW1tci1Bp6543CfuuebjFrg36kLAUcskGfaA"},"metadata":{"from":"TWwCRQRZ2ZHMJFn9TzLp7W"},"type":"0"},"txnMetadata":{"seqNo":4,"txnId":"aa5e817d7cc626170eca175822029339a444eb0ee8f0bd20d3b0b76e566fb008"},"ver":"1"}
@@ -424,11 +424,11 @@ DID)</li>
 
 <h3 id="2-wallet-did-생">2. Wallet DID 생</h3>
 
-<p>본 예제에서 <code class="highlighter-rouge">Steward</code>는 다른 actor들을 시스템에 추가하고 역할을 할당시킬 수 있다. <code class="highlighter-rouge">Steward</code>는 전체 네트워크의 신뢰와 신뢰도를 유지하는 데 궁극적인 책임을 지는 관리 기구의 중요한 구성원이다. 즉, Getting Started에 언급된 모든 조직과 개인은 모든 활동을 수행하기 전에 <code class="highlighter-rouge">Trust Anchor</code> 역할을 가진 <code class="highlighter-rouge">Steward</code>에 의해 “창조”된다.</p>
+<p>본 예제에서 <code class="language-plaintext highlighter-rouge">Steward</code>는 다른 actor들을 시스템에 추가하고 역할을 할당시킬 수 있다. <code class="language-plaintext highlighter-rouge">Steward</code>는 전체 네트워크의 신뢰와 신뢰도를 유지하는 데 궁극적인 책임을 지는 관리 기구의 중요한 구성원이다. 즉, Getting Started에 언급된 모든 조직과 개인은 모든 활동을 수행하기 전에 <code class="language-plaintext highlighter-rouge">Trust Anchor</code> 역할을 가진 <code class="language-plaintext highlighter-rouge">Steward</code>에 의해 “창조”된다.</p>
 
 <p><img src="https://user-images.githubusercontent.com/44635266/67156705-42383a00-f35d-11e9-8246-43967257aa89.png" alt="" /></p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"Sovrin Steward" -&gt; Create wallet
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"Sovrin Steward" -&gt; Create wallet
 "Sovrin Steward" -&gt; Create and store in Wallet DID from seed
 
 "Government" -&gt; Create wallet
@@ -460,9 +460,9 @@ DID)</li>
 
 <p><img src="https://user-images.githubusercontent.com/44635266/67156706-42d0d080-f35d-11e9-9229-5cae01025aac.png" alt="" /></p>
 
-<p><code class="highlighter-rouge">Government</code>는<code class="highlighter-rouge"> Transcript Schema</code>와 <code class="highlighter-rouge">Job-Certificate Schema</code>를 발행하고 이를 ledger에 기록한다. 스키마는 누구나 쉽게 구할 수 있다.</p>
+<p><code class="language-plaintext highlighter-rouge">Government</code>는<code class="language-plaintext highlighter-rouge"> Transcript Schema</code>와 <code class="language-plaintext highlighter-rouge">Job-Certificate Schema</code>를 발행하고 이를 ledger에 기록한다. 스키마는 누구나 쉽게 구할 수 있다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"Government" -&gt; Create "Transcript" Schema
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"Government" -&gt; Create "Transcript" Schema
 "Government" -&gt; Send "Transcript" Schema to Ledger
 
 "Government" -&gt; Create "Job-Certificate" Schema
@@ -475,13 +475,13 @@ DID)</li>
 
 <p><img src="https://user-images.githubusercontent.com/44635266/67156708-42d0d080-f35d-11e9-8bb7-19955ce54fa6.png" alt="" /></p>
 
-<p><code class="highlighter-rouge">Government</code>가 발행한 스키마에 근거하여 그들만의 credential definitions를 만든다.</p>
+<p><code class="language-plaintext highlighter-rouge">Government</code>가 발행한 스키마에 근거하여 그들만의 credential definitions를 만든다.</p>
 
-<p>credential definitions에는 사용 중인 스키마와 credential definition의 <code class="highlighter-rouge">issuer</code>에 대한 필요한 정보가 포함되어 있다.</p>
+<p>credential definitions에는 사용 중인 스키마와 credential definition의 <code class="language-plaintext highlighter-rouge">issuer</code>에 대한 필요한 정보가 포함되어 있다.</p>
 
 <p>그리고 두 가지 스키마 모두 ledger에 기록을한다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"Faber" -&gt; Get "Transcript" Schema from Ledger
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"Faber" -&gt; Get "Transcript" Schema from Ledger
 "Faber" -&gt; Create and store in Wallet "Faber Transcript" Credential Definition
 "Faber" -&gt; Send  "Faber Transcript" Credential Definition to Ledger
 
@@ -495,14 +495,14 @@ DID)</li>
 <p><img src="https://user-images.githubusercontent.com/44635266/67156709-43696700-f35d-11e9-9129-fddd417db63e.png" alt="" /></p>
 
 <ol>
-  <li><code class="highlighter-rouge">Faber College</code>와 <code class="highlighter-rouge">Alice</code>(온보드 프로세스) 간의 연결 구축</li>
-  <li><code class="highlighter-rouge">Faber College</code>은 자격증 제안을 만들어 <code class="highlighter-rouge">Alice</code>에게 보낸다.</li>
-  <li><code class="highlighter-rouge">Alice</code>는 원장에게서 <code class="highlighter-rouge">Faber Transcript Credential Definition</code>를 회수해, 자격 증명 요청을 만들어 <code class="highlighter-rouge">Faber College</code>에 보낸다.</li>
-  <li><code class="highlighter-rouge">Faber College</code>는 <code class="highlighter-rouge">Alice</code>를 위한 자격증을 만든다. 자격 증명 내부에는 <code class="highlighter-rouge">Faber Transcript Credential Definition</code>(및 Transcript Schema)에 나열된 항목의 값과 더불어 <code class="highlighter-rouge">Acme</code>가 요청할 때 <code class="highlighter-rouge">Alice</code>가 나중에 사용할 수 있다는 필요한 증거가 포함되어 있다.</li>
-  <li><code class="highlighter-rouge">Alice</code>는 이제 자격증을 받아서 지갑에 보관한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">Faber College</code>와 <code class="language-plaintext highlighter-rouge">Alice</code>(온보드 프로세스) 간의 연결 구축</li>
+  <li><code class="language-plaintext highlighter-rouge">Faber College</code>은 자격증 제안을 만들어 <code class="language-plaintext highlighter-rouge">Alice</code>에게 보낸다.</li>
+  <li><code class="language-plaintext highlighter-rouge">Alice</code>는 원장에게서 <code class="language-plaintext highlighter-rouge">Faber Transcript Credential Definition</code>를 회수해, 자격 증명 요청을 만들어 <code class="language-plaintext highlighter-rouge">Faber College</code>에 보낸다.</li>
+  <li><code class="language-plaintext highlighter-rouge">Faber College</code>는 <code class="language-plaintext highlighter-rouge">Alice</code>를 위한 자격증을 만든다. 자격 증명 내부에는 <code class="language-plaintext highlighter-rouge">Faber Transcript Credential Definition</code>(및 Transcript Schema)에 나열된 항목의 값과 더불어 <code class="language-plaintext highlighter-rouge">Acme</code>가 요청할 때 <code class="language-plaintext highlighter-rouge">Alice</code>가 나중에 사용할 수 있다는 필요한 증거가 포함되어 있다.</li>
+  <li><code class="language-plaintext highlighter-rouge">Alice</code>는 이제 자격증을 받아서 지갑에 보관한다.</li>
 </ol>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"Alice" -&gt; Create wallet
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"Alice" -&gt; Create wallet
 "Alice" -&gt; Create and store in Wallet "Alice" new DID
 {'did': 'KJfDoWvzj5aX3X7Mqjwtaq', 'verkey': 'Aye8jCjYbnTWqdSegWb6HMxBeTgfPrGWJBv8LuqZDgGe'}
 
@@ -525,7 +525,7 @@ DID)</li>
 
 <p>Transcript</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{'nonce': '191273141286763352691368', 'cred_def_id': 'DhJmyHoKvzJcNnJq6cWv3J:3:CL:15:TAG1', 'key_correctness_proof': {'c': '83274154335989837619870188929660682589490962338323954943447575591195925876741', 'xz_cap': '697110871479600777487590691847306898652853501957292670689681452966370805984664406735043887354071944372772546327258744371125968128939986765911538460652630316981454702202809698494441983542501510551360399057982053184372549898060890372277912604590836112287005556575402881829292990078542714720065111719078540774777788288909551525962647175085000317546433898586430179605186222477940704159108090584352278023542415262249803734958104776766725629238310868227755025891469367074321107475532090355272832106034099045848570054757685980454973403563579151336353340308743808121481475497282984171036166506324527179392962828197153665711150924800697632408543308543720351997158666904886574798692308931079974758483234', 'xr_cap': [['first_name', '1758035912926950446717666858971127454335804476389735507124245433272426579874917669713743914157464810221951068407860146785177286496398407989449696515844331277194046804275618900072028191728484629665531754470879576115493242424089960795487743226035614026922161201251398777183168357243479107354694552452510465204446398287610806927880303226513012785625599090235193799320271077627756698195704683651038149304892035102573780063239775063771030653445874258098665452724411764502143171392284436705545604238879101717365976040368691976341357733410519490452914917806458754037019476394311009129235069927375445705137098889354751183125335028746095931832135476254457355627248879493943514843049342391322585993157909'], ['master_secret', '653066121604013974250943999266663902417725910649252196832398324490025160689005917742586261972493943608939268314051208264822463727066380589495327178045530312467203622499057596272855462878979094775094269976551450487759935466488260529064913984648536136123442791471363700059360684324721685800303500819817489226883557914204661454091922164267568360680018052995473724589336883089613390378253193699864826894807415199262433317712372312873150425298333079714285339294989804402659371298157668504900269443330167178842603298551613362882127392260128359990100354832198666417333764942941521266647355129087050108396788881137936948602238985367957696470720628127770292525940993297031328543750906611864837904917454'], ['degree', '166304763119086964577350207667475805157777573857895034922074799548718219584196202460530268047720905852066626637639932446916391134045330763536585164715972949466549217037024234689425555998019358243266103486110176669033260350129102147976633074032304101833912493455814712256799602527271977218108959202429473630602210820074591797482942511560205721744787326064280904226960488704771598335088067091806577647539527221257768492572504555694377816532242707771188824815643324195967480546713084890241600834932692982367830235916244332898548007986600304866094037348595405137624696406687836331109134388505314281594398870359834338876023138868904128068831486020478115274450294794519487385163594283707959579226517'], ['ssn', '81872842944367541612844673918736997199108254900457781045627003991149091011576254987165691634697267917887474700082578804237705827217466986826666683154396295026105698337685338924531931817123017196406616274307986577904758457828362560798480154455883302931927548811028023922894687646262476661677709675375790730768505081060239117776630868636112916400277219818083187645898360561458054717989490093518022915761026699352172493525360631190016591323413810433455479942285727770274711364010107789933950724230835845963103968416546696657393313766163071196592987524091788159258069200358843013324127761836943936485614343817185137962770965260693868208736059691583363099332066490852093583989493447111957266262869'], ['year', '1677615483784117152897443223399973094449492346553679840974759935970136779557990747651995452244400817879222373674479722031938908581361140713500919459368446354753678433906419864955531244853476569348812602451017350033409241693833192673364602333839883319460881560431195660508417322942324269091819649016447583543978803712848590089049675838104103568553385163051685544638829610228780006240985208763816911261860041465259515627406715014220470156177404571447058485746067515179410041714803156519651291223048366727421533659849452273473755284110926820864032067760438303482344999706050192500413455140428890062339448584381755306903742377255137035195292074212726850831182495709172205291783999135982255736235057'], ['last_name', '972577720071556761653902899888070654505859704725506017391574667155788880027279621978276976571193040494076493376490549704185523415235497416612767368930123201620818254230204064568757957244853439588942798191703506964902784886134432710963455094483766834721977708292975054685183194974729737024432356777691459087099015075866803181731937108735603752003422602787843616959725843733418824025906960151911796255144372437605279060467449342551048179606638359741437580272667440774367436813476113946970475802400278882274933871342793474404312640614801202001520223816184078534272284949618960969324132559429527419871711493959932830272786738335420162444445989688518674230440875362039108342345595065787871450472747'], ['status', '40228856648327849579390617869008495880548969438552446566398206259234003341152555195299636652279109134525523138670545203787395783146901611021078017564527307870483114745157559352708312519796350635700806904050095140997376525079812349551346726575134299240439979598510768885597679346929618780460302611622996641598319742066508133145958729144570908831455677049797675142289769395223350229636712643431610748410981650817378141649856369971751916448497496256407130433865323092908736223469102798005984308991581188692871001654315192281309175598141854500287893356131228768973105690233253722553781522719653148197194832207644593903139749071333976601549464172325509445803933374820584798178543253491640481073491'], ['average', '1516034810778891125676950449133383277232539804805633821624395828697376889570177601002894036713694314948745593604333761079213870131966689831020337417683414385233864197077821735551149159843900706594840986780809661167511359697952330147284405567234502055911518477224987687367507854027289070659941919828491523617985729490115379359873790127320112734811595683033701490004921706456020432133367660039438000371378928805545412448899088066914933029084275240914141121319506769452581567497659478788883504737462021565165425774216030077530279382635602811174639768158985404490232455235130439165807972826620784408613485884909264716639120655775503704249207903222558338400099898629367873989314671228279573533866529']]}, 'schema_id': 'RHKghEbdHBHX5PfSk9ksrU:2:Transcript:1.2'}
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{'nonce': '191273141286763352691368', 'cred_def_id': 'DhJmyHoKvzJcNnJq6cWv3J:3:CL:15:TAG1', 'key_correctness_proof': {'c': '83274154335989837619870188929660682589490962338323954943447575591195925876741', 'xz_cap': '697110871479600777487590691847306898652853501957292670689681452966370805984664406735043887354071944372772546327258744371125968128939986765911538460652630316981454702202809698494441983542501510551360399057982053184372549898060890372277912604590836112287005556575402881829292990078542714720065111719078540774777788288909551525962647175085000317546433898586430179605186222477940704159108090584352278023542415262249803734958104776766725629238310868227755025891469367074321107475532090355272832106034099045848570054757685980454973403563579151336353340308743808121481475497282984171036166506324527179392962828197153665711150924800697632408543308543720351997158666904886574798692308931079974758483234', 'xr_cap': [['first_name', '1758035912926950446717666858971127454335804476389735507124245433272426579874917669713743914157464810221951068407860146785177286496398407989449696515844331277194046804275618900072028191728484629665531754470879576115493242424089960795487743226035614026922161201251398777183168357243479107354694552452510465204446398287610806927880303226513012785625599090235193799320271077627756698195704683651038149304892035102573780063239775063771030653445874258098665452724411764502143171392284436705545604238879101717365976040368691976341357733410519490452914917806458754037019476394311009129235069927375445705137098889354751183125335028746095931832135476254457355627248879493943514843049342391322585993157909'], ['master_secret', '653066121604013974250943999266663902417725910649252196832398324490025160689005917742586261972493943608939268314051208264822463727066380589495327178045530312467203622499057596272855462878979094775094269976551450487759935466488260529064913984648536136123442791471363700059360684324721685800303500819817489226883557914204661454091922164267568360680018052995473724589336883089613390378253193699864826894807415199262433317712372312873150425298333079714285339294989804402659371298157668504900269443330167178842603298551613362882127392260128359990100354832198666417333764942941521266647355129087050108396788881137936948602238985367957696470720628127770292525940993297031328543750906611864837904917454'], ['degree', '166304763119086964577350207667475805157777573857895034922074799548718219584196202460530268047720905852066626637639932446916391134045330763536585164715972949466549217037024234689425555998019358243266103486110176669033260350129102147976633074032304101833912493455814712256799602527271977218108959202429473630602210820074591797482942511560205721744787326064280904226960488704771598335088067091806577647539527221257768492572504555694377816532242707771188824815643324195967480546713084890241600834932692982367830235916244332898548007986600304866094037348595405137624696406687836331109134388505314281594398870359834338876023138868904128068831486020478115274450294794519487385163594283707959579226517'], ['ssn', '81872842944367541612844673918736997199108254900457781045627003991149091011576254987165691634697267917887474700082578804237705827217466986826666683154396295026105698337685338924531931817123017196406616274307986577904758457828362560798480154455883302931927548811028023922894687646262476661677709675375790730768505081060239117776630868636112916400277219818083187645898360561458054717989490093518022915761026699352172493525360631190016591323413810433455479942285727770274711364010107789933950724230835845963103968416546696657393313766163071196592987524091788159258069200358843013324127761836943936485614343817185137962770965260693868208736059691583363099332066490852093583989493447111957266262869'], ['year', '1677615483784117152897443223399973094449492346553679840974759935970136779557990747651995452244400817879222373674479722031938908581361140713500919459368446354753678433906419864955531244853476569348812602451017350033409241693833192673364602333839883319460881560431195660508417322942324269091819649016447583543978803712848590089049675838104103568553385163051685544638829610228780006240985208763816911261860041465259515627406715014220470156177404571447058485746067515179410041714803156519651291223048366727421533659849452273473755284110926820864032067760438303482344999706050192500413455140428890062339448584381755306903742377255137035195292074212726850831182495709172205291783999135982255736235057'], ['last_name', '972577720071556761653902899888070654505859704725506017391574667155788880027279621978276976571193040494076493376490549704185523415235497416612767368930123201620818254230204064568757957244853439588942798191703506964902784886134432710963455094483766834721977708292975054685183194974729737024432356777691459087099015075866803181731937108735603752003422602787843616959725843733418824025906960151911796255144372437605279060467449342551048179606638359741437580272667440774367436813476113946970475802400278882274933871342793474404312640614801202001520223816184078534272284949618960969324132559429527419871711493959932830272786738335420162444445989688518674230440875362039108342345595065787871450472747'], ['status', '40228856648327849579390617869008495880548969438552446566398206259234003341152555195299636652279109134525523138670545203787395783146901611021078017564527307870483114745157559352708312519796350635700806904050095140997376525079812349551346726575134299240439979598510768885597679346929618780460302611622996641598319742066508133145958729144570908831455677049797675142289769395223350229636712643431610748410981650817378141649856369971751916448497496256407130433865323092908736223469102798005984308991581188692871001654315192281309175598141854500287893356131228768973105690233253722553781522719653148197194832207644593903139749071333976601549464172325509445803933374820584798178543253491640481073491'], ['average', '1516034810778891125676950449133383277232539804805633821624395828697376889570177601002894036713694314948745593604333761079213870131966689831020337417683414385233864197077821735551149159843900706594840986780809661167511359697952330147284405567234502055911518477224987687367507854027289070659941919828491523617985729490115379359873790127320112734811595683033701490004921706456020432133367660039438000371378928805545412448899088066914933029084275240914141121319506769452581567497659478788883504737462021565165425774216030077530279382635602811174639768158985404490232455235130439165807972826620784408613485884909264716639120655775503704249207903222558338400099898629367873989314671228279573533866529']]}, 'schema_id': 'RHKghEbdHBHX5PfSk9ksrU:2:Transcript:1.2'}
 </code></pre></div></div>
 
 <h3 id="6-acme-corp-입사-지원for-alice">6. Acme Corp 입사 지원(for Alice)</h3>
@@ -534,23 +534,23 @@ DID)</li>
 
 <ol>
   <li>
-    <p><code class="highlighter-rouge">Acme Corp</code>과 <code class="highlighter-rouge">Alice</code> 간의 연결 구축(온보드 프로세스)</p>
+    <p><code class="language-plaintext highlighter-rouge">Acme Corp</code>과 <code class="language-plaintext highlighter-rouge">Alice</code> 간의 연결 구축(온보드 프로세스)</p>
   </li>
   <li>
-    <p><code class="highlighter-rouge">Acme Corp</code>은 필요한 항목과 조건을 나열한 Proof Request를 생성한다. 이 경우 <code class="highlighter-rouge">Acme Corp</code>는 <code class="highlighter-rouge">Faber College</code> 학위증명, 신분, ssn을 필요로 하며, 평균은 4가 넘는다.</p>
+    <p><code class="language-plaintext highlighter-rouge">Acme Corp</code>은 필요한 항목과 조건을 나열한 Proof Request를 생성한다. 이 경우 <code class="language-plaintext highlighter-rouge">Acme Corp</code>는 <code class="language-plaintext highlighter-rouge">Faber College</code> 학위증명, 신분, ssn을 필요로 하며, 평균은 4가 넘는다.</p>
   </li>
   <li>
-    <p><code class="highlighter-rouge">Alice</code>는 이 증명 요청을 받고, <code class="highlighter-rouge">Faber College</code>에서 얻은 자격 증명을 바탕으로 증명서를 만든다. 증명은 Acme의 증명요청 요건을 충족할 수 있는 정보를 포함하고 있다.</p>
+    <p><code class="language-plaintext highlighter-rouge">Alice</code>는 이 증명 요청을 받고, <code class="language-plaintext highlighter-rouge">Faber College</code>에서 얻은 자격 증명을 바탕으로 증명서를 만든다. 증명은 Acme의 증명요청 요건을 충족할 수 있는 정보를 포함하고 있다.</p>
   </li>
   <li>
-    <p><code class="highlighter-rouge">Acme Corp</code>는 <code class="highlighter-rouge">Alice</code>로부터 증명을 받는다. 증명서 안에서, <code class="highlighter-rouge">Acme Corporation</code>은 필요한 정보와 상태를 보고, 그것들이 <code class="highlighter-rouge">Faber College</code>에서 오고 있는지 확인한다.</p>
+    <p><code class="language-plaintext highlighter-rouge">Acme Corp</code>는 <code class="language-plaintext highlighter-rouge">Alice</code>로부터 증명을 받는다. 증명서 안에서, <code class="language-plaintext highlighter-rouge">Acme Corporation</code>은 필요한 정보와 상태를 보고, 그것들이 <code class="language-plaintext highlighter-rouge">Faber College</code>에서 오고 있는지 확인한다.</p>
   </li>
   <li>
-    <p><code class="highlighter-rouge">Acme Corp</code>는 이 증명을 받아들인다.</p>
+    <p><code class="language-plaintext highlighter-rouge">Acme Corp</code>는 이 증명을 받아들인다.</p>
   </li>
 </ol>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>==============================
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>==============================
 == Apply for the job with Acme - Transcript proving ==
 ------------------------------
 "Acme" -&gt; Create "Job-Application" Proof Request
@@ -577,11 +577,11 @@ DID)</li>
 
 <h3 id="7-종료">7. 종료</h3>
 
-<p>그 다음으로는 위에서 말했듯이 <code class="highlighter-rouge">Alice</code>가 <code class="highlighter-rouge">Thrift Bank</code>에게 대출을 신청하는 스토리가 있지만, 여기서 마무리하겠습니다.</p>
+<p>그 다음으로는 위에서 말했듯이 <code class="language-plaintext highlighter-rouge">Alice</code>가 <code class="language-plaintext highlighter-rouge">Thrift Bank</code>에게 대출을 신청하는 스토리가 있지만, 여기서 마무리하겠습니다.</p>
 
-<p>마지막으로는 사용된 <code class="highlighter-rouge">pool</code>과 <code class="highlighter-rouge">wallet</code>을 지워줍니다.</p>
+<p>마지막으로는 사용된 <code class="language-plaintext highlighter-rouge">pool</code>과 <code class="language-plaintext highlighter-rouge">wallet</code>을 지워줍니다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>==============================
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>==============================
 "Sovrin Steward" -&gt; Close and Delete wallet
 "Government" -&gt; Close and Delete wallet
 "Faber" -&gt; Close and Delete wallet

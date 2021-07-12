@@ -2,6 +2,9 @@
 title: About
 permalink: /about
 layout: single
+author_profile: true
+sidebar:
+  nav: "docs"
 ---
 
 ![60fpsparrot](https://user-images.githubusercontent.com/44635266/75249174-0d5f5680-5819-11ea-896a-de4e0c4dc13b.gif)
@@ -26,10 +29,6 @@ layout: single
 
 * 취업 준비 및 자기개발을 위해 만든 블로그입니다. 포스트에 관한 모든 지적과 피드백 남겨주시면 감사히 받겠습니다.
 * 2020 - 01 - 02 부로 취업했습니다.
-
-### Reference
-
-Contents Refrences [this](/references)
 
 ### 앵무새 ... ?
 

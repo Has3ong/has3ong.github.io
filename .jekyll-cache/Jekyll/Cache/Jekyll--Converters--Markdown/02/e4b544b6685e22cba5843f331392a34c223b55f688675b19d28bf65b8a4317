@@ -1,4 +1,4 @@
-I"� <h2 id="blockchain">BlockChain</h2>
+I"� <h2 id="blockchain">BlockChain</h2>
 
 <p>블록체인(영어: block chain, blockchain)은 관리 대상 데이터를 ‘블록’이라고 하는 소규모 데이터들이 P2P 방식을 기반으로 생성된 체인 형태의 연결고리 기반 분산 데이터 저장환경에 저장되어 누구라도 임의로 수정할 수 없고 누구나 변경의 결과를 열람할 수 있는 분산 컴퓨팅 기술 기반의 원장 관리 기술이다.</p>
 
@@ -26,7 +26,7 @@
 
 <p>이 해시 알고리즘은 값이 조금만 달라져도 나오는 해시값이 완전히 바뀌게 되므로 해시값을 보고서 원본 값을 알 수 없다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>I have a car -&gt; FA56A67C8DB6C5222ED5ECF4578BCDC6972FED51BFEF33FC5FCA9E7129076AC6
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>I have a car -&gt; FA56A67C8DB6C5222ED5ECF4578BCDC6972FED51BFEF33FC5FCA9E7129076AC6
 I have a cat -&gt; AA5AC9CEDA18E0629D1745539F0ED89C300DE50423E206361020856B7E77F65D
 </code></pre></div></div>
 

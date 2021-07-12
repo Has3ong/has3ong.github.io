@@ -1,10 +1,10 @@
-I"K <blockquote>
+I"� <blockquote>
   <p>개발하기에 앞서 https://i.kakao.com/login 여기서 개발 제휴 신청을 하시고 진행하셔야 합니다.</p>
 </blockquote>
 
 <h2 id="개발환경">개발환경</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ Goorm IDE / Ubuntu 18.04 LTS
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ Goorm IDE / Ubuntu 18.04 LTS
 $ Python 3.6.0
 $ Flask 1.1.0
 </code></pre></div></div>
@@ -31,7 +31,7 @@ $ Flask 1.1.0
 
 <p>Python3.6 과 pip3 설치</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo apt-get update
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo apt-get update
 
 # python3.6 설치
 $ sudo apt-get install python3.6
@@ -42,7 +42,7 @@ $ sudo apt-get install python3-pip -y
 
 <p>Flask를 설치하겠습니다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ pip3 install Flask
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ pip3 install Flask
 </code></pre></div></div>
 
 <h3 id="12-applicationpy-설정">1.2 application.py 설정</h3>
@@ -55,7 +55,7 @@ $ sudo apt-get install python3-pip -y
   <p>app.py</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from flask import Flask, jsonify, request
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
@@ -115,7 +115,7 @@ if __name__ == "__main__":
 
 <h3 id="13-flask-app-실행">1.3 Flask App 실행</h3>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python3 app.py
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python3 app.py
 
  * Serving Flask app "app" (lazy loading)
  * Environment: production

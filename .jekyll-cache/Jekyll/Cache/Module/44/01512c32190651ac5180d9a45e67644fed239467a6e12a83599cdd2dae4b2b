@@ -1,4 +1,4 @@
-I"0
+I"7
 
 <div class="masthead">
   <div class="masthead__inner-wrap">
@@ -10,11 +10,11 @@
           
         </a>
         <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/about/" >About</a>
+              <a href="/about">About</a>
             </li><li class="masthead__menu-item">
-              <a href="/" >Contents</a>
+              <a href="/categories">Categories</a>
             </li><li class="masthead__menu-item">
-              <a href="/tags/" >Tags</a>
+              <a href="/tags">Tags</a>
             </li></ul>
         
         <button class="greedy-nav__toggle hidden" type="button">

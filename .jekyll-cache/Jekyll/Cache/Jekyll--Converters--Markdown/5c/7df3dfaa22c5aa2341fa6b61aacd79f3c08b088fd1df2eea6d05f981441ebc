@@ -1,10 +1,10 @@
-I"3&<h2 id="network-구성">Network 구성</h2>
+I"�&<h2 id="network-구성">Network 구성</h2>
 
 <h1 id="settings">Settings</h1>
 
-<p><code class="highlighter-rouge">Setting</code> 부분은 <a href="/fabricnetwork1">Hyperledger Fabric Network 구성 -1-</a> 부분과 동일하니 똑같이 진행하시면 됩니다.</p>
+<p><code class="language-plaintext highlighter-rouge">Setting</code> 부분은 <a href="/fabricnetwork1">Hyperledger Fabric Network 구성 -1-</a> 부분과 동일하니 똑같이 진행하시면 됩니다.</p>
 
-<p><code class="highlighter-rouge">HandOn</code> 부분부터 다릅니다.</p>
+<p><code class="language-plaintext highlighter-rouge">HandOn</code> 부분부터 다릅니다.</p>
 
 <h1 id="handson">HandsOn</h1>
 
@@ -89,7 +89,7 @@ Generate CCP files <span class="k">for </span>Org1 and Org2
 
 <h2 id="bring-up-the-network">Bring Up the Network</h2>
 
-<p>다음으로 네트워크를 구성하겠습니다. <code class="highlighter-rouge">./byfn.sh up</code> 명령어로 네트워크를 실행 시킵니다.</p>
+<p>다음으로 네트워크를 구성하겠습니다. <code class="language-plaintext highlighter-rouge">./byfn.sh up</code> 명령어로 네트워크를 실행 시킵니다.</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>./byfn.sh up
 
@@ -251,7 +251,7 @@ Attempting to Query peer1.org2 ...3 secs
 |_____| |_| <span class="se">\_</span>| |____/
 </code></pre></div></div>
 
-<p>네트워크 구성이 끝나면 <code class="highlighter-rouge">docker ps</code> 명령어를 쳤을때 현재 컨테이너의 상태가 아래와 같습니다.</p>
+<p>네트워크 구성이 끝나면 <code class="language-plaintext highlighter-rouge">docker ps</code> 명령어를 쳤을때 현재 컨테이너의 상태가 아래와 같습니다.</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker ps
 CONTAINER ID        IMAGE                                                                                                  COMMAND                  CREATED              STATUS              PORTS                      NAMES
@@ -268,7 +268,7 @@ af300dab906d        hyperledger/fabric-peer:latest                              
 
 <h2 id="adding-an-org-to-a-channel">Adding an Org to a Channel</h2>
 
-<p><code class="highlighter-rouge">./eyfn.sh up</code> 명렁어를 통해서 새로운 org3 를 추가해보겠습니다.</p>
+<p><code class="language-plaintext highlighter-rouge">./eyfn.sh up</code> 명렁어를 통해서 새로운 org3 를 추가해보겠습니다.</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>./eyfn.sh up
 
@@ -512,7 +512,7 @@ Attempting to Query peer0.org1 ...3 secs
 
 </code></pre></div></div>
 
-<p>네트워크 org3 추가가 끝이나면 <code class="highlighter-rouge">docker ps</code> 명령어를 쳤을때 현재 컨테이너의 상태가 아래와 같습니다.</p>
+<p>네트워크 org3 추가가 끝이나면 <code class="language-plaintext highlighter-rouge">docker ps</code> 명령어를 쳤을때 현재 컨테이너의 상태가 아래와 같습니다.</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker ps
 CONTAINER ID        IMAGE                                                                                                  COMMAND                  CREATED              STATUS              PORTS                      NAMES

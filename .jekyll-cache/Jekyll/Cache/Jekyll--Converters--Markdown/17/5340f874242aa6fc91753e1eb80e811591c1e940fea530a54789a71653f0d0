@@ -1,4 +1,4 @@
-I"�<h2 id="hyperledger-fabric-nonce">Hyperledger Fabric Nonce</h2>
+I"�<h2 id="hyperledger-fabric-nonce">Hyperledger Fabric Nonce</h2>
 
 <p>Hyperledger fabric 에서 reply attact 을 막기위한 nonce는 랜덤으로 생성되는데, 해당 nonce 를 가지고 TXID 도 만듭니다. 따라서 nonce 는 트랜잭션마다 가지고 있게 되며, Ledger에 그대로 저장되어 - nonce를 검증하기 위해서는 해당 트랜잭션에 대해 Ledger에 이미 동일한 TxID를 가진 트랜잭션이 있는지에 대한 중복 검사를 통해 검증됩니다.</p>
 
@@ -12,7 +12,7 @@
 거래(transaction)를 전송시 nonce는 1씩 증가합니다.
 nonce는 계정에서 유일합니다. 동일한 nonce 가 존재 하지 않습니다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>예)최초 계정 생성시 nonce는 0 (계정 기준으로 전송된 트랜잭션이 하나도 없을때 )
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>예)최초 계정 생성시 nonce는 0 (계정 기준으로 전송된 트랜잭션이 하나도 없을때 )
 전송한 Transaction1 : 1(nonce)
 전송한 Transaction2 : 2(nonce)
 전송한 Transaction3 : 3(nonce)

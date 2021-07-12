@@ -1,14 +1,14 @@
-I"��<h1 id="settings">Settings</h1>
+I"��<h1 id="settings">Settings</h1>
 
 <p>Vagrant 파일 조작이랑 명령어는 <a href="/fabricnetwork1">Hyperledger Fabric Network 구성 -1-</a> 부분과 동일하니 똑같이 진행하시면 됩니다.</p>
 
-<p><code class="highlighter-rouge">Caliper</code>에서는 아래 파일을 사용하겠습니다. 위 포스트와는 다르게 코어와 메모리를 늘렸습니다.</p>
+<p><code class="language-plaintext highlighter-rouge">Caliper</code>에서는 아래 파일을 사용하겠습니다. 위 포스트와는 다르게 코어와 메모리를 늘렸습니다.</p>
 
 <blockquote>
   <p>Vagrantfile</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ENV["LC_ALL"] = "en_US.UTF-8"
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ENV["LC_ALL"] = "en_US.UTF-8"
 
 Vagrant.configure("2") do |config|
   vm_num = 1
@@ -46,7 +46,7 @@ end
 
 <h2 id="install-docker">Install Docker</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo apt-get update
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo apt-get update
 $ sudo apt-get upgrade
 $ sudo apt-get -y install apt-transport-https ca-certificates curl software-properties-common
 $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -59,19 +59,19 @@ $ usermod -aG docker vagrant
 
 <h2 id="install-docker-compose">Install Docker Compose</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ curl -L https://github.com/docker/compose/releases/download/1.24.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ curl -L https://github.com/docker/compose/releases/download/1.24.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
 $ chmod +x /usr/local/bin/docker-compose
 $ echo "PATH=$PATH:/usr/local/go/bin" &gt;&gt; /etc/profile
 </code></pre></div></div>
 
 <h2 id="install-nodejs-8">Install Nodejs 8</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 $ sudo apt-get install -y nodejs
 </code></pre></div></div>
 
 <h2 id="install-following-toolg-make-python2">Install following tool(g++, make, python2)</h2>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo apt install g++
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo apt install g++
 $ sudo apt-get install make
 $ sudo apt-get install python2.7 
 
@@ -80,7 +80,7 @@ $ git clone https://github.com/hyperledger/caliper.git
 
 <h2 id="install-hyperledgercaliper-cli">Install @hyperledger/caliper-cli</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ npm install -g npx
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ npm install -g npx
 $ npm install -g node-gyp
 
 $ cd caliper/packages/caliper-samples
@@ -98,7 +98,7 @@ $ npx caliper bind --caliper-bind-sut fabric --caliper-bind-sdk 1.4.0
 
 <p>아래 명령어를 입력해서 2org 1peer leveldb 환경에서 성능 측정을 해보겠습니다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ npx caliper benchmark run --caliper-workspace . --caliper-benchconfig benchmark/simple/config.yaml --caliper-networkconfig network/fabric-v1.4/2org1peergoleveldb/fabric-go.yaml
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ npx caliper benchmark run --caliper-workspace . --caliper-benchconfig benchmark/simple/config.yaml --caliper-networkconfig network/fabric-v1.4/2org1peergoleveldb/fabric-go.yaml
 </code></pre></div></div>
 
 <p>성능 측정이 끝나고나면 해당 디렉토리에 html 파일이 생깁니다. 그 파일은 아래처럼 나오게 됩니다.</p>
@@ -107,7 +107,7 @@ $ npx caliper bind --caliper-bind-sut fabric --caliper-bind-sdk 1.4.0
 
 <p>아래는 성능 측정시 나오는 로그 입니다. 참고로 확인하시면 될거같아요. 저는 오류가 좀 있내요.</p>
 
-<p>포스트에는 담지 않았지만 저는 <code class="highlighter-rouge">3org2peergoleveldb</code>와 <code class="highlighter-rouge">2org1peergoleveldb</code>를 돌려봤는데요. 두 파일 모두 별다른 차이는 없었습니다.</p>
+<p>포스트에는 담지 않았지만 저는 <code class="language-plaintext highlighter-rouge">3org2peergoleveldb</code>와 <code class="language-plaintext highlighter-rouge">2org1peergoleveldb</code>를 돌려봤는데요. 두 파일 모두 별다른 차이는 없었습니다.</p>
 
 <p>끝나고 나니 정말 눈물이 나네요…. 순서만 틀려도 정말 너무 많은 오류가 발생해서 몇번을 날려먹었는지.. 그래도 포스트 마치고 나니 보람은 있내요</p>
 
@@ -115,7 +115,7 @@ $ npx caliper bind --caliper-bind-sut fabric --caliper-bind-sdk 1.4.0
   <p>Fabric-v1.4 2 Org 1 Peer Level DB</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Benchmark for target Blockchain type fabric about to start
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Benchmark for target Blockchain type fabric about to start
 info: [caliper-flow]: ####### Caliper Test #######
 info: [caliper-utils]: Executing command: cd /home/vagrant/caliper/packages/caliper-samples;docker-compose -f network/fabric-v1.4/2org1peergoleveldb/docker-compose.yaml up -d;sleep 3s
 Creating network "2org1peergoleveldb_default" with the default driver

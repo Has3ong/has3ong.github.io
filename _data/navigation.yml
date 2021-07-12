@@ -2,15 +2,13 @@
 main:
   - title: "About"
     url: /about
-  - title: "Developer"
-    url: /dev
-  - title: "Life"
-    url: /life
-  #- title : "Tags"
-  #  url: /tags/
-  # - title: "Sample Posts"
-  #   url: /year-archive/
-  # - title: "Sample Collections"
-  #   url: /collection-archive/
-  # - title: "Sitemap"
-  #   url: /sitemap/
+  - title: "Categories"
+    url: /categories
+  - title: "Tags"
+    url: /tags
+
+docs:
+  - title: Category
+    children:
+      - title: "BlockChain"
+        url: /categories/blockchain/

@@ -1,4 +1,4 @@
-I"�&<p><a href="https://www.data.go.kr/">공공데이터 포털</a>을 이용했습니다.</p>
+I"<p><a href="https://www.data.go.kr/">공공데이터 포털</a>을 이용했습니다.</p>
 
 <p>회원 가입 후 원하는 공공 데이터를 찾습니다.</p>
 
@@ -20,10 +20,10 @@
 <span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="kn">import</span> <span class="n">urlencode</span><span class="p">,</span> <span class="n">quote_plus</span><span class="p">,</span> <span class="n">unquote</span>
 
 <span class="k">class</span> <span class="nc">oDust</span><span class="p">:</span>
-    <span class="n">session</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span>
+    <span class="n">session</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">Session</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">pm10</span> <span class="o">=</span> <span class="s">""</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">pm25</span> <span class="o">=</span> <span class="s">""</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">pm10</span> <span class="o">=</span> <span class="s">""</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">pm25</span> <span class="o">=</span> <span class="s">""</span>
 
     <span class="k">def</span> <span class="nf">Update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">API_Key</span> <span class="o">=</span> <span class="n">unquote</span><span class="p">(</span><span class="s">''</span><span class="p">)</span>
@@ -37,100 +37,100 @@
         <span class="p">)</span>
 
         <span class="n">request</span> <span class="o">=</span> <span class="n">Request</span><span class="p">(</span><span class="n">url</span><span class="o">+</span><span class="n">queryParams</span><span class="p">)</span>
-        <span class="n">request</span><span class="o">.</span><span class="n">get_method</span> <span class="o">=</span> <span class="k">lambda</span> <span class="p">:</span> <span class="s">'GET'</span>
-        <span class="n">response_body</span> <span class="o">=</span> <span class="n">urlopen</span><span class="p">(</span><span class="n">request</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">'utf-8'</span><span class="p">)</span>
+        <span class="n">request</span><span class="p">.</span><span class="n">get_method</span> <span class="o">=</span> <span class="k">lambda</span> <span class="p">:</span> <span class="s">'GET'</span>
+        <span class="n">response_body</span> <span class="o">=</span> <span class="n">urlopen</span><span class="p">(</span><span class="n">request</span><span class="p">).</span><span class="n">read</span><span class="p">().</span><span class="n">decode</span><span class="p">(</span><span class="s">'utf-8'</span><span class="p">)</span>
 
         <span class="k">print</span><span class="p">(</span><span class="n">response_body</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>Result</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 
-<span class="nt">&lt;response&gt;</span>
-	<span class="nt">&lt;header&gt;</span>
-		<span class="nt">&lt;resultCode&gt;</span>00<span class="nt">&lt;/resultCode&gt;</span>
-		<span class="nt">&lt;resultMsg&gt;</span>NORMAL SERVICE.<span class="nt">&lt;/resultMsg&gt;</span>
-	<span class="nt">&lt;/header&gt;</span>
-	<span class="nt">&lt;body&gt;</span>
-		<span class="nt">&lt;items&gt;</span>
+&lt;response&gt;
+	&lt;header&gt;
+		&lt;resultCode&gt;00&lt;/resultCode&gt;
+		&lt;resultMsg&gt;NORMAL SERVICE.&lt;/resultMsg&gt;
+	&lt;/header&gt;
+	&lt;body&gt;
+		&lt;items&gt;
 
-				<span class="nt">&lt;item&gt;</span>
-					<span class="nt">&lt;stationName&gt;</span>신풍동<span class="nt">&lt;/stationName&gt;</span>
+				&lt;item&gt;
+					&lt;stationName&gt;신풍동&lt;/stationName&gt;
 
-                        <span class="nt">&lt;mangName&gt;</span>도시대기<span class="nt">&lt;/mangName&gt;</span>
+                        &lt;mangName&gt;도시대기&lt;/mangName&gt;
 
-					<span class="nt">&lt;dataTime&gt;</span>2019-11-28 18:00<span class="nt">&lt;/dataTime&gt;</span>
-					<span class="nt">&lt;so2Value&gt;</span>0.003<span class="nt">&lt;/so2Value&gt;</span>
-					<span class="nt">&lt;coValue&gt;</span>0.4<span class="nt">&lt;/coValue&gt;</span>
-					<span class="nt">&lt;o3Value&gt;</span>0.010<span class="nt">&lt;/o3Value&gt;</span>
-					<span class="nt">&lt;no2Value&gt;</span>0.034<span class="nt">&lt;/no2Value&gt;</span>
-					<span class="nt">&lt;pm10Value&gt;</span>35<span class="nt">&lt;/pm10Value&gt;</span>
+					&lt;dataTime&gt;2019-11-28 18:00&lt;/dataTime&gt;
+					&lt;so2Value&gt;0.003&lt;/so2Value&gt;
+					&lt;coValue&gt;0.4&lt;/coValue&gt;
+					&lt;o3Value&gt;0.010&lt;/o3Value&gt;
+					&lt;no2Value&gt;0.034&lt;/no2Value&gt;
+					&lt;pm10Value&gt;35&lt;/pm10Value&gt;
 
-                        <span class="nt">&lt;pm10Value24&gt;</span>40<span class="nt">&lt;/pm10Value24&gt;</span>
-
-
-				        <span class="nt">&lt;pm25Value&gt;</span>14<span class="nt">&lt;/pm25Value&gt;</span>
+                        &lt;pm10Value24&gt;40&lt;/pm10Value24&gt;
 
 
-                        <span class="nt">&lt;pm25Value24&gt;</span>24<span class="nt">&lt;/pm25Value24&gt;</span>
-
-					<span class="nt">&lt;khaiValue&gt;</span>72<span class="nt">&lt;/khaiValue&gt;</span>
-					<span class="nt">&lt;khaiGrade&gt;</span>2<span class="nt">&lt;/khaiGrade&gt;</span>
-					<span class="nt">&lt;so2Grade&gt;</span>1<span class="nt">&lt;/so2Grade&gt;</span>
-					<span class="nt">&lt;coGrade&gt;</span>1<span class="nt">&lt;/coGrade&gt;</span>
-					<span class="nt">&lt;o3Grade&gt;</span>1<span class="nt">&lt;/o3Grade&gt;</span>
-					<span class="nt">&lt;no2Grade&gt;</span>2<span class="nt">&lt;/no2Grade&gt;</span>
-					<span class="nt">&lt;pm10Grade&gt;</span>2<span class="nt">&lt;/pm10Grade&gt;</span>
-
-				        <span class="nt">&lt;pm25Grade&gt;</span>2<span class="nt">&lt;/pm25Grade&gt;</span>
+				        &lt;pm25Value&gt;14&lt;/pm25Value&gt;
 
 
-                        <span class="nt">&lt;pm10Grade1h&gt;</span>2<span class="nt">&lt;/pm10Grade1h&gt;</span>
-                        <span class="nt">&lt;pm25Grade1h&gt;</span>1<span class="nt">&lt;/pm25Grade1h&gt;</span>
+                        &lt;pm25Value24&gt;24&lt;/pm25Value24&gt;
 
-				<span class="nt">&lt;/item&gt;</span>
+					&lt;khaiValue&gt;72&lt;/khaiValue&gt;
+					&lt;khaiGrade&gt;2&lt;/khaiGrade&gt;
+					&lt;so2Grade&gt;1&lt;/so2Grade&gt;
+					&lt;coGrade&gt;1&lt;/coGrade&gt;
+					&lt;o3Grade&gt;1&lt;/o3Grade&gt;
+					&lt;no2Grade&gt;2&lt;/no2Grade&gt;
+					&lt;pm10Grade&gt;2&lt;/pm10Grade&gt;
 
-				<span class="nt">&lt;item&gt;</span>
-					<span class="nt">&lt;stationName&gt;</span>인계동<span class="nt">&lt;/stationName&gt;</span>
-
-                        <span class="nt">&lt;mangName&gt;</span>도시대기<span class="nt">&lt;/mangName&gt;</span>
-
-					<span class="nt">&lt;dataTime&gt;</span>2019-11-28 18:00<span class="nt">&lt;/dataTime&gt;</span>
-					<span class="nt">&lt;so2Value&gt;</span>0.003<span class="nt">&lt;/so2Value&gt;</span>
-					<span class="nt">&lt;coValue&gt;</span>0.6<span class="nt">&lt;/coValue&gt;</span>
-					<span class="nt">&lt;o3Value&gt;</span>0.004<span class="nt">&lt;/o3Value&gt;</span>
-					<span class="nt">&lt;no2Value&gt;</span>0.043<span class="nt">&lt;/no2Value&gt;</span>
-					<span class="nt">&lt;pm10Value&gt;</span>28<span class="nt">&lt;/pm10Value&gt;</span>
-
-                        <span class="nt">&lt;pm10Value24&gt;</span>40<span class="nt">&lt;/pm10Value24&gt;</span>
+				        &lt;pm25Grade&gt;2&lt;/pm25Grade&gt;
 
 
-				        <span class="nt">&lt;pm25Value&gt;</span>25<span class="nt">&lt;/pm25Value&gt;</span>
+                        &lt;pm10Grade1h&gt;2&lt;/pm10Grade1h&gt;
+                        &lt;pm25Grade1h&gt;1&lt;/pm25Grade1h&gt;
+
+				&lt;/item&gt;
+
+				&lt;item&gt;
+					&lt;stationName&gt;인계동&lt;/stationName&gt;
+
+                        &lt;mangName&gt;도시대기&lt;/mangName&gt;
+
+					&lt;dataTime&gt;2019-11-28 18:00&lt;/dataTime&gt;
+					&lt;so2Value&gt;0.003&lt;/so2Value&gt;
+					&lt;coValue&gt;0.6&lt;/coValue&gt;
+					&lt;o3Value&gt;0.004&lt;/o3Value&gt;
+					&lt;no2Value&gt;0.043&lt;/no2Value&gt;
+					&lt;pm10Value&gt;28&lt;/pm10Value&gt;
+
+                        &lt;pm10Value24&gt;40&lt;/pm10Value24&gt;
 
 
-                        <span class="nt">&lt;pm25Value24&gt;</span>27<span class="nt">&lt;/pm25Value24&gt;</span>
-
-					<span class="nt">&lt;khaiValue&gt;</span>79<span class="nt">&lt;/khaiValue&gt;</span>
-					<span class="nt">&lt;khaiGrade&gt;</span>2<span class="nt">&lt;/khaiGrade&gt;</span>
-					<span class="nt">&lt;so2Grade&gt;</span>1<span class="nt">&lt;/so2Grade&gt;</span>
-					<span class="nt">&lt;coGrade&gt;</span>1<span class="nt">&lt;/coGrade&gt;</span>
-					<span class="nt">&lt;o3Grade&gt;</span>1<span class="nt">&lt;/o3Grade&gt;</span>
-					<span class="nt">&lt;no2Grade&gt;</span>2<span class="nt">&lt;/no2Grade&gt;</span>
-					<span class="nt">&lt;pm10Grade&gt;</span>2<span class="nt">&lt;/pm10Grade&gt;</span>
-
-				        <span class="nt">&lt;pm25Grade&gt;</span>2<span class="nt">&lt;/pm25Grade&gt;</span>
+				        &lt;pm25Value&gt;25&lt;/pm25Value&gt;
 
 
-                        <span class="nt">&lt;pm10Grade1h&gt;</span>1<span class="nt">&lt;/pm10Grade1h&gt;</span>
-                        <span class="nt">&lt;pm25Grade1h&gt;</span>2<span class="nt">&lt;/pm25Grade1h&gt;</span>
+                        &lt;pm25Value24&gt;27&lt;/pm25Value24&gt;
 
-				<span class="nt">&lt;/item&gt;</span>
-		<span class="nt">&lt;/items&gt;</span>
-			<span class="nt">&lt;numOfRows&gt;</span>7<span class="nt">&lt;/numOfRows&gt;</span>
-			<span class="nt">&lt;pageNo&gt;</span>1<span class="nt">&lt;/pageNo&gt;</span>
-			<span class="nt">&lt;totalCount&gt;</span>97<span class="nt">&lt;/totalCount&gt;</span>
-	<span class="nt">&lt;/body&gt;</span>
-<span class="nt">&lt;/response&gt;</span>
+					&lt;khaiValue&gt;79&lt;/khaiValue&gt;
+					&lt;khaiGrade&gt;2&lt;/khaiGrade&gt;
+					&lt;so2Grade&gt;1&lt;/so2Grade&gt;
+					&lt;coGrade&gt;1&lt;/coGrade&gt;
+					&lt;o3Grade&gt;1&lt;/o3Grade&gt;
+					&lt;no2Grade&gt;2&lt;/no2Grade&gt;
+					&lt;pm10Grade&gt;2&lt;/pm10Grade&gt;
+
+				        &lt;pm25Grade&gt;2&lt;/pm25Grade&gt;
+
+
+                        &lt;pm10Grade1h&gt;1&lt;/pm10Grade1h&gt;
+                        &lt;pm25Grade1h&gt;2&lt;/pm25Grade1h&gt;
+
+				&lt;/item&gt;
+		&lt;/items&gt;
+			&lt;numOfRows&gt;7&lt;/numOfRows&gt;
+			&lt;pageNo&gt;1&lt;/pageNo&gt;
+			&lt;totalCount&gt;97&lt;/totalCount&gt;
+	&lt;/body&gt;
+&lt;/response&gt;
 </code></pre></div></div>
 :ET

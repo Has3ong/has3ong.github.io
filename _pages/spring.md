@@ -1,9 +1,9 @@
 ---
-title: "DevOps"
-permalink: /devops
+title: "Spring"
+permalink: /spring
 layout: single
 author_profile: true
-taxonomy: "DevOps"
+taxonomy: "Spring"
 sidebar:
   nav: "docs"
 ---

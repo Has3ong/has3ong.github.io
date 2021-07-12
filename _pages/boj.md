@@ -2,6 +2,10 @@
 title: "Baekjoon Online Judge"
 permalink: /boj
 layout: single
+author_profile: true
+taxonomy: "Baekjoon Online Judge"
+sidebar:
+  nav: "docs"
 ---
 
 알고리즘 너무 어려워요

@@ -1,4 +1,4 @@
-I"�<h2 id="ssl-secure-socket-layer">SSL (Secure Socket Layer)</h2>
+I"<h2 id="ssl-secure-socket-layer">SSL (Secure Socket Layer)</h2>
 
 <p>SSL은 Certificate Authority(CA)라 불리는 서드 파티로부터 서버와 클라이언트의 인증을 하는데 사용된다.</p>
 
@@ -59,7 +59,7 @@
 
 <p>아래 예시는 하이퍼레져에서 사용하는 인증서 입니다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Certificate:
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Certificate:
     Data:
         Version: 3 (0x2)
         Serial Number:

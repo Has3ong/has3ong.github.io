@@ -1,4 +1,4 @@
-I"V,<h2 id="동기화">동기화</h2>
+I"|,<h2 id="동기화">동기화</h2>
 
 <p>시스템의 자원은 한정적인데 이 한정적인 자원에 여러 스레드가 동시에 접근해서 사용하려하면 문제가 발생할 수도 있습니다. 이런 문제를 방지하기 위해 스레드들에게 하나의 자원에 대한 처리 권한을 주거나 순서를 조정해주는 기법입니다.</p>
 
@@ -52,7 +52,7 @@
 
 <p>세마포어는 다익스트라가 제안한 프로세스 동기화를 위한 구조로, 이는 여러 프로세스들에 의해 공유되는 변수로 정의된다. 그런데 이 변수는 보통의 방법으로는 액세스할 수 없고 오직 P와 V라는 연산으로만 다룰 수 있다. P와 V연산의 정의는 다음과 같다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>procedure P(S)   --&gt; 최초 S값은 1임
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>procedure P(S)   --&gt; 최초 S값은 1임
 
     while S=0 do wait  --&gt; S가 0면 1이 될때까지 기다려야 함
     S := S-1   --&gt; S를 0로 만들어 다른 프로세스가 들어 오지 못하도록 함
@@ -66,7 +66,7 @@ procedure V(S) --&gt; 현재상태는 S가 0임
 
 <p>P와 V는 쪼갤수 없는 단일 연산이다. 즉 한 프로세스가 P나 V를 수행하고 있는 동안에는 프로세스가 인터럽트를 당하지 않는다. 이제 P와 V를 사용하면 다음과 같이 위험지역(cirtical section)에 대한 상호배제를 구현할수 있다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    P(S);
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    P(S);
     --------------------
     | Critical Section |
     --------------------

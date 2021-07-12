@@ -1,4 +1,4 @@
-I"�<h2 id="http-hypertext-transfer-protocol">HTTP (HyperText Transfer Protocol)</h2>
+I"J <h2 id="http-hypertext-transfer-protocol">HTTP (HyperText Transfer Protocol)</h2>
 
 <p>HTTP는 WWW 상에서 정보를 주고받을 수 있는 프로토콜이다. 주로 HTML 문서를 주고받는 데에 쓰인다. TCP와 UDP를 사용하며, 80번 포트를 사용한다.</p>
 
@@ -12,14 +12,14 @@
   <p>Request</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /mypage.html
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /mypage.html
 </code></pre></div></div>
 
 <blockquote>
   <p>Response</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;HTML&gt;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;HTML&gt;
 A very simple HTML page
 &lt;/HTML&gt;
 </code></pre></div></div>
@@ -39,7 +39,7 @@ A very simple HTML page
   <p>Request</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /mypage.html HTTP/1.0
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /mypage.html HTTP/1.0
 User-Agent: NCSA_Mosaic/2.0 (Windows 3.1)
 
 200 OK
@@ -53,7 +53,7 @@ Content-Type: text/html
   <p>Response</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;HTML&gt; 
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;HTML&gt; 
 A page with an image
   &lt;IMG SRC="/myimage.gif"&gt;
 &lt;/HTML&gt;
@@ -76,7 +76,7 @@ A page with an image
   <p>단일 커넥션을 통한 요청의 전형적인 전체 흐름의 예시.</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /en-US/docs/Glossary/Simple_header HTTP/1.1
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /en-US/docs/Glossary/Simple_header HTTP/1.1
 Host: developer.mozilla.org
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:50.0) Gecko/20100101 Firefox/50.0
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8

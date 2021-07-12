@@ -1,4 +1,4 @@
-I"�<h2 id="apache">Apache</h2>
+I"�<h2 id="apache">Apache</h2>
 
 <p>Apache 서버는 요청 하나 당 프로세스(또는 쓰레드)가 처리하는 구조입니다. 즉 요청이 많을수록 CPU와 메모리 사용이 증가하기 때문에 성능 저하가 있을 수 있습니다. 또한 Apache 서버의 프로세스가 블록킹( blocking )이 되면 요청을 처리하지 못하고, 처리가 완료 될 때까지 계속 대기하는 일이 발생합니다.</p>
 
@@ -22,7 +22,7 @@
 
 <h2 id="nginx">Nginx</h2>
 
-<p>Apache 서버와 비교하여 큰 특징이라면 <code class="highlighter-rouge">Event Driven</code> 방식을 꼽을수 있을것 같다. <code class="highlighter-rouge">Event Driven</code>은 한 개 또는 고정된 프로세스만 생성 하고, 그 프로세스 내부에서 비 동기 방식으로 효율적으로 작업들을 처리한다. 따라서 동시 접속 요청이 많아도 Process 또는 Thread 생성 비용이 존재하지 않는다.</p>
+<p>Apache 서버와 비교하여 큰 특징이라면 <code class="language-plaintext highlighter-rouge">Event Driven</code> 방식을 꼽을수 있을것 같다. <code class="language-plaintext highlighter-rouge">Event Driven</code>은 한 개 또는 고정된 프로세스만 생성 하고, 그 프로세스 내부에서 비 동기 방식으로 효율적으로 작업들을 처리한다. 따라서 동시 접속 요청이 많아도 Process 또는 Thread 생성 비용이 존재하지 않는다.</p>
 
 <p><img src="https://user-images.githubusercontent.com/44635266/67272661-ee158d00-f4f7-11e9-999d-b08153ef31ff.png" alt="" /></p>
 

@@ -1,4 +1,4 @@
-I"n<p>세마포어와 뮤텍스, DeadLock과 같은 개념을 모르신다면 <a href="/process-thread">프로세스와 스레드</a>와 <a href="/critical-section">임계영역</a>포스트를 보고오시면 됩니다.</p>
+I"�<p>세마포어와 뮤텍스, DeadLock과 같은 개념을 모르신다면 <a href="/process-thread">프로세스와 스레드</a>와 <a href="/critical-section">임계영역</a>포스트를 보고오시면 됩니다.</p>
 
 <h2 id="은행원-알고리즘bankers-alogirthm">은행원 알고리즘(Banker’s Alogirthm)</h2>
 
@@ -59,7 +59,7 @@
   <p>Source Code (references / https://www.geeksforgeeks.org/)</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// Banker's Algorithm 
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// Banker's Algorithm 
 #include &lt;stdio.h&gt; 
 #include &lt;iostream&gt;
 

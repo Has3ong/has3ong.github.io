@@ -1,4 +1,4 @@
-I"Z0<blockquote>
+I"�0<blockquote>
   <p>Case 1</p>
 </blockquote>
 
@@ -16,9 +16,9 @@
         <span class="k">continue</span>
 </code></pre></div></div>
 
-<p><code class="highlighter-rouge">(i == 50 and i &gt; 50), (i &gt; 50 and i == 50)</code> 둘중 어느 연산이 더 시간이 빠르게 진행될까요.</p>
+<p><code class="language-plaintext highlighter-rouge">(i == 50 and i &gt; 50), (i &gt; 50 and i == 50)</code> 둘중 어느 연산이 더 시간이 빠르게 진행될까요.</p>
 
-<p>일단 앞에 경우가 더 빠르게 진행이 됩니다. 왜냐하면 <code class="highlighter-rouge">i == 50</code>은 단순하게 값만 비교하는데 <code class="highlighter-rouge">i &gt; 50</code> 연산은 <code class="highlighter-rouge">i - 50</code> 을 한뒤에 양수인지 음수인지 0인지 확인해서 조건이 참인지 알아내기 때문입니다.</p>
+<p>일단 앞에 경우가 더 빠르게 진행이 됩니다. 왜냐하면 <code class="language-plaintext highlighter-rouge">i == 50</code>은 단순하게 값만 비교하는데 <code class="language-plaintext highlighter-rouge">i &gt; 50</code> 연산은 <code class="language-plaintext highlighter-rouge">i - 50</code> 을 한뒤에 양수인지 음수인지 0인지 확인해서 조건이 참인지 알아내기 때문입니다.</p>
 
 <p>한번 정말로 차이가 있는지 언어별로 차이를 확인해볼게요.</p>
 
@@ -60,7 +60,7 @@
 
 <p>Result</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>First Time : 17222
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>First Time : 17222
 Second Time : 17207
 Program ended with exit code: 0
 </code></pre></div></div>
@@ -71,26 +71,26 @@ Program ended with exit code: 0
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">time</span>
 
-<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>  <span class="c1"># 시작 시간 저장
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">()</span>  <span class="c1"># 시작 시간 저장
 </span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10000000</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">5000000</span> <span class="ow">and</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">5000000</span><span class="p">:</span>
         <span class="k">continue</span>
 
-<span class="k">print</span><span class="p">(</span><span class="s">"First time :"</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span>  <span class="c1"># 현재시각 - 시작시간 = 실행 시간
+<span class="k">print</span><span class="p">(</span><span class="s">"First time :"</span><span class="p">,</span> <span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span>  <span class="c1"># 현재시각 - 시작시간 = 실행 시간
 </span>
-<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>  <span class="c1"># 시작 시간 저장
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">()</span>  <span class="c1"># 시작 시간 저장
 </span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10000000</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">5000000</span> <span class="ow">and</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">5000000</span><span class="p">:</span>
         <span class="k">continue</span>
 
-<span class="k">print</span><span class="p">(</span><span class="s">"Second time :"</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span>  <span class="c1"># 현재시각 - 시작시간 = 실행 시간
+<span class="k">print</span><span class="p">(</span><span class="s">"Second time :"</span><span class="p">,</span> <span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span>  <span class="c1"># 현재시각 - 시작시간 = 실행 시간
 </span></code></pre></div></div>
 
 <p>Result</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>First time : 0.7221870422363281
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>First time : 0.7221870422363281
 Second time : 0.5454361438751221
 </code></pre></div></div>
 
@@ -123,7 +123,7 @@ Second time : 0.5454361438751221
 
 <p>Result</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>First Time : 0.008
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>First Time : 0.008
 Second Time : 0.005
 </code></pre></div></div>
 :ET

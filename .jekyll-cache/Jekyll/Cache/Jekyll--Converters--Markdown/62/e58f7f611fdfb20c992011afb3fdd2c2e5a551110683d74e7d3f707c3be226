@@ -1,4 +1,4 @@
-I" <blockquote>
+I"� <blockquote>
   <p>이전에 Goorm을 사용했는데 Docker를 보안상의 이유로 사용을 제한해 놨습니다. 그래서 부득이하게 Docker로 배포하는 부분만 AWS에서 작업하겠습니다.</p>
 </blockquote>
 
@@ -12,7 +12,7 @@
 
 <h2 id="1-docker-install">1. Docker Install</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo apt-get remove docker docker-engine docker.i
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo apt-get remove docker docker-engine docker.i
 
 $ sudo apt-get install \
 apt-transport-https \
@@ -66,7 +66,7 @@ Server: Docker Engine - Community
 
 <p>그리고 빌드에 사용될 Dockerfile을 작성해줍니다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FROM ubuntu:latest
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FROM ubuntu:latest
 MAINTAINER your_name "khsh5592"
 RUN apt-get update -y
 RUN apt-get install python3.6 -y
@@ -81,7 +81,7 @@ CMD ["application.py"]
 
 <h3 id="1-2-requirementstxt-작성">1-2. requirements.txt 작성</h3>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip freeze &gt; requirements.txt
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip freeze &gt; requirements.txt
 </code></pre></div></div>
 
 <p>명령어를 이용해서 python package 정보가 담겨있는 파일을 만들어줍니다. 그러면 쓸데 없는 package들이 많이 들어 있을텐데 Flask 제외하고 전부 지워버리겠습니다.</p>
@@ -90,12 +90,12 @@ CMD ["application.py"]
   <p>requirements.txt</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Flask==1.1.1
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Flask==1.1.1
 </code></pre></div></div>
 
 <h3 id="1-3-docker-로그인">1-3. Docker 로그인</h3>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ docker login
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ docker login
 Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.
 Username: khsh5592
 Password:
@@ -110,25 +110,25 @@ Login Succeeded
 
 <p>Build하기 전 파일 목록들</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ls
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ls
 Dockerfile  app.py  requirements.txt
 </code></pre></div></div>
 
 <p>Docker Build</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ docker build -t khsh5592/suwon-kakaoplus:0.0 .
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ docker build -t khsh5592/suwon-kakaoplus:0.0 .
 </code></pre></div></div>
 
 <p>만들어진 모습</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ docker images
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ docker images
 REPOSITORY                 TAG                 IMAGE ID            CREATED              SIZE
 khsh5592/suwon-kakaoplus   0.0                 4671f6d943f4        43 seconds ago       547MB
 </code></pre></div></div>
 
 <h3 id="1-5-docker-push-to-hub">1-5. Docker Push to Hub</h3>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ docker push khsh5592/suwon-kakaoplus:0.0
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ docker push khsh5592/suwon-kakaoplus:0.0
 </code></pre></div></div>
 
 <blockquote>
@@ -139,7 +139,7 @@ khsh5592/suwon-kakaoplus   0.0                 4671f6d943f4        43 seconds ag
 
 <p>이 Docker Hub 에 올라간 image 는 아래 명령어를 통해 다시 다른환경에서 가져와서 사용할 수 있습니다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker pull khsh5592/suwon-kakaoplus:0.0
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker pull khsh5592/suwon-kakaoplus:0.0
 </code></pre></div></div>
 
 <h2 id="2-aws-port-열기">2. AWS Port 열기</h2>
@@ -150,7 +150,7 @@ khsh5592/suwon-kakaoplus   0.0                 4671f6d943f4        43 seconds ag
 
 <h2 id="3-docker-container-배포">3. Docker Container 배포</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo docker run -p 8888:8888 khsh5592/suwon-kakaoplus:0.0
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo docker run -p 8888:8888 khsh5592/suwon-kakaoplus:0.0
  * Serving Flask app "app" (lazy loading)
  * Environment: production
    WARNING: This is a development server. Do not use it in a production deployment.
@@ -187,7 +187,7 @@ b1be793e81aa        khsh5592/suwon-kakaoplus:0.0   "python3 application…"   2 
   <p>Log</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo docker run -p 8888:8888 khsh5592/suwon-kakaoplus:0.0
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo docker run -p 8888:8888 khsh5592/suwon-kakaoplus:0.0
  * Serving Flask app "app" (lazy loading)
  * Environment: production
    WARNING: This is a development server. Do not use it in a production deployment.

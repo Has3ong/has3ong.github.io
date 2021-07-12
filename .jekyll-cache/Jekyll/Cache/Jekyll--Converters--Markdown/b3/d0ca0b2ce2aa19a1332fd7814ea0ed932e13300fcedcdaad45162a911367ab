@@ -1,4 +1,4 @@
-I"@:<h2 id="cacertificate-authority">CA(Certificate Authority)</h2>
+I"y:<h2 id="cacertificate-authority">CA(Certificate Authority)</h2>
 
 <p>인증 기관이라는 의미이다. 즉 내가 누구인지  혹은 이 웹싸이트가 누구인지 인증해 주는 기능을 하는 것을 말한다.</p>
 
@@ -38,7 +38,7 @@
   <p>peer</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>peerOrganizations
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>peerOrganizations
     ├── org1.example.com
     │   ├── ca
     │   │   ├── 44f4e56b8b5463659acaf69d8b4eaf833c42d9a0dc8be8f82870faacbe8aab25_sk
@@ -126,7 +126,7 @@
   <p>orderer</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ordererOrganizations
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ordererOrganizations
 │   └── example.com
 │       ├── ca
 │       │   ├── 3d2aab44e999e3410898f46535549081add84e51cc7d15f13458a906a56d243e_sk
@@ -161,7 +161,7 @@
 
 <p>다음과 같은 정보를 알 수 있습니다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ openssl x509 -text -noout -in ca.org1.example.com-cert.pem
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ openssl x509 -text -noout -in ca.org1.example.com-cert.pem
 
 Certificate:
     Data:

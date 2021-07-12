@@ -1,8 +1,8 @@
-I"Rp<blockquote>
+I"êp<blockquote>
   <p>docker-compose -f docker-compose-cli.yaml up</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>peer1.org2.example.com    | 2019-10-22 15:06:14.780 UTC [nodeCmd] serve -&gt; INFO 001 Starting peer:
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>peer1.org2.example.com    | 2019-10-22 15:06:14.780 UTC [nodeCmd] serve -&gt; INFO 001 Starting peer:
 peer1.org2.example.com    |  Version: 1.4.3
 peer1.org2.example.com    |  Commit SHA: b8c4a6a
 peer1.org2.example.com    |  Go version: go1.11.5
@@ -298,7 +298,7 @@ peer1.org1.example.com    | 2019-10-22 15:06:16.736 UTC [comm.grpc.server] 1 -&g
   <p>Channel Create</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>orderer.example.com       | 2019-10-22 15:16:52.902 UTC [fsblkstorage] newBlockfileMgr -&gt; INFO 013 Getting block information from block storage
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>orderer.example.com       | 2019-10-22 15:16:52.902 UTC [fsblkstorage] newBlockfileMgr -&gt; INFO 013 Getting block information from block storage
 orderer.example.com       | 2019-10-22 15:16:52.905 UTC [comm.grpc.server] 1 -&gt; INFO 014 streaming call completed grpc.service=orderer.AtomicBroadcast grpc.method=Broadcast grpc.peer_address=172.19.0.7:49468 grpc.code=OK grpc.call_duration=18.775081ms
 orderer.example.com       | 2019-10-22 15:16:52.907 UTC [orderer.commmon.multichannel] newChain -&gt; INFO 015 Created and starting new chain mychannel
 orderer.example.com       | 2019-10-22 15:16:52.913 UTC [common.deliver] Handle -&gt; WARN 016 Error reading from 172.19.0.7:49466: rpc error: code = Canceled desc = context canceled
@@ -309,7 +309,7 @@ orderer.example.com       | 2019-10-22 15:16:52.913 UTC [comm.grpc.server] 1 -&g
   <p>Peer Join Channel</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>peer0.org1.example.com    | 2019-10-22 15:19:26.534 UTC [endorser] callChaincode -&gt; INFO 02b [][8ec4ce68] Entry chaincode: name:"cscc"
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>peer0.org1.example.com    | 2019-10-22 15:19:26.534 UTC [endorser] callChaincode -&gt; INFO 02b [][8ec4ce68] Entry chaincode: name:"cscc"
 peer0.org1.example.com    | 2019-10-22 15:19:26.537 UTC [ledgermgmt] CreateLedger -&gt; INFO 02c Creating ledger [mychannel] with genesis block
 peer0.org1.example.com    | 2019-10-22 15:19:26.539 UTC [fsblkstorage] newBlockfileMgr -&gt; INFO 02d Getting block information from block storage
 peer0.org1.example.com    | 2019-10-22 15:19:26.545 UTC [kvledger] CommitWithPvtData -&gt; INFO 02e [mychannel] Committed block [0] with 1 transaction(s) in 2ms (state_validation=0ms block_and_pvtdata_commit=1ms state_commit=0ms) commitHash=[]
@@ -399,7 +399,7 @@ peer1.org2.example.com    | 2019-10-22 15:20:56.210 UTC [gossip.channel] reportM
   <p>Anchor Peer Update</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>orderer.example.com       | 2019-10-22 15:22:16.909 UTC [common.deliver] Handle -&gt; WARN 019 Error reading from 172.19.0.7:49486: rpc error: code = Canceled desc = context canceled
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>orderer.example.com       | 2019-10-22 15:22:16.909 UTC [common.deliver] Handle -&gt; WARN 019 Error reading from 172.19.0.7:49486: rpc error: code = Canceled desc = context canceled
 orderer.example.com       | 2019-10-22 15:22:16.910 UTC [comm.grpc.server] 1 -&gt; INFO 01a streaming call completed grpc.service=orderer.AtomicBroadcast grpc.method=Deliver grpc.peer_address=172.19.0.7:49486 error="rpc error: code = Canceled desc = context canceled" grpc.code=Canceled grpc.call_duration=19.148775ms
 orderer.example.com       | 2019-10-22 15:22:16.911 UTC [orderer.common.broadcast] Handle -&gt; WARN 01b Error reading from 172.19.0.7:49488: rpc error: code = Canceled desc = context canceled
 orderer.example.com       | 2019-10-22 15:22:16.911 UTC [comm.grpc.server] 1 -&gt; INFO 01c streaming call completed grpc.service=orderer.AtomicBroadcast grpc.method=Broadcast grpc.peer_address=172.19.0.7:49488 error="rpc error: code = Canceled desc = context canceled" grpc.code=Canceled grpc.call_duration=18.457719ms
@@ -523,7 +523,7 @@ peer1.org2.example.com    | 2019-10-22 15:23:03.260 UTC [comm.grpc.server] 1 -&g
   <p>Install ChainCode</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>peer0.org1.example.com    | 2019-10-22 15:37:12.997 UTC [endorser] callChaincode -&gt; INFO 05e [][f8ce9931] Entry chaincode: name:"lscc"
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>peer0.org1.example.com    | 2019-10-22 15:37:12.997 UTC [endorser] callChaincode -&gt; INFO 05e [][f8ce9931] Entry chaincode: name:"lscc"
 peer0.org1.example.com    | 2019-10-22 15:37:12.998 UTC [lscc] executeInstall -&gt; INFO 05f Installed Chaincode [mycc] Version [1.0] to peer
 peer0.org1.example.com    | 2019-10-22 15:37:12.998 UTC [endorser] callChaincode -&gt; INFO 060 [][f8ce9931] Exit chaincode: name:"lscc"  (1ms)
 peer0.org1.example.com    | 2019-10-22 15:37:12.999 UTC [comm.grpc.server] 1 -&gt; INFO 061 unary call completed grpc.service=protos.Endorser grpc.method=ProcessProposal grpc.peer_address=172.19.0.7:49590 grpc.code=OK grpc.call_duration=2.628743ms
@@ -550,7 +550,7 @@ peer1.org2.example.com    | 2019-10-22 15:37:37.078 UTC [comm.grpc.server] 1 -&g
   <p>Instantiate ChainCode</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>peer0.org1.example.com    | 2019-10-22 15:40:33.017 UTC [endorser] callChaincode -&gt; INFO 065 [mychannel][3d47f052] Entry chaincode: name:"lscc"
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>peer0.org1.example.com    | 2019-10-22 15:40:33.017 UTC [endorser] callChaincode -&gt; INFO 065 [mychannel][3d47f052] Entry chaincode: name:"lscc"
 peer0.org1.example.com    | 2019-10-22 15:40:33.029 UTC [chaincode.platform.golang] GenerateDockerBuild -&gt; INFO 066 building chaincode with ldflagsOpt: '-ldflags "-linkmode external -extldflags '-static'"'
 peer0.org1.example.com    | 2019-10-22 15:41:25.515 UTC [endorser] callChaincode -&gt; INFO 067 [mychannel][3d47f052] Exit chaincode: name:"lscc"  (52497ms)
 peer0.org1.example.com    | 2019-10-22 15:41:25.516 UTC [comm.grpc.server] 1 -&gt; INFO 068 unary call completed grpc.service=protos.Endorser grpc.method=ProcessProposal grpc.peer_address=172.19.0.7:49610 grpc.code=OK grpc.call_duration=52.49951475s
@@ -578,7 +578,7 @@ peer1.org2.example.com    | 2019-10-22 15:41:27.556 UTC [kvledger] CommitWithPvt
   <p>Query ChainCode</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>peer0.org1.example.com    | 2019-10-22 15:45:22.707 UTC [endorser] callChaincode -&gt; INFO 088 [mychannel][dc492428] Entry chaincode: name:"mycc"
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>peer0.org1.example.com    | 2019-10-22 15:45:22.707 UTC [endorser] callChaincode -&gt; INFO 088 [mychannel][dc492428] Entry chaincode: name:"mycc"
 peer0.org1.example.com    | 2019-10-22 15:45:22.708 UTC [endorser] callChaincode -&gt; INFO 089 [mychannel][dc492428] Exit chaincode: name:"mycc"  (1ms)
 peer0.org1.example.com    | 2019-10-22 15:45:22.709 UTC [comm.grpc.server] 1 -&gt; INFO 08a unary call completed grpc.service=protos.Endorser grpc.method=ProcessProposal grpc.peer_address=172.19.0.7:49660 grpc.code=OK grpc.call_duration=2.432694ms
 peer0.org1.example.com    | 2019-10-22 15:45:29.319 UTC [endorser] callChaincode -&gt; INFO 08b [mychannel][a923f48c] Entry chaincode: name:"mycc"
@@ -590,7 +590,7 @@ peer0.org1.example.com    | 2019-10-22 15:45:29.324 UTC [comm.grpc.server] 1 -&g
   <p>Invoke ChainCode</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>peer0.org1.example.com    | 2019-10-22 15:44:57.927 UTC [endorser] callChaincode -&gt; INFO 07f [mychannel][dfa2ce3d] Entry chaincode: name:"mycc"
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>peer0.org1.example.com    | 2019-10-22 15:44:57.927 UTC [endorser] callChaincode -&gt; INFO 07f [mychannel][dfa2ce3d] Entry chaincode: name:"mycc"
 peer0.org1.example.com    | 2019-10-22 15:44:57.929 UTC [endorser] callChaincode -&gt; INFO 080 [mychannel][dfa2ce3d] Exit chaincode: name:"mycc"  (1ms)
 peer0.org1.example.com    | 2019-10-22 15:44:57.929 UTC [comm.grpc.server] 1 -&gt; INFO 081 unary call completed grpc.service=protos.Endorser grpc.method=ProcessProposal grpc.peer_address=172.19.0.7:49650 grpc.code=OK grpc.call_duration=3.223803ms
 orderer.example.com       | 2019-10-22 15:44:57.934 UTC [orderer.common.broadcast] Handle -&gt; WARN 01a Error reading from 172.19.0.7:38396: rpc error: code = Canceled desc = context canceled

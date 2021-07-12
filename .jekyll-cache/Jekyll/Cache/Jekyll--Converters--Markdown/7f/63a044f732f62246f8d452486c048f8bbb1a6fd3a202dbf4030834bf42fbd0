@@ -1,4 +1,4 @@
-I"<h2 id="dijkstra">Dijkstra</h2>
+I"~<h2 id="dijkstra">Dijkstra</h2>
 
 <p><img src="https://user-images.githubusercontent.com/44635266/66711762-f0c40400-edcc-11e9-8fa7-d59f1c9d71db.gif" alt="DijkstraDemo" /></p>
 
@@ -10,7 +10,7 @@
   <p>pseudo code</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function Dijkstra(Graph, source):
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function Dijkstra(Graph, source):
 
   create vertex set Q
   
@@ -55,9 +55,9 @@
 
 <h3 id="시간복잡도">시간복잡도</h3>
 
-<p>하나의 노드에 대해 다익스트라 알고리즘을 수행하는 경우를 따져보겠습니다. 미방문노드 가운데 거리가 가장 작은 노드에 BFS를 적용합니다. 거리를 가장 작은 미방문노드를 가려내려면 최악의 경우 노드 전체를 모두 따져봐야 하므로 <code class="highlighter-rouge">O(|V|)</code>입니다. 선택된 노드의 모든 이웃노드들에 대해 최단경로 정보를 업데이트합니다. 한 노드당 엣지의 기대값은 <code class="highlighter-rouge">|E|/|V</code>입니다.</p>
+<p>하나의 노드에 대해 다익스트라 알고리즘을 수행하는 경우를 따져보겠습니다. 미방문노드 가운데 거리가 가장 작은 노드에 BFS를 적용합니다. 거리를 가장 작은 미방문노드를 가려내려면 최악의 경우 노드 전체를 모두 따져봐야 하므로 <code class="language-plaintext highlighter-rouge">O(|V|)</code>입니다. 선택된 노드의 모든 이웃노드들에 대해 최단경로 정보를 업데이트합니다. 한 노드당 엣지의 기대값은 <code class="language-plaintext highlighter-rouge">|E|/|V</code>입니다.</p>
 
-<p>다익스트라 알고리즘은 이러한 연산을 전체 노드 수만큼 반복하므로 전체적인 계산복잡성은 <code class="highlighter-rouge">O(|V|2+|E|)</code>가 됩니다. 보통의 dense graph는 엣지의 수가 노드 수의 제곱만큼 있으므로 간략하게 계산복잡성을 적으면 <code class="highlighter-rouge">O(|V|2)</code>이 됩니다.</p>
+<p>다익스트라 알고리즘은 이러한 연산을 전체 노드 수만큼 반복하므로 전체적인 계산복잡성은 <code class="language-plaintext highlighter-rouge">O(|V|2+|E|)</code>가 됩니다. 보통의 dense graph는 엣지의 수가 노드 수의 제곱만큼 있으므로 간략하게 계산복잡성을 적으면 <code class="language-plaintext highlighter-rouge">O(|V|2)</code>이 됩니다.</p>
 
 <h3 id="제약사항">제약사항</h3>
 

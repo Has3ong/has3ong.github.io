@@ -1,5 +1,7 @@
 ---
 title : Hyperledger Network 구성 (BYFN)
+categories:
+- BlockChain
 tags :
 - BYFN
 - Hyperledger Fabric

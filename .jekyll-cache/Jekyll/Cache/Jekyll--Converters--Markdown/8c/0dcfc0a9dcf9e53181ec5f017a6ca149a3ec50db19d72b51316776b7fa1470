@@ -1,4 +1,4 @@
-I"X<h2 id="gossip-protocol">Gossip Protocol</h2>
+I"~<h2 id="gossip-protocol">Gossip Protocol</h2>
 
 <p><img src="https://user-images.githubusercontent.com/44635266/67632960-44fed600-f8ed-11e9-9bb0-cfcd76f07fba.png" alt="image" /></p>
 
@@ -36,13 +36,13 @@
 
 <p>조직마다 Leader Peer가 있으며, 이 Leader Peer가 오더러에게서 Pull 하면서 시작된다. 그림에는 구분이 안되어 있지만 추가적으로 하나의 조직이 다른 조직의 Peer 와 연계할 때에  Anchor Peer 를 이용한다. Leader Peer=Anchor Peer 로도 설정 할 수도 있다</p>
 
-<p>Fabric에 Peer Leader 선출은 <code class="highlighter-rouge">config/core.yaml</code>에 나와있다.</p>
+<p>Fabric에 Peer Leader 선출은 <code class="language-plaintext highlighter-rouge">config/core.yaml</code>에 나와있다.</p>
 
 <blockquote>
   <p>core.yaml</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>peer:
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>peer:
     # Gossip related configuration
     gossip:
       # Defines whenever peer will initialize dynamic algorithm for

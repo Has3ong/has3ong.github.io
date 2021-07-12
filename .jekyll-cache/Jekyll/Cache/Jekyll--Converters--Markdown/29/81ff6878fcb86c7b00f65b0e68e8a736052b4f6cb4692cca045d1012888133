@@ -1,20 +1,20 @@
-I"�<h1 id="settings">Settings</h1>
+I"5�<h1 id="settings">Settings</h1>
 
-<p><code class="highlighter-rouge">Setting</code> 부분은 <a href="/fabricnetwork1">Hyperledger Fabric Network 구성 -1-</a> 부분과 동일하니 똑같이 진행하시면 됩니다.</p>
+<p><code class="language-plaintext highlighter-rouge">Setting</code> 부분은 <a href="/fabricnetwork1">Hyperledger Fabric Network 구성 -1-</a> 부분과 동일하니 똑같이 진행하시면 됩니다.</p>
 
-<p><code class="highlighter-rouge">HandOn</code> 부분부터 다릅니다.</p>
+<p><code class="language-plaintext highlighter-rouge">HandOn</code> 부분부터 다릅니다.</p>
 
 <h1 id="handson">HandsOn</h1>
 
 <h2 id="bring-org3-into-the-channel-manually">Bring Org3 into the Channel Manually</h2>
 
-<p>일단 제일 먼저 기본 네트워크를 구성해줍니다. EYFN 즉 새로운 <code class="highlighter-rouge">org</code> 를 추가하기 위해서는 기존 네트워크가 만들어진 상태에서 진행해야 하기 때문입니다.</p>
+<p>일단 제일 먼저 기본 네트워크를 구성해줍니다. EYFN 즉 새로운 <code class="language-plaintext highlighter-rouge">org</code> 를 추가하기 위해서는 기존 네트워크가 만들어진 상태에서 진행해야 하기 때문입니다.</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>./byfn.sh generate
 <span class="nv">$ </span>./byfn.sh up
 </code></pre></div></div>
 
-<p>끝나고 나서 <code class="highlighter-rouge">docker ps</code> 명령어를 치면 아래와같이 설정이 되어있어야 합니다.</p>
+<p>끝나고 나서 <code class="language-plaintext highlighter-rouge">docker ps</code> 명령어를 치면 아래와같이 설정이 되어있어야 합니다.</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker ps
 CONTAINER ID        IMAGE                                                                                                  COMMAND                  CREATED              STATUS              PORTS                      NAMES
@@ -31,24 +31,24 @@ a67a88110615        hyperledger/fabric-orderer:latest                           
 
 <h2 id="generate-the-org3-crypto-material">Generate the Org3 Crypto Material</h2>
 
-<p><code class="highlighter-rouge">org3-artifacts</code> 라는 서브 디렉토리로 들어가줍니다.</p>
+<p><code class="language-plaintext highlighter-rouge">org3-artifacts</code> 라는 서브 디렉토리로 들어가줍니다.</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd </span>org3-artifacts
 </code></pre></div></div>
 
-<p>디렉토리로 들어가보면 <code class="highlighter-rouge">org3-crypto.yaml</code> 과 <code class="highlighter-rouge">configtx.yaml</code> 라는 2개의 yaml 파일이 있습니다. 이 파일을 이용하여 인증서 파일을 만들어줍니다.</p>
+<p>디렉토리로 들어가보면 <code class="language-plaintext highlighter-rouge">org3-crypto.yaml</code> 과 <code class="language-plaintext highlighter-rouge">configtx.yaml</code> 라는 2개의 yaml 파일이 있습니다. 이 파일을 이용하여 인증서 파일을 만들어줍니다.</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>../../bin/cryptogen generate <span class="nt">--config</span><span class="o">=</span>./org3-crypto.yaml
 org3.example.com
 </code></pre></div></div>
 
-<p>그럼 아래와 같이 <code class="highlighter-rouge">crypto-config</code> 라는 폴더가 생겨납니다.</p>
+<p>그럼 아래와 같이 <code class="language-plaintext highlighter-rouge">crypto-config</code> 라는 폴더가 생겨납니다.</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">ls
 </span>configtx.yaml  crypto-config  org3-crypto.yaml
 </code></pre></div></div>
 
-<p>이제 <code class="highlighter-rouge">configtxgen</code> 유틸리티를 사용하여 <code class="highlighter-rouge">Org3</code> 특정 구성 자료를 JSON으로 출력합니다. 다음 명령을 입력하여 현재 디렉토리에서 수집해야하는 <code class="highlighter-rouge">configtx.yaml</code> 파일을 찾도록 지시합니다.</p>
+<p>이제 <code class="language-plaintext highlighter-rouge">configtxgen</code> 유틸리티를 사용하여 <code class="language-plaintext highlighter-rouge">Org3</code> 특정 구성 자료를 JSON으로 출력합니다. 다음 명령을 입력하여 현재 디렉토리에서 수집해야하는 <code class="language-plaintext highlighter-rouge">configtx.yaml</code> 파일을 찾도록 지시합니다.</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">export </span><span class="nv">FABRIC_CFG_PATH</span><span class="o">=</span><span class="nv">$PWD</span> <span class="o">&amp;&amp;</span> ../../bin/configtxgen <span class="nt">-printOrg</span> Org3MSP <span class="o">&gt;</span> ../channel-artifacts/org3.json
 2020-01-06 11:12:53.747 UTC <span class="o">[</span>common.tools.configtxgen] main -&gt; INFO 001 Loading configuration
@@ -56,9 +56,9 @@ org3.example.com
 2020-01-06 11:12:53.750 UTC <span class="o">[</span>common.tools.configtxgen.encoder] NewConsortiumOrgGroup -&gt; WARN 003 Default policy emission is deprecated, please include policy specifications <span class="k">for </span>the orderer org group Org3MSP <span class="k">in </span>configtx.yaml
 </code></pre></div></div>
 
-<p>위의 명령은 JSON 파일 (<code class="highlighter-rouge">org3.json</code>)을 작성하여 첫 번째 네트워크의 루트에있는 채널 아티팩트 서브 디렉토리에 출력합니다. 이 파일에는 Org3에 대한 정책 정의와 기본 64 형식으로 제공되는 세 가지 중요한 인증서, 즉 <code class="highlighter-rouge">admin user certificate</code> (나중에 <code class="highlighter-rouge">Org3</code> 의 관리자로 작동하는 데 필요함), <code class="highlighter-rouge">CA root cert</code> 및 ` TLS root cert` 가 포함되어 있습니다. 다음 단계에서는이 JSON 파일을 채널 구성에 추가합니다.</p>
+<p>위의 명령은 JSON 파일 (<code class="language-plaintext highlighter-rouge">org3.json</code>)을 작성하여 첫 번째 네트워크의 루트에있는 채널 아티팩트 서브 디렉토리에 출력합니다. 이 파일에는 Org3에 대한 정책 정의와 기본 64 형식으로 제공되는 세 가지 중요한 인증서, 즉 <code class="language-plaintext highlighter-rouge">admin user certificate</code> (나중에 <code class="language-plaintext highlighter-rouge">Org3</code> 의 관리자로 작동하는 데 필요함), <code class="language-plaintext highlighter-rouge">CA root cert</code> 및 ` TLS root cert` 가 포함되어 있습니다. 다음 단계에서는이 JSON 파일을 채널 구성에 추가합니다.</p>
 
-<p>마지막 정리 작업은 <code class="highlighter-rouge">Orderer Org</code> 의 <code class="highlighter-rouge">MSP</code> 자료를 <code class="highlighter-rouge">Org3</code> <code class="highlighter-rouge">crypto-config</code> 디렉토리로 이식하는 것입니다. 특히, 우리는 <code class="highlighter-rouge">Org3</code> 엔티티와 네트워크의 <code class="highlighter-rouge">orderering node</code> 사이의 안전한 통신을 허용하는 Orderer의 TLS 루트 인증서에 관심가져야 합니다.</p>
+<p>마지막 정리 작업은 <code class="language-plaintext highlighter-rouge">Orderer Org</code> 의 <code class="language-plaintext highlighter-rouge">MSP</code> 자료를 <code class="language-plaintext highlighter-rouge">Org3</code> <code class="language-plaintext highlighter-rouge">crypto-config</code> 디렉토리로 이식하는 것입니다. 특히, 우리는 <code class="language-plaintext highlighter-rouge">Org3</code> 엔티티와 네트워크의 <code class="language-plaintext highlighter-rouge">orderering node</code> 사이의 안전한 통신을 허용하는 Orderer의 TLS 루트 인증서에 관심가져야 합니다.</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd</span> ../ <span class="o">&amp;&amp;</span> <span class="nb">cp</span> <span class="nt">-r</span> crypto-config/ordererOrganizations org3-artifacts/crypto-config/
 </code></pre></div></div>
@@ -67,13 +67,13 @@ org3.example.com
 
 <h2 id="prepare-the-cli-environment">Prepare the CLI Environment</h2>
 
-<p><code class="highlighter-rouge">cli</code> 컨테이너로 접속을 합니다.</p>
+<p><code class="language-plaintext highlighter-rouge">cli</code> 컨테이너로 접속을 합니다.</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker <span class="nb">exec</span> <span class="nt">-it</span> cli bash
 root@c20200aa1fbb:/opt/gopath/src/github.com/hyperledger/fabric/peer#
 </code></pre></div></div>
 
-<p><code class="highlighter-rouge">ORDERER_CA</code> 와 <code class="highlighter-rouge">CHANNEL_NAME</code> 변수를 설정합니다.</p>
+<p><code class="language-plaintext highlighter-rouge">ORDERER_CA</code> 와 <code class="language-plaintext highlighter-rouge">CHANNEL_NAME</code> 변수를 설정합니다.</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">export </span><span class="nv">ORDERER_CA</span><span class="o">=</span>/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem  <span class="o">&amp;&amp;</span> <span class="nb">export </span><span class="nv">CHANNEL_NAME</span><span class="o">=</span>mychannel
 </code></pre></div></div>
@@ -88,7 +88,7 @@ mychannel
 
 <h2 id="fetch-the-configuration">Fetch the Configuration</h2>
 
-<p>아래 명령은 바이너리 <code class="highlighter-rouge">protobuf</code> 채널 구성 블록을 <code class="highlighter-rouge">config_block.pb</code> 에 저장합니다. 이름과 파일 확장자의 선택은 임의적입니다. 그러나 표시되는 객체 유형과 인코딩 (protobuf 또는 JSON)을 모두 식별하는 규칙을 따르는 것이 좋습니다.</p>
+<p>아래 명령은 바이너리 <code class="language-plaintext highlighter-rouge">protobuf</code> 채널 구성 블록을 <code class="language-plaintext highlighter-rouge">config_block.pb</code> 에 저장합니다. 이름과 파일 확장자의 선택은 임의적입니다. 그러나 표시되는 객체 유형과 인코딩 (protobuf 또는 JSON)을 모두 식별하는 규칙을 따르는 것이 좋습니다.</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>peer channel fetch config config_block.pb <span class="nt">-o</span> orderer.example.com:7050 <span class="nt">-c</span> <span class="nv">$CHANNEL_NAME</span> <span class="nt">--tls</span> <span class="nt">--cafile</span> <span class="nv">$ORDERER_CA</span>
 
@@ -98,7 +98,7 @@ mychannel
 2020-01-06 11:20:09.144 UTC <span class="o">[</span>channelCmd] fetch -&gt; INFO 004 Retrieving last config block: 2
 </code></pre></div></div>
 
-<p>이것은 <code class="highlighter-rouge">mychannel</code> 에 대한 가장 최신 구성 블록이 실제로 블록 2가 아니라 생성 블록이라는 것을 알려줍니다. 기본적으로 <code class="highlighter-rouge">peer channel fetch config</code> 명령은 대상 채널에 대한 최신 구성 블록 (이 경우 세 번째 블록)을 반환합니다. BYFN 스크립트가 두 조직 (<code class="highlighter-rouge">Org1</code> 및 <code class="highlighter-rouge">Org2</code>)의 앵커 피어를 두 개의 개별 채널 업데이트 트랜잭션에 정의했기 때문입니다.</p>
+<p>이것은 <code class="language-plaintext highlighter-rouge">mychannel</code> 에 대한 가장 최신 구성 블록이 실제로 블록 2가 아니라 생성 블록이라는 것을 알려줍니다. 기본적으로 <code class="language-plaintext highlighter-rouge">peer channel fetch config</code> 명령은 대상 채널에 대한 최신 구성 블록 (이 경우 세 번째 블록)을 반환합니다. BYFN 스크립트가 두 조직 (<code class="language-plaintext highlighter-rouge">Org1</code> 및 <code class="language-plaintext highlighter-rouge">Org2</code>)의 앵커 피어를 두 개의 개별 채널 업데이트 트랜잭션에 정의했기 때문입니다.</p>
 
 <p>결과적으로 다음과 같은 구성 순서가 있습니다.</p>
 
@@ -110,50 +110,50 @@ mychannel
 
 <h2 id="convert-the-configuration-to-json-and-trim-it-down">Convert the Configuration to JSON and Trim It Down</h2>
 
-<p>이제 <code class="highlighter-rouge">configtxlator</code> 도구를 사용하여이 채널 구성 블록을 JSON 형식 (인간이 읽고 수정할 수 있음)으로 디코딩합니다. 또한 변경하려는 내용과 관련이없는 모든 헤더, 메타 데이터, 제작자 서명 등을 제거해야합니다. <code class="highlighter-rouge">jq</code> 도구를 사용하여이를 수행합니다.</p>
+<p>이제 <code class="language-plaintext highlighter-rouge">configtxlator</code> 도구를 사용하여이 채널 구성 블록을 JSON 형식 (인간이 읽고 수정할 수 있음)으로 디코딩합니다. 또한 변경하려는 내용과 관련이없는 모든 헤더, 메타 데이터, 제작자 서명 등을 제거해야합니다. <code class="language-plaintext highlighter-rouge">jq</code> 도구를 사용하여이를 수행합니다.</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>configtxlator proto_decode <span class="nt">--input</span> config_block.pb <span class="nt">--type</span> common.Block | jq .data.data[0].payload.data.config <span class="o">&gt;</span> config.json
 </code></pre></div></div>
 
-<p>이로 인해 첫 번째 네트워크 내의 <code class="highlighter-rouge">fabric-samples</code> 폴더에있는 정리 된 JSON 객체 인 <code class="highlighter-rouge">config.json</code> 이 구성 업데이트의 기준으로 사용됩니다.</p>
+<p>이로 인해 첫 번째 네트워크 내의 <code class="language-plaintext highlighter-rouge">fabric-samples</code> 폴더에있는 정리 된 JSON 객체 인 <code class="language-plaintext highlighter-rouge">config.json</code> 이 구성 업데이트의 기준으로 사용됩니다.</p>
 
 <h2 id="add-the-org3-crypto-material">Add the Org3 Crypto Material</h2>
 
-<p><code class="highlighter-rouge">jq</code> 도구를 한 번 더 사용하여 Org3 구성 정의 (org3.json)를 채널의 애플리케이션 그룹 필드에 추가하고 출력 이름을 <code class="highlighter-rouge">modified_config.json</code> 으로 지정합니다.</p>
+<p><code class="language-plaintext highlighter-rouge">jq</code> 도구를 한 번 더 사용하여 Org3 구성 정의 (org3.json)를 채널의 애플리케이션 그룹 필드에 추가하고 출력 이름을 <code class="language-plaintext highlighter-rouge">modified_config.json</code> 으로 지정합니다.</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>jq <span class="nt">-s</span> <span class="s1">'.[0] * {"channel_group":{"groups":{"Application":{"groups": {"Org3MSP":.[1]}}}}}'</span> config.json ./channel-artifacts/org3.json <span class="o">&gt;</span> modified_config.json
 </code></pre></div></div>
 
-<p>이제 <code class="highlighter-rouge">CLI</code> 컨테이너 내에 <code class="highlighter-rouge">config.json</code> 과 <code class="highlighter-rouge">modified_config.json</code> 이라는 두 개의 JSON 파일이 있습니다. 초기 파일에는 <code class="highlighter-rouge">Org1</code> 및 <code class="highlighter-rouge">Org2</code> 만 포함되어 있으며 수정 된 파일에는 3 개의 조직이 모두 포함되어 있습니다. 이 시점에서 두 JSON 파일을 다시 인코딩하고 델타를 계산하면됩니다.</p>
+<p>이제 <code class="language-plaintext highlighter-rouge">CLI</code> 컨테이너 내에 <code class="language-plaintext highlighter-rouge">config.json</code> 과 <code class="language-plaintext highlighter-rouge">modified_config.json</code> 이라는 두 개의 JSON 파일이 있습니다. 초기 파일에는 <code class="language-plaintext highlighter-rouge">Org1</code> 및 <code class="language-plaintext highlighter-rouge">Org2</code> 만 포함되어 있으며 수정 된 파일에는 3 개의 조직이 모두 포함되어 있습니다. 이 시점에서 두 JSON 파일을 다시 인코딩하고 델타를 계산하면됩니다.</p>
 
-<p>먼저 <code class="highlighter-rouge">config.json</code> 을 <code class="highlighter-rouge">config.pb</code> 라는 프로토 타입으로 다시 변환하십시오.</p>
+<p>먼저 <code class="language-plaintext highlighter-rouge">config.json</code> 을 <code class="language-plaintext highlighter-rouge">config.pb</code> 라는 프로토 타입으로 다시 변환하십시오.</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>configtxlator proto_encode <span class="nt">--input</span> config.json <span class="nt">--type</span> common.Config <span class="nt">--output</span> config.pb
 </code></pre></div></div>
 
-<p>그런 다음 <code class="highlighter-rouge">modified_config.json</code> 을 <code class="highlighter-rouge">modified_config.pb</code> 로 인코딩하십시오.</p>
+<p>그런 다음 <code class="language-plaintext highlighter-rouge">modified_config.json</code> 을 <code class="language-plaintext highlighter-rouge">modified_config.pb</code> 로 인코딩하십시오.</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>configtxlator proto_encode <span class="nt">--input</span> modified_config.json <span class="nt">--type</span> common.Config <span class="nt">--output</span> modified_config.pb
 </code></pre></div></div>
 
-<p>이제 <code class="highlighter-rouge">configtxlator</code> 를 사용하여이 두 구성 프로토 타입 간의 델타를 계산하십시오. 이 명령은 <code class="highlighter-rouge">org3_update.pb</code> 라는 새 프로토 타입 바이너리를 출력합니다.</p>
+<p>이제 <code class="language-plaintext highlighter-rouge">configtxlator</code> 를 사용하여이 두 구성 프로토 타입 간의 델타를 계산하십시오. 이 명령은 <code class="language-plaintext highlighter-rouge">org3_update.pb</code> 라는 새 프로토 타입 바이너리를 출력합니다.</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>configtxlator compute_update <span class="nt">--channel_id</span> <span class="nv">$CHANNEL_NAME</span> <span class="nt">--original</span> config.pb <span class="nt">--updated</span> modified_config.pb <span class="nt">--output</span> org3_update.pb
 </code></pre></div></div>
 
-<p>이 새로운 프로토 타입 인 <code class="highlighter-rouge">org3_update.pb</code> 에는 Org3 정의와 Org1 및 Org2 에 대한 고급 포인터가 포함되어 있습니다. Org1 및 Org2에 대한 광범위한 MSP 자료 및 수정 정책 정보는 채널의 생성 블록 내에 이미 존재하므로이를 무시할 수 있습니다. 따라서 두 구성 사이의 델타 만 필요합니다.</p>
+<p>이 새로운 프로토 타입 인 <code class="language-plaintext highlighter-rouge">org3_update.pb</code> 에는 Org3 정의와 Org1 및 Org2 에 대한 고급 포인터가 포함되어 있습니다. Org1 및 Org2에 대한 광범위한 MSP 자료 및 수정 정책 정보는 채널의 생성 블록 내에 이미 존재하므로이를 무시할 수 있습니다. 따라서 두 구성 사이의 델타 만 필요합니다.</p>
 
-<p>채널 업데이트를 제출하기 전에 몇 가지 최종 단계를 수행해야합니다. 먼저이 객체를 편집 가능한 JSON 형식으로 디코딩하여 <code class="highlighter-rouge">org3_update.json</code> 이라고합니다.</p>
+<p>채널 업데이트를 제출하기 전에 몇 가지 최종 단계를 수행해야합니다. 먼저이 객체를 편집 가능한 JSON 형식으로 디코딩하여 <code class="language-plaintext highlighter-rouge">org3_update.json</code> 이라고합니다.</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>configtxlator proto_decode <span class="nt">--input</span> org3_update.pb <span class="nt">--type</span> common.ConfigUpdate | jq <span class="nb">.</span> <span class="o">&gt;</span> org3_update.json
 </code></pre></div></div>
 
-<p>이제 봉투 메시지로 감싸 야하는 디코딩 된 업데이트 파일 <code class="highlighter-rouge">(org3_update.json)</code> 이 있습니다. 이 단계는 이전에 제거했던 헤더 필드를 다시 제공합니다. 이 파일 이름을 <code class="highlighter-rouge">org3_update_in_envelope.json</code> 으로 지정합니다.</p>
+<p>이제 봉투 메시지로 감싸 야하는 디코딩 된 업데이트 파일 <code class="language-plaintext highlighter-rouge">(org3_update.json)</code> 이 있습니다. 이 단계는 이전에 제거했던 헤더 필드를 다시 제공합니다. 이 파일 이름을 <code class="language-plaintext highlighter-rouge">org3_update_in_envelope.json</code> 으로 지정합니다.</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'{"payload":{"header":{"channel_header":{"channel_id":"'</span><span class="nv">$CHANNEL_NAME</span><span class="s1">'", "type":2}},"data":{"config_update":'</span><span class="si">$(</span><span class="nb">cat </span>org3_update.json<span class="si">)</span><span class="s1">'}}}'</span> | jq <span class="nb">.</span> <span class="o">&gt;</span> org3_update_in_envelope.json
 </code></pre></div></div>
 
-<p>올바르게 구성된 <code class="highlighter-rouge">JSON (org3_update_in_envelope.json)</code> 을 사용하여 마지막으로 <code class="highlighter-rouge">configtxlator</code> 도구를 활용하여 <code class="highlighter-rouge">Fabric</code> 에 필요한 본격적인 프로토 타입 형식으로 변환합니다. 최종 업데이트 개체 이름을 <code class="highlighter-rouge">org3_update_in_envelope.pb</code> 로 지정합니다.</p>
+<p>올바르게 구성된 <code class="language-plaintext highlighter-rouge">JSON (org3_update_in_envelope.json)</code> 을 사용하여 마지막으로 <code class="language-plaintext highlighter-rouge">configtxlator</code> 도구를 활용하여 <code class="language-plaintext highlighter-rouge">Fabric</code> 에 필요한 본격적인 프로토 타입 형식으로 변환합니다. 최종 업데이트 개체 이름을 <code class="language-plaintext highlighter-rouge">org3_update_in_envelope.pb</code> 로 지정합니다.</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>configtxlator proto_encode <span class="nt">--input</span> org3_update_in_envelope.json <span class="nt">--type</span> common.Envelope <span class="nt">--output</span> org3_update_in_envelope.pb
 </code></pre></div></div>
@@ -175,7 +175,7 @@ config.json        config_block.pb  log.txt  modified_config.pb    org3_update.j
 2020-01-06 11:22:13.217 UTC <span class="o">[</span>channelCmd] InitCmdFactory -&gt; INFO 001 Endorser and orderer connections initialized
 </code></pre></div></div>
 
-<p>마지막으로 <code class="highlighter-rouge">peer channel update</code> 명령을 실행합니다. <code class="highlighter-rouge">Org2 Admin</code> 서명이 호출에 첨부되므로 두 번째로 프로토 타입에 수동으로 서명 할 필요가 없습니다.</p>
+<p>마지막으로 <code class="language-plaintext highlighter-rouge">peer channel update</code> 명령을 실행합니다. <code class="language-plaintext highlighter-rouge">Org2 Admin</code> 서명이 호출에 첨부되므로 두 번째로 프로토 타입에 수동으로 서명 할 필요가 없습니다.</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>peer channel update <span class="nt">-f</span> org3_update_in_envelope.pb <span class="nt">-c</span> <span class="nv">$CHANNEL_NAME</span> <span class="nt">-o</span> orderer.example.com:7050 <span class="nt">--tls</span> <span class="nt">--cafile</span> <span class="nv">$ORDERER_CA</span>
 
@@ -185,9 +185,9 @@ config.json        config_block.pb  log.txt  modified_config.pb    org3_update.j
 
 <h2 id="join-org3-to-the-channel">Join Org3 to the Channel</h2>
 
-<p>이 시점에서 새로운 조직인 <code class="highlighter-rouge">Org3</code> 을 포함하도록 채널 구성이 업데이트되었습니다. 즉, 조직에 연결된 피어가 이제 내 채널에 참여할 수 있습니다.</p>
+<p>이 시점에서 새로운 조직인 <code class="language-plaintext highlighter-rouge">Org3</code> 을 포함하도록 채널 구성이 업데이트되었습니다. 즉, 조직에 연결된 피어가 이제 내 채널에 참여할 수 있습니다.</p>
 
-<p>먼저 <code class="highlighter-rouge">Org3</code> 피어 및 <code class="highlighter-rouge">Org3</code> 관련 CLI에 대한 컨테이너를 시작하겠습니다.</p>
+<p>먼저 <code class="language-plaintext highlighter-rouge">Org3</code> 피어 및 <code class="language-plaintext highlighter-rouge">Org3</code> 관련 CLI에 대한 컨테이너를 시작하겠습니다.</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker-compose <span class="nt">-f</span> docker-compose-org3.yaml up <span class="nt">-d</span>
 
@@ -199,7 +199,7 @@ Creating peer0.org3.example.com ... <span class="k">done
 </span>Creating Org3cli                ... <span class="k">done</span>
 </code></pre></div></div>
 
-<p><code class="highlighter-rouge">docker ps</code> 명령어를 치면 아래와같이 설정이 되어있어야 합니다.</p>
+<p><code class="language-plaintext highlighter-rouge">docker ps</code> 명령어를 치면 아래와같이 설정이 되어있어야 합니다.</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker ps
 CONTAINER ID        IMAGE                                                                                                  COMMAND                  CREATED             STATUS              PORTS                      NAMES
@@ -219,7 +219,7 @@ a67a88110615        hyperledger/fabric-orderer:latest                           
 
 <h2 id="setting-environments-variables">Setting Environments Variables</h2>
 
-<p>먼저 <code class="highlighter-rouge">Org3cli</code> 컨테이너로 접속을 합니다. 아래 명령어는 2번 더 사용할 예정입니다.</p>
+<p>먼저 <code class="language-plaintext highlighter-rouge">Org3cli</code> 컨테이너로 접속을 합니다. 아래 명령어는 2번 더 사용할 예정입니다.</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker <span class="nb">exec</span> <span class="nt">-it</span> Org3cli /bin/bash
 </code></pre></div></div>
@@ -281,7 +281,7 @@ a67a88110615        hyperledger/fabric-orderer:latest                           
 2020-01-07 13:40:35.877 UTC <span class="o">[</span>chaincodeCmd] <span class="nb">install</span> -&gt; INFO 003 Installed remotely response:&lt;status:200 payload:<span class="s2">"OK"</span> <span class="o">&gt;</span>
 </code></pre></div></div>
 
-<p>여기서 <code class="highlighter-rouge">Org3cli</code> 컨테이너를 나간 뒤 <code class="highlighter-rouge">cli</code> 컨테이너로 접속합니다.</p>
+<p>여기서 <code class="language-plaintext highlighter-rouge">Org3cli</code> 컨테이너를 나간 뒤 <code class="language-plaintext highlighter-rouge">cli</code> 컨테이너로 접속합니다.</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker <span class="nb">exec</span> <span class="nt">-it</span> cli /bin/bash
 </code></pre></div></div>
@@ -334,7 +334,7 @@ a67a88110615        hyperledger/fabric-orderer:latest                           
 2020-01-07 14:00:30.300 UTC <span class="o">[</span>chaincodeCmd] checkChaincodeCmdParams -&gt; INFO 002 Using default vscc
 </code></pre></div></div>
 
-<p>여기서 <code class="highlighter-rouge">cli</code> 컨테이너를 나간 뒤 <code class="highlighter-rouge">Org3cli</code> 컨테이너로 접속합니다.</p>
+<p>여기서 <code class="language-plaintext highlighter-rouge">cli</code> 컨테이너를 나간 뒤 <code class="language-plaintext highlighter-rouge">Org3cli</code> 컨테이너로 접속합니다.</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker <span class="nb">exec</span> <span class="nt">-it</span> Org3cli /bin/bash
 </code></pre></div></div>
@@ -404,7 +404,7 @@ a67a88110615        hyperledger/fabric-orderer:latest                           
 
 <p>이렇게 까지 확인하면 끝났습니다.</p>
 
-<p>이 포스트는 <code class="highlighter-rouge">./eyfn.sh generate</code> 와 <code class="highlighter-rouge">./eyfn.sh up</code> 까지의 과정입니다. <code class="highlighter-rouge">peer</code> 를 추가하고 <code class="highlighter-rouge">chaincode</code> 를 업데이트 하는 부분은 다른 포스트에서도 확인하고 많이 해봤기 때문에 설명은 적게하고 <code class="highlighter-rouge">generate</code> 부분을 많이 추가하도록 노력했습니다.</p>
+<p>이 포스트는 <code class="language-plaintext highlighter-rouge">./eyfn.sh generate</code> 와 <code class="language-plaintext highlighter-rouge">./eyfn.sh up</code> 까지의 과정입니다. <code class="language-plaintext highlighter-rouge">peer</code> 를 추가하고 <code class="language-plaintext highlighter-rouge">chaincode</code> 를 업데이트 하는 부분은 다른 포스트에서도 확인하고 많이 해봤기 때문에 설명은 적게하고 <code class="language-plaintext highlighter-rouge">generate</code> 부분을 많이 추가하도록 노력했습니다.</p>
 
 <p>감사합니다.</p>
 :ET

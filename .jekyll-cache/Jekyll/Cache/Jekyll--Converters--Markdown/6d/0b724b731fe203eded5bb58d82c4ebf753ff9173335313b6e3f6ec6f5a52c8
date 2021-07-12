@@ -1,12 +1,12 @@
-I"<h2 id="generator">Generator</h2>
+I"h<h2 id="generator">Generator</h2>
 
-<p><strong>Generator(제네레이터)</strong>는 제네레이터 함수가 호출될 때 반환되는 iterator(이터레이터)의 일종이다. 제네레이터 함수는 일반적인 함수와 비슷하게 생겼지만 <code class="highlighter-rouge">yield</code> 구문을 사용해 데이터를 원하는 시점에 반환하고 처리를 다시 시작할 수 있다. 일반적인 함수는 진입점이 하나라면 제네레이터는 진입점이 여러개라고 생각할 수 있다. 이러한 특성때문에 제네레이터를 사용하면 원하는 시점에 원하는 데이터를 받을 수 있게된다.</p>
+<p><strong>Generator(제네레이터)</strong>는 제네레이터 함수가 호출될 때 반환되는 iterator(이터레이터)의 일종이다. 제네레이터 함수는 일반적인 함수와 비슷하게 생겼지만 <code class="language-plaintext highlighter-rouge">yield</code> 구문을 사용해 데이터를 원하는 시점에 반환하고 처리를 다시 시작할 수 있다. 일반적인 함수는 진입점이 하나라면 제네레이터는 진입점이 여러개라고 생각할 수 있다. 이러한 특성때문에 제네레이터를 사용하면 원하는 시점에 원하는 데이터를 받을 수 있게된다.</p>
 
 <blockquote>
   <p>Example</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; def generator():
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; def generator():
 ...     yield 1
 ...     yield 'string'
 ...     yield True
@@ -44,7 +44,7 @@ StopIteration
 
 <p>range()함수는 Python 2.x 에서 리스트를 반환하고 Python 3.x 에선 range 객체를 반환한다. 이 range 객체는 제네레이터, 이터레이터가 아니다. 실제로 next(range(1))를 호출해보면 TypeError: ‘range’ object is not an iterator 오류가 발생한다. 그렇지만 내부 구현상 제네레이터를 사용한 것 처럼 메모리 사용에 있어 이점이 있다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; import sys
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; import sys
 &gt;&gt;&gt; a = [i for i in range(100000)]
 &gt;&gt;&gt; sys.getsizeof(a)
 824464
@@ -55,7 +55,7 @@ StopIteration
 
 <p>다만 제네레이터는 그때그때 필요한 값을 던져주고 기억하지는 않기 때문에 a 리스트가 여러번 사용될 수 있는 반면 b 제네레이터는 한번 사용된 후 소진된다. 이는 모든 이터레이터가 마찬가지인데 List, Set 은 이터러블하지만 이터레이터는 아니기에 소진되지 않는다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; len(list(b))
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; len(list(b))
 100000
 &gt;&gt;&gt; len(list(b))
 0

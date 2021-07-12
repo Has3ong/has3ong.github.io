@@ -2,8 +2,8 @@
 title: "macOS"
 permalink: /osx
 layout: single
+author_profile: true
+taxonomy: "macOS"
+sidebar:
+  nav: "docs"
 ---
-
-## macOS
-
-* [macOS 패키지 관리자 Homebrew 설치 및 사용하기](/osx-installhomebrew)

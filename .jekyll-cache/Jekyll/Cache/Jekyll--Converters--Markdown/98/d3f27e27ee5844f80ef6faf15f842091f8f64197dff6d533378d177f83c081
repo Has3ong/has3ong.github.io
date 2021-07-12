@@ -1,10 +1,10 @@
-I"�$<h2 id="caches">Caches</h2>
+I"�$<h2 id="caches">Caches</h2>
 
 <p>캐시는 CPU 칩 안에 들어가는 작고 빠른 메모리다. (그리고 비싸다.) 프로세서가 매번 메인 메모리에 접근해 데이터를 받아오면 시간이 오래 걸리기 때문에 캐시에 자주 사용하는 데이터를 담아두고, 해당 데이터가 필요할 때 프로세서가 메인 메모리 대신 캐시에 접근하도록해 처리 속도를 높인다.</p>
 
 <p>CPU 칩에는 여러 개의 캐시가 들어가며, 각각의 캐시는 각자의 목적과 역할을 가지고 있다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>+-------------+------+------+     +---------------+     +--------+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>+-------------+------+------+     +---------------+     +--------+
 |             |  I$  |      | &lt;-- |               | &lt;-- |        |
 +  Processor  +------+  L2  |     |  Main Memory  |     |  Disk  |
 |             |  D$  |      | --&gt; |               | --&gt; |        |

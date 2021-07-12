@@ -1,8 +1,8 @@
-I"éy<blockquote>
+I"Hz<blockquote>
   <p>Orderer.example.com</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2019-10-22 20:22:07.157 UTC [localconfig] completeInitialization -&gt; INFO 001 Kafka.Version unset, setting to 0.10.2.0
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2019-10-22 20:22:07.157 UTC [localconfig] completeInitialization -&gt; INFO 001 Kafka.Version unset, setting to 0.10.2.0
 2019-10-22 20:22:07.166 UTC [orderer.common.server] prettyPrintStruct -&gt; INFO 002 Orderer config values:
 	General.LedgerType = "file"
 	General.ListenAddress = "0.0.0.0"
@@ -269,7 +269,7 @@ IGLf8d8j3v2yIPSMhCQSavipR14b/pDIX5lXwKsvSfNK
   <p>Orderer2.example.com</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2019-10-22 20:22:06.888 UTC [localconfig] completeInitialization -&gt; INFO 001 Kafka.Version unset, setting to 0.10.2.0
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2019-10-22 20:22:06.888 UTC [localconfig] completeInitialization -&gt; INFO 001 Kafka.Version unset, setting to 0.10.2.0
 2019-10-22 20:22:06.904 UTC [orderer.common.server] prettyPrintStruct -&gt; INFO 002 Orderer config values:
 	General.LedgerType = "file"
 	General.ListenAddress = "0.0.0.0"
@@ -536,7 +536,7 @@ phcY72zowReO9/hx8arUH0yO2CebXV7+/nR/cfw=
   <p>Orderer3.example.com</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2019-10-22 20:22:06.869 UTC [localconfig] completeInitialization -&gt; INFO 001 Kafka.Version unset, setting to 0.10.2.0
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2019-10-22 20:22:06.869 UTC [localconfig] completeInitialization -&gt; INFO 001 Kafka.Version unset, setting to 0.10.2.0
 2019-10-22 20:22:06.883 UTC [orderer.common.server] prettyPrintStruct -&gt; INFO 002 Orderer config values:
 	General.LedgerType = "file"
 	General.ListenAddress = "0.0.0.0"
@@ -805,7 +805,7 @@ phcY72zowReO9/hx8arUH0yO2CebXV7+/nR/cfw=
   <p>Orderer4.example.com</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2019-10-22 20:22:06.241 UTC [localconfig] completeInitialization -&gt; INFO 001 Kafka.Version unset, setting to 0.10.2.0
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2019-10-22 20:22:06.241 UTC [localconfig] completeInitialization -&gt; INFO 001 Kafka.Version unset, setting to 0.10.2.0
 2019-10-22 20:22:06.252 UTC [orderer.common.server] prettyPrintStruct -&gt; INFO 002 Orderer config values:
 	General.LedgerType = "file"
 	General.ListenAddress = "0.0.0.0"
@@ -1075,7 +1075,7 @@ R+9YkMuJiAMLMu9NuzKkBPuY4UyFTnM6IY5Wk3BBv78=
   <p>Orderer5.example.com</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2019-10-22 20:22:05.817 UTC [localconfig] completeInitialization -&gt; INFO 001 Kafka.Version unset, setting to 0.10.2.0
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2019-10-22 20:22:05.817 UTC [localconfig] completeInitialization -&gt; INFO 001 Kafka.Version unset, setting to 0.10.2.0
 2019-10-22 20:22:05.835 UTC [orderer.common.server] prettyPrintStruct -&gt; INFO 002 Orderer config values:
 	General.LedgerType = "file"
 	General.ListenAddress = "0.0.0.0"

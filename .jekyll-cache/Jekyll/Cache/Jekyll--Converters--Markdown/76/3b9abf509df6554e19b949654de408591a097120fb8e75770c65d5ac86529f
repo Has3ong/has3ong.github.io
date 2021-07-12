@@ -1,4 +1,4 @@
-I"�<h2 id="플로이드-워셜-floyd-warshall">플로이드-워셜 (Floyd-Warshall)</h2>
+I"�<h2 id="플로이드-워셜-floyd-warshall">플로이드-워셜 (Floyd-Warshall)</h2>
 
 <p>플로이드-워셜 알고리즘은 모든 최단 경로를 구하는 방법이다.</p>
 
@@ -11,7 +11,7 @@
   <p>Pseudo Code</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>let dist be a |V| × |V| array of minimum distances initialized to ∞ (infinity)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>let dist be a |V| × |V| array of minimum distances initialized to ∞ (infinity)
 for each edge (u,v)
   dist[u][v] ← w(u,v)  // 변 (u,v)의 가중치
 for each vertex v

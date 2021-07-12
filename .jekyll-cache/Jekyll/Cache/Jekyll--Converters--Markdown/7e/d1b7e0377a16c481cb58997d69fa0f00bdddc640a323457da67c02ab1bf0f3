@@ -1,4 +1,4 @@
-I"�(<h2 id="sort">Sort</h2>
+I"�(<h2 id="sort">Sort</h2>
 
 <p>전산학과 수학에서 정렬 알고리즘이란 원소들을 번호순이나 사전 순서와 같이 일정한 순서대로 열거하는 알고리즘이다. 효율적인 정렬은 탐색이나 병합 알고리즘처럼 (정렬된 리스트에서 바르게 동작하는) 다른 알고리즘을 최적화하는 데 중요하다. 또 정렬 알고리즘은 데이터의 정규화나 의미있는 결과물을 생성하는 데 흔히 유용하게 쓰인다. 이 알고리즘의 결과는 반드시 다음 두 조건을 만족해야 한다.</p>
 
@@ -34,7 +34,7 @@
 
 <p><img src="https://simonwaldherr.github.io/GolangSortingVisualization/sort_heap.gif" alt="Heap Sort Animation" /></p>
 
-<p>binary heap 자료구조를 활용할 Sorting 방법에는 두 가지 방법이 존재한다. 하나는 정렬의 대상인 데이터들을 힙에 넣었다가 꺼내는 원리로 Sorting 을 하게 되는 방법이고, 나머지 하나는 기존의 배열을 heapify(heap 으로 만들어주는 과정)을 거쳐 꺼내는 원리로 정렬하는 방법이다. heap에 데이터를 저장하는 시간 복잡도는 O(log n)이고, 삭제 시간 복잡도 또한 <code class="highlighter-rouge">O(log n)</code>이 된다. 때문에 힙 자료구조를 사용하여 Sorting 을 하는데 time complexity 는 <code class="highlighter-rouge">O(log n)</code>이 된다. 이 정렬을 하려는 대상이 n 개라면 time complexity 는 <code class="highlighter-rouge">O(nlogn)</code>이 된다.</p>
+<p>binary heap 자료구조를 활용할 Sorting 방법에는 두 가지 방법이 존재한다. 하나는 정렬의 대상인 데이터들을 힙에 넣었다가 꺼내는 원리로 Sorting 을 하게 되는 방법이고, 나머지 하나는 기존의 배열을 heapify(heap 으로 만들어주는 과정)을 거쳐 꺼내는 원리로 정렬하는 방법이다. heap에 데이터를 저장하는 시간 복잡도는 O(log n)이고, 삭제 시간 복잡도 또한 <code class="language-plaintext highlighter-rouge">O(log n)</code>이 된다. 때문에 힙 자료구조를 사용하여 Sorting 을 하는데 time complexity 는 <code class="language-plaintext highlighter-rouge">O(log n)</code>이 된다. 이 정렬을 하려는 대상이 n 개라면 time complexity 는 <code class="language-plaintext highlighter-rouge">O(nlogn)</code>이 된다.</p>
 
 <h3 id="quick-sort">Quick Sort</h3>
 

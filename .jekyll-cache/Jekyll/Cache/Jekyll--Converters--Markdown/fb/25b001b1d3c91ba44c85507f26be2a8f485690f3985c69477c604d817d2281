@@ -1,6 +1,6 @@
-I":@<p>Python은 C언어에서 사용하는 struct를 사용할 수 없습니다.</p>
+I"�A<p>Python은 C언어에서 사용하는 struct를 사용할 수 없습니다.</p>
 
-<p>그래서 Python 에서는 몇가지 모듈을 이용하여 C 언어에있는 struct를 구현할 수 있는데요. <code class="highlighter-rouge">struct</code>와 <code class="highlighter-rouge">collection</code> 모듈을 이용해보겠습니다.</p>
+<p>그래서 Python 에서는 몇가지 모듈을 이용하여 C 언어에있는 struct를 구현할 수 있는데요. <code class="language-plaintext highlighter-rouge">struct</code>와 <code class="language-plaintext highlighter-rouge">collection</code> 모듈을 이용해보겠습니다.</p>
 
 <h2 id="struct">Struct</h2>
 
@@ -191,9 +191,9 @@
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">struct</span>
 
-<span class="n">var</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s">'iii'</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-<span class="n">littleVar</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s">'&lt;iii'</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-<span class="n">BigVar</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s">'&gt;iii'</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">var</span> <span class="o">=</span> <span class="n">struct</span><span class="p">.</span><span class="n">pack</span><span class="p">(</span><span class="s">'iii'</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">littleVar</span> <span class="o">=</span> <span class="n">struct</span><span class="p">.</span><span class="n">pack</span><span class="p">(</span><span class="s">'&lt;iii'</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">BigVar</span> <span class="o">=</span> <span class="n">struct</span><span class="p">.</span><span class="n">pack</span><span class="p">(</span><span class="s">'&gt;iii'</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 
 <span class="k">print</span><span class="p">(</span><span class="n">var</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">littleVar</span><span class="p">)</span>
@@ -204,44 +204,44 @@
 
 <p>생각한 결과대로 나온것을 확인할 수 있습니다. 그리고 default 값으로는 리틀엔디언이네요.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>b'\x01\x00\x00\x00\x02\x00\x00\x00\x03\x00\x00\x00'
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>b'\x01\x00\x00\x00\x02\x00\x00\x00\x03\x00\x00\x00'
 b'\x01\x00\x00\x00\x02\x00\x00\x00\x03\x00\x00\x00'
 b'\x00\x00\x00\x01\x00\x00\x00\x02\x00\x00\x00\x03'
 </code></pre></div></div>
 
-<p><code class="highlighter-rouge">\x01\x00\x00\x00</code> -&gt; 1</p>
+<p><code class="language-plaintext highlighter-rouge">\x01\x00\x00\x00</code> -&gt; 1</p>
 
-<p><code class="highlighter-rouge">\x02\x00\x00\x00</code> -&gt; 2</p>
+<p><code class="language-plaintext highlighter-rouge">\x02\x00\x00\x00</code> -&gt; 2</p>
 
-<p><code class="highlighter-rouge">\x03\x00\x00\x00</code> -&gt; 3</p>
+<p><code class="language-plaintext highlighter-rouge">\x03\x00\x00\x00</code> -&gt; 3</p>
 
 <p><strong>UnPack</strong></p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">struct</span>
  
-<span class="n">var</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s">'iii'</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-<span class="n">unpackvar</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s">'iii'</span><span class="p">,</span> <span class="n">var</span><span class="p">)</span>
+<span class="n">var</span> <span class="o">=</span> <span class="n">struct</span><span class="p">.</span><span class="n">pack</span><span class="p">(</span><span class="s">'iii'</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">unpackvar</span> <span class="o">=</span> <span class="n">struct</span><span class="p">.</span><span class="n">unpack</span><span class="p">(</span><span class="s">'iii'</span><span class="p">,</span> <span class="n">var</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">unpackvar</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">unpackvar</span><span class="p">))</span>
  
-<span class="k">print</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">calcsize</span><span class="p">(</span><span class="s">'iii'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">struct</span><span class="p">.</span><span class="n">calcsize</span><span class="p">(</span><span class="s">'iii'</span><span class="p">))</span>
 </code></pre></div></div>
 
 <p><strong>Result</strong></p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(1, 2, 3)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(1, 2, 3)
 &lt;class 'tuple'&gt;
 12
 </code></pre></div></div>
 
 <h2 id="collection">Collection</h2>
 
-<p>앞전에 <code class="highlighter-rouge">struct</code> 모듈을 이용했습니다. 요번에는 <code class="highlighter-rouge">collection</code> 모듈에 있는 <code class="highlighter-rouge">namedtuple</code> 이용해볼게요</p>
+<p>앞전에 <code class="language-plaintext highlighter-rouge">struct</code> 모듈을 이용했습니다. 요번에는 <code class="language-plaintext highlighter-rouge">collection</code> 모듈에 있는 <code class="language-plaintext highlighter-rouge">namedtuple</code> 이용해볼게요</p>
 
 <p>https://docs.python.org/3/library/collections.html#collections.namedtuple 사이트에 나와있는 글을 보겠습니다.</p>
 
 <p>240/5000
-<code class="highlighter-rouge">namedtuples</code>는 <code class="highlighter-rouge">tuple</code>의 각 위치에 의미를 부여하고 읽기 쉬운 자체 문서화 코드를 허용합니다. 정규 <code class="highlighter-rouge">tuple</code>이 사용되는 모든 곳에서 사용할 수 있으며 위치 색인 대신 이름으로 필드에 액세스하는 기능을 추가했다고 합니다.</p>
+<code class="language-plaintext highlighter-rouge">namedtuples</code>는 <code class="language-plaintext highlighter-rouge">tuple</code>의 각 위치에 의미를 부여하고 읽기 쉬운 자체 문서화 코드를 허용합니다. 정규 <code class="language-plaintext highlighter-rouge">tuple</code>이 사용되는 모든 곳에서 사용할 수 있으며 위치 색인 대신 이름으로 필드에 액세스하는 기능을 추가했다고 합니다.</p>
 
 <p>간단한 예제로 사용해볼게요.</p>
 
@@ -251,53 +251,53 @@ b'\x00\x00\x00\x01\x00\x00\x00\x02\x00\x00\x00\x03'
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">collections</span>
  
-<span class="n">Person</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">namedtuple</span><span class="p">(</span><span class="s">'Person'</span><span class="p">,</span> <span class="s">'name age job'</span><span class="p">)</span>
+<span class="n">Person</span> <span class="o">=</span> <span class="n">collections</span><span class="p">.</span><span class="n">namedtuple</span><span class="p">(</span><span class="s">'Person'</span><span class="p">,</span> <span class="s">'name age job'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">Person</span><span class="p">))</span>
  
 <span class="n">p1</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">'Chul-Soo'</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">29</span><span class="p">,</span> <span class="n">job</span><span class="o">=</span><span class="s">'Doctor'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">p1</span><span class="p">)</span>
  
 <span class="n">p2</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s">'Young-Hee'</span><span class="p">,</span> <span class="mi">18</span> <span class="p">,</span> <span class="s">'Student'</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">p2</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">p2</span><span class="p">.</span><span class="n">name</span><span class="p">)</span>
  
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">]:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">'Name is : </span><span class="si">%</span><span class="s">s, Age is : </span><span class="si">%</span><span class="s">d, Job is : </span><span class="si">%</span><span class="s">s'</span> <span class="o">%</span> <span class="n">i</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'Name is : %s, Age is : %d, Job is : %s'</span> <span class="o">%</span> <span class="n">i</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p><strong>Result</strong></p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;class 'type'&gt;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;class 'type'&gt;
 Person(name='Chul-Soo', age=29, job='Doctor')
 Young-Hee
 Name is : Chul-Soo, Age is : 29, Job is : Doctor
 Name is : Young-Hee, Age is : 18, Job is : Student
 </code></pre></div></div>
 
-<p><code class="highlighter-rouge">namedtuple</code> docs에서 지원하는 예제를 가지고 사용해보겠습니다. 오역, 의역이 있을 수 있으니 참고해주시기 바랍니다…..</p>
+<p><code class="language-plaintext highlighter-rouge">namedtuple</code> docs에서 지원하는 예제를 가지고 사용해보겠습니다. 오역, 의역이 있을 수 있으니 참고해주시기 바랍니다…..</p>
 
-<p><strong><code class="highlighter-rouge">classmethod somenamedtuple._make(iterable)</code></strong></p>
+<p><strong><code class="language-plaintext highlighter-rouge">classmethod somenamedtuple._make(iterable)</code></strong></p>
 
-<p><code class="highlighter-rouge">sequence</code> 또는 <code class="highlighter-rouge">iterable</code>한 객체를 이용하여 새로운 인스턴스를 만들어 줍니다.</p>
+<p><code class="language-plaintext highlighter-rouge">sequence</code> 또는 <code class="language-plaintext highlighter-rouge">iterable</code>한 객체를 이용하여 새로운 인스턴스를 만들어 줍니다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; t = [11, 22]
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; t = [11, 22]
 &gt;&gt;&gt; Point._make(t)
 Point(x=11, y=22)
 </code></pre></div></div>
 
-<p><strong><code class="highlighter-rouge">somenamedtuple._asdict()</code></strong></p>
+<p><strong><code class="language-plaintext highlighter-rouge">somenamedtuple._asdict()</code></strong></p>
 
-<p>필드의 이름과 값을 이용하여 <code class="highlighter-rouge">dict</code> 형태로 반환해 줍니다.</p>
+<p>필드의 이름과 값을 이용하여 <code class="language-plaintext highlighter-rouge">dict</code> 형태로 반환해 줍니다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; p = Point(x=11, y=22)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; p = Point(x=11, y=22)
 &gt;&gt;&gt; p._asdict()
 {'x': 11, 'y': 22}
 </code></pre></div></div>
 
-<p><strong><code class="highlighter-rouge">somenamedtuple._replace(**kwargs)</code></strong></p>
+<p><strong><code class="language-plaintext highlighter-rouge">somenamedtuple._replace(**kwargs)</code></strong></p>
 
-<p><code class="highlighter-rouge">namedtuple</code> 에 특정한 필드와 값에 새로운 값을 대입하여 새로운 인스턴스를 만들어 줍니다.</p>
+<p><code class="language-plaintext highlighter-rouge">namedtuple</code> 에 특정한 필드와 값에 새로운 값을 대입하여 새로운 인스턴스를 만들어 줍니다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; p = Point(x=11, y=22)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; p = Point(x=11, y=22)
 &gt;&gt;&gt; p._replace(x=33)
 Point(x=33, y=22)
 
@@ -305,11 +305,11 @@ Point(x=33, y=22)
 ...     inventory[partnum] = record._replace(price=newprices[partnum], timestamp=time.now())
 </code></pre></div></div>
 
-<p><strong><code class="highlighter-rouge">somenamedtuple._fields</code></strong></p>
+<p><strong><code class="language-plaintext highlighter-rouge">somenamedtuple._fields</code></strong></p>
 
-<p>기존에 존재하는 <code class="highlighter-rouge">namedtuple</code>에 필드들을 이용하여 새로운 <code class="highlighter-rouge">namedtuple</code> 을 만들어 줍니다.</p>
+<p>기존에 존재하는 <code class="language-plaintext highlighter-rouge">namedtuple</code>에 필드들을 이용하여 새로운 <code class="language-plaintext highlighter-rouge">namedtuple</code> 을 만들어 줍니다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; p._fields            # view the field names
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; p._fields            # view the field names
 ('x', 'y')
 
 &gt;&gt;&gt; Color = namedtuple('Color', 'red green blue')

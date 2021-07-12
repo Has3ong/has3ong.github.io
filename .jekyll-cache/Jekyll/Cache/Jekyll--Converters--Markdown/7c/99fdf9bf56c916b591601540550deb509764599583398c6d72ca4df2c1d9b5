@@ -1,4 +1,4 @@
-I"<<h2 id="synchronous--asynchronous">Synchronous / Asynchronous</h2>
+I"�<h2 id="synchronous--asynchronous">Synchronous / Asynchronous</h2>
 
 <p>호출되는 함수의 작업완료 여부를 누가 신경쓰냐의 문제입니다.</p>
 
@@ -28,7 +28,7 @@
   <li>Blocking &amp; Synchronous</li>
 </ul>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>나 : 대표님, 개발자 좀 더 뽑아주세요..
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>나 : 대표님, 개발자 좀 더 뽑아주세요..
 대표님 : 오케이, 잠깐만 거기 계세요!
 나 : …?!!
 대표님 : (채용 공고 등록.. 지원자 연락.. 면접 진행.. 연봉 협상..)
@@ -39,7 +39,7 @@
   <li>Blocking &amp; Asynchronous</li>
 </ul>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>나 : 대표님, 개발자 좀 더 뽑아주세요..
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>나 : 대표님, 개발자 좀 더 뽑아주세요..
 대표님 : 오케이, 잠깐만 거기 계세요!
 나 : …?!!
 대표님 : (채용 공고 등록.. 지원자 연락.. 면접 진행.. 연봉 협상..)
@@ -48,7 +48,7 @@
 
 <p>*Non-blocking &amp; Synchronous</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>나 : 대표님, 개발자 좀 더 뽑아주세요..
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>나 : 대표님, 개발자 좀 더 뽑아주세요..
 대표님 : 알겠습니다. 가서 볼 일 보세요.
 나 : 넵!
 대표님 : (채용 공고 등록.. 지원자 연락.. 면접 진행.. 연봉 협상..)
@@ -64,7 +64,7 @@
   <li>Non-blocking &amp; Asynchronous</li>
 </ul>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>나 : 대표님, 개발자 좀 더 뽑아주세요..
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>나 : 대표님, 개발자 좀 더 뽑아주세요..
 대표님 : 알겠습니다. 가서 볼 일 보세요.
 나 : 넵!
 대표님 : (채용 공고 등록.. 지원자 연락.. 면접 진행.. 연봉 협상..)

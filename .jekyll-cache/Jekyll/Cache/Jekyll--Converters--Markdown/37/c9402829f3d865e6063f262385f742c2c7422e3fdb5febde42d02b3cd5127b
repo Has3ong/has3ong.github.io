@@ -1,7 +1,7 @@
-I"Ë<p>```python
+I"Þ<p>```python
 def solution():</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>data = []
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>data = []
 for _ in range(10):
     data.append(int(input()))
 </code></pre></div></div>

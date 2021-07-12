@@ -1,5 +1,7 @@
 ---
 title : Hyperledger Indy Getting Started
+categories:
+- BlockChain
 tags :
 - Indy
 - Hyperledger

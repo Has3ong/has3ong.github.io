@@ -1,4 +1,4 @@
-I"yí<blockquote>
+I"î<blockquote>
   <p>docker-compose -f docker-compose-kafka.yaml up</p>
 </blockquote>
 
@@ -6,7 +6,7 @@
   <p>Orderer</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2019-10-22 17:11:34.859 UTC [localconfig] completeInitialization -&gt; INFO 001 Kafka.Version unset, setting to 0.10.2.0
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2019-10-22 17:11:34.859 UTC [localconfig] completeInitialization -&gt; INFO 001 Kafka.Version unset, setting to 0.10.2.0
 2019-10-22 17:11:34.928 UTC [orderer.common.server] prettyPrintStruct -&gt; INFO 002 Orderer config values:
 	General.LedgerType = "file"
 	General.ListenAddress = "0.0.0.0"
@@ -125,7 +125,7 @@
   <p>Zookeeper 0</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ZooKeeper JMX enabled by default
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ZooKeeper JMX enabled by default
 Using config: /conf/zoo.cfg
 2019-10-22 16:35:32,539 [myid:] - INFO  [main:QuorumPeerConfig@124] - Reading configuration from: /conf/zoo.cfg
 2019-10-22 16:35:32,760 [myid:] - INFO  [main:QuorumPeer$QuorumServer@149] - Resolved hostname: zookeeper2.example.com to address: zookeeper2.example.com/172.19.0.7
@@ -297,7 +297,7 @@ java.net.ConnectException: Connection refused (Connection refused)
   <p>Zookeeper 1</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ZooKeeper JMX enabled by default
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ZooKeeper JMX enabled by default
 Using config: /conf/zoo.cfg
 2019-10-22 16:35:34,948 [myid:] - INFO  [main:QuorumPeerConfig@124] - Reading configuration from: /conf/zoo.cfg
 2019-10-22 16:35:35,167 [myid:] - INFO  [main:QuorumPeer$QuorumServer@149] - Resolved hostname: zookeeper2.example.com to address: zookeeper2.example.com/172.19.0.7
@@ -361,7 +361,7 @@ Using config: /conf/zoo.cfg
   <p>Zookeeper 2</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ZooKeeper JMX enabled by default
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ZooKeeper JMX enabled by default
 Using config: /conf/zoo.cfg
 2019-10-22 16:35:34,720 [myid:] - INFO  [main:QuorumPeerConfig@124] - Reading configuration from: /conf/zoo.cfg
 2019-10-22 16:35:35,018 [myid:] - INFO  [main:QuorumPeer$QuorumServer@149] - Resolved hostname: zookeeper2.example.com to address: zookeeper2.example.com/172.19.0.7
@@ -453,7 +453,7 @@ Using config: /conf/zoo.cfg
   <p>Kafka 0</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[2019-10-22 16:35:41,786] INFO KafkaConfig values:
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[2019-10-22 16:35:41,786] INFO KafkaConfig values:
 	advertised.host.name = null
 	advertised.listeners = null
 	advertised.port = null
@@ -686,7 +686,7 @@ Using config: /conf/zoo.cfg
   <p>Kafka 1</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[2019-10-22 16:35:41,672] INFO KafkaConfig values:
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[2019-10-22 16:35:41,672] INFO KafkaConfig values:
 	advertised.host.name = null
 	advertised.listeners = null
 	advertised.port = null
@@ -919,7 +919,7 @@ Using config: /conf/zoo.cfg
   <p>Kafka 2</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[2019-10-22 16:35:41,726] INFO KafkaConfig values:
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[2019-10-22 16:35:41,726] INFO KafkaConfig values:
 	advertised.host.name = null
 	advertised.listeners = null
 	advertised.port = null
@@ -1149,7 +1149,7 @@ Using config: /conf/zoo.cfg
   <p>Kafka 3</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[2019-10-22 16:35:41,349] INFO KafkaConfig values:
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[2019-10-22 16:35:41,349] INFO KafkaConfig values:
 	advertised.host.name = null
 	advertised.listeners = null
 	advertised.port = null

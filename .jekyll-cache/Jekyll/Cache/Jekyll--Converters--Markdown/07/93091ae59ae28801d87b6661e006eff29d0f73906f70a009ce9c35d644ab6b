@@ -1,13 +1,13 @@
-I"�<h2 id="install-docker">Install Docker</h2>
+I"<h2 id="install-docker">Install Docker</h2>
 
 <p>기존에 설치된 Docker 엔진을 먼저 삭제합니다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo apt-get remove docker docker-engine docker.i
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo apt-get remove docker docker-engine docker.i
 </code></pre></div></div>
 
 <p>의존성(depedencies) 패키지를 설치합니다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo apt-get install \
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo apt-get install \
 apt-transport-https \
 ca-certificates \
 curl \
@@ -16,10 +16,10 @@ software-properties-common
 
 <p>Docker 레포지토리 GPG 키를 추가합니다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo add-apt-repository \
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo add-apt-repository \
  "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
  $(lsb_release -cs) \
  stable"
@@ -27,18 +27,18 @@ software-properties-common
 
 <p>Docker를 설치합니다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo apt-get update
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo apt-get update
 $ sudo apt-get install docker-ce
 </code></pre></div></div>
 
 <p>현재 사용자에게 Docker엔진 제어 권한을 부여하기 위해 docker 그룹에 포함시킵니다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo usermod -a -G docker $USER
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo usermod -a -G docker $USER
 </code></pre></div></div>
 
 <p>터미널/콘솔 재 로그인 후 도커가 정상적으로 설치되었는 지 확인합니다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ docker version
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ docker version
 Client:
  Version:           18.09.2
  API version:       1.39
@@ -63,17 +63,17 @@ Server: Docker Engine - Community
 
 <p>Docker Compose 파일을 /usr/local/bin 디렉토리에 다운로드 합니다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo curl -L https://github.com/docker/compose/releases/download/1.23.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo curl -L https://github.com/docker/compose/releases/download/1.23.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
 </code></pre></div></div>
 
 <p>Docker Compose 파일(docker-compose)에 실행권한을 설정합니다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo chmod +x /usr/local/bin/docker-compose
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo chmod +x /usr/local/bin/docker-compose
 </code></pre></div></div>
 
 <p>Docker Compose가 정상적으로 설치되었는 지 확인 합니다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ docker-compose --version
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ docker-compose --version
 docker-compose version 1.23.2, build 1110ad01
 </code></pre></div></div>
 
@@ -81,29 +81,29 @@ docker-compose version 1.23.2, build 1110ad01
   <p>Docker 에러 발생시</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get http://%2Fvar%2Frun%2Fdocker.sock/v1.40/containers/json: dial unix /var/run/docker.sock: connect: permission denied
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get http://%2Fvar%2Frun%2Fdocker.sock/v1.40/containers/json: dial unix /var/run/docker.sock: connect: permission denied
 </code></pre></div></div>
 
 <p><strong>1번째 방법</strong></p>
 
 <p>Create the docker group.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo groupadd docker
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo groupadd docker
 </code></pre></div></div>
 
 <p>Add your user to the docker group.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo usermod -aG docker $USER
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo usermod -aG docker $USER
 </code></pre></div></div>
 
 <p>Logout and login again and run (that doesn’t work you may need to reboot your machine first)</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ docker run hello-world
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ docker run hello-world
 </code></pre></div></div>
 
 <p><strong>2번째 방법</strong></p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo chmod 666 /var/run/docker.sock
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo chmod 666 /var/run/docker.sock
 </code></pre></div></div>
 
 :ET

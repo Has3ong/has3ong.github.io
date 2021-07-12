@@ -1,18 +1,18 @@
-I"�<h2 id="mapreduce">MapReduce</h2>
+I"<<h2 id="mapreduce">MapReduce</h2>
 
 <p><img src="https://user-images.githubusercontent.com/44635266/67361458-ac422080-f5a3-11e9-84c3-041140643620.png" alt="스크린샷 2019-10-23 오후 2 43 59" /></p>
 
 <p>대용량 데이터 처리를 위한 분산 프로그래밍 모델이다. 맵리듀스는 맵(Map) 단계와 리듀스(Reduce) 단계로 처리 과정을 나누어 작업한다.</p>
 
-<p>각 단계는 입력과 출력으로써 <code class="highlighter-rouge">키-값</code> 쌍을 가지고 있고, 그 타입은 프로그래머가 선택합니다. 또한, 맵과 리듀스 함수도 프로그래머가 직접 작성하게 됩니다</p>
+<p>각 단계는 입력과 출력으로써 <code class="language-plaintext highlighter-rouge">키-값</code> 쌍을 가지고 있고, 그 타입은 프로그래머가 선택합니다. 또한, 맵과 리듀스 함수도 프로그래머가 직접 작성하게 됩니다</p>
 
-<p><code class="highlighter-rouge">Map</code>은 흩어져 잇는 데이터를 <code class="highlighter-rouge">Key, Value</code>의 형태로 연관성 있는 데이터 분류로 묶는 작업</p>
+<p><code class="language-plaintext highlighter-rouge">Map</code>은 흩어져 잇는 데이터를 <code class="language-plaintext highlighter-rouge">Key, Value</code>의 형태로 연관성 있는 데이터 분류로 묶는 작업</p>
 
-<p><code class="highlighter-rouge">Reduce</code>는 Map화한 작업 중 중복 데이터를 제거하고 원하는 데이터를 추출하는 작업</p>
+<p><code class="language-plaintext highlighter-rouge">Reduce</code>는 Map화한 작업 중 중복 데이터를 제거하고 원하는 데이터를 추출하는 작업</p>
 
 <p><img src="https://user-images.githubusercontent.com/44635266/67361457-ac422080-f5a3-11e9-84e7-7da8d7f8b5fa.png" alt="스크린샷 2019-10-23 오후 2 43 56" /></p>
 
-<p>세부적으로는 <code class="highlighter-rouge">분할(Splitting)</code>, <code class="highlighter-rouge">매핑(Mapping)</code>, <code class="highlighter-rouge">셔플링(Shuffling)</code>, <code class="highlighter-rouge">리듀싱(Reducing)</code>과정을 수행합니다.</p>
+<p>세부적으로는 <code class="language-plaintext highlighter-rouge">분할(Splitting)</code>, <code class="language-plaintext highlighter-rouge">매핑(Mapping)</code>, <code class="language-plaintext highlighter-rouge">셔플링(Shuffling)</code>, <code class="language-plaintext highlighter-rouge">리듀싱(Reducing)</code>과정을 수행합니다.</p>
 
 <p><img src="https://user-images.githubusercontent.com/44635266/67361702-66d22300-f5a4-11e9-8958-355182835fce.png" alt="스크린샷 2019-10-23 오후 2 45 46" /></p>
 

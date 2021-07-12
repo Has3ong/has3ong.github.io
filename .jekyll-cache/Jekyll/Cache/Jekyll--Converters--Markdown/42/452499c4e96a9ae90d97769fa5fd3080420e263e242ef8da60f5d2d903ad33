@@ -1,4 +1,4 @@
-I"�<h2 id="ci-지속적인-통합-continuous-integration">CI (지속적인 통합, Continuous Integration)</h2>
+I"�<h2 id="ci-지속적인-통합-continuous-integration">CI (지속적인 통합, Continuous Integration)</h2>
 
 <p><img src="https://user-images.githubusercontent.com/44635266/66253992-189ee080-e7ab-11e9-9a7a-4f69a05692a8.png" alt="스크린샷 2019-10-05 오후 8 02 39" /></p>
 
@@ -6,7 +6,7 @@
 
 <p><img src="https://user-images.githubusercontent.com/44635266/66253857-408d4480-e7a9-11e9-9011-2765e803e4ad.png" alt="스크린샷 2019-10-05 오후 7 49 06" /></p>
 
-<p>GitHub Flow에서 생각하면 정기적인 빌드 및 테스트(유닛테스트 및 통합테스트)를 거쳐 공유 레포지터리에 병합되는 과정으로 <code class="highlighter-rouge">merge</code> 라고 생각하면 됩니다.</p>
+<p>GitHub Flow에서 생각하면 정기적인 빌드 및 테스트(유닛테스트 및 통합테스트)를 거쳐 공유 레포지터리에 병합되는 과정으로 <code class="language-plaintext highlighter-rouge">merge</code> 라고 생각하면 됩니다.</p>
 
 <h2 id="cd-지속적인-서비스-제공-continuous-delivery-continuous-deployment">CD (지속적인 서비스 제공, Continuous Delivery, Continuous Deployment)</h2>
 

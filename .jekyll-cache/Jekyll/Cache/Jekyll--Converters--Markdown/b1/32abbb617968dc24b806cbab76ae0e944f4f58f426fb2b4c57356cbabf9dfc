@@ -1,7 +1,0 @@
-I"I<ul class="toc__menu">
-  <li><a href="#메모리-관리-배경">메모리 관리 배경</a></li>
-  <li><a href="#단편화-fragmentation">단편화 (Fragmentation)</a></li>
-  <li><a href="#paging페이징">Paging(페이징)</a></li>
-  <li><a href="#segmentation세그먼테이션">Segmentation(세그먼테이션)</a></li>
-</ul>
-:ET

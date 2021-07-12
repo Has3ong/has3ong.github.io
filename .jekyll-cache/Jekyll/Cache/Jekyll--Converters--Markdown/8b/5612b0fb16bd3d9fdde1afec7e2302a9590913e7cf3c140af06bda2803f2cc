@@ -1,9 +1,0 @@
-I"õ<ul class="toc__menu">
-  <li><a href="#cross-site-requestforgercy-csrf-protection">Cross-Site RequestForgercy (CSRF) Protection</a></li>
-  <li><a href="#form-classes">Form Classes</a></li>
-  <li><a href="#html-rendering-of-forms">HTML Rendering of Forms</a></li>
-  <li><a href="#form-handling-in-view-functions">Form Handling in View Functions</a></li>
-  <li><a href="#redirects-and-user-sessions">Redirects and User Sessions</a></li>
-  <li><a href="#message-flashing">Message Flashing</a></li>
-</ul>
-:ET

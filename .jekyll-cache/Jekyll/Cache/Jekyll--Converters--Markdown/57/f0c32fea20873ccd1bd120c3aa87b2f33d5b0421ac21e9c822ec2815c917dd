@@ -1,4 +1,4 @@
-I"M<h2 id="네트워크-계층network-layer">네트워크 계층(Network Layer)</h2>
+I"�M<h2 id="네트워크-계층network-layer">네트워크 계층(Network Layer)</h2>
 
 <p>네트워크 계층(영어: network layer)은 컴퓨터 네트워킹의 7계층 OSI 모형 가운데 제3계층이다. 네트워크 계층은 중간 라우터를 통한 라우팅을 포함하여 패킷 포워딩을 담당한다.</p>
 
@@ -20,7 +20,7 @@
   <p>IPv4 Example</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>211.214.14.153
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>211.214.14.153
 </code></pre></div></div>
 
 <blockquote>
@@ -29,7 +29,7 @@
 
 <p>아래는 전부 같은 주소다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2001:0DB8:0000:0000:0000:0000:1428:57ab
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2001:0DB8:0000:0000:0000:0000:1428:57ab
 2001:0DB8:0000:0000:0000::1428:57ab
 2001:0DB8:0:0:0:0:1428:57ab
 2001:0DB8:0::0:1428:57ab
@@ -62,14 +62,14 @@
 
 <p>서브넷은 브로드캐스트 영역을 나누고 IP를 아끼기 위해 사용된다.</p>
 
-<p>B클래스 기준 <code class="highlighter-rouge">150.150.0.0</code>의 브로드캐스트 호스트 주소는 약 6만개가 되는데 서브넷으로 나누어 <code class="highlighter-rouge">150.150.1.0</code>과 <code class="highlighter-rouge">150.150.2.0</code>으로 나누게 되면 255개로 줄어들게된다. 나눠진 서브넷은 라우터를 통하여 통신하게 됩니다.</p>
+<p>B클래스 기준 <code class="language-plaintext highlighter-rouge">150.150.0.0</code>의 브로드캐스트 호스트 주소는 약 6만개가 되는데 서브넷으로 나누어 <code class="language-plaintext highlighter-rouge">150.150.1.0</code>과 <code class="language-plaintext highlighter-rouge">150.150.2.0</code>으로 나누게 되면 255개로 줄어들게된다. 나눠진 서브넷은 라우터를 통하여 통신하게 됩니다.</p>
 
 <h3 id="디폴트-서브넷-마스크">디폴트 서브넷 마스크</h3>
 
 <ul>
-  <li>A 클래스의 디폴트 서브넷 마스크 <code class="highlighter-rouge">255.0.0.0</code></li>
-  <li>B 클래스의 디폴트 서브넷 마스크 <code class="highlighter-rouge">255.255.0.0</code></li>
-  <li>C 클래스의 디폴트 서브넷 마스크 <code class="highlighter-rouge">255.255.255.0</code></li>
+  <li>A 클래스의 디폴트 서브넷 마스크 <code class="language-plaintext highlighter-rouge">255.0.0.0</code></li>
+  <li>B 클래스의 디폴트 서브넷 마스크 <code class="language-plaintext highlighter-rouge">255.255.0.0</code></li>
+  <li>C 클래스의 디폴트 서브넷 마스크 <code class="language-plaintext highlighter-rouge">255.255.255.0</code></li>
 </ul>
 
 <h3 id="변형된-서브넷-마스크">변형된 서브넷 마스크</h3>

@@ -1,10 +1,10 @@
-I"�0<h2 id="rest">REST</h2>
+I"t1<h2 id="rest">REST</h2>
 <p>월드 와이드 웹(World Wide Web a.k.a WWW)과 같은 분산 하이퍼미디어 시스템을 위한 소프트웨어 아키텍처의 한 형식으로 자원을 정의하고 자원에 대한 주소를 지정하는 방법 전반에 대한 패턴</p>
 
 <h3 id="restful-api">RESTful API</h3>
 
-<p><code class="highlighter-rouge">REST</code>란, REpresentational State Transfer 의 약자이다.
-여기에 <code class="highlighter-rouge">~ful</code> 이라는 형용사형 어미를 붙여 ~한 API 라는 표현으로 사용된다. 즉, REST 의 기본 원칙을 성실히 지킨 서비스 디자인은 ‘RESTful’하다라고 표현할 수 있다.
+<p><code class="language-plaintext highlighter-rouge">REST</code>란, REpresentational State Transfer 의 약자이다.
+여기에 <code class="language-plaintext highlighter-rouge">~ful</code> 이라는 형용사형 어미를 붙여 ~한 API 라는 표현으로 사용된다. 즉, REST 의 기본 원칙을 성실히 지킨 서비스 디자인은 ‘RESTful’하다라고 표현할 수 있다.
 REST가 디자인 패턴이다, 아키텍처다 많은 이야기가 존재하는데, 하나의 아키텍처로 볼 수 있다. 좀 더 정확한 표현으로 말하자면, REST 는Resource Oriented Architecture이다. API 설계의 중심에 자원(Resource)이 있고 HTTP Method 를 통해 자원을 처리하도록 설계하는 것이다.</p>
 
 <ol>
@@ -46,7 +46,7 @@ REST가 디자인 패턴이다, 아키텍처다 많은 이야기가 존재하는
 </ul>
 
 <p>HTTP 프로토콜 표준에서 사용하는 “Last-Modified” 태그나 E-Tag를 이용하면 캐슁을 구현할 수 있다.
-아래와 같이 Client가 HTTP GET을 “Last-Modified” 값과 함께 보냈을 때, 컨텐츠가 변화가 없으면 REST 컴포넌트는 <code class="highlighter-rouge">304 Not Modified</code>를 리턴하면 Client는 자체 캐쉬에 저장된 값을 사용하게 된다.</p>
+아래와 같이 Client가 HTTP GET을 “Last-Modified” 값과 함께 보냈을 때, 컨텐츠가 변화가 없으면 REST 컴포넌트는 <code class="language-plaintext highlighter-rouge">304 Not Modified</code>를 리턴하면 Client는 자체 캐쉬에 저장된 값을 사용하게 된다.</p>
 
 <p>이렇게 캐쉬를 사용하게 되면 네트웍 응답시간 뿐만 아니라, REST 컴포넌트가 위치한 서버에 트렌젝션을 발생시키지 않기 때문에, 전체 응답시간과 성능 그리고 서버의 자원 사용률을 비약적으로 향상 시킬 수 있다.</p>
 
@@ -71,7 +71,7 @@ REST 서버는 API를 제공하고, 제공된 API를 이용해서 비즈니스 �
 
 <p>Code on demand 스크립트나 플러그인 같은 실행 가능한 프로그램을 일시적으로 클라이언트에 전송하여, 클라이언트가 실행할 수 있도록 한다. 주문형 코드는 웹 서버와 클라이언트 사이에 기술적 결합을 만들어내기도 하는데, 클라이언트는 필요할 때마다 서버에서 내려받은 실행 코드를 이해해야 하기 때문이다. 이러한 이유로 주문형 코드는 웹의 구조적 스타일에서 유일한 선택사항이다. 주문형 코드 제약사항의 예로 자바 애플릿, 자바스크립트, 플래시 같은 웹 브라우저 기반의 기술들이 있다.</p>
 
-<p>가장 쉬운 예로는 크롬 개발자 도구 Console에서 <code class="highlighter-rouge">eval('console.log("Test")');</code> 명령어를 치는것이다.</p>
+<p>가장 쉬운 예로는 크롬 개발자 도구 Console에서 <code class="language-plaintext highlighter-rouge">eval('console.log("Test")');</code> 명령어를 치는것이다.</p>
 
 <h2 id="rest-method">REST Method</h2>
 
@@ -158,7 +158,7 @@ URI의 하위개념으로 URL, URN이 있다.</p>
 
 <p>문법</p>
 
-<p><code class="highlighter-rouge">schema:[//[user[:password]@]host[:port]][/path][?query][#fragment]</code></p>
+<p><code class="language-plaintext highlighter-rouge">schema:[//[user[:password]@]host[:port]][/path][?query][#fragment]</code></p>
 
 <h3 id="url-파일-식별자-uniform-resource-locator">URL (파일 식별자, Uniform Resource Locator)</h3>
 
@@ -205,17 +205,17 @@ Content-Type: text/xml</p>
 
 <p>Text</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>text/plain, text/html, text/css, text/javascript
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>text/plain, text/html, text/css, text/javascript
 </code></pre></div></div>
 
 <p>Image</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>image/gif, image/png, image/jpeg, image/bmp
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>image/gif, image/png, image/jpeg, image/bmp
 </code></pre></div></div>
 
 <p>Video</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vidoe/webm, video/ogg
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vidoe/webm, video/ogg
 </code></pre></div></div>
 
 <h2 id="proxy">Proxy</h2>

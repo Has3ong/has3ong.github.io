@@ -290,20 +290,16 @@ defaults:
       layout: single
       author_profile: true
       read_time: true
-      comments: true # true
+      comments: true
       share: true
       related: true
-      toc : true
-      toc_sticky: true
+      sidebar:
+        nav: "docs"
+
+  # _docs
   - scope:
       path: ""
-      type: pages
+      type: docs
     values:
-      layout: single
-      author_profile: true
-      read_time: true
-      # comments: true # true
-      share: true
-      related: true
-      toc: true
-      toc_sticky: true
+      sidebar:
+        nav: "docs"
