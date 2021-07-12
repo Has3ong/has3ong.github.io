@@ -4,6 +4,14 @@ tags :
 - brew
 - Homebrew
 - macOS
+categories:
+- OS X
+toc: true
+toc_min: 1
+toc_max: 4
+toc_sticky: true
+toc_label: "On This Page"
+author_profile: true
 ---
 
 홈브루(Homebrew)는 자유-오픈 소스 소프트웨어 패키지 관리 시스템입니다. 개발자 입장에서 맥 OS 를 사용하면 얻게되는 큰 이점중 하나가 이 Homebrew 입니다.

@@ -2,6 +2,14 @@
 title : Struct 
 tags:
 - Computer Science
+categories:
+- Computer Science
+toc: true
+toc_min: 1
+toc_max: 4
+toc_sticky: true
+toc_label: "On This Page"
+author_profile: true
 ---
 
 구조체 크기를 구하기전 구조체와 자료형 크기에 대해서 정리를 하고 시작하겠습니다.

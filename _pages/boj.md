@@ -1,7 +1,7 @@
 ---
 title: "Baekjoon Online Judge"
-permalink: /boj
-layout: single
+permalink: /categories/boj
+layout: category
 author_profile: true
 taxonomy: "Baekjoon Online Judge"
 sidebar:

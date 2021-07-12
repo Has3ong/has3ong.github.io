@@ -1,9 +1,9 @@
 ---
 title: "WEB / WAS"
-permalink: /web
-layout: single
+permalink: /categories/webwas
+layout: category
 author_profile: true
-taxonomy: ""WEB / WAS"
+taxonomy: "WEB / WAS"
 sidebar:
   nav: "docs"
 ---

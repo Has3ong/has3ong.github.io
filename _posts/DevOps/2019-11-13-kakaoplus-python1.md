@@ -6,6 +6,14 @@ tags:
 - Flask
 - Docker
 - 카카오톡 플러스친구
+categories:
+- DevOps
+toc: true
+toc_min: 1
+toc_max: 4
+toc_sticky: true
+toc_label: "On This Page"
+author_profile: true
 ---
 
 > 개발하기에 앞서 https://i.kakao.com/login 여기서 개발 제휴 신청을 하시고 진행하셔야 합니다. 

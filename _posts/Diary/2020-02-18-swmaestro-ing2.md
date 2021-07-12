@@ -2,6 +2,14 @@
 title : SW Maestro 10th 후기 -3- 연수생 생활 및 지원
 tags :
 - SW Maestro
+categories:
+- Life
+toc: true
+toc_min: 1
+toc_max: 4
+toc_sticky: true
+toc_label: "On This Page"
+author_profile: true
 ---
 
 사진은 추후 업데이트 하겠습니다. !

@@ -7,6 +7,14 @@ tags :
 - Wildfly
 - Apache
 - Centos
+categories:
+- WEB / WAS
+toc: true
+toc_min: 1
+toc_max: 4
+toc_sticky: true
+toc_label: "On This Page"
+author_profile: true
 ---
 
 Wildfly Standalone 방식으로 설정하겠습니다.

@@ -6,6 +6,14 @@ tags:
 - Flask
 - Docker
 - 카카오톡 플러스친구
+categories:
+- DevOps
+toc: true
+toc_min: 1
+toc_max: 4
+toc_sticky: true
+toc_label: "On This Page"
+author_profile: true
 ---
 
 > 이전에 Goorm을 사용했는데 Docker를 보안상의 이유로 사용을 제한해 놨습니다. 그래서 부득이하게 Docker로 배포하는 부분만 AWS에서 작업하겠습니다. 

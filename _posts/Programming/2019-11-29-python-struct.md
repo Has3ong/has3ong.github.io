@@ -5,6 +5,14 @@ tags :
 - namedtuple
 - collections
 - Python
+categories:
+- Programming
+toc: true
+toc_min: 1
+toc_max: 4
+toc_sticky: true
+toc_label: "On This Page"
+author_profile: true
 ---
 
 Python은 C언어에서 사용하는 struct를 사용할 수 없습니다.

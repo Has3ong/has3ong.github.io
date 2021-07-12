@@ -4,6 +4,14 @@ tags:
 - Process
 - Scheduling
 - Computer Science
+categories:
+- Computer Science
+toc: true
+toc_min: 1
+toc_max: 4
+toc_sticky: true
+toc_label: "On This Page"
+author_profile: true
 ---
 
 ## 프로세스 스케쥴링(Process Scheduling)

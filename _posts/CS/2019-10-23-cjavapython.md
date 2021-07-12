@@ -5,6 +5,14 @@ tags :
 - Java
 - C
 - Computer Science
+categories:
+- Computer Science
+toc: true
+toc_min: 1
+toc_max: 4
+toc_sticky: true
+toc_label: "On This Page"
+author_profile: true
 ---
 
 ## 컴파일러 언어 vs 인터프리터 언어

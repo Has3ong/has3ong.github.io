@@ -10,5 +10,22 @@ main:
 docs:
   - title: Category
     children:
+      - title: "Baekjoon Online Judge"
+        url: /categoreis/boj/
       - title: "BlockChain"
         url: /categories/blockchain/
+      - title: "Computer Science"
+        url: /categories/cs/
+      - title: "DevOps"
+        url: /categories/devops/
+      - title: "OS X"
+        url: /categories/osx/
+      - title: "Programming"
+        url: /categories/programming/
+      - title: "Spring"
+        url: /categories/spring/
+      - title: "WEB / WAS"
+        url: /categories/webwas/
+      - title: "Life"
+        url: /categories/life/
+

@@ -1,7 +1,7 @@
 ---
 title: Computer Science
-permalink: /cs
-layout: single
+permalink: /categories/cs
+layout: category
 author_profile: true
 taxonomy: "Computer Science"
 sidebar:

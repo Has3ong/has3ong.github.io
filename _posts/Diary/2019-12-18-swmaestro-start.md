@@ -2,6 +2,14 @@
 title : SW Maestro 10th 후기 -1- 연수생 합격
 tags :
 - SW Maestro
+categories:
+- Life
+toc: true
+toc_min: 1
+toc_max: 4
+toc_sticky: true
+toc_label: "On This Page"
+author_profile: true
 ---
 
 ![image](https://user-images.githubusercontent.com/44635266/71070439-1f3fd000-21be-11ea-81f8-9002d1cc19c0.png)

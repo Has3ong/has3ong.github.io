@@ -4,6 +4,14 @@ tags :
 - Kruskal
 - Prim
 - Algorithm
+categories:
+- Computer Science
+toc: true
+toc_min: 1
+toc_max: 4
+toc_sticky: true
+toc_label: "On This Page"
+author_profile: true
 ---
 
 먼저 kruskal과 prim알고리즘을 알기전에 MST를 알아야 합니다.

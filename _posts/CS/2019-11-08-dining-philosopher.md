@@ -4,6 +4,14 @@ tags:
 - 식사하는 철학자
 - DeadLock
 - Algorithm
+categories:
+- Computer Science
+toc: true
+toc_min: 1
+toc_max: 4
+toc_sticky: true
+toc_label: "On This Page"
+author_profile: true
 ---  
 
 세마포어와 뮤텍스, DeadLock과 같은 개념을 모르신다면 [프로세스와 스레드](/process-thread)와 [임계영역](/critical-section)포스트를 보고오시면 됩니다.

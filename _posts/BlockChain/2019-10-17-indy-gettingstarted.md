@@ -3,10 +3,16 @@ title : Hyperledger Indy Getting Started
 categories:
 - BlockChain
 tags :
-- Indy
-- Hyperledger
-- Getting Started
-- BlockChain
+ - Indy
+ - Hyperledger
+ - Getting Started
+ - BlockChain
+toc: true
+toc_min: 1
+toc_max: 4
+toc_sticky: true
+toc_label: "On This Page"
+author_profile: true
 ---
 
 *이 포스트는 `Hyperledger Korea User Group`에서 만든 글을 바탕으로 만들었습니다.*

@@ -2,6 +2,14 @@
 title : SW Maestro 10th 후기 -4- 마지막 후기
 tags :
 - SW Maestro
+categories:
+- Life
+toc: true
+toc_min: 1
+toc_max: 4
+toc_sticky: true
+toc_label: "On This Page"
+author_profile: true
 ---
 
 이 포스트를 읽으시는 분은 소프트웨어 마에스트로에 대해 많은 관심이 있을거라고 생각합니다.

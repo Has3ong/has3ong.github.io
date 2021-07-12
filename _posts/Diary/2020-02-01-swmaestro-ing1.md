@@ -3,6 +3,14 @@ title : SW Maestro 10th 후기 -2- 연수생 진행 일정
 tags :
 - 일정
 - SW Maestro
+categories:
+- Life
+toc: true
+toc_min: 1
+toc_max: 4
+toc_sticky: true
+toc_label: "On This Page"
+author_profile: true
 ---
 
 ## SW Maestro 연수생 일정

@@ -3,6 +3,14 @@ title : Python OpenAPI 데이터 활용하기
 tags :
 - Python
 - OpenAPI
+categories:
+- Programming
+toc: true
+toc_min: 1
+toc_max: 4
+toc_sticky: true
+toc_label: "On This Page"
+author_profile: true
 ---
 
 [공공데이터 포털](https://www.data.go.kr/)을 이용했습니다.

@@ -1,9 +1,9 @@
 ---
-title: "macOS"
-permalink: /osx
-layout: single
+title: "OS X"
+permalink: /categories/osx
+layout: category
 author_profile: true
-taxonomy: "macOS"
+taxonomy: "OS X"
 sidebar:
   nav: "docs"
 ---

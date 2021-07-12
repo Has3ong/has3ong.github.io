@@ -8,6 +8,14 @@ tags :
 - Tomcat
 - Apache
 - Centos
+categories:
+- WEB / WAS
+toc: true
+toc_min: 1
+toc_max: 4
+toc_sticky: true
+toc_label: "On This Page"
+author_profile: true
 ---
 
 Load Balancing 에 대한 개념을 모르신다면 [Load Balancing](/loadbalancing) 포스트를 보시면 됩니다.

@@ -3,6 +3,14 @@ title : Python 현재 디렉토리 위치 구하기
 tags :
 - Diretory
 - Python
+categories:
+- Programming
+toc: true
+toc_min: 1
+toc_max: 4
+toc_sticky: true
+toc_label: "On This Page"
+author_profile: true
 ---
 
 사용할 디렉토리 예시

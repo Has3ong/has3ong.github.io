@@ -3,6 +3,14 @@ title : Java equals()와 == 의 차이점
 tags :
 - Java
 - equals()
+categories:
+- Programming
+toc: true
+toc_min: 1
+toc_max: 4
+toc_sticky: true
+toc_label: "On This Page"
+author_profile: true
 ---
 
 `equals()` 메소드는 비교자하는 대상의 내용 자체를 비교하지만, `==` 연산자는 비교하고자 하는 대상의 주소값을 비교합니다.

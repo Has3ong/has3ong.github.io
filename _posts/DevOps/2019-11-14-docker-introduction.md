@@ -3,6 +3,14 @@ title : Docker Introduction
 tags:
 - Docker
 - DevOps
+categories:
+- DevOps
+toc: true
+toc_min: 1
+toc_max: 4
+toc_sticky: true
+toc_label: "On This Page"
+author_profile: true
 ---  
 
 ![image](https://user-images.githubusercontent.com/44635266/67613408-e13eb500-f7e7-11e9-8a6a-91a6fff8e2bd.png)
