@@ -368,7 +368,5 @@ filebeat 로 수집한 로그 중에 Parameter 값이 `{\"param\":\"1\"}` 이와
 
 위 같은 경우 Filebeat -> Logstash -> Elasticsearch 방식으로 중간에 Logstash 를 이용하여 필터링하시면 됩니다.
 
-> Written with Taeuk Kang(taeuk.kkang@kt.com), Haseong Kim(haseong.kim@kt.com)
-
 * 참고자료
   * [Elastic Stack and Product Documentation](/https://www.elastic.co/guide/index.html)

@@ -386,8 +386,6 @@ Parameter 정보 있을 경우 아래와 같이 출력이 됩니다. 출력 방�
 
 다음 포스트에서 파일비트 설치 후 로그 수집 및 ELK 뷰어까지 알아보겠습니다.
 
-> Written with Taeuk Kang(taeuk.kkang@kt.com), Haseong Kim(haseong.kim@kt.com)
-
 * 참고자료
   * [Complete Spring AOP Tutorial](/https://jstobigdata.com/spring/complete-spring-aop-tutorial/)
   * [Spring AOP Tutorial](/https://www.tutorialspoint.com/springaop/index.htm)
