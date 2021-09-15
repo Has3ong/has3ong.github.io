@@ -13,20 +13,20 @@ docs:
   - title: Category
     children:
       - title: "Baekjoon Online Judge"
-        url: /boj/
+        url: /boj
       - title: "BlockChain"
-        url: /blockchain/
+        url: /blockchain
       - title: "ComputerScience"
-        url: /cs/
+        url: /cs
       - title: "DevOps"
-        url: /devops/
+        url: /devops
       - title: "Life"
-        url: /life/
+        url: /life
       - title: "Programming"
-        url: /programming/
+        url: /programming
       - title: "Spring"
-        url: /spring/
+        url: /spring
       - title: "Server"
-        url: /server/
+        url: /server
 
 
