@@ -2,6 +2,8 @@
 main:
   - title: "About"
     url: /about
+  - title: "Archive"
+    url: /archive
   - title: "Categories"
     url: /categories
   - title: "Tags"
@@ -11,21 +13,20 @@ docs:
   - title: Category
     children:
       - title: "Baekjoon Online Judge"
-        url: /categoreis/boj/
+        url: /boj/
       - title: "BlockChain"
-        url: /categories/blockchain/
-      - title: "Computer Science"
-        url: /categories/cs/
+        url: /blockchain/
+      - title: "ComputerScience"
+        url: /cs/
       - title: "DevOps"
-        url: /categories/devops/
-      - title: "OS X"
-        url: /categories/osx/
-      - title: "Programming"
-        url: /categories/programming/
-      - title: "Spring"
-        url: /categories/spring/
-      - title: "WEB / WAS"
-        url: /categories/webwas/
+        url: /devops/
       - title: "Life"
-        url: /categories/life/
+        url: /life/
+      - title: "Programming"
+        url: /programming/
+      - title: "Spring"
+        url: /spring/
+      - title: "Server"
+        url: /server/
+
 

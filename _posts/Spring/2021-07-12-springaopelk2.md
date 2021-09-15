@@ -14,7 +14,7 @@ toc_min: 1
 toc_max: 4
 toc_sticky: true
 toc_label: "On This Page"
-author_profile: false
+author_profile: true
 ---
 
 위 포스트는 2개로 나누어서 -1- 에서는 Spring Boot 를 설정 및 로그를 출력하여 파일에 저장하기까지 과정을 작성하겠습니다. -2- 에서는 ELK 를 실제로 윈도우 환경에 설치하여 Filebeat 를 이용하여 수집하고 Elasticsearch 에 저장하여 Kibana 에 Visualization 하겠습니다.

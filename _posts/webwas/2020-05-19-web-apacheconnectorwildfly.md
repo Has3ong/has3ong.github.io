@@ -8,7 +8,7 @@ tags :
 - Apache
 - Centos
 categories:
-- WEB / WAS
+- Server
 toc: true
 toc_min: 1
 toc_max: 4
