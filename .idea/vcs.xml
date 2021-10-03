@@ -3,5 +3,6 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../flask-vue-crud" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../ktds-dev.gitlab.io" vcs="Git" />
   </component>
 </project>

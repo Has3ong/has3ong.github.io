@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../flask-vue-crud/.idea/flask-vue-crud.iml" filepath="$PROJECT_DIR$/../flask-vue-crud/.idea/flask-vue-crud.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/has3ong.github.io.iml" filepath="$PROJECT_DIR$/.idea/has3ong.github.io.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../ktds-dev.gitlab.io/.idea/ktds-dev.gitlab.io.iml" filepath="$PROJECT_DIR$/../ktds-dev.gitlab.io/.idea/ktds-dev.gitlab.io.iml" />
     </modules>
   </component>
 </project>
