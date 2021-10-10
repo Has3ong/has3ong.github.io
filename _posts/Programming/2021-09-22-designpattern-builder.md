@@ -2,7 +2,7 @@
 title:  "디자인 패턴 톺아보기 - Builder Pattern"
 excerpt: "디자인 패턴 톺아보기 - Builder Pattern"
 categories:
-  - Design Pattern
+  - Programming
 tags:
   - Design Pattern
   - Builder Pattern
@@ -16,11 +16,12 @@ author_profile: false
 
 ## 1. 빌더 패턴(Builder Pattern) 이란?
 
-GOF 에서 말하는 빌더 패턴의 목적은 아래와 같습니다.
+GOF 에서 말하는 빌더 패턴의
+ 목적은 아래와 같습니다.
 
 > *Separate the construction of a complex object from its representation so that the same construction process can create different representations.*
 
-> 복잡한 객체를 생성하는 방법을 정의하는 클래스와 표현하는 방법을 정의하는 클래스를 별도로 분리하여, 서로 다른 표현이라도 이를 생성할 수 있는 동일한 프로세스를 제공하는패턴입니다.
+> 복잡한 객체를 생성하는 방법을 정의하는 클래스와 표현하는 방법을 정의하는 클래스를 별도로 분리하여, 서로 다른 표현이라도 이를 생성할 수 있는 동일한 프로세스를 제공하는패턴입니다.  
 
 ### 1.1. 구조
 
@@ -31,7 +32,7 @@ GOF 에서 말하는 빌더 패턴의 목적은 아래와 같습니다.
 * Builder
   * Product 객체의 일부 요소들을 생성하기 위한 추상 인터페이스를 정의합니다.
 * ConcreteBuilder
-  * Builder 인터페이스를 사용하는 객체를 합성합니다.
+  * Builder 클래스에 정의된 인터페이스를 구현하며, 제품의 부품들을 모아 빌더를 복합합니다. 생성한 요소의 표현을 정의하고 관리합니다. 또한 제품을 검색하는 데 필요한 인터페이스를 제공합니다.
 * Director
   * Builder 인터페이스를 사용하는 객체를 합성합니다. 
 * Product
@@ -43,37 +44,34 @@ GOF 에서 말하는 빌더 패턴의 목적은 아래와 같습니다.
 2. 제품의 일부가 build 될 때마다 Director는 Builder에 통보한다.
 3. Builder는 Director의 요청을 처리하여 제품에 부품을 추가한다.
 4. 사용자는 Builder에서 제품을 검색한다.
+
+### 1.3. 장/단점
+
+* Advantages (+)
+    * Avoids compile-time implementation dependencies.
+    * Simplifies clients.
+* Disadvantages (-)
+    * Introduces an additional level of indirection.
+
+### 1.4. 고려사항
+
+* Consider the left design (problem):
+    * Hard-wired object creation.
+    * Complicated classes.
+* Consider the right design (solution):
+    * Encapsulated object creation.
+    * Simplified classes.
   
 ## 2. 빌더 패턴(Builder Pattern) 사용예시
 
 ### 2.1. GOF 패턴
 
+회원을 생성하는 간단한 예제를 통해 알아보겠습니다.
+
+#### 2.1.1. Builder
+
 ```java
-/** Product */
-class Member {
-	private String name ;
-	private int age ;
-	private String type;
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public void setAge(int age) {
-		this.age = age;
-	}
-	
-	public void setType(String type) {
-		this.type = type;
-	}
-	
-	@Override
-	public String toString() {
-		return "회원정보 [성명: " + this.name + "],  [나이: " + this.age + "], [등급: " + this.type + "]" ;
-	}
-}
-
-/** Abstract Builder */
+/** Builder */
 abstract class MemberBuilder {
 	protected Member member;
 
@@ -91,7 +89,11 @@ abstract class MemberBuilder {
 	
 	public abstract void buildType();
 }
+```
 
+#### 2.1.2. ConcreteBuilder
+
+```java
 /** ConcreteBuilder */
 class StaffMemberBuilder extends MemberBuilder {
 	public void buildName() {
@@ -121,9 +123,41 @@ class ManagerMemberBuilder extends MemberBuilder {
 		member.setType("MANGER");
 	}
 }
+```
 
+#### 2.1.3. Product
+
+```java
+/** Product */
+class Member {
+	private String name ;
+	private int age ;
+	private String type;
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+	
+	public void setType(String type) {
+		this.type = type;
+	}
+	
+	@Override
+	public String toString() {
+		return "회원정보 [성명: " + this.name + "],  [나이: " + this.age + "], [등급: " + this.type + "]" ;
+	}
+}
+```
+
+#### 2.1.4. Director
+
+```java
 /** Director */
-class Hire {
+class Director {
 	private MemberBuilder memberBuilder;
 
 	public void setMemberBuilder(MemberBuilder memberBuilder) {
@@ -141,20 +175,26 @@ class Hire {
 		memberBuilder.buildType();
 	}
 }
+```
 
+#### 2.1.5. Main
+
+* Main 클래스에서 간단한 예시를 통해 사용해보겠습니다.
+
+```java
 public class Main{
 
 	public static void main(String[] args) {
-		Hire hire = new Hire();
+		Director director = new Director();
 		MemberBuilder staffBuilder = new StaffMemberBuilder();
 		MemberBuilder managerBuilder = new ManagerMemberBuilder();
 
-		hire.setMemberBuilder(staffBuilder);
-		hire.constructMember();
+		director.setMemberBuilder(staffBuilder);
+		director.constructMember();
 		System.out.println(hire.getMember());
 		
-		hire.setMemberBuilder(managerBuilder);
-		hire.constructMember();
+		director.setMemberBuilder(managerBuilder);
+		director.constructMember();
 		System.out.println(hire.getMember());
 	}
 }
@@ -313,7 +353,7 @@ Company comapny2 = new Company
 
 > 참고 자료
 
-* [builder pattern](https://en.wikipedia.org/wiki/Builder_pattern)
+* [Builder Pattern](https://en.wikipedia.org/wiki/Builder_pattern)
 * [The GoF Design Patterns Reference.](http://w3sdesign.com/index0100.php)
 * [Effective Java 3th Edition](http://www.yes24.com/Product/Goods/65551284)
 

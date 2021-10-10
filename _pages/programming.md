@@ -39,17 +39,17 @@ sidebar:
 
 ### Design Pattern
 
-### 생선 패턴, Creational Pattern
+#### 생선 패턴, Creational Pattern
 
 생성 패턴은 객체의 생성과 관련된 패턴입니다. 객체의 인스턴스 과정을 추상화하는 방법이고, 객체의 생성과 참조 과정을 캡슐화하여 객체가 생성되거나 변경되어도 프로그램 구조에 영향을 받지 않도록 하여 프로그램에 유연성을 더해줍니다.
 
-* 추상 팩토리(Abstract Factory) : TBD
-* [빌더(Builder)](/designpattern-builder)
+* [추상 팩토리(Abstract Factory)](/programming/designpattern-abstractfactory)
+* [빌더(Builder)](/programming/designpattern-builder)
 * 팩토리 메소드(Factory Method) : TBD
 * 프로토타입(Prototype) : TBD
 * 싱글톤(Singleton) : TBD
 
-### 구조 패턴, Structural patterns
+#### 구조 패턴, Structural patterns
 
 구조 패턴은 클래스나 객체들을 조합해 더 큰 구조로 만들 수 있게 해주는 패턴입니다. 구조 클래스 패턴은 상속을 통해 클래스나 인터페이스를 합성하고, 구조 객체 패턴은 객체를 합성하는 방법을 정의합니.
 
@@ -61,7 +61,7 @@ sidebar:
 * 플라이웨이트(Flyweight) : TBD
 * 프록시(Proxy) : TBD
 
-### 행위 패턴, Behavioral Pattern
+#### 행위 패턴, Behavioral Pattern
 
 행위 패턴은 클래스나 객체들이 서로 상호작용하는 방법이나 작업, 어떤 알고리즘을 어떤 객체에 할당하는 것이 좋을지를 정의하는 패턴입니다. 즉, 객체나 클래스의 교류 방법에 대해 정의하는 것입니다.
 
