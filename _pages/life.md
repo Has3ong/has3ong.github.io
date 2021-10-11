@@ -25,6 +25,7 @@ sidebar:
 * [제 29회 데이터분석 준전문가(ADsP) 합격 후기](/life/certification-adsp)
 * [제 11회 IoT 사물인터넷 지식능력검정 합격 후기](/life/certification-iot)
 * [제 40회 SQL 개발자(SQLD) 합격 후기](/life/certification-sqld)
+* [제 48회 데이터아키텍처 준전문가(DAsP) 합격 후기](/life/certification-dasp)
 
 ## Game
 

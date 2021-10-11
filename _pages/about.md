@@ -24,6 +24,7 @@ sidebar:
 * 정보처리기사(Engineer Information Processing)
 * SQL 개발자(SQLD, SQL Developer)
 * 데이터분석 준전문가(ADsP, Advanced Data Analytics Semi-Professional)
+* 데이터아키텍처 준전문가(DAsP, Data Architecture Semi-Professional)
 * IoT 지식능력검정
 
 ### Comment
@@ -40,4 +41,4 @@ sidebar:
 
 [https://cultofthepartyparrot.com/](https://cultofthepartyparrot.com/)
 
-*Last Update - 2021, 09, 15*
+*Last Update - 2021, 10, 11*
