@@ -12,3 +12,4 @@ sidebar:
 * [Spring Boot Tiles 설정하기](/spring/springtiles)
 * [Spring Boot AOP 를 이용하여 로그를 작성하고 ELK 스택 연동 -1-](/spring/springaoptoelk)
 * [Spring Boot AOP 를 이용하여 로그를 작성하고 ELK 스택 연동 -2-](/spring/springaopelk2)
+* [Spring Boot Banner 문구 변경하기](/spring/springboot-banner)
