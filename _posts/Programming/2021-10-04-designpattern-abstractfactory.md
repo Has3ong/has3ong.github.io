@@ -18,7 +18,7 @@ author_profile: false
 
 GOF 에서 말하는 추상 팩토리 패턴의 목적은 아래와 같습니다.
 
-> *Provide an interface for creating families of related or dependent objects without specifying their concrete classes.*
+> Provide an interface for creating families of related or dependent objects without specifying their concrete classes.
 
 > 상세화된 서브클래스를 정의하지 않고도 서로 관련성이 있거나 독립적인 여러 객체의 군을 생성하기 위한 인터페이스를 제공합니다.
 

@@ -19,7 +19,7 @@ author_profile: false
 GOF 에서 말하는 빌더 패턴의
  목적은 아래와 같습니다.
 
-> *Separate the construction of a complex object from its representation so that the same construction process can create different representations.*
+> Separate the construction of a complex object from its representation so that the same construction process can create different representations.
 
 > 복잡한 객체를 생성하는 방법을 정의하는 클래스와 표현하는 방법을 정의하는 클래스를 별도로 분리하여, 서로 다른 표현이라도 이를 생성할 수 있는 동일한 프로세스를 제공하는패턴입니다.  
 

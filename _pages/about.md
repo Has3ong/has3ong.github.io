@@ -27,11 +27,35 @@ sidebar:
 * 데이터아키텍처 준전문가(DAsP, Data Architecture Semi-Professional)
 * IoT 지식능력검정
 
+### Goal 
+    
+* 빅데이터분석기사
+* 정보보안기사
+* SQL 전문가(SQLP, SQL Professional)
+* 데이터아키텍처 전문가(DAP, Data Architecture Professional)
+* 개인정보관리사(CPPG, Certified Privacy Protection General)
+* SW 테스트 전문가 자격 - 일반등급(CSTS - Foundation Level)
+* SW 테스트 전문가 자격 - 고급등급(CSTS - Advanced Level)
+* ISTQB CTFL(Certified Tester Foundation Level)
+* ISTQB CTAL(Certified Tester Advanced Level)
+* ISTQB CTEL (Certified Tester Expert Level)
+* ITIL(IT Infrastructure Library) v4 Foundation
+* OCJP(Oracle Certified Professional, Java SE 8 Programmer)
+* OCP(Oracle Certified Professional)
+* MongoDB Developer(C100DEV)
+* MongoDB Database Administrator(C100DBA)
+* PostgreSQL Associate Certification
+* PostgreSQL Professional Certification
+* PCEP Certified Entry-Level Python Programmer
+* PCAP – Certified Associate in Python Programming
+* PCPP1 – Certified Professional in Python Programming 1
+* PCPP2 – Certified Professional in Python Programming 2
+
 ### Comment
 
 * 취업 준비 및 자기개발을 위해 만든 블로그입니다. 
     * 많이 부족할 수 있습니다. 포스트에 관한 모든 지적과 피드백 남겨주시면 감사히 받겠습니다.
-* 요즘 롤이 너무 재밌습니다...., 2021.09/15
+* 요즘 롤이 너무 재밌습니다...., 2021, 09, 15
 
 ### Contact
 

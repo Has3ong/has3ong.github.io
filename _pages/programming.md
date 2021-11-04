@@ -45,15 +45,15 @@ sidebar:
 
 * [추상 팩토리(Abstract Factory)](/programming/designpattern-abstractfactory)
 * [빌더(Builder)](/programming/designpattern-builder)
-* 팩토리 메소드(Factory Method) : TBD
-* 프로토타입(Prototype) : TBD
-* 싱글톤(Singleton) : TBD
+* [팩토리 메소드(Factory Method)](/programming/designpattern-factorymethod)
+* [프로토타입(Prototype)](/programming/designpattern-prototype)
+* [싱글톤(Singleton)](/programming/designpattern-singleton)
 
 #### 구조 패턴, Structural patterns
 
 구조 패턴은 클래스나 객체들을 조합해 더 큰 구조로 만들 수 있게 해주는 패턴입니다. 구조 클래스 패턴은 상속을 통해 클래스나 인터페이스를 합성하고, 구조 객체 패턴은 객체를 합성하는 방법을 정의합니.
 
-* 어댑터(Adapter) : TBD
+* [어댑터(Adapter)](/programming/designpattern-adapter)
 * 브리지(Bridge) : TBD
 * 컴포지트(Composite) : TBD
 * 데코레이터(Decorator) : TBD
