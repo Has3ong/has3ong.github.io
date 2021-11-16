@@ -16,7 +16,7 @@ author_profile: true
 
 ![image](/assets/images/certifciation/adsp1.png)
 
-제 29회 ADsP 자격증 시험에 합격했습니다. 취득하면 회사에서 점수를 부여해주기 때문에 취득했습니다. 아슬아슬하게 붙어서 더 짜릿하내요.
+제 29회 ADsP 자격증 시험에 합격했습니다. 아슬아슬하게 붙어서 더 짜릿하내요.
 
 **자격증 소개**
 

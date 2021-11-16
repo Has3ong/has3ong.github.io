@@ -16,7 +16,7 @@ author_profile: true
 
 ![image](/assets/images/certifciation/dasp1.png)
 
-제48회 데이터아키텍처 준전문가(DAsP) 자격증 시험에 합격했습니다. 취득하면 회사에서 점수를 부여해주기 때문에 취득했습니다. 
+제48회 데이터아키텍처 준전문가(DAsP) 자격증 시험에 합격했습니다. 
 
 **자격증 소개**
 

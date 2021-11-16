@@ -16,7 +16,7 @@ author_profile: true
 
 ![image](/assets/images/certifciation/sqld1.png)
 
-제 40회 SQLD 자격증 시험에 합격했습니다. 취득하면 회사에서 점수를 부여해주기 때문에 취득했습니다. 
+제 40회 SQLD 자격증 시험에 합격했습니다. 
 
 **자격증 소개**
 

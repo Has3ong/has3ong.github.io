@@ -16,7 +16,7 @@ author_profile: true
 
 ![image](/assets/images/certifciation/iot1.png)
 
-제 11회 SQLD 자격증 시험에 합격했습니다. 점수는 확인할 수 없네요. 취득하면 회사에서 점수를 부여해주기 때문에 취득했습니다. 
+제 11회 IoT 사물인터넷 지식능력검정 시험에 합격했습니다. 점수는 확인할 수 없네요.  
 
 **자격증 소개**
 

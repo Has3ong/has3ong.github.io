@@ -25,6 +25,7 @@ sidebar:
 * SQL 개발자(SQLD, SQL Developer)
 * 데이터분석 준전문가(ADsP, Advanced Data Analytics Semi-Professional)
 * 데이터아키텍처 준전문가(DAsP, Data Architecture Semi-Professional)
+* ISTQB CTFL(Certified Tester Foundation Level)
 * IoT 지식능력검정
 
 ### Goal 
@@ -36,7 +37,6 @@ sidebar:
 * 개인정보관리사(CPPG, Certified Privacy Protection General)
 * SW 테스트 전문가 자격 - 일반등급(CSTS - Foundation Level)
 * SW 테스트 전문가 자격 - 고급등급(CSTS - Advanced Level)
-* ISTQB CTFL(Certified Tester Foundation Level)
 * ISTQB CTAL(Certified Tester Advanced Level)
 * ISTQB CTEL (Certified Tester Expert Level)
 * ITIL(IT Infrastructure Library) v4 Foundation
@@ -65,4 +65,4 @@ sidebar:
 
 [https://cultofthepartyparrot.com/](https://cultofthepartyparrot.com/)
 
-*Last Update - 2021, 10, 11*
+*Last Update - 2021, 11, 16*

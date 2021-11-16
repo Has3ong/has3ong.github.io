@@ -26,6 +26,7 @@ sidebar:
 * [제 11회 IoT 사물인터넷 지식능력검정 합격 후기](/life/certification-iot)
 * [제 40회 SQL 개발자(SQLD) 합격 후기](/life/certification-sqld)
 * [제 48회 데이터아키텍처 준전문가(DAsP) 합격 후기](/life/certification-dasp)
+* [2021년 한글7차 정기시험 ISTQB CTFL 합격 후기](/life/certification-istqbctfl)
 
 ## Game
 
