@@ -68,11 +68,114 @@ GOF 에서 말하는 인터프리터 패턴의 목적은 아래와 같습니다.
 
 ### 2.1. GOF 패턴
 
-#### 2.1.1. Target
+#### 2.1.1. AbstractExpression
+
+```java
+abstract class AbstractExpression {
+	private String name;
+	public AbstractExpression(String name) { 
+		this.name = name;
+	}
+	
+	public abstract void interpret(Context context);
+	
+	public String getName() { 
+		return name;
+	}
+	
+	// Defining default implementation for child management operations.
+	public boolean add(AbstractExpression e) {
+		return false;
+	}
+}
+```
+
+#### 2.1.2 TerminalExpression
+
+```java
+class TerminalExpression extends AbstractExpression { 
+	public TerminalExpression(String name) { 
+		super(name);
+	} 
+
+	public void interpret(Context context) { 
+		// ...
+	} 
+}
+```
+
+#### 2.1.3. NonterminalExpression
+
+```java
+class NonTerminalExpression extends AbstractExpression { 
+	private List<AbstractExpression> expressions = new ArrayList<AbstractExpression>();
+	
+	public NonTerminalExpression(String name) {
+		super(name);
+	}
+	
+	public void interpret(Context context) { 
+		System.out.println(getName() + ": ");
+		for (AbstractExpression expression : expressions) { 
+			System.out.println("  interpreting ... " + expression.getName());
+			expression.interpret(context);
+		} 
+		System.out.println(getName() + " finished.");
+	} 
+	
+	// Overriding the default implementation.
+	@Override
+	public boolean add(AbstractExpression e) { 
+		return expressions.add(e);
+	} 	
+}
+```
+
+#### 2.1.4. Context
+
+```java
+class Context {
+	// Input data and workspace for interpreting.
+}
+```
+
+#### 2.1.5. Client
+
+```java
+public class Main{
+
+	// Running the Client class as application.
+	public static void main(String[] args) {
+		// Building an abstract syntax tree (AST).
+		AbstractExpression ntExpr2 = new NonTerminalExpression("ntExpr2");
+		ntExpr2.add(new TerminalExpression(" tExpr3"));
+		ntExpr2.add(new TerminalExpression(" tExpr4"));
+		ntExpr2.add(new TerminalExpression(" tExpr5"));
+		
+		AbstractExpression ntExpr1 = new NonTerminalExpression("ntExpr1");
+		ntExpr1.add(new TerminalExpression(" tExpr1"));
+		ntExpr1.add(ntExpr2);
+		ntExpr1.add(new TerminalExpression(" tExpr2"));
+		Context context = new Context();
+		// Interpreting the AST (walking the tree).        
+		ntExpr1.interpret(context);
+	}
+}
+```
 
 결과는 아래와 같습니다.
 
 ```
+ntExpr1: 
+  interpreting ...  tExpr1
+  interpreting ... ntExpr2
+ntExpr2: 
+  interpreting ...  tExpr3
+  interpreting ...  tExpr4
+  interpreting ...  tExpr5
+ntExpr2 finished.
+  interpreting ...  tExpr2
+ntExpr1 finished.
 ```
 
 > 참고 자료

@@ -72,11 +72,78 @@ GOF 에서 말하는 전략 패턴의 목적은 아래와 같습니다.
 
 ### 2.1. GOF 패턴
 
-#### 2.1.1. Target
+#### 2.1.1. Strategy
+
+```java
+interface Strategy { 
+	int algorithm();
+}
+```
+
+#### 2.1.2. ConcreteStrategy
+
+```java
+class Strategy1 implements Strategy { 
+	public int algorithm() { 
+		// Implementing the algorithm.
+		return 1; // return result
+	} 
+} 
+
+class Strategy2 implements Strategy { 
+	public int algorithm() {
+		// Implementing the algorithm.
+		return 2; // return result
+	} 
+} 
+```
+
+#### 2.1.3. Context
+
+```java
+class Context { 
+	private Strategy strategy;
+
+	public Context(Strategy strategy) { 
+		this.strategy = strategy;
+	} 
+
+	public String operation() { 
+		return "Context: Delegating an algorithm to a strategy: Result = " + strategy.algorithm();
+	} 
+	
+	public void setStrategy(Strategy strategy) { 
+		this.strategy = strategy;
+	} 
+} 
+```
+
+#### 2.1.4. Main
+
+```java
+public class Main{
+
+	// Running the Client class as application.
+	public static void main(String[] args) {
+		// Creating a Context object 
+		// and configuring it with a Strategy1 object.
+		Context context = new Context(new Strategy1());
+		
+		// Calling an operation on context.
+		System.out.println("(1) " + context.operation());
+		
+		// Changing context's strategy.
+		context.setStrategy(new Strategy2());
+		System.out.println("(2) " + context.operation());
+	} 
+}
+```
 
 결과는 아래와 같습니다.
 
 ```
+(1) Context: Delegating an algorithm to a strategy: Result = 1
+(2) Context: Delegating an algorithm to a strategy: Result = 2
 ```
 
 > 참고 자료

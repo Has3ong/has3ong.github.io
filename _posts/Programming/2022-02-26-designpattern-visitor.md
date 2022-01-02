@@ -72,11 +72,90 @@ GOF 에서 말하는 방문자 패턴의 목적은 아래와 같습니다.
 
 ### 2.1. GOF 패턴
 
-#### 2.1.1. Target
+#### 2.1.1. Visitor
+
+```java
+abstract class Visitor { 
+	public abstract void visitElementA(ElementA e);
+	public abstract void visitElementB(ElementB e);
+}
+```
+
+#### 2.1.2. ConcreteVisitor
+
+```java
+class Visitor1 extends Visitor {
+	public void visitElementA(ElementA element) { 
+		System.out.println("Visitor1: Visiting (doing something on) ElementA.\n" + element.operationA());
+	} 
+	
+	public void visitElementB(ElementB element) { 
+		System.out.println("Visitor1: Visiting (doing something on) ElementB.\n" + element.operationB());
+	}
+}
+```
+
+#### 2.1.3. Element
+
+```java
+abstract class Element {
+	public abstract void accept(Visitor visitor);
+}
+```
+
+#### 2.1.4. ConcreteElement
+
+```java
+class ElementA extends Element {
+	public void accept(Visitor visitor) { 
+		visitor.visitElementA(this);
+	} 
+	
+	public String operationA() { 
+		return "Hello World from ElementA!";
+	} 
+}
+
+class ElementB extends Element {
+	public void accept(Visitor visitor) { 
+		visitor.visitElementB(this);
+	} 
+	
+	public String operationB() { 
+		return "Hello World from ElementN!";
+	} 
+}
+```
+
+#### 2.1.5. Main
+
+```java
+public class Main{
+	public static void main(String[] args) {
+		// Setting up an object structure.
+		List<Element> elements = new ArrayList<Element>();
+		elements.add(new ElementA());
+		elements.add(new ElementB());
+		
+		// Creating a Visitor1 object.
+		Visitor visitor = new Visitor1();
+		
+		// Traversing the object structure and
+		// calling accept(visitor) on each element.
+		for (Element element : elements) { 
+			element.accept(visitor);
+		}
+	}
+}
+```
 
 결과는 아래와 같습니다.
 
 ```
+Visitor1: Visiting (doing something on) ElementA.
+Hello World from ElementA!
+Visitor1: Visiting (doing something on) ElementB.
+Hello World from ElementN!
 ```
 
 > 참고 자료

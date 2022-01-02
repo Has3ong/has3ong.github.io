@@ -67,11 +67,114 @@ GOF 에서 말하는 반복자 패턴의 목적은 아래와 같습니다.
 
 ### 2.1. GOF 패턴
 
-#### 2.1.1. Target
+#### 2.1.1. Iterator
+
+```java
+interface Iterator<E> { 
+	E next();
+	boolean hasNext();
+} 
+```
+
+#### 2.1.2. Aggregate
+
+```java
+interface Aggregate<E> { 
+	// ...
+	Iterator<E> createIterator();
+	boolean add(E element);
+} 
+```
+
+#### 2.1.3. ConcreteAggregate / ConcreteIterator
+
+```java
+class Aggregate1<E> implements Aggregate<E> {  // E = Type parameter
+	// Hiding the representation.
+	private Object[] elementData; // represented as object array
+	private int idx = 0;
+	private int size;
+
+	//
+	public Aggregate1(int size) { 
+		if (size < 0) {
+			throw new IllegalArgumentException("size: " + size);
+		}
+		this.size = size;
+		elementData = new Object[size];
+	} 
+	
+	public boolean add(E element) { 
+		if (idx < size) { 
+			elementData[idx++] = element;
+			return true;
+		}  else {
+			return false;
+		}
+	} 
+	
+	public int getSize() { 
+		return size;
+	} 
+	
+	// Factory method for instantiating Iterator1.
+	public Iterator<E> createIterator() { 
+		return new Iterator1<E>();
+	} 
+	
+	//
+	// Implementing Iterator1 as inner class.
+	//
+	private class Iterator1<E> implements Iterator<E> { 
+		// Holds the current position in the traversal.
+		private int cursor = 0; // index of next element to return
+		//
+		public boolean hasNext() { 
+			return cursor < size;
+		} 
+	
+		public E next() {  // E = Type of element returned by this method
+			if (cursor >= size) {
+				throw new NoSuchElementException();
+			}
+	
+			return (E) elementData[cursor++]; // cast from Object to E
+		} 
+	} 
+} 
+```
+
+#### 2.1.4. Main
+
+```java
+public class Main{
+
+	// Running the Client class as application.
+	public static void main(String[] args) {
+		// Setting up an aggregate.
+		Aggregate<String> aggregate = new Aggregate1<String>(3);
+		aggregate.add(" ElementA ");
+		aggregate.add(" ElementB ");
+		aggregate.add(" ElementC ");
+		//
+		// Creating an iterator.
+		Iterator<String> iterator = aggregate.createIterator();
+		//
+		System.out.println("Traversing the aggregate front-to-back:");
+		while (iterator.hasNext()) { 
+			System.out.println(iterator.next());
+		} 
+	}
+}
+```
 
 결과는 아래와 같습니다.
 
 ```
+Traversing the aggregate front-to-back:
+ ElementA 
+ ElementB 
+ ElementC 
 ```
 
 > 참고 자료

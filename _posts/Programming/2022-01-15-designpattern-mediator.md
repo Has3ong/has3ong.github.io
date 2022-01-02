@@ -67,11 +67,146 @@ GOF 에서 말하는 중재자 패턴의 목적은 아래와 같습니다.
 
 ### 2.1. GOF 패턴
 
-#### 2.1.1. Target
+#### 2.1.1. Mediator
+
+```java
+abstract class Mediator {
+	// Mediating the interaction between colleagues.
+	public abstract void mediate(Colleague colleague);
+}
+```
+
+#### 2.1.2. ConcreteMediator
+
+```java
+class Mediator1 extends Mediator {
+	private Colleague1 colleague1;
+	private Colleague2 colleague2;
+	
+	void setColleagues(Colleague1 colleague1, Colleague2 colleague2) { 
+		this.colleague1 = colleague1;
+		this.colleague2 = colleague2;
+	} 
+	
+	public void mediate(Colleague colleague) { 
+		System.out.println("    Mediator  : Mediating the interaction ...");
+		// Message from colleague1 that its state has changed.
+		if (colleague == colleague1) {  
+			// Performing an action on colleague2.
+			String state = colleague1.getState();
+			colleague2.action2(state);
+		}
+		
+		// Message from colleague2 that its state has changed.
+		if (colleague == colleague2) { 
+			// Performing an action on colleague1.
+			String state = colleague2.getState();
+			colleague1.action1(state);
+		} 
+	} 
+}
+```
+
+#### 2.1.3. Colleague
+
+```java
+abstract class Colleague {
+	Mediator mediator;
+	
+	public Colleague(Mediator mediator) {
+		this.mediator = mediator;
+	}
+}
+
+class Colleague1 extends Colleague {
+	private String state;
+	
+	public Colleague1(Mediator mediator) { 
+		super(mediator); // Calling the super class constructor
+	} 
+	
+	public String getState() { 
+		return state;
+	} 
+	
+	void setState(String state) { 
+		if (state != this.state) { 
+			this.state = state;
+			System.out.println("    Colleague1: My state changed to: "  + this.state + " Calling my mediator ...");
+			mediator.mediate(this);
+		} 
+	} 
+	      
+	void action1 (String state) { 
+		// For example, synchronizing and displaying state. 
+		this.state = state;
+		System.out.println("    Colleague1: My state synchronized to: " + this.state);
+	} 
+}
+
+class Colleague2 extends Colleague {
+	private String state;
+	
+	public Colleague2(Mediator mediator) { 
+		super(mediator); // Calling the super class constructor
+	} 
+	
+	public String getState() { 
+		return state;
+	} 
+	
+	void setState(String state) { 
+		if (state != this.state) { 
+			this.state = state;
+			System.out.println("    Colleague2: My state changed to: "  + this.state + " Calling my mediator ...");
+			mediator.mediate(this);
+		} 
+	} 
+	      
+	void action2 (String state) { 
+		// For example, synchronizing and displaying state. 
+		this.state = state;
+		System.out.println("    Colleague2: My state synchronized to: " + this.state);
+	} 
+}
+```
+
+#### 2.1.4. Client
+
+```java
+public class Main{
+
+	// Running the Client class as application.
+	public static void main(String[] args) {
+		Mediator1 mediator = new Mediator1();
+		// Creating colleagues 
+		// and configuring them with a Mediator1 object. 
+		Colleague1 c1 = new Colleague1(mediator);
+		Colleague2 c2 = new Colleague2(mediator);
+		
+		// Setting mediator's colleagues.
+		mediator.setColleagues(c1, c2);
+		System.out.println("(1) Changing state of Colleague1 ...");
+		c1.setState("Hello World1!");
+		
+		System.out.println("\n(2) Changing state of Colleague2 ...");
+		c2.setState("Hello World2!");
+	} 
+}
+```
 
 결과는 아래와 같습니다.
 
 ```
+(1) Changing state of Colleague1 ...
+    Colleague1: My state changed to: Hello World1! Calling my mediator ...
+    Mediator  : Mediating the interaction ...
+    Colleague2: My state synchronized to: Hello World1!
+
+(2) Changing state of Colleague2 ...
+    Colleague2: My state changed to: Hello World2! Calling my mediator ...
+    Mediator  : Mediating the interaction ...
+    Colleague1: My state synchronized to: Hello World2!
 ```
 
 > 참고 자료

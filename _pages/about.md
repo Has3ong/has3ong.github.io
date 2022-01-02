@@ -22,6 +22,7 @@ sidebar:
 ### Certificate
 
 * 정보처리기사(Engineer Information Processing)
+* 빅데이터분석기사
 * SQL 개발자(SQLD, SQL Developer)
 * 데이터분석 준전문가(ADsP, Advanced Data Analytics Semi-Professional)
 * 데이터아키텍처 준전문가(DAsP, Data Architecture Semi-Professional)
@@ -30,8 +31,9 @@ sidebar:
 
 ### Goal 
     
-* 빅데이터분석기사
-* 정보보안기사
+* 정보보안기사(Engineer information security)
+* 정보통신기사(Engineer Information & Communication)
+* 정보관리기술사(Professional Engineer Information Management)
 * SQL 전문가(SQLP, SQL Professional)
 * 데이터아키텍처 전문가(DAP, Data Architecture Professional)
 * 개인정보관리사(CPPG, Certified Privacy Protection General)
@@ -46,7 +48,6 @@ sidebar:
 * MongoDB Database Administrator(C100DBA)
 * PostgreSQL Associate Certification
 * PostgreSQL Professional Certification
-* PCEP Certified Entry-Level Python Programmer
 * PCAP – Certified Associate in Python Programming
 * PCPP1 – Certified Professional in Python Programming 1
 * PCPP2 – Certified Professional in Python Programming 2

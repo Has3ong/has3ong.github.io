@@ -73,11 +73,98 @@ GOF 에서 말하는 상태 패턴의 목적은 아래와 같습니다.
 
 ### 2.1. GOF 패턴
 
-#### 2.1.1. Target
+#### 2.1.1. Context
+
+```java
+class Context { 
+	private State state; // reference to the current State object
+
+	public Context(State state) {  
+			this.state = state;
+	} 
+
+	public String operation() { 
+		return "Context: Delegating state-specific behavior to the current State object.\n"  + state.operation(this);
+	} 
+
+	void setState(State state) {  // package private
+		this.state = state;
+	} 
+} 
+```
+
+#### 2.1.2. State
+
+```java
+interface State { 
+	String operation(Context context);
+} 
+```
+
+#### 2.1.3. ConcreteState
+
+```java
+class State1 implements State { 
+	// Implemented as Singleton.
+	private static final State1 INSTANCE = new State1();
+	private State1() { } 
+
+	public static State1 getInstance() { 
+		return INSTANCE;
+	} 
+   
+	public String operation(Context context) { 
+		String result = "    State1 : Hello World1!" + " Changing current state of Context to State2.";
+		context.setState(State2.getInstance()); // state transition 
+		return result;
+	} 
+} 
+
+
+class State2 implements State { 
+	// Implemented as Singleton.
+	private static final State2 INSTANCE = new State2();
+	private State2() { } 
+	
+	public static State2 getInstance() { 
+		return INSTANCE;
+	} 
+
+	public String operation(Context context) { 
+		String result = "    State2 : Hello World2!" + " Changing current state of Context to State1.";
+		context.setState(State1.getInstance()); // state transition
+		return result;
+	} 
+} 
+```
+
+#### 2.1.4. Main
+
+```java
+public class Main{
+
+	// Running the Client class as application.
+	public static void main(String[] args) {
+
+		// Creating a Context object 
+		// and configuring it with the initial State1 object.
+		Context context = new Context(State1.getInstance());
+		// Calling an operation on context.
+		System.out.println("(1) " + context.operation());    
+		// Calling the operation again.
+		System.out.println("(2) " + context.operation());
+		
+	} 
+}
+```
 
 결과는 아래와 같습니다.
 
 ```
+(1) Context: Delegating state-specific behavior to the current State object.
+    State1 : Hello World1! Changing current state of Context to State2.
+(2) Context: Delegating state-specific behavior to the current State object.
+    State2 : Hello World2! Changing current state of Context to State1.
 ```
 
 > 참고 자료

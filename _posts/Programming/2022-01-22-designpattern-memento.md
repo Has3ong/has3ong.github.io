@@ -66,11 +66,97 @@ GOF 에서 말하는 메멘토 패턴의 목적은 아래와 같습니다.
 
 ### 2.1. GOF 패턴
 
-#### 2.1.1. Target
+#### 2.1.1. Memento / Originator
+
+```java
+class Originator { 
+	// Hiding internal state.
+	private String state;
+	
+	// ...
+	// Saving internal state.
+	public Memento createMemento() { 
+		Memento memento = new Memento();
+		memento.setState(state);
+		return memento;
+	} 
+	
+	// Restoring internal state.
+	void restore(Memento memento) { 
+		state = memento.getState();
+	} 
+	
+	//
+	public String getState() { 
+		return state;
+	} 
+	
+	void setState(String state) { 
+		this.state = state;
+	} 
+	
+	//
+	// Implementing Memento as inner class.
+	// All members are private and accessible only by originator.
+	//
+	public class Memento { 
+		// Storing Originator's internal state.
+		private String state;
+	
+		// ...
+		private String getState() { 
+			return state;
+		} 
+		
+		private void setState(String state) { 
+			this.state = state;
+		} 
+	} 
+} 
+```
+
+#### 2.1.2. Caretaker
+
+```java
+public class Main{
+
+	// Running the Client class as application.
+	public static void main(String[] args) {
+
+		Originator originator = new Originator();
+		Originator.Memento memento; // Memento is inner class of Originator
+		
+		// List of memento objects.  
+		List<Originator.Memento> mementos = new ArrayList<Originator.Memento>();
+		
+		originator.setState("A"); 
+		
+		// Saving state.
+		memento = originator.createMemento(); 
+		mementos.add(memento); // adding to list
+		System.out.println("(1) Saving current state ...... : " + originator.getState());
+		
+		originator.setState("B"); 
+		// Saving state.
+		memento = originator.createMemento(); 
+		mementos.add(memento); // adding to list
+		System.out.println("(2) Saving current state ...... : " + originator.getState());
+		
+		// Restoring to previous state.
+		memento = mementos.get(0); // getting previous (first) memento from the list 
+		originator.restore(memento);
+		System.out.println("(3) Restoring to previous state : " + originator.getState());
+		
+	} 
+}
+```
 
 결과는 아래와 같습니다.
 
 ```
+(1) Saving current state ...... : A
+(2) Saving current state ...... : B
+(3) Restoring to previous state : A
 ```
 
 > 참고 자료

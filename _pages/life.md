@@ -16,7 +16,7 @@ sidebar:
 * [SW Maestro 10th 후기 -1- 연수생 합격](/life/swmaestro-start)
 * [SW Maestro 10th 후기 -2- 과정 진행 일정](/life/swmaestro-ing1)
 * [SW Maestro 10th 후기 -3- 센터 소개 및 연수생 지원](/life/swmaestro-ing2)
-* [SW Maestro 10th 후기 -4- 마지막 후](/life/swmaestro-ing3)
+* [SW Maestro 10th 후기 -4- 마지막 후기](/life/swmaestro-ing3)
 
 **SoftWare Maestro [홈페이지](http://swmaestro.org/)**
 
@@ -27,6 +27,13 @@ sidebar:
 * [제 40회 SQL 개발자(SQLD) 합격 후기](/life/certification-sqld)
 * [제 48회 데이터아키텍처 준전문가(DAsP) 합격 후기](/life/certification-dasp)
 * [2021년 한글7차 정기시험 ISTQB CTFL 합격 후기](/life/certification-istqbctfl)
+* [제 3회 빅데이터분석기사 합격 후기](/life/certification-bigdata)
+
+## Articles
+
+### Gartner
+
+* [Gartner Top Strategic Technology Trends for 2022 리뷰](/life/gartner-trends2022)
 
 ## Game
 

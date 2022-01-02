@@ -61,11 +61,73 @@ GOF 에서 말하는 템플릿 메소드 패턴의 목적은 아래와 같습니
 
 ### 2.1. GOF 패턴
 
-#### 2.1.1. Target
+#### 2.1.1. AbstractClass
+
+```java
+abstract class Coffee {
+	
+	public void makeCoffee() {
+		this.putWater();
+		this.putBeans();
+	}
+	
+	public void putBeans() {
+		System.out.println("Put Beans");
+	}	
+	
+	abstract void putWater();
+} 
+```
+
+#### 2.1.2. ConcreteClass
+
+```java
+class HotAmericano extends Coffee {
+	
+	@Override
+	public void putWater() {
+		System.out.println("Boiled Water");
+		System.out.println("Put Water");
+	}
+}
+
+class IceAmericano extends Coffee {
+
+	@Override
+	public void putWater() {
+		System.out.println("Put Water");
+		System.out.println("Put Ice");
+	}
+}
+```
+
+#### 2.1.3. Main
+
+```java
+public class Main{
+
+	// Running the Client class as application.
+	public static void main(String[] args) {
+		Coffee c1 = new IceAmericano();
+		Coffee c2 = new HotAmericano();
+		
+		c1.makeCoffee();
+		System.out.println("\n");
+		c2.makeCoffee();
+	} 
+}
+```
 
 결과는 아래와 같습니다.
 
 ```
+Put Water
+Put Ice
+Put Beans
+
+Boiled Water
+Put Water
+Put Beans
 ```
 
 > 참고 자료
