@@ -55,24 +55,24 @@ sidebar:
 
 * [어댑터(Adapter)](/programming/designpattern-adapter)
 * [브리지(Bridge)](/programming/designpattern-bridge)
-* 컴포지트(Composite) : TBD
-* 데코레이터(Decorator) : TBD
-* 퍼싸드(Facade) : TBD
-* 플라이웨이트(Flyweight) : TBD
-* 프록시(Proxy) : TBD
+* [컴포지트(Composite)](/programming/designpattern-composite)
+* [데코레이터(Decorator)](/programming/designpattern-decorator)
+* [퍼싸드(Facade)](/programming/designpattern-facade)
+* [플라이웨이트(Flyweight)](/programming/designpattern-flyweight)
+* [프록시(Proxy)](/programming/designpattern-proxy)
 
 #### 행위 패턴, Behavioral Pattern
 
 행위 패턴은 클래스나 객체들이 서로 상호작용하는 방법이나 작업, 어떤 알고리즘을 어떤 객체에 할당하는 것이 좋을지를 정의하는 패턴입니다. 즉, 객체나 클래스의 교류 방법에 대해 정의하는 것입니다.
 
-* 책임 연쇄(Chain of Responsibility) : TBD
-* 커맨드(Command) : TBD
-* 인터프리터(Interpreter) : TBD
-* 반복자(Iterator) : TBD
-* 중재자(Mediator) : TBD
-* 메멘토(Memento) : TBD
-* 옵서버(Observer) : TBD
-* 상태(State) : TBD
-* 전략(Strategy) : TBD
-* 템플릿 메소드(Template Method) : TBD
-* 방문자(Visitor) : TBD
+* [책임 연쇄(Chain of Responsibility)](/programming/designpattern-chainofrespons)
+* [커맨드(Command)](/programming/designpattern-command)
+* [인터프리터(Interpreter)](/programming/designpattern-interpreter)
+* [반복자(Iterator)](/programming/designpattern-iterator)
+* [중재자(Mediator)](/programming/designpattern-mediator)
+* [메멘토(Memento)](/programming/designpattern-memento)
+* [옵서버(Observer)](/programming/designpattern-observer)
+* [상태(State)](/programming/designpattern-state)
+* [전략(Strategy)](/programming/designpattern-strategy)
+* [템플릿 메소드(Template Method)](/programming/designpattern-templatemethod)
+* [방문자(Visitor)](/programming/designpattern-visitor)

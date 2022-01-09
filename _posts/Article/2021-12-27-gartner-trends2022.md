@@ -84,6 +84,7 @@ Cybersecurity Mesh는 널리 분산된 별개 보안 서비스들을 통합하�
 3. Apache Log4j 1.x에서 발생하는 원격코드 실행 취약점(CVE-2021-4104)
 
 > 참고자료: [KISA, Apache Log4j 2 보안 업데이트 권고 - 보안공지 | 자료실](https://www.krcert.or.kr/data/secNoticeView.do?bulletin_writing_sequence=36389)
+
 > 참고자료: [Log4J Moment :D](https://www.youtube.com/watch?v=NOxSLe5GjOk)
 
 #### Trend 3: Privacy-Enhancing Computation 
@@ -112,7 +113,7 @@ Cybersecurity Mesh는 널리 분산된 별개 보안 서비스들을 통합하�
 
 * [[클라우드 이해하기] ② 클라우드의 장점과 단점](https://www.ajunews.com/view/20200330041442280)
 * [클라우드 서비스의 장·단점과 국내외 시장 동향 - Samsung SDS](https://www.samsungsds.com/kr/story/cloud_210226.html)
-* [클라우드 컴퓨팅의 이점 - 대한민국 | IBM](https://www.ibm.com/kr-ko/cloud/learn/benefits-of-cloud-computing)
+* [클라우드 컴퓨팅의 이점 - 대한민국 IBM](https://www.ibm.com/kr-ko/cloud/learn/benefits-of-cloud-computing)
 * [클라우드란 무엇인가 - 개념, 장점, 서비스 구분](https://library.gabia.com/contents/infrahosting/9114/)
 
 #### Trend 5: Composable Applications
