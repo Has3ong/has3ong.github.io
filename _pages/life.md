@@ -28,6 +28,7 @@ sidebar:
 * [제 48회 데이터아키텍처 준전문가(DAsP) 합격 후기](/life/certification-dasp)
 * [2021년 한글7차 정기시험 ISTQB CTFL 합격 후기](/life/certification-istqbctfl)
 * [제 3회 빅데이터분석기사 합격 후기](/life/certification-bigdata)
+* [2022년 제 1회 SW테스트 전문가(CSTS) 일반등급 합격 후기](/life/certification-cstsfl)
 
 ## Articles
 

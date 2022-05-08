@@ -27,6 +27,18 @@ sidebar:
 * [Java 8 Stream API 살펴보기 -4- Collector 살펴보기](/programming/java-streamintro4)
 * [Java 8 Optional 살펴보기](/programming/java-optionalclass)
 
+#### JDK Project
+
+* [JDK 9 New Features](/programming/java-newfeatures9)
+* [JDK 10 New Features](/programming/java-newfeatures10)
+* [JDK 11 New Features](/programming/java-newfeatures11)
+* [JDK 12 New Features](/programming/java-newfeatures12)
+* [JDK 13 New Features](/programming/java-newfeatures13)
+* [JDK 14 New Features](/programming/java-newfeatures14)
+* [JDK 15 New Features](/programming/java-newfeatures15)
+* [JDK 16 New Features](/programming/java-newfeatures16)
+* [JDK 17 New Features](/programming/java-newfeatures17)
+
 ### Python
 
 * [Python sturct 구현](/programming/python-struct)
@@ -36,6 +48,15 @@ sidebar:
 * [Python 문자열 메모리 할당 방식](/programming/python-stringmemory)
 * [Python 디렉토리의 파일 리스트 가져오기](/programming/python-directory)
 * [PyPy 가 CPython 보다 빠른 이유](/programming/pypy-cpython)
+* [Python3 Install Mecab NameError: name 'Tagger' is not defined` Solution](/programming/python-mecabtaggererror)
+
+#### What’s New In Python
+
+* [Python 3.6의 새로운 기능](/programming/whatsnewin-python36)
+* [Python 3.7의 새로운 기능](/programming/whatsnewin-python37)
+* [Python 3.8의 새로운 기능](/programming/whatsnewin-python38)
+* [Python 3.9의 새로운 기능](/programming/whatsnewin-python39)
+* [Python 3.10의 새로운 기능](/programming/whatsnewin-python310)
 
 ### Design Pattern
 
@@ -56,7 +77,7 @@ sidebar:
 * [어댑터(Adapter)](/programming/designpattern-adapter)
 * [브리지(Bridge)](/programming/designpattern-bridge)
 * [컴포지트(Composite)](/programming/designpattern-composite)
-* [데코레이터(Decorator)](/programming/designpattern-decorator)
+* [데코레이터(Decorator)](/programming/designpattern-dcorator)
 * [퍼싸드(Facade)](/programming/designpattern-facade)
 * [플라이웨이트(Flyweight)](/programming/designpattern-flyweight)
 * [프록시(Proxy)](/programming/designpattern-proxy)

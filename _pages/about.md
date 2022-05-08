@@ -11,24 +11,25 @@ sidebar:
 
 ### Introduction
 
-* KT DS(SW Developer) 2020.01 ~
+* KT DS(SW Developer)
+<!-- * KT DS(SW Developer), 2020.01 ~ 
 * Software Maestro 10기 연수생, 2019.04 ~ 2019.12
-* 수원대학교 정보미디어학과, 2013.03 ~ 2019.02
+* 수원대학교 정보미디어학과, 2013.03 ~ 2019.02 -->
 
 ### Project
 
 * TBD
 
-### Certificate
+### Certificate 
 
-* 정보처리기사(Engineer Information Processing)
-* 빅데이터분석기사
+* IoT 지식능력검정
+* ISTQB CTFL(Certified Tester Foundation Level)
 * SQL 개발자(SQLD, SQL Developer)
+* SW 테스트 전문가 자격 - 일반등급(CSTS - Foundation Level)
+* 빅데이터분석기사
 * 데이터분석 준전문가(ADsP, Advanced Data Analytics Semi-Professional)
 * 데이터아키텍처 준전문가(DAsP, Data Architecture Semi-Professional)
-* ISTQB CTFL(Certified Tester Foundation Level)
-* IoT 지식능력검정
-
+* 정보처리기사(Engineer Information Processing)
 ### Goal 
     
 * 정보보안기사(Engineer information security)
@@ -37,7 +38,6 @@ sidebar:
 * SQL 전문가(SQLP, SQL Professional)
 * 데이터아키텍처 전문가(DAP, Data Architecture Professional)
 * 개인정보관리사(CPPG, Certified Privacy Protection General)
-* SW 테스트 전문가 자격 - 일반등급(CSTS - Foundation Level)
 * SW 테스트 전문가 자격 - 고급등급(CSTS - Advanced Level)
 * ISTQB CTAL(Certified Tester Advanced Level)
 * ISTQB CTEL (Certified Tester Expert Level)
@@ -55,7 +55,8 @@ sidebar:
 ### Comment
 
 * 취업 준비 및 자기개발을 위해 만든 블로그입니다. 
-    * 많이 부족할 수 있습니다. 포스트에 관한 모든 지적과 피드백 남겨주시면 감사히 받겠습니다.
+  * 제 공부를 위해 정리한것들 모음이라 자료가 부실합니다. 이점 참고바랍니다.
+  * 포스트에 관한 모든 지적과 피드백 남겨주시면 감사히 받겠습니다.
 * 요즘 롤이 너무 재밌습니다...., 2021, 09, 15
 
 ### Contact
@@ -66,4 +67,4 @@ sidebar:
 
 [https://cultofthepartyparrot.com/](https://cultofthepartyparrot.com/)
 
-*Last Update - 2021, 11, 16*
+*Last Update - 2022, 4, 15*
