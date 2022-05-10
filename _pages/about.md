@@ -12,9 +12,6 @@ sidebar:
 ### Introduction
 
 * KT DS(SW Developer)
-<!-- * KT DS(SW Developer), 2020.01 ~ 
-* Software Maestro 10기 연수생, 2019.04 ~ 2019.12
-* 수원대학교 정보미디어학과, 2013.03 ~ 2019.02 -->
 
 ### Project
 
