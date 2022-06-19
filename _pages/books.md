@@ -10,7 +10,10 @@ sidebar:
 ## 총류 000
 ## 철학 100
 
+* [[리뷰]바른 마음 - 나의 옳음과 그들의 옳음은 왜 다른가](/books/books-righteousmind)
 * [[리뷰]자유론](/books/books-onliberty)
+* [[리뷰]진화심리학 - 마음과 행동을 탐구하는 새로운 과학](/books/books-evolutionarypsychologythenewscienceofthemind)
+* [[리뷰]합리적 남자 - 전 세계 남성들이 구독하는 핫 블로거의 연애 멘토링](/books/books-rationalmale)
 
 ## 종교 200
 ## 사회과학 300
@@ -34,6 +37,7 @@ sidebar:
 * [[리뷰]어느 날, 내 죽음에 네가 들어왔다](/books/books-onedayyoucameintomydeath)
 * [[리뷰]어서 오세요, 휴남동 서점입니다](/books/books-welcometohunamdongbookstore)
 * [[리뷰]오늘 밤, 세계에서 이 사랑이 사라진다 해도](/books/books-tonightevenifthislovedisappearsfromtheworld)
+* [[리뷰]편의점 인간](/books/books-conveniencestorehuman)
 
 ## 역사 900
 
