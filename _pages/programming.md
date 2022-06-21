@@ -26,6 +26,7 @@ sidebar:
 * [Java 8 Stream API 살펴보기 -3- findAny() vs findFirst()](/programming/java-streamintro3)
 * [Java 8 Stream API 살펴보기 -4- Collector 살펴보기](/programming/java-streamintro4)
 * [Java 8 Optional 살펴보기](/programming/java-optionalclass)
+* [Java Junit5 Assert 함수 정리](/programming/java-junit5assert)
 
 #### JDK Project
 
