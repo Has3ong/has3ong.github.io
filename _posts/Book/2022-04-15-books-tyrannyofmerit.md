@@ -25,7 +25,7 @@ author_profile: true
 * CHAPTER 7. 일의 존엄성
 * 결론: 능력, 그리고 공동선
 
-### Motivation
+### Review
 
 많은 생각을 하게 많드는 도서였습니다. 그리고 20년도에 집필된 책이지만, 그 이전 부터 계속 제기된 사항이었죠. 
 
@@ -35,7 +35,7 @@ author_profile: true
 
 능력주의에 대해서 알아보고 우리와 가장 삶의 밀접하게 연관이 되어 있는 대학과 능력주의의 관계를 알아보고 마무리하겠습니다.
 
-### Review
+---
 
 #### 능력주의란?
 
@@ -79,7 +79,7 @@ author_profile: true
 
 부족한 글 읽어주셔서 감사합니다.
 
-### 참고자료
+---
 
 > IPSOS - Culture wars around the world: how countries perceive divisions
 > 김선욱.능력과 공정과 정의 - 마이클 샌델의 능력주의 비판

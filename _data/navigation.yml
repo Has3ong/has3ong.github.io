@@ -16,6 +16,8 @@ docs:
         url: /blockchain
       - title: "ComputerScience"
         url: /cs
+      - title: "DataBase"
+        url: /database
       - title: "DevOps"
         url: /devops
       - title: "Life"

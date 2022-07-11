@@ -25,11 +25,11 @@ author_profile: true
 * Lesson 7 낯설지만 익숙한 ‘클라우드 컴퓨팅’ / 이한주 / “우리 모두가 직접 클라우드를 만드는 시대가 머지않았다”
 * Lesson 8 또 하나의 나를 꿈꾸는 세상, ‘메타버스’ / 김상균 / “세상의 주인이 되는 길이 메타버스에 있음을 잊지 말자”
 
-### Motivation
+### Review
 
 독서 모임에서 발제한 책으로 읽게 된 소설입니다. 좋은 책을 발제해주셔서 감사합니다.
 
-### Review
+---
 
 사실 책에서 소개하는 모든 기술이 최소 10년도 전에 나왔습니다. 대표적으로 예시를 들면 블록체인은 2008년 ***Bitcoin: A Peer-to-Peer Electronic Cash System*** 에 처음 제안되었으며, AI는 1943년 ***A Logical Calculus of Ideas Immanent in Nervous Activity*** 에서부터 시작됩니다.
 
@@ -39,7 +39,7 @@ author_profile: true
 
 마지막으로 최근 많은 사람이 부동산, 주식과 같은 투자에 관심이 많습니다. 메타버스, 가상화폐, NFT에 많은 관심을 가지고 투기인지 투자인지 모르는 투자를 하는데요. 책을 읽으면서 기본적인 기술에 본질에 관심을 가졌으면 좋겠다고 생각합니다. 미래에 어떤 일이 일어날지는 아무도 예측할 수 없습니다. 하지만 이러한 책을 통해 기술의 본질을 알아두어 큰 흐름을 예측하여 대비하면 좋겠다고 생각합니다.
 
-### Epilogue
+---
 
 사실 책에서 소개하는 기술들은 인터넷에서 검색하면 쉽게 얻을 수 있는 내용입니다. 대표적으로 Gartner가 있죠. 관심이 있으신 분들은 ***Gartner Top Strategic Technology Trends***, ***Gartner Hype Cycle Emerging Technologies*** 를 검색해보시면 됩니다.
 

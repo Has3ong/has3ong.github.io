@@ -277,4 +277,4 @@ Spring Boot 를 실행시키고 난 후 `localhost:8080/index/index` 랑 `localh
 ![image](https://user-images.githubusercontent.com/80693904/123547799-21182580-d79d-11eb-9e1d-709215a9f039.png)
 
 * 참고자료
-  * [Apache Tiles Documentation 2.2](/https://tiles.apache.org/2.2/framework/index.html)
+  * [Apache Tiles Documentation 2.2](https://tiles.apache.org/2.2/framework/index.html)

@@ -8,6 +8,9 @@ sidebar:
 ---
 
 ## 총류 000
+
+* [[리뷰]알쓸신잡 SEASON 1 - 알아두면 쓸데없는 신비한 잡학사전](/books/books-nostalgicseason1)
+
 ## 철학 100
 
 * [[리뷰]바른 마음 - 나의 옳음과 그들의 옳음은 왜 다른가](/books/books-righteousmind)
@@ -38,6 +41,7 @@ sidebar:
 * [[리뷰]어서 오세요, 휴남동 서점입니다](/books/books-welcometohunamdongbookstore)
 * [[리뷰]오늘 밤, 세계에서 이 사랑이 사라진다 해도](/books/books-tonightevenifthislovedisappearsfromtheworld)
 * [[리뷰]편의점 인간](/books/books-conveniencestorehuman)
+* [[리뷰]流](/books/books-flow)
 
 ## 역사 900
 

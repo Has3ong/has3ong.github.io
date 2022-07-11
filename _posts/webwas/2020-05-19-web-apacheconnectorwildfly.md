@@ -188,6 +188,8 @@ $JAVA_HOME
 /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.242.b08-0.el7_7.x86_64
 ```
 
+만약 $JAVA_HOME 변수가 않으면 직접 등록하셔야 합니다.
+
 ## Install Wildfly
 
 제일 먼저 Apache 홈페이지에서 필요한 파일을 설치하기 위한 `wget` 패키지를 설치합니다.
@@ -287,7 +289,7 @@ $ systemctl daemon-reload
 $ systemctl start wildfly
 ```
 
-wildfly 의 디폴트 포트는 8080, 9090 이므로 netstat 으로 8080, 9990 포트가 작동하는지 확인해보겠습니다.
+wildfly 의 디폴트 포트는 8080, 9990 이므로 netstat 으로 8080, 9990 포트가 작동하는지 확인해보겠습니다.
 
 ```shell
 $ ss -nlp | grep tcp
@@ -392,6 +394,8 @@ public (active)
 
 아래와 같이 간단하게 설치할 수 있지만 `httpd` 파일을 다운로드 받아 컴파일하는 방식으로 설치해보겠습니다.
 
+> `yum` 을 이용하여 `httpd`를 설치하신 분들은 아래 사항들은 진행하지 않으셔도 됩니다.
+
 ```shell
 $ yum install httpd
 $ systemctl start httpd
@@ -406,6 +410,8 @@ $ yum -y install gcc make gcc-c++ pcre-devel expat-devel
 `httpd`, `apr`, `apr-util` 을 `wget` 을 이용하여 다운로드 받고 압축을 해제한 다음 `/usr/local/src` 폴더로 이동시킵니다.
 
 **APR**(아파치 포터블 런타임)는 아파치 HTTP 서버 2.x.의 핵심이며 휴대용 라이브러리입니다. 이런 APR은 고급 IO 기능(예:sendfile, epoll and OpenSSL 등)에 대한 접근을 포함하여 OS 수준의 기능 (난수 생성, 시스템 상태), 그리고 기본 프로세스 처리(공유 메모리, NT 파이프와 유닉스 소켓) 등 많은 용도로 사용되고 있습니다.
+
+아래에서 `wget`을 이용하여 설치하는 자료들의 경로는 변경될 수 있는 사항이니 참고 부탁드립니다.
 
 ```shell
 $ wget http://mirror.navercorp.com/apache/httpd/httpd-2.4.43.tar.gz
@@ -454,7 +460,7 @@ $ cd /usr/local/src/httpd-2.4.43
 --enable-modules=most 
 --enable-mods-shared=all 
 --enable-so
---with-apr=/usr/local/src/apr-1.6.
+--with-apr=/usr/local/src/apr-1.6.5
 --with-apr-util=/usr/local/src/apr-util-1.6.1
 
 $ make 
@@ -501,7 +507,7 @@ tcp    LISTEN     0      100       [::1]:25                 [::]:*
 $ vi /etc/systemd/system/httpd.service
 ```
 
-*httpd.service* 파일에 아래 내용을 등록해줍니다.
+*httpd.service* 파일에 아래 내용을 등록해줍니다. 참고로 apache 설치는 뒷부분에서 설명하겠습니다.
 
 ```shell
 [Unit]
