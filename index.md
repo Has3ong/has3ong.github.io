@@ -11,7 +11,10 @@ sidebar:
 
 ### Introduction
 
-* KT DS(SW Developer)
+<!-- * KT DS(SW Developer) -->
+
+* SW 개발자
+* TBD
 
 ### Project
 
