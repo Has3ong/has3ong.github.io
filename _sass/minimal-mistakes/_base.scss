@@ -182,9 +182,11 @@ td > code {
 
 hr {
   display: block;
-  margin: 1em 0;
+  margin: 2em 0;
   border: 0;
-  border-top: 1px solid $border-color;
+  border-top: 4px solid #6f777d;
+  margin-right: 50%;
+  // border-top: 1px solid $border-color;
 }
 
 /* lists */
