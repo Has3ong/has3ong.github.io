@@ -33,7 +33,6 @@ author_profile: true
   * 11장 종교는 믿음의 문제가 아니다
   * 12장 좀 더 건설적으로 싸울 수는 없을까
 
-### Storyline
-### Motivation
 ### Review
-### Epilogue
+---
+---

@@ -35,7 +35,7 @@ author_profile: true
 * 제6부 통합 심리 과학
   * 제13장 통합 진화심리학을 향해
 
-### Storyline
-### Motivation
 ### Review
-### Epilogue
+
+---
+---
