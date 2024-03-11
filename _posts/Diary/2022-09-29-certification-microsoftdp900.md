@@ -4,6 +4,8 @@ tags :
 - 자격증
 categories:
 - Life
+- Azure
+- Microsoft
 toc: true
 toc_min: 1
 toc_max: 4
