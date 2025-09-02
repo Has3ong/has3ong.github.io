@@ -2,10 +2,10 @@
 title : 2022년 Microsoft Azure Data Fundamentals, DP-900 합격 후기
 tags :
 - 자격증
-categories:
-- Life
 - Azure
 - Microsoft
+categories:
+- Life
 toc: true
 toc_min: 1
 toc_max: 4
