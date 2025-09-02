@@ -31,28 +31,16 @@ sidebar:
 * 데이터아키텍처 준전문가(DAsP, Data Architecture Semi-Professional)
 * 정보처리기사(Engineer Information Processing)
 * Azure Data Fundamentals, DP-900
+* Azure Developer Associate, AZ-204
 
 ### Goal 
     
-* 정보보안기사(Engineer information security)
-* 정보통신기사(Engineer Information & Communication)
-* 정보관리기술사(Professional Engineer Information Management)
+* 데이터 아키텍처 전문가(DAP, Data Architecture Professional)
 * SQL 전문가(SQLP, SQL Professional)
-* 데이터아키텍처 전문가(DAP, Data Architecture Professional)
-* 개인정보관리사(CPPG, Certified Privacy Protection General)
-* SW 테스트 전문가 자격 - 고급등급(CSTS - Advanced Level)
-* ISTQB CTAL(Certified Tester Advanced Level)
-* ISTQB CTEL (Certified Tester Expert Level)
-* ITIL(IT Infrastructure Library) v4 Foundation
-* OCJP(Oracle Certified Professional, Java SE 8 Programmer)
-* OCP(Oracle Certified Professional)
-* MongoDB Developer(C100DEV)
-* MongoDB Database Administrator(C100DBA)
-* PostgreSQL Associate Certification
-* PostgreSQL Professional Certification
-* PCAP – Certified Associate in Python Programming
-* PCPP1 – Certified Professional in Python Programming 1
-* PCPP2 – Certified Professional in Python Programming 2
+* Azure Administrator Associate, AZ-104
+* Azure Design infrastructure solutions, AZ-305 
+* Azure Solutions Architect Expert, AZ-400
+
 
 ### Comment
 
@@ -60,6 +48,7 @@ sidebar:
   * 제 공부를 위해 정리한것들 모음이라 자료가 부실합니다. 이점 참고바랍니다.
   * 포스트에 관한 모든 지적과 피드백 남겨주시면 감사히 받겠습니다.
 * 요즘 롤이 너무 재밌습니다...., 2021, 09, 15
+* 엄청 방지시켜놨네, 2025, 09, 02
 
 ### Contact
 
